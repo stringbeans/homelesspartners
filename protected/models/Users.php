@@ -18,6 +18,13 @@
  */
 class Users extends CActiveRecord
 {
+
+	const ROLE_ADMIN = 'admin';
+	const ROLE_CITY = 'city';
+	const ROLE_SHELTER = 'shelter';
+	const ROLE_CONTRIBUTOR = 'contributor';
+	const ROLE_USER = 'user';
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -114,5 +121,21 @@ class Users extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function create($email, $password)
+	{
+		$user = new Users();
+		$user->email = $email;
+		$user->pw = $password;
+		$user->date_created = new CDbExpression('NOW()');
+		$user->role_new = self::ROLE_USER;
+
+		if($user->save())
+		{
+			return $user;
+		}
+
+		return false;
 	}
 }

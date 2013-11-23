@@ -22,6 +22,18 @@
                 		<li><a href="#fakelink">Element Three</a></li>
               		</ul> <!-- /Sub menu -->
             	</li>
+                <?php if (!Yii::app()->user->isGuest): ?>
+                <li>
+                    <a href="<?php echo Yii::app()->createUrl('login/logout'); ?>">Logout</a>
+                </li>
+                <?php else: ?>
+                <li>
+                    <a href="<?php echo Yii::app()->createUrl('login/index'); ?>">Login</a>
+                </li>
+                <li>
+                    <a href="<?php echo Yii::app()->createUrl('login/register'); ?>">Register</a>
+                </li>
+                <?php endif; ?>
           	</ul> <!-- /nav -->
 
           	<form class="navbar-form navbar-right" action="#">
@@ -34,6 +46,7 @@
 					</div>
               	</div>                                    
             </form>
+
     	</div><!--/.nav-collapse -->
    	</div>
 </header>
