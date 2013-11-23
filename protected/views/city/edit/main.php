@@ -98,6 +98,11 @@ $(document).ready(function() {
 				</div>
 
 				<div class='form-group'>
+					<label>City Sponsor Image Link URL</label>
+					<input type='input' class='form-control' name='image_link_url' value='<?php echo !empty($city)?$city->img_link_url:"" ?>' />
+				</div>
+
+				<div class='form-group'>
 					<input type='submit' class='btn btn-success' value='Save' />
 				</div>
 			</form>

@@ -58,6 +58,7 @@ class CityController extends Controller
 		$name = Yii::app()->input->post("name");
 		$enabled = Yii::app()->input->post("enabled", 0);
 		$cityCoordinators = Yii::app()->input->post("cityCoordinators", array());
+		$imageLinkUrl = Yii::app()->input->post("image_link_url");
 
 		$city = new Cities();
 		if(!empty($cityId))
@@ -69,6 +70,7 @@ class CityController extends Controller
 		$city->region_id = $regionId;
 		$city->name = $name;
 		$city->enabled = $enabled;
+		$city->img_link_url = $imageLinkUrl;
 
 		if($city->save())
 		{
@@ -88,9 +90,12 @@ class CityController extends Controller
 
 			$uploadDir = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'city'.DIRECTORY_SEPARATOR;
 			$uploadedImage = CUploadedFile::getInstanceByName("image");
-			$uploadedImage->saveAs($uploadDir.$uploadedImage->getName());
-
-			$city->img = "/uploads/city/".$uploadedImage->getName();
+			if(!empty($uploadedImage))
+			{
+				$uploadedImage->saveAs($uploadDir.$uploadedImage->getName());
+				$city->img = "/uploads/city/".$uploadedImage->getName();
+			}
+			
 			$city->save();
 		}
 		else
