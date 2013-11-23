@@ -46,9 +46,9 @@ $(document).ready(function() {
                 <?php endif; ?>
 
                 <?php if(!empty($shelter)): ?>
-                <input type='hidden' name='userId' value='<?php echo $shelter->creator_id ?>' />
+                <input type='hidden' name='creatorId' value='<?php echo $shelter->creator_id ?>' />
                 <?php else:?>
-                    <input type='hidden' name='userId' value='<?php echo $userId ?>' />
+                    <input type='hidden' name='creatorId' value='<?php echo $userId ?>' />
                 <?php endif; ?>
 
                 <div class='form-group'>
@@ -98,7 +98,7 @@ $(document).ready(function() {
                 </div>
                 <div class='form-group'>
                     <label>Mapped</label>
-                    <input type="checkbox" name='enabled' <?php (!empty($shelter) && $shelter->mapped)?"checked='checked'":"" ?> data-toggle="switch" />
+                    <input type="checkbox" name='mapped' value='1' <?php echo (!empty($shelter) && $shelter->mapped)?"checked='checked'":"" ?> data-toggle="switch" />
                 </div>
                 <div class='form-group'>
                     <label>Date Created: <?php echo !empty($shelter)?$shelter->date_created:"" ?></label>
@@ -107,7 +107,7 @@ $(document).ready(function() {
 
                 <div class='form-group'>
                     <label>Enabled</label>
-                    <input type="checkbox" name='enabled' <?php (!empty($city) && $city->enabled)?"checked='checked'":"" ?> data-toggle="switch" />
+                    <input type="checkbox" name='enabled' value='1' <?php echo (!empty($shelter) && !empty($shelter->enabled))?"checked='checked'":"" ?> data-toggle="switch" />
                 </div>
                 <div class='form-group'>
                     <input type='submit' class='btn btn-success' value='Save' />
