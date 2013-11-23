@@ -1,6 +1,11 @@
 <script type='text/javascript'>
 $(document).ready(function() {
-    $("#cityForm").validate({
+
+    $("#shelterCoordinators").selectize({
+        plugins: ['remove_button'],
+    });
+
+    $("#shelterForm").validate({
         submitHandler: function(form) {
             form.submit();
         },
@@ -24,7 +29,8 @@ $(document).ready(function() {
         ignore: ":hidden",
         rules: {
             'name': 'required',
-            'region': 'required'
+            'cityId': 'required',
+            'ID_FORMAT': 'required'
         }
     });
 });
@@ -40,7 +46,7 @@ $(document).ready(function() {
             <?php endif; ?>
         </div>
         <div class='col-md-6'>
-            <form id='cityForm' action='<?php echo $this->createUrl("shelter/save") ?>' method='post'>
+            <form id='shelterForm' action='<?php echo $this->createUrl("shelter/save") ?>' method='post' enctype="multipart/form-data">
                 <?php if(!empty($shelter)): ?>
                 <input type='hidden' name='shelterId' value='<?php echo $shelter->shelter_id ?>' />
                 <?php endif; ?>
@@ -103,12 +109,28 @@ $(document).ready(function() {
                 <div class='form-group'>
                     <label>Date Created: <?php echo !empty($shelter)?$shelter->date_created:"" ?></label>
                 </div>
-
-
                 <div class='form-group'>
                     <label>Enabled</label>
                     <input type="checkbox" name='enabled' value='1' <?php echo (!empty($shelter) && !empty($shelter->enabled))?"checked='checked'":"" ?> data-toggle="switch" />
                 </div>
+
+                <div class='form-group'>
+                    <label>Shelter Coordinators</label>
+                    <select id='shelterCoordinators' name='shelterCoordinators[]' multiple>
+                        <?php foreach ($allShelterCoordinators as $user): ?>
+                            <option value='<?php echo $user->user_id ?>' <?php echo in_array($user->user_id, $currentShelterCoordinators)?"selected='selected'":"" ?>><?php echo $user->email ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+
+                <div class='form-group'>
+                    <label>Shelter Image</label>
+                    <input type='file' class='form-control' name='image' />
+                    <?php if(!empty($shelter) && !empty($shelter->img)): ?>
+                    <img src='<?php echo $shelter->img ?>' />
+                    <?php endif; ?>
+                </div>
+
                 <div class='form-group'>
                     <input type='submit' class='btn btn-success' value='Save' />
                 </div>
