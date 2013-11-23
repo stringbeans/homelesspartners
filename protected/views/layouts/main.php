@@ -25,80 +25,11 @@
 
 	<body>
 
-		<header>
-			<div class="navbar navbar-default navbar-fixed-top">
-	          	<div class="navbar-header">
-	          		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>
-		          	<a href="#fakelink" class="navbar-brand">Homeless Partners</a>
-	          	</div>          
-	            <div class="navbar-collapse collapse navbar-collapse-01">
-	              	<ul class="nav navbar-nav">
-	                	<li class="active"><a href="#fakelink">Products</a></li>
-	                	<li>
-	                  		<a href="#fakelink">Features</a>
-	                  		<ul>
-	                    		<li><a href="#fakelink">Element One</a></li>
-	                    		<li>
-	                      			<a href="#fakelink">Sub menu</a>
-	                      			<ul>
-	                        			<li><a href="#fakelink">Element One</a></li>
-				                        <li><a href="#fakelink">Element Two</a></li>
-				                        <li><a href="#fakelink">Element Three</a></li>
-				                    </ul> <!-- /Sub menu -->
-	                    		</li>
-	                    		<li><a href="#fakelink">Element Three</a></li>
-	                  		</ul> <!-- /Sub menu -->
-	                	</li>
-	              	</ul> <!-- /nav -->
-
-	              	<form class="navbar-form navbar-right" action="#">
-	              		<div class="form-group">
-			              	<div class="input-group input-group-sm">
-								<input class="form-control" id="navbarInput-02" type="search" placeholder="Search">
-								<span class="input-group-btn">
-									<button type="submit" class="btn"><span class="fui-search"></span></button>
-								</span>            
-							</div>
-		              	</div>                                    
-		            </form>
-	        	</div><!--/.nav-collapse -->
-	       	</div>
-	    </header>
+		<?php $this->renderPartial("/layouts/_header") ?>
 
 		<?php echo $content; ?>
 
-		<footer>
-			<div class="bottom-menu bottom-menu-inverse">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-2 navbar-brand">
-							<a href="#fakelink" class="">Homeless Partners</a>
-						</div>
-
-						<div class="col-md-8">
-							<ul class="bottom-links">
-								<li><a href="#fakelink">About Us</a></li>
-								<li><a href="#fakelink">Store</a></li>
-								<li class="active"><a href="#fakelink">Jobs</a></li>
-								<li><a href="#fakelink">Privacy</a></li>
-								<li><a href="#fakelink">Terms</a></li>
-								<li><a href="#fakelink">Follow Us</a></li>
-								<li><a href="#fakelink">Support</a></li>
-								<li><a href="#fakelink">Links</a></li>
-							</ul>
-						</div>
-
-						<div class="col-md-2">
-							<ul class="bottom-icons">
-								<li><a href="#fakelink" class="fui-pinterest"></a></li>
-								<li><a href="#fakelink" class="fui-facebook"></a></li>
-								<li><a href="#fakelink" class="fui-twitter"></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
+		<?php $this->renderPartial("/layouts/_footer") ?>
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
