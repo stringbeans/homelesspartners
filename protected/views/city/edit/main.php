@@ -62,7 +62,7 @@ $(document).ready(function() {
 					<label>Region</label>
 					<select class='form-control' name='regionId' />
 						<?php foreach ($regions as $region): ?>
-						<option value='<?php echo $region->region_id ?>'><?php echo $region->name ?></option>	
+						<option value='<?php echo $region->region_id ?>' <?php echo (!empty($city) && $region->region_id == $city->region_id)?"selected='selected'":"" ?>><?php echo $region->name ?></option>	
 						<?php endforeach ?>
 					</select>
 				</div>
@@ -72,7 +72,7 @@ $(document).ready(function() {
 				</div>
 				<div class='form-group'>
 					<label>Enabled</label>
-					<input type="checkbox" name='enabled' <?php (!empty($city) && $city->enabled)?"checked='checked'":"" ?> data-toggle="switch" />
+					<input type="checkbox" name='enabled' <?php echo (!empty($city) && !empty($city->enabled))?"checked='checked'":"" ?> data-toggle="switch" />
 				</div>
 				<div class='form-group'>
 					<input type='submit' class='btn btn-success' value='Save' />

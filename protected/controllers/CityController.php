@@ -30,7 +30,7 @@ class CityController extends Controller
 
 	public function actionSave() 
 	{
-		$cityId = Yii::app()->input->post("id");
+		$cityId = Yii::app()->input->post("cityId");
 		$name = Yii::app()->input->post("name");
 
 		$city = new Cities();
