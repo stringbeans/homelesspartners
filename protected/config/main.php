@@ -12,7 +12,7 @@ return array(
 	'defaultController' => 'home', 
 
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=>array('log', 'input'),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -39,6 +39,13 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+
+		'input'=>array(   
+            'class'         => 'CmsInput',  
+            'cleanPost'     => false,  
+            'cleanGet'      => false,   
+        ),
+		
 		// uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(
