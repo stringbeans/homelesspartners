@@ -8,7 +8,7 @@
 		    <?php echo Yii::app()->user->getFlash('success'); ?>
 			</div>
 		 	<?php endif; ?>
-			
+
 			<p class='text-right'>
 				<a href='<?php echo $this->createUrl("city/edit") ?>' class='btn btn-warning'>+ Create new</a>
 			</p>
@@ -19,7 +19,7 @@
 					<td><?php echo $city->name ?></td>
 					<td>
 						<a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("city/edit", array('id' => $city->city_id)) ?>'>Edit</a>
-						<a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("city/delete", array('id' => $city->city_id)) ?>'>Delete</a>
+						<a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("city/delete", array('id' => $city->city_id)) ?>' onclick='return confirm("Deleting this city will delete all things associated with the city. Continue?");'>Delete</a>
 					</td>
 				</tr>
 				<?php endforeach; ?>
