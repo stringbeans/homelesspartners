@@ -39,6 +39,19 @@ $(document).ready(function() {
 			<h2>Create City</h2>
 			<?php endif; ?>
 		</div>
+		<div class='col-md-12'>
+			<?php if(Yii::app()->user->hasFlash('error')): ?>
+		 	<div class="alert alert-danger">
+		    <?php echo Yii::app()->user->getFlash('error'); ?>
+			</div>
+		 	<?php endif; ?>
+
+		 	<?php if(Yii::app()->user->hasFlash('success')): ?>
+		 	<div class="alert alert-success">
+		    <?php echo Yii::app()->user->getFlash('success'); ?>
+			</div>
+		 	<?php endif; ?>
+		</div>
 		<div class='col-md-6'>
 			<form id='cityForm' action='<?php echo $this->createUrl("city/save") ?>' method='post'>
 				<?php if(!empty($city)): ?>

@@ -40,7 +40,19 @@ class CityController extends Controller
 			$city = Cities::model()->findByPk($cityId);
 		}
 		
-		//$city->name = 
+		$city->name = $name;
+		if($city->save())
+		{
+			Yii::app()->user->setFlash('success', "Saved");
+		}
+		else
+		{
+			Yii::app()->user->setFlash('error', "City wasnt saved!");
+		}
+
+		$this->redirect($this->createUrl("city/edit", array(
+			'id' => $city->city_id
+		)));
 	}
 }
 
