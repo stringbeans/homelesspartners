@@ -31,7 +31,9 @@ class CityController extends Controller
 	public function actionSave() 
 	{
 		$cityId = Yii::app()->input->post("cityId");
+		$regionId = Yii::app()->input->post("regionId");
 		$name = Yii::app()->input->post("name");
+		$enabled = Yii::app()->input->post("enabled", 0);
 
 		$city = new Cities();
 		if(!empty($cityId))
@@ -40,7 +42,10 @@ class CityController extends Controller
 			$city = Cities::model()->findByPk($cityId);
 		}
 		
+		$city->region_id = $regionId;
 		$city->name = $name;
+		$city->enabled = $enabled;
+		
 		if($city->save())
 		{
 			Yii::app()->user->setFlash('success', "Saved");
@@ -53,6 +58,17 @@ class CityController extends Controller
 		$this->redirect($this->createUrl("city/edit", array(
 			'id' => $city->city_id
 		)));
+	}
+
+	public function actionDelete()
+	{
+		$cityId = Yii::app()->input->get("id");
+
+		Cities::model()->deleteByPk($cityId);
+
+		Yii::app()->user->setFlash('success', "City Deleted");
+
+		$this->redirect($this->createUrl("city/index"));
 	}
 }
 

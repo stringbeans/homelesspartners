@@ -72,7 +72,7 @@ $(document).ready(function() {
 				</div>
 				<div class='form-group'>
 					<label>Enabled</label>
-					<input type="checkbox" name='enabled' <?php echo (!empty($city) && !empty($city->enabled))?"checked='checked'":"" ?> data-toggle="switch" />
+					<input type="checkbox" name='enabled' value='1' <?php echo (!empty($city) && !empty($city->enabled))?"checked='checked'":"" ?> data-toggle="switch" />
 				</div>
 				<div class='form-group'>
 					<input type='submit' class='btn btn-success' value='Save' />
