@@ -8,7 +8,6 @@ class HomeController extends Controller
 	 */
 	public function actionIndex()
 	{
-		
 		$this->render('/home/index/main');
 	}
 }
