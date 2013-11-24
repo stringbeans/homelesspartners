@@ -93,6 +93,9 @@ class PledgeController extends Controller
 
 		//get all gifts by gift id, grouped by shelter
 		$currentPledgeCart = Yii::app()->session['pledgeCart'];
+		//Yii::app()->session['pledgeCart'] = array(6359);
+
+		//$currentPledgeCart = array(6359);
 
 		$pledgeCartInfo = array();
 
@@ -179,10 +182,48 @@ class PledgeController extends Controller
 		$giftIds = Yii::app()->input->post("giftId", array()); //array of gift ids we're pledging
 		$deliverDate = Yii::app()->input->post("deliveryDate", array()); //indexed by shelterid
 		
+		$email = "Thank you so very much for your kind and generous gift(s). You never know how an act of kindness, like the one you have shown, will affect others. Maybe that one gift/card can give them the encouragement they need to not only make a difference in their day, but in their life.";
+
+		$shelterIds = array_keys($deliverDate);
+
+		$email .= "\n\nSUMMARY (Please print for your own records)";
+		$email .= "\n\n=====================================";
+		$email .= "\n\nSHELTERS:";
+
+		foreach($shelterIds as $shelterId)
+		{
+			$shelter = Shelters::model()->findByPk($shelterId);
+
+			$email .= "\n\nShelter Name: {$shelter->name}";
+			$email .= "\nStreet: {$shelter->street}";
+			$email .= "\nPhone: {$shelter->phone}";
+
+			$dropoffLocations = ShelterDropoffs::model()->findAllByAttributes(array(
+				'shelter_id' => $shelter->shelter_id
+			));
+
+			if(!empty($dropoffLocations))
+			{
+				$email .= "\nDropoff Locations:";
+
+				foreach($dropoffLocations as $location)
+				{
+					$email .= "\nName: {$location->name}";
+					$email .= "\Address: {$location->address}";
+					$email .= "\nNotes: {$location->notes}";
+				}
+			}
+		}
+
+		$email .= "\n\n=====================================";
+
+		$email .= "\n\n PLEDGES:";
+
 		foreach($giftIds as $giftId)
 		{
 			$gift = Gifts::model()->findByPk($giftId);
 			$story = Stories::model()->findByPk($gift->story_id);
+			$shelter = Shelters::model()->findByPk($shelterId);
 
 			//create a pledge
 			$pledge = new Pledges();
@@ -192,6 +233,10 @@ class PledgeController extends Controller
 			$pledge->estimated_delivery_date = date("Y-m-d", strtotime($deliverDate[$story->shelter_id]));
 			$pledge->date_created = new CDbExpression('NOW()');
 			$pledge->save();
+			
+			$email .= "\n\n Gift: {$gift->description}";
+			$email .= "\n For shelter: {$shelter->name} (See above for dropoff locations)";
+			$email .= "\n Estimated drop off date: " . date("F j, Y", strtotime($deliverDate[$story->shelter_id]));
 		}
 
 		//TODO:
