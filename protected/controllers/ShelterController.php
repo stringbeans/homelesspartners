@@ -191,8 +191,8 @@ class ShelterController extends Controller
             }
 
             $shelter->save();
-            $this->pruneRemovedDropoffLocations($shelterId);
-            $this->saveNewDropoffLocation($shelterId);
+            $this->pruneRemovedDropoffLocations($shelter->shelter_id);
+            $this->saveNewDropoffLocation($shelter->shelter_id);
 
             Yii::app()->user->setFlash('success', "Saved");
 
