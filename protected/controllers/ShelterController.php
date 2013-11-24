@@ -9,7 +9,6 @@ class ShelterController extends Controller
         $this->render("/shelter/index/shelterstories", array());
     }
 
-
     public function actionIndex()
     {
         //fetch all shelters
@@ -28,46 +27,68 @@ class ShelterController extends Controller
         $shelter = Shelters::model()->findByPk($shelterId);
         $cities = Cities::model()->findAll();
 
- //TODO       //this will be the logged in user's ID
+        //TODO       //this will be the logged in user's ID
         $userId = 18;
 
-
         //get all shelter coordinators
-        $allShelterCoordinators = Users::model()->findAllByAttributes(array(
-            'role_new' => 'shelter'
-        ));
-
-        $dropoffLocation = new ShelterDropoffs();
-        $dropoffLocations = ShelterDropoffs::model()->findAllByAttributes(array(
-            'shelter_id' => $shelterId
-        ));
-        if(!empty($dropoffLocations)) {
-            $dropoffLocation = $dropoffLocations[0];
-        }
-
-        //get current city coordinators for this specific city
-        $currentShelterCoordinators = array();
-        if(!empty($shelterId))
-        {
-            $shelterCoordinators = ShelterCoordinators::model()->findAllByAttributes(array(
-                'shelter_id' => $shelterId
-            ));
-
-            foreach($shelterCoordinators as $sc)
-            {
-                $currentShelterCoordinators[] = $sc->user_id;
-            }
-        }
+        $allShelterCoordinators = Users::model()->findAllByAttributes(array('role_new' => 'shelter'));
 
         $this->render("/shelter/edit/main", array(
             'shelter' => $shelter,
             'cities' => $cities,
             'userId' => $userId,
             'allShelterCoordinators' => $allShelterCoordinators,
-            'currentShelterCoordinators' => $currentShelterCoordinators,
-            'dropoffLocation' => $dropoffLocation
-
+            'currentShelterCoordinators' => $this->getCurrentShelterCoordinators($shelterId),
+            'currentDropoffLocations' => $this->getCurrentDropoffLocations($shelterId)
         ));
+    }
+
+    /**
+     * retrieves a list of shelter coordinators
+     *
+     * @param int shelterId
+     */
+    private function getCurrentShelterCoordinators($shelterId)
+    {
+        if (empty($shelterId)) {
+            return array();
+        }
+
+        //get current city coordinators for this specific city
+        $currentShelterCoordinators = array();
+        if (!empty($shelterId)) {
+            $shelterCoordinators = ShelterCoordinators::model()->findAllByAttributes(array('shelter_id' => $shelterId));
+
+            foreach ($shelterCoordinators as $sc) {
+                $currentShelterCoordinators[] = $sc->user_id;
+            }
+        }
+        return $currentShelterCoordinators;
+    }
+
+    /**
+     * retrieves list of currently selected locations for dropoff
+     *
+     * @param int shelterId
+     */
+    private function getCurrentDropoffLocations($shelterId)
+    {
+        if (empty($shelterId)) {
+            return array();
+        }
+        $currentDropoffLocations = array();
+
+        $dropoffLocations = ShelterDropoffs::model()->findAllByAttributes(array('shelter_id' => $shelterId));
+
+        foreach ($dropoffLocations as $location) {
+            $currentDropoffLocations[] = array(
+                'id' => $location->dropoff_id,
+                'name' => $location->name,
+                'address' => $location->address
+            );
+        }
+
+        return $currentDropoffLocations;
     }
 
     public function actionDelete()
@@ -98,10 +119,8 @@ class ShelterController extends Controller
         $mapped = Yii::app()->input->post("mapped", 0);
         $enabled = Yii::app()->input->post("enabled", 0);
 
-
         $shelter = new Shelters();
-        if(!empty($shelterId))
-        {
+        if (!empty($shelterId)) {
             //update
             $shelter = Shelters::model()->findByPk($shelterId);
         } else {
@@ -123,59 +142,82 @@ class ShelterController extends Controller
         $shelter->enabled = $enabled;
         $shelterCoordinators = Yii::app()->input->post("shelterCoordinators", array());
 
-        if($shelter->save())
-        {
+        if ($shelter->save()) {
 
             //handle saving coordinators
-            ShelterCoordinators::model()->deleteAllByAttributes(array(
-                'shelter_id' => $shelter->shelter_id
-            ));
+            ShelterCoordinators::model()->deleteAllByAttributes(array('shelter_id' => $shelter->shelter_id));
 
-            foreach ($shelterCoordinators as $userId)
-            {
+            foreach ($shelterCoordinators as $userId) {
                 $shelterCoordinator = new ShelterCoordinators();
                 $shelterCoordinator->user_id = $userId;
                 $shelterCoordinator->shelter_id = $shelter->shelter_id;
                 $shelterCoordinator->save();
             }
 
-            $uploadDir = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'shelter'.DIRECTORY_SEPARATOR;
+            $uploadDir = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'shelter' . DIRECTORY_SEPARATOR;
             $uploadedImage = CUploadedFile::getInstanceByName("image");
 
-            if(is_object($uploadedImage)) {
-                $uploadedImage->saveAs($uploadDir.$uploadedImage->getName());
-                $shelter->img = "/uploads/shelter/".$uploadedImage->getName();
+            if (is_object($uploadedImage)) {
+                $uploadedImage->saveAs($uploadDir . $uploadedImage->getName());
+                $shelter->img = "/uploads/shelter/" . $uploadedImage->getName();
             }
 
             $shelter->save();
-            $this->saveDropoffLocation($shelterId);
+            $this->pruneRemovedDropoffLocations($shelterId);
+            $this->saveNewDropoffLocation($shelterId);
 
             Yii::app()->user->setFlash('success', "Saved");
 
-        }
-        else
-        {
+        } else {
             Yii::app()->user->setFlash('error', "Shelter wasnt saved!");
 
         }
 
-        $this->redirect($this->createUrl("shelter/edit", array(
-            'id' => $shelter->shelter_id
-        )));
+        $this->redirect($this->createUrl("shelter/edit", array('id' => $shelter->shelter_id)));
     }
 
+    /**
+     * removes any dropoff locations from the database that have been
+     * removed from the list within the GUI
+     *
+     * @param int shelterId
+     */
+    private function pruneRemovedDropoffLocations($shelterId)
+    {
 
-    private function saveDropoffLocation($shelterId) {
+        $currentDropoffLocations = Yii::app()->input->post("dropoffLocations", array());
+
+        $existingLocations = ShelterDropoffs::model()->findAllByAttributes(array('shelter_id' => $shelterId));
+        $existingLocationIds = array();
+
+        foreach ($existingLocations as $location) {
+            $existingLocationIds[] = $location->dropoff_id;
+        }
+
+        foreach ($existingLocationIds as $locationId) {
+
+            if (!in_array($locationId, $currentDropoffLocations)) {
+                ShelterDropoffs::model()->deleteAllByAttributes(array('dropoff_id' => $locationId));
+            }
+        }
+    }
+
+    /**
+     * saves any new dropoff locations entered in the spare fields
+     *
+     * @param int shelterId
+     */
+    private function saveNewDropoffLocation($shelterId)
+    {
+
         $dropoffName = Yii::app()->input->post("location-name");
+        if (strlen($dropoffName) == 0) {
+            return;
+        }
         $dropoffAddress = Yii::app()->input->post("location-address");
         $dropoffNotes = Yii::app()->input->post("location-notes");
 
-        $location = ShelterDropoffs::model()->findByAttributes(array(
-            'shelter_id' => $shelterId
-        ));
-        if(empty($location)) {
-            $location = new ShelterDropoffs();
-        }
+        $location = new ShelterDropoffs();
 
         $location->shelter_id = $shelterId;
         $location->name = $dropoffName;
@@ -185,4 +227,5 @@ class ShelterController extends Controller
         $location->save();
 
     }
+
 }
