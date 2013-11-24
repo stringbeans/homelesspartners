@@ -3,6 +3,12 @@
 class CityController extends Controller
 {
 
+	public function actionCityShelters()
+	{
+
+		$this->render("/city/index/cityshelters", array());
+	}
+	
 	public function actionIndex()
 	{
 		//fetch all cities

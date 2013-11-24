@@ -139,4 +139,18 @@ class Shelters extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+public function getShelterCountbyCity($shelterIds = array())
+	{
+		$sql = "
+        SELECT count(s.shelter_id) as scount, c.name
+        FROM shelters s
+        JOIN cities c ON c.city_id = s.city_id
+		GROUP BY c.name
+		ORDER BY s.shelter_id ASC";
+
+        $command = $this->dbConnection->createCommand($sql);
+        return $command->queryAll();
+	}
+
 }
