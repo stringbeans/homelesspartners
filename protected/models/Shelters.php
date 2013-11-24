@@ -47,7 +47,7 @@ class Shelters extends CActiveRecord
 			array('name, ID_FORMAT, website, email', 'length', 'max'=>128),
 			array('street', 'length', 'max'=>1024),
 			array('phone', 'length', 'max'=>16),
-			array('they_do, they_need, dropoff_details', 'safe'),
+			array('they_do, they_need, dropoff_details, bio', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('shelter_id, city_id, creator_id, name, street, phone, they_do, they_need, dropoff_details, ID_FORMAT, website, email, mapped, date_created, enabled', 'safe', 'on'=>'search'),
