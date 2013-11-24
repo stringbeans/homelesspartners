@@ -1,6 +1,6 @@
 <script type='text/javascript'>
 $(document).ready(function() {
-	$("#countryForm").validate({
+	$("#regionForm").validate({
         submitHandler: function(form) {
             form.submit();
         },
@@ -30,24 +30,33 @@ $(document).ready(function() {
 });
 </script>
 
-
 <div class='container'>
 	<div class='row'>
 		<div class='col-md-12'>
-			<?php if(!empty($country)): ?>
-			<h2>Edit Country</h2>
+			<?php if(!empty($region)): ?>
+			<h2>Edit Region</h2>
 			<?php else: ?>
-			<h2>Create Country</h2>
+			<h2>Create Region</h2>
 			<?php endif; ?>
 		</div>
 		<div class='col-md-6'>
-			<form id='countryForm' action='<?php echo $this->createUrl("country/save") ?>' method='post'>
-				<?php if(!empty($country)): ?>
-				<input type='hidden' name='countryId' value='<?php echo $country->country_id ?>' />
+			<form id='regionForm' action='<?php echo $this->createUrl("region/save") ?>' method='post'>
+				<?php if(!empty($region)): ?>
+				<input type='hidden' name='regionId' value='<?php echo $region->region_id ?>' />
 				<?php endif; ?>
+				
+				<div class='form-group'>
+					<label>Country</label>
+					<select class='form-control' name='countryId' />
+						<?php foreach ($countries as $country): ?>
+						<option value='<?php echo $country->country_id ?>' <?php echo (!empty($region) && $country->country_id == $region->country_id)?"selected='selected'":"" ?>><?php echo $country->name ?></option>
+						<?php endforeach ?>
+					</select>
+				</div>
+
 				<div class='form-group'>
 					<label>Name</label>
-					<input type='text' class='form-control' name='name' value='<?php echo !empty($country)?$country->name:"" ?>' />
+					<input type='text' class='form-control' name='name' value='<?php echo !empty($region)?$region->name:"" ?>' />
 				</div>
 				
 				<div class='form-group'>

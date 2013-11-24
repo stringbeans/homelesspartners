@@ -1,19 +1,24 @@
 <div id="wrap">
-<header class="navbar navbar-default navbar-fixed-top">
-<!--
-    <div class="container">
-        -->
+<header>
+	<div class="navbar navbar-default navbar-fixed-top">
       	<div class="navbar-header">
       		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>
-          	<a href="#fakelink" class="navbar-brand">Homeless Partners</a>
+          	<a href="/" class="navbar-brand">Homeless Partners</a>
       	</div>          
         <div class="navbar-collapse collapse navbar-collapse-01">
           	<ul class="nav navbar-nav">
-            	<li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Read Stories</a></li>
-                <li><a href="#">Search</a></li>
-                <li><a href="#">About Us</a></li>
-                <!--
+              <li class='active'>
+                  <a href="#">Admin</a>
+                  <ul>
+                    <li><a href="<?php echo $this->createUrl("country/index") ?>">Country</a></li>
+                    <li><a href="<?php echo $this->createUrl("region/index") ?>">Region</a></li>
+                    <li><a href="<?php echo $this->createUrl("city/index") ?>">City</a></li>
+                    <li><a href="<?php echo $this->createUrl("shelters/index") ?>">Shelters</a></li>
+                  </ul> <!-- /Sub menu -->
+              </li>
+            	
+              <?php /*
+              <li class="active"><a href="#fakelink">Products</a></li>
             	<li>
               		<a href="#fakelink">Features</a>
               		<ul>
@@ -24,15 +29,28 @@
                     			<li><a href="#fakelink">Element One</a></li>
 		                        <li><a href="#fakelink">Element Two</a></li>
 		                        <li><a href="#fakelink">Element Three</a></li>
-		                    </ul> 
+		                    </ul> <!-- /Sub menu -->
                 		</li>
                 		<li><a href="#fakelink">Element Three</a></li>
-              		</ul> 
+              		</ul> <!-- /Sub menu -->
             	</li>
-                -->
+              */ ?>
+
+                <?php if (!Yii::app()->user->isGuest): ?>
+                <li>
+                    <a href="<?php echo Yii::app()->createUrl('login/logout'); ?>">Logout</a>
+                </li>
+                <?php else: ?>
+                <li>
+                    <a href="<?php echo Yii::app()->createUrl('login/index'); ?>">Login</a>
+                </li>
+                <li>
+                    <a href="<?php echo Yii::app()->createUrl('login/register'); ?>">Register</a>
+                </li>
+                <?php endif; ?>
           	</ul> <!-- /nav -->
 
-            <!--
+
           	<form class="navbar-form navbar-right" action="#">
           		<div class="form-group">
 	              	<div class="input-group input-group-sm">
@@ -43,9 +61,7 @@
 					</div>
               	</div>                                    
             </form>
-            -->
+
     	</div><!--/.nav-collapse -->
-        <!--
-    </div>
-    -->
+   	</div>
 </header>

@@ -45,6 +45,7 @@ class Pledges extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
 		);
 	}
 
@@ -100,5 +101,27 @@ class Pledges extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function getAllUndeliveredPledgesForShelters($shelterIds = array())
+	{
+		$sql = "
+        SELECT 
+        	p.*,
+        	u.email,
+        	s.story,
+        	s.assigned_id,
+        	s.fname,
+        	s.lname,
+        	g.description
+        FROM pledges p
+        JOIN users u ON u.user_id = p.user_id
+        JOIN gifts g ON g.gift_id = p.gift_id
+		JOIN stories s ON s.story_id = g.story_id
+		JOIN shelters sh ON sh.shelter_id = s.shelter_id
+		WHERE p.delivered = 0 AND sh.shelter_id IN (" . implode(",", $shelterIds) . ")";
+
+        $command = $this->dbConnection->createCommand($sql);
+        return $command->queryAll();
 	}
 }

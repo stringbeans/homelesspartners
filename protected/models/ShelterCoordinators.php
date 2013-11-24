@@ -91,4 +91,17 @@ class ShelterCoordinators extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function create($shelterId, $userId)
+	{
+		$shelterCoordinator = new ShelterCoordinators();
+		$shelterCoordinator->shelter_id = $shelterId;
+		$shelterCoordinator->user_id = $userId;
+
+		if ($shelterCoordinator->save()) {
+			return $shelterCoordinator;
+		}
+
+		return false;
+	}
 }
