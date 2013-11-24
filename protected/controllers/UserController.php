@@ -8,8 +8,17 @@ class UserController extends Controller
 		//fetch all cities
 		$users = Users::model()->findAll(array('order' => 'role_new ASC'));
 
+		$rolesLookup = array(
+			Users::ROLE_ADMIN => 'Administrator',
+			Users::ROLE_CITY => 'City Coordinator',
+			Users::ROLE_SHELTER => 'Shelter Coordinator',
+			Users::ROLE_CONTRIBUTOR => 'Contributor',
+			Users::ROLE_USER => 'User',
+		);
+
 		$this->render("/user/index/main", array(
-			'users' => $users
+			'users' => $users,
+			'rolesLookup' => $rolesLookup
 		));
 	}
 	
@@ -71,8 +80,8 @@ class UserController extends Controller
 	{
 		$userId = Yii::app()->input->post("userId");
 		$role = Yii::app()->input->post("role");
-		$cityIds = Yii::app()->input->post("cityIds");
-		$shelterIds = Yii::app()->input->post("shelterIds");
+		$cityIds = Yii::app()->input->post("cityIds", array());
+		$shelterIds = Yii::app()->input->post("shelterIds", array());
 
 		$user = Users::model()->findByPk($userId);
 		$user->role_new = $role;
@@ -81,32 +90,21 @@ class UserController extends Controller
 		CityCoordinators::model()->deleteAllByAttributes(array('user_id' => $userId));
 		ShelterCoordinators::model()->deleteAllByAttributes(array('user_id' => $userId));
 
-		if($role == Users::ROLE_CITY) {
+		if ($role == Users::ROLE_CITY) {
 			foreach($cityIds as $cityId) {
 				CityCoordinators::model()->create($cityId, $userId);
 			}
-		} elseif($role == Users::ROLE_SHELTER) {
+		} elseif ($role == Users::ROLE_SHELTER) {
 			foreach($shelterIds as $shelterId) {
 				ShelterCoordinators::model()->create($shelterId, $userId);
 			}
 		}
 
-			Yii::app()->user->setFlash('success', "Saved");
+		Yii::app()->user->setFlash('success', "Saved");
 
 		$this->redirect($this->createUrl("user/edit", array(
 			'id' => $userId
 		)));
-	}
-
-	public function actionDelete()
-	{
-		$cityId = Yii::app()->input->get("id");
-
-		Cities::model()->deleteByPk($cityId);
-
-		Yii::app()->user->setFlash('success', "City Deleted");
-
-		$this->redirect($this->createUrl("city/index"));
 	}
 }
 

@@ -70,9 +70,9 @@ $(document).ready(function() {
 				<div id="cities" class='form-group'<?php echo ($user->role_new != Users::ROLE_CITY)?' style="display: none;"':''; ?>>
 					<label class="col-sm-2 control-label">Cities</label>
 					<div class="col-sm-10">
-						<select class='form-control' name='cityIds' multiple="multiple" />
+						<select class='form-control' name='cityIds[]' multiple="multiple" />
 							<?php foreach ($cities as $city): ?>
-							<option value='<?php echo $city->city_id ?>'<?php echo isset($selectedCityLookup[$city->city_id])?' selected="selected"':''; ?>><?php echo $city->name ?></option>	
+							<option value='<?php echo $city->city_id ?>'<?php echo isset($selectedCitiesLookup[$city->city_id])?' selected="selected"':''; ?>><?php echo $city->name ?></option>	
 							<?php endforeach ?>
 						</select>
 					</div>
@@ -81,9 +81,9 @@ $(document).ready(function() {
 				<div id="shelters" class='form-group'<?php echo ($user->role_new != Users::ROLE_SHELTER)?' style="display: none;"':''; ?>>
 					<label class="col-sm-2 control-label">Shelters</label>
 					<div class="col-sm-10">
-						<select class='form-control' name='shelterIds' multiple="multiple" />
+						<select class='form-control' name='shelterIds[]' multiple="multiple" />
 							<?php foreach ($shelters as $shelter): ?>
-							<option value='<?php echo $shelter->shelter_id ?>'<?php echo isset($selectedShelterLookup[$shelter->shelter_id])?' selected="selected"':''; ?>><?php echo $shelter->name ?></option>	
+							<option value='<?php echo $shelter->shelter_id ?>'<?php echo isset($selectedSheltersLookup[$shelter->shelter_id])?' selected="selected"':''; ?>><?php echo $shelter->name ?></option>	
 							<?php endforeach ?>
 						</select>
 					</div>

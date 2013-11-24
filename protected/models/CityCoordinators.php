@@ -91,4 +91,17 @@ class CityCoordinators extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function create($cityId, $userId)
+	{
+		$cityCoordinator = new CityCoordinators();
+		$cityCoordinator->city_id = $cityId;
+		$cityCoordinator->user_id = $userId;
+
+		if ($cityCoordinator->save()) {
+			return $cityCoordinator;
+		}
+
+		return false;
+	}
 }
