@@ -24,7 +24,6 @@
 	</head>
 
 	<body>
-
 		<?php $this->renderPartial("/layouts/_header") ?>
 
 		<?php echo $content; ?>

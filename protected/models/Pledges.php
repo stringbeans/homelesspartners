@@ -28,12 +28,11 @@ class Pledges extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('gift_id, user_id, date_created', 'required'),
-			array('delivered', 'numerical', 'integerOnly'=>true),
+			array('gift_id, user_id, date_created, status', 'required'),
 			array('gift_id, user_id', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('pledge_id, gift_id, user_id, date_created, delivered', 'safe', 'on'=>'search'),
+			array('pledge_id, gift_id, user_id, date_created', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -103,7 +102,7 @@ class Pledges extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public function getAllUndeliveredPledgesForShelters($shelterIds = array())
+	public function getAllPledgesForShelters($shelterIds = array())
 	{
 		$sql = "
         SELECT 
@@ -118,8 +117,12 @@ class Pledges extends CActiveRecord
         JOIN users u ON u.user_id = p.user_id
         JOIN gifts g ON g.gift_id = p.gift_id
 		JOIN stories s ON s.story_id = g.story_id
-		JOIN shelters sh ON sh.shelter_id = s.shelter_id
-		WHERE p.delivered = 0 AND sh.shelter_id IN (" . implode(",", $shelterIds) . ")";
+		JOIN shelters sh ON sh.shelter_id = s.shelter_id";
+
+		if(!empty($shelterIds))
+		{
+			$sql .= " WHERE sh.shelter_id IN (" . implode(",", $shelterIds) . ")";
+		}
 
         $command = $this->dbConnection->createCommand($sql);
         return $command->queryAll();
