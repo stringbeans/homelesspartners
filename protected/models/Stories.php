@@ -128,14 +128,15 @@ class Stories extends CActiveRecord
 public function getStorySummarybyID($currentStoryId)
 	{
 		$sql = "
-		SELECT st.story_id, st.shelter_id, shelters.name as shelter_name, shelters.website as shelter_website, shelters.bio as shelter_bio, pledges.status as pledge_status, shelters.city_id, cities.name as city_name, cities.region_id, region.name as region_name, st.creator_id, gifts.gift_id, gifts.description as gift_description, st.fname as fname, st.lname, st.assigned_id, st.story
+		SELECT st.story_id, st.shelter_id, shelters.name as shelter_name, shelters.website as shelter_website, shelters.bio as shelter_bio, pledges.user_id as pledge_user, pledges.status as pledge_status, shelters.city_id, cities.name as city_name, cities.region_id, region.name as region_name, st.creator_id, gifts.gift_id, gifts.description as gift_description, st.fname as fname, st.lname, st.assigned_id, st.story
 		FROM stories st
 		JOIN shelters on st.shelter_id=shelters.shelter_id
 		join cities on shelters.city_id = cities.city_id
 		join region on cities.region_id = region.region_id
 		join gifts on st.story_id = gifts.story_id
 		left join pledges on gifts.gift_id = pledges.gift_id
-		WHERE st.story_id =	 :currentStoryId";
+		WHERE st.story_id =	 :currentStoryId
+		GROUP BY gift_description";
 		$command = $this->dbConnection->createCommand($sql);
 		$command->bindParam(":currentStoryId", $currentStoryId, PDO::PARAM_INT);
 		return $command->queryAll();

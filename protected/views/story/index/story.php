@@ -23,17 +23,21 @@
 
     <?php foreach($stories as $story): ?>
         <div class="shelter-gift row">
-        <div class="col-md-9 col-xs-6">
-            <?php echo $story['gift_description']?>
-         </div>
+
          <?php $pledge_status=$story['pledge_status']?>
             <?php
+             
             if ($pledge_status != "pledged") {
-                echo '<a class="btn btn-primary col-md-3 col-xs-6">Pledge This Gift</a>';
+               echo '<div class="col-md-9 col-xs-6">'. $story['gift_description'] . '</div>';
+               echo '<a class="btn btn-primary col-md-3 col-xs-6">Pledge This Gift</a>';
+                //echo Yii::app()->user->id;
             }
             else{
+               if (Yii::app()->user->isGuest == 0 AND Yii::app()->user->id == $story['pledge_user']){
+                echo '<div class="col-md-9 col-xs-6">'. $story['gift_description'] . '</div>';
                 echo '<a class="btn btn-danger col-md-3 col-xs-6">Unpledge This Gift</a>';
                 }
+            }
          ?>
     </div>
     <?php endforeach; ?>
