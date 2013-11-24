@@ -3,11 +3,13 @@
 
 class StoryController extends Controller
 {
-    
+ 
     public function actionStory()
     {
-
-        $this->render("/story/index/story", array());
+        $storyid = Yii::app()->input->get("id");
+        $stories = Stories::model()->getStorySummarybyID($storyid);
+     //var_dump($stories); exit;
+        $this->render("/story/index/story", array('stories' => $stories   ));
     }
     
 
