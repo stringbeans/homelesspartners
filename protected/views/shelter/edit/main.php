@@ -84,12 +84,8 @@ $(document).ready(function() {
                     <input type='text' class='form-control' name='phone' value='<?php echo !empty($shelter)?$shelter->phone:"" ?>' />
                 </div>
                 <div class='form-group'>
-                    <label>They Do</label>
-                    <textarea class='form-control'rows="5" cols = "40" name='they_do'><?php echo !empty($shelter)?$shelter->they_do:"" ?></textarea>
-                </div>
-                <div class='form-group'>
-                    <label>They Need</label>
-                    <textarea class='form-control' rows="5" cols = "40" name='they_need'><?php echo !empty($shelter)?$shelter->they_need:"" ?></textarea>
+                    <label>Biography</label>
+                    <textarea class='form-control'rows="5" cols = "40" name='bio'><?php echo !empty($shelter)?$shelter->bio:"" ?></textarea>
                 </div>
 
                 <div class='form-group'>

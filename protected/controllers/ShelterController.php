@@ -27,8 +27,12 @@ class ShelterController extends Controller
         $shelter = Shelters::model()->findByPk($shelterId);
         $cities = Cities::model()->findAll();
 
+<<<<<<< HEAD
         //TODO       //this will be the logged in user's ID
         $userId = 18;
+=======
+        $userId = Yii::app()->user->getId();
+>>>>>>> f49c701bf3165632dec90a638be151dbddf573a8
 
         //get all shelter coordinators
         $allShelterCoordinators = Users::model()->findAllByAttributes(array('role_new' => 'shelter'));
@@ -110,8 +114,7 @@ class ShelterController extends Controller
         $name = Yii::app()->input->post("name");
         $street = Yii::app()->input->post("street");
         $phone = Yii::app()->input->post("phone");
-        $they_do = Yii::app()->input->post("they_do");
-        $they_need = Yii::app()->input->post("they_need");
+        $bio = Yii::app()->input->post("bio");
         $dropoff_details = Yii::app()->input->post("dropoff_details");
         $ID_FORMAT = Yii::app()->input->post("ID_FORMAT");
         $website = Yii::app()->input->post("website");
@@ -132,8 +135,7 @@ class ShelterController extends Controller
         $shelter->name = $name;
         $shelter->street = $street;
         $shelter->phone = $phone;
-        $shelter->they_do = $they_do;
-        $shelter->they_need = $they_need;
+        $shelter->bio = $bio;
         $shelter->dropoff_details = $dropoff_details;
         $shelter->ID_FORMAT = $ID_FORMAT;
         $shelter->website = $website;
@@ -142,8 +144,13 @@ class ShelterController extends Controller
         $shelter->enabled = $enabled;
         $shelterCoordinators = Yii::app()->input->post("shelterCoordinators", array());
 
+<<<<<<< HEAD
         if ($shelter->save()) {
 
+=======
+        if($shelter->save())
+        {
+>>>>>>> f49c701bf3165632dec90a638be151dbddf573a8
             //handle saving coordinators
             ShelterCoordinators::model()->deleteAllByAttributes(array('shelter_id' => $shelter->shelter_id));
 
@@ -170,7 +177,6 @@ class ShelterController extends Controller
 
         } else {
             Yii::app()->user->setFlash('error', "Shelter wasnt saved!");
-
         }
 
         $this->redirect($this->createUrl("shelter/edit", array('id' => $shelter->shelter_id)));
@@ -202,6 +208,7 @@ class ShelterController extends Controller
         }
     }
 
+<<<<<<< HEAD
     /**
      * saves any new dropoff locations entered in the spare fields
      *
@@ -226,6 +233,27 @@ class ShelterController extends Controller
 
         $location->save();
 
+=======
+    public function actionMigrateIntoBio()
+    {
+        $shelters = Shelters::model()->findAll();
+
+        foreach($shelters as $shelter)
+        {
+            if (!empty($shelter->they_do) && !empty($shelter->they_need))
+            {
+                $shelter->bio = $shelter->they_do . "\n" . $shelter->they_need;
+            }
+            elseif (!empty($shelter->they_do))
+            {
+                $shelter->bio = $shelter->they_do;
+            }
+            else {
+                $shelter->bio = $shelter->they_need;
+            }
+            $shelter->save();
+        }
+>>>>>>> f49c701bf3165632dec90a638be151dbddf573a8
     }
 
 }
