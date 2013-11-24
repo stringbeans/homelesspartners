@@ -32,7 +32,7 @@ class ShelterController extends Controller
 
         //get all shelter coordinators
         $allShelterCoordinators = Users::model()->findAllByAttributes(array(
-            'role_new' => 'shelter'
+            'role' => 'shelter'
         ));
 
         //get current city coordinators for this specific city
@@ -144,26 +144,4 @@ class ShelterController extends Controller
             'id' => $shelter->shelter_id
         )));
     }
-
-    public function actionMigrateIntoBio()
-    {
-        $shelters = Shelters::model()->findAll();
-
-        foreach($shelters as $shelter)
-        {
-            if (!empty($shelter->they_do) && !empty($shelter->they_need))
-            {
-                $shelter->bio = $shelter->they_do . "\n" . $shelter->they_need;
-            }
-            elseif (!empty($shelter->they_do))
-            {
-                $shelter->bio = $shelter->they_do;
-            }
-            else {
-                $shelter->bio = $shelter->they_need;
-            }
-            $shelter->save();
-        }
-    }
-
 }
