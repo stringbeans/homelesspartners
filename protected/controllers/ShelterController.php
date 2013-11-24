@@ -37,11 +37,12 @@ class ShelterController extends Controller
             'role_new' => 'shelter'
         ));
 
-        $dropoffLocation = ShelterDropoffs::model()->findAllByAttributes(array(
+        $dropoffLocation = new ShelterDropoffs();
+        $dropoffLocations = ShelterDropoffs::model()->findAllByAttributes(array(
             'shelter_id' => $shelterId
         ));
-        if(empty($dropoffLocation)) {
-            $dropoffLocation = new ShelterDropoffs();
+        if(!empty($dropoffLocations)) {
+            $dropoffLocation = $dropoffLocations[0];
         }
 
         //get current city coordinators for this specific city
@@ -64,7 +65,7 @@ class ShelterController extends Controller
             'userId' => $userId,
             'allShelterCoordinators' => $allShelterCoordinators,
             'currentShelterCoordinators' => $currentShelterCoordinators,
-            'dropoffLocation' => $dropoffLocation[0]
+            'dropoffLocation' => $dropoffLocation
 
         ));
     }
