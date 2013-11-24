@@ -11,3 +11,5 @@ class ExploreController extends Controller
     }
 
 }
+
+?>

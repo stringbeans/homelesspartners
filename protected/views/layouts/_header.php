@@ -2,7 +2,7 @@
 	<div class="navbar navbar-default navbar-fixed-top">
       	<div class="navbar-header">
       		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>
-          	<a href="/" class="navbar-brand">Homeless Partners</a>
+          	<a href="<?php echo Yii::app()->baseUrl ?>/" class="navbar-brand">Homeless Partners</a>
       	</div>          
         <div class="navbar-collapse collapse navbar-collapse-01">
             <ul class="nav navbar-nav">

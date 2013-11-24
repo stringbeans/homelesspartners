@@ -130,3 +130,29 @@ Sections / Pages
   border-left: 1px solid #cccccc;
 }
 /* SECTION - Story */
+
+
+
+/* SECTION - Explore */
+.explore-shelter .img-rounded {
+  width: 140px;
+  height: 140px;
+}
+.explore-shelter .shelter-info {
+  padding-top: 10px;
+}
+.explore-shelter .shelter-stats {
+  border-top: 1px solid #cccccc;
+}
+.explore-shelter .shelter-stats div:not(:last-child) {
+  border-right: 1px solid #cccccc;
+}
+.explore-gifts {  
+  margin-bottom: -5px;
+}
+.explore-gifts .gift-name {
+  vertical-align: middle;
+}
+.explore-gifts .glyphicon {
+  margin-right: 3px;
+}
