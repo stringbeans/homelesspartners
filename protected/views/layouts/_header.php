@@ -1,3 +1,4 @@
+<div id="wrap">
 <header>
 	<div class="navbar navbar-default navbar-fixed-top">
       	<div class="navbar-header">
