@@ -1,3 +1,22 @@
+<script type='text/javascript'>
+$(document).ready(function(){
+
+    $(".story-container").on("click", ".pledge", function(event){
+        event.preventDefault();
+        $(event.currentTarget).removeClass("pledge").addClass("unpledge").removeClass("btn-primary").addClass("btn-danger").text("Unpledge This Gift");
+        $.post(
+            "<?php echo $this->createUrl("pledge/addPledge") ?>",
+            {
+
+            },
+            function() {
+                //update cart counter
+            }
+        )
+    });
+});
+</script>
+
 <div class="story-container container">
 
     <!-- story -->
@@ -28,6 +47,7 @@
             <?php
              
             if ($pledge_status != "pledged") {
+<<<<<<< HEAD
                echo '<div class="col-md-9 col-xs-6">'. $story['gift_description'] . '</div>';
                echo '<a class="btn btn-primary col-md-3 col-xs-6">Pledge This Gift</a>';
                 //echo Yii::app()->user->id;
@@ -36,6 +56,12 @@
                if (Yii::app()->user->isGuest == 0 AND Yii::app()->user->id == $story['pledge_user']){
                 echo '<div class="col-md-9 col-xs-6">'. $story['gift_description'] . '</div>';
                 echo '<a class="btn btn-danger col-md-3 col-xs-6">Unpledge This Gift</a>';
+=======
+                echo '<a class="btn btn-primary col-md-3 col-xs-6 pledge" href="#" data-id="'. $story['gift_id'] . '">Pledge This Gift</a>';
+            }
+            else{
+                echo '<a class="btn btn-danger col-md-3 col-xs-6 unpledge">Unpledge This Gift</a>';
+>>>>>>> 367e697548746a99dad0eadece9ef05e9fe7a27e
                 }
             }
          ?>
@@ -59,7 +85,7 @@
         <div class="col-md-7">
             <h4><?php echo $stories[0]['shelter_name']?></h4>
             <h6><?php echo $stories[0]['city_name']?>, <?php echo $stories[0]['region_name']?></h6>
-            <a href="#"><?php echo $stories[0]['shelter_website']?></a>
+            <a href="<?php echo $stories[0]['shelter_website']?>" target="_blank"><?php echo $stories[0]['shelter_website']?></a>
 
             <p>
                 <?php echo $stories[0]['shelter_bio']?>
@@ -69,7 +95,7 @@
     </div>
 
     <div class="col-md-12 text-center">
-        <a href="index.php?r=shelter/shelterstories&id=<?php echo $stories[0]['shelter_id']?>">View more stories from the Living Room</a>
+        <a href="<?php echo $this->createUrl("shelter/shelterstories", array('id' => $stories[0]['shelter_id'])) ?>">View more stories from the Living Room</a>
     </div>
 
 

@@ -17,7 +17,7 @@
                         <?php endif;?>
 
                         <?php if(in_array(Yii::app()->user->role, array("admin", "city"))): ?>
-                            <li><a href="<?php echo $this->createUrl("shelter/index") ?>">Shelters</a></li>
+                            <li><a href="<?php echo $this->createUrl("shelters/index") ?>">Shelters</a></li>
                             <li><a href="<?php echo $this->createUrl("user/index") ?>">User Management</a></li>
                         <?php endif; ?>
 
@@ -25,7 +25,7 @@
                             <li><a href="<?php echo $this->createUrl("pledge/index") ?>">Pledges</a></li>
                         <?php endif; ?>
 
-                        <?php if(in_array(Yii::app()->user->role, array("admin", "city", "shelter", "contributor"))): ?>
+                        <?php if(in_array(Yii::app()->user->role, array("admin", "city", "shelter", "contributer"))): ?>
                             <li><a href="<?php echo $this->createUrl("story/index") ?>">Stories</a></li>
                         <?php endif; ?>
                         

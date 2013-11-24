@@ -8,17 +8,11 @@
 	</div>
 
     <!-- Shelters for city -->
-        <h3 class="lead section-title"> Wish list collections in <?php echo $shelters[0]['city_name']?> <?php echo $shelters[0]['region_name']?></h3>
+    <h3 class="lead section-title"> Wish list collections in <?php echo $shelters[0]['city_name']?> <?php echo $shelters[0]['region_name']?></h3>
 
-<?php foreach($shelters as $shelter): ?>
+    <?php foreach($shelters as $shelter): ?>
     <div class="shelter-list row">
-
-
         <div class="col-md-12">
-            
-                
-
-            
             <a href="index.php?r=shelter/shelterstories&id=<?php echo $shelter['shelter_id'] ?>" class="shelter row">
                 <div class="shelter-photo col-md-4">
                     <img class="img-responsive" src="http://lorempixel.com/output/city-q-g-640-480-8.jpg" />
@@ -44,9 +38,7 @@
                     </div>
                 </div>
             </a>
-            <?php endforeach; ?>
         </div>
     </div>
-
-
+    <?php endforeach; ?>
 </div>
