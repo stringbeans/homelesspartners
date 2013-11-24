@@ -25,17 +25,23 @@ class UserController extends Controller
 	public function actionEdit()
 	{
 		Yii::app()->clientScript->registerCssFile('/css/selectize.bootstrap3.css');
+		//Yii::app()->clientScript->registerScriptFile('/js/application.js', CClientScript::POS_END);
+		Yii::app()->clientScript->registerScriptFile('/js/flatui-checkbox.js', CClientScript::POS_END);
         Yii::app()->clientScript->registerScriptFile('/js/selectize.min.js', CClientScript::POS_END);
 		Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
 
 		$userId = Yii::app()->input->get("id");
 
-		$user = Users::model()->findByPk($userId);
+		$user = null;
+		if(!empty($userId))
+		{
+			$user = Users::model()->findByPk($userId);
+		}
 
 		$cities = Cities::model()->findAll();
 
 		$selectedCitiesLookup = array();
-		if($user->role_new == Users::ROLE_CITY)
+		if(isset($user) && $user->role_new == Users::ROLE_CITY)
 		{
 			$selectedCities = CityCoordinators::model()->findAllByAttributes(array('user_id' => $userId));
 			
@@ -48,12 +54,10 @@ class UserController extends Controller
 		$shelters = Shelters::model()->findAll();
 
 		$selectedSheltersLookup = array();
-		if($user->role_new == Users::ROLE_SHELTER)
-		{
+		if (isset($user) && $user->role_new == Users::ROLE_SHELTER) {
 			$selectedShelters = ShelterCoordinators::model()->findAllByAttributes(array('user_id' => $userId));
 			
-			foreach($selectedShelters as $selectedShelter)
-			{
+			foreach ($selectedShelters as $selectedShelter) {
 				$selectedSheltersLookup[$selectedShelter->shelter_id] = true;
 			}
 		}
@@ -79,31 +83,51 @@ class UserController extends Controller
 	public function actionSave() 
 	{
 		$userId = Yii::app()->input->post("userId");
+		$password = Yii::app()->input->post("password");
+		$email = Yii::app()->input->post("email");
 		$role = Yii::app()->input->post("role");
 		$cityIds = Yii::app()->input->post("cityIds", array());
 		$shelterIds = Yii::app()->input->post("shelterIds", array());
 
-		$user = Users::model()->findByPk($userId);
-		$user->role_new = $role;
-		$user->save();
+		$validEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
 
-		CityCoordinators::model()->deleteAllByAttributes(array('user_id' => $userId));
-		ShelterCoordinators::model()->deleteAllByAttributes(array('user_id' => $userId));
+		if ($validEmail === false) {
+			Yii::app()->user->setFlash('error', "The email '" . $email . "' is not valid.");
+			$this->redirect($this->createUrl("user/edit", array(
+				'id' => $userId
+			)));
+		}
+
+		if (!empty($userId)) {
+			$user = Users::model()->findByPk($userId);
+			if (!empty($password))
+			{
+				$user->pw = $password;
+			}
+			$user->role_new = $role;
+			$user->save();
+
+			CityCoordinators::model()->deleteAllByAttributes(array('user_id' => $userId));
+			ShelterCoordinators::model()->deleteAllByAttributes(array('user_id' => $userId));
+		}
+		else {
+			$user = Users::model()->create($email, $password, $role);
+		}
 
 		if ($role == Users::ROLE_CITY) {
 			foreach($cityIds as $cityId) {
-				CityCoordinators::model()->create($cityId, $userId);
+				CityCoordinators::model()->create($cityId, $user->user_id);
 			}
 		} elseif ($role == Users::ROLE_SHELTER) {
 			foreach($shelterIds as $shelterId) {
-				ShelterCoordinators::model()->create($shelterId, $userId);
+				ShelterCoordinators::model()->create($shelterId, $user->user_id);
 			}
 		}
 
 		Yii::app()->user->setFlash('success', "Saved");
 
 		$this->redirect($this->createUrl("user/edit", array(
-			'id' => $userId
+			'id' => $user->user_id
 		)));
 	}
 }

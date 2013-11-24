@@ -123,13 +123,13 @@ class Users extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public function create($email, $password)
+	public function create($email, $password, $role = self::ROLE_USER)
 	{
 		$user = new Users();
 		$user->email = $email;
 		$user->pw = $password;
+		$user->role_new = $role;
 		$user->date_created = new CDbExpression('NOW()');
-		$user->role_new = self::ROLE_USER;
 
 		if($user->save())
 		{

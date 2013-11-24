@@ -1,14 +1,8 @@
 <div class='container'>
 	<div class='row'>
 		<div class='col-md-12'>
+			<p class="pull-right"><a href="<?php echo Yii::app()->createUrl('user/edit'); ?>" class="btn btn-info">Create User</a></p>
 			<h2>View Users</h2>
-
-			<?php if(Yii::app()->user->hasFlash('success')): ?>
-		 	<div class="alert alert-success">
-		    <?php echo Yii::app()->user->getFlash('success'); ?>
-			</div>
-		 	<?php endif; ?>
-
 			<table class='table table-hover'>
 				<?php foreach($users as $user): ?>
 				<tr>

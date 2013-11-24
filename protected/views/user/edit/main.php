@@ -23,13 +23,29 @@ $(document).ready(function() {
 		}
 	});
 
+	$('[data-toggle="checkbox"]').each(function () {
+  		$(this).checkbox();
+	});
+
+	$('#changePassword').on('change', function()
+	{console.log($('#password').prop('disabled'));
+		if($(this).is(':checked'))
+		{
+			$('#password').prop('disabled', false);
+		}
+		else
+		{
+			$('#password').prop('disabled', true);
+		}
+	});
+
 });
 </script>
 
 <div class='container'>
 	<div class='row'>
 		<div class='col-md-12'>
-			<h2>Edit User</h2>
+			<h2><?php echo empty($userId)?'Create User':'Edit User'; ?></h2>
 		</div>
 		<div class='col-md-12'>
 			<?php if(Yii::app()->user->hasFlash('error')): ?>
@@ -46,30 +62,44 @@ $(document).ready(function() {
 		</div>
 		<div class='col-md-6'>
 			<form class="form-horizontal" action='<?php echo $this->createUrl("user/save") ?>' method="post">
-				<input type='hidden' name='userId' value='<?php echo $user->user_id; ?>' />
+				<input type='hidden' name='userId' value='<?php echo !empty($user) ? $user->user_id : ''; ?>' />
 
-				<div class="form-group">
-    				<label class="col-sm-2 control-label">Email</label>
-    				<div class="col-sm-10">
-      					<p class="form-control-static"><?php echo $user->email; ?></p>
+				<div class="form-group row">
+    				<label for="email" class="col-md-2 control-label">Email</label>
+    				<div class="col-md-10">
+      					<input class="form-control" id="email" value="<?php echo $user->email; ?>" name="email" />
     				</div>
   				</div>
 
-				<div class='form-group'>
-					<label class="col-sm-2 control-label">Role</label>
-					<div class="col-sm-10">
+  				<div class="form-group row">
+    				<label for="password" class="col-md-2 control-label">Password</label>
+    				<div class="col-md-10">
+      					<input type="password" class="form-control" id="password" name="password" maxlength="16"<?php echo !empty($user)?' disabled="disabled"':''; ?> />
+	    				<?php if(!empty($user)): ?>
+	  					<div>
+	    					<label class="checkbox" style="padding-top: 0; margin-top: 10px;">
+	      						<input type="checkbox" id="changePassword" data-toggle="checkbox" /> Change password
+	    					</label>
+	  					</div>
+	  					<?php endif; ?>
+    				</div>
+    				
+  				</div>
+
+				<div class='form-group row'>
+					<label class="col-md-2 control-label">Role</label>
+					<div class="col-md-10">
 						<select id="role" class='form-control' name='role'>
 							<?php foreach ($roles as $role => $name): ?>
-							<option value='<?php echo $role; ?>' <?php echo ($user->role_new == $role)?"selected='selected'":"" ?>><?php echo $name; ?></option>	
+							<option value='<?php echo $role; ?>' <?php echo ((empty($user) && $role == Users::ROLE_USER) || $user->role_new == $role)?"selected='selected'":"" ?>><?php echo $name; ?></option>	
 							<?php endforeach ?>
 						</select>
 					</div>
 				</div>
 
-
-				<div id="cities" class='form-group'<?php echo ($user->role_new != Users::ROLE_CITY)?' style="display: none;"':''; ?>>
-					<label class="col-sm-2 control-label">Cities</label>
-					<div class="col-sm-10">
+				<div id="cities" class='form-group row'<?php echo ($user->role_new != Users::ROLE_CITY)?' style="display: none;"':''; ?>>
+					<label class="col-md-2 control-label">Cities</label>
+					<div class="col-md-10">
 						<select class='form-control' name='cityIds[]' multiple="multiple" />
 							<?php foreach ($cities as $city): ?>
 							<option value='<?php echo $city->city_id ?>'<?php echo isset($selectedCitiesLookup[$city->city_id])?' selected="selected"':''; ?>><?php echo $city->name ?></option>	
@@ -78,9 +108,9 @@ $(document).ready(function() {
 					</div>
 				</div>
 
-				<div id="shelters" class='form-group'<?php echo ($user->role_new != Users::ROLE_SHELTER)?' style="display: none;"':''; ?>>
-					<label class="col-sm-2 control-label">Shelters</label>
-					<div class="col-sm-10">
+				<div id="shelters" class='form-group row'<?php echo ($user->role_new != Users::ROLE_SHELTER)?' style="display: none;"':''; ?>>
+					<label class="col-md-2 control-label">Shelters</label>
+					<div class="col-md-10">
 						<select class='form-control' name='shelterIds[]' multiple="multiple" />
 							<?php foreach ($shelters as $shelter): ?>
 							<option value='<?php echo $shelter->shelter_id ?>'<?php echo isset($selectedSheltersLookup[$shelter->shelter_id])?' selected="selected"':''; ?>><?php echo $shelter->name ?></option>	
@@ -89,8 +119,10 @@ $(document).ready(function() {
 					</div>
 				</div>
 
-				<div class='form-group'>
-					<input type='submit' class='btn btn-success' value='Save' />
+				<div class='form-group row'>
+					<div class="col-md-10">
+						<input type='submit' class='btn btn-success' value="<?php echo empty($user)?'Create':'Save'; ?>" />
+					</div>
 				</div>
 			</form>
 		</div>
