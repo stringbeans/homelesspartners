@@ -21,6 +21,7 @@ class LoginController extends Controller
             $this->redirect($this->createUrl('home/index'));
         }
         else {
+            Yii::app()->user->setFlash('error', 'Your credentials are incorrect.');
             $this->redirect($this->createUrl('login/index'));
         }
     }

@@ -1,4 +1,3 @@
-<div id="wrap">
 <header>
 	<div class="navbar navbar-default navbar-fixed-top">
       	<div class="navbar-header">
@@ -6,63 +5,106 @@
           	<a href="/" class="navbar-brand">Homeless Partners</a>
       	</div>          
         <div class="navbar-collapse collapse navbar-collapse-01">
-          	<ul class="nav navbar-nav">
-              <li class='active'>
-                  <a href="#">Admin</a>
-                  <ul>
-                    <li><a href="<?php echo $this->createUrl("country/index") ?>">Country</a></li>
-                    <li><a href="<?php echo $this->createUrl("region/index") ?>">Region</a></li>
-                    <li><a href="<?php echo $this->createUrl("city/index") ?>">City</a></li>
-                    <li><a href="<?php echo $this->createUrl("shelters/index") ?>">Shelters</a></li>
-                    <li><a href="<?php echo $this->createUrl("pledge/index") ?>">Pledges</a></li>
-                  </ul> <!-- /Sub menu -->
-              </li>
-            	
-              <?php /*
-              <li class="active"><a href="#fakelink">Products</a></li>
-            	<li>
-              		<a href="#fakelink">Features</a>
-              		<ul>
-                		<li><a href="#fakelink">Element One</a></li>
-                		<li>
-                  			<a href="#fakelink">Sub menu</a>
-                  			<ul>
-                    			<li><a href="#fakelink">Element One</a></li>
-		                        <li><a href="#fakelink">Element Two</a></li>
-		                        <li><a href="#fakelink">Element Three</a></li>
-		                    </ul> <!-- /Sub menu -->
-                		</li>
-                		<li><a href="#fakelink">Element Three</a></li>
-              		</ul> <!-- /Sub menu -->
-            	</li>
-              */ ?>
+            <ul class="nav navbar-nav">
+                <?php if(!Yii::app()->user->isGuest && in_array(Yii::app()->user->role, array('admin','city','shelter','contributor'))): ?>
+                <li>
+                    <a href="#">Admin</a>
+                    <ul>
+                        <?php if(in_array(Yii::app()->user->role, array("admin"))): ?>
+                            <li><a href="<?php echo $this->createUrl("country/index") ?>">Country</a></li>
+                            <li><a href="<?php echo $this->createUrl("region/index") ?>">Region</a></li>
+                            <li><a href="<?php echo $this->createUrl("city/index") ?>">City</a></li>
+                        <?php endif;?>
 
-                <?php if (!Yii::app()->user->isGuest): ?>
-                <li>
-                    <a href="<?php echo Yii::app()->createUrl('login/logout'); ?>">Logout</a>
-                </li>
-                <?php else: ?>
-                <li>
-                    <a href="<?php echo Yii::app()->createUrl('login/index'); ?>">Login</a>
-                </li>
-                <li>
-                    <a href="<?php echo Yii::app()->createUrl('login/register'); ?>">Register</a>
+                        <?php if(in_array(Yii::app()->user->role, array("admin", "city"))): ?>
+                            <li><a href="<?php echo $this->createUrl("shelters/index") ?>">Shelters</a></li>
+                            <li><a href="<?php echo $this->createUrl("user/index") ?>">User Management</a></li>
+                        <?php endif; ?>
+
+                        <?php if(in_array(Yii::app()->user->role, array("admin", "city", "shelter"))): ?>
+                            <li><a href="<?php echo $this->createUrl("pledge/index") ?>">Pledges</a></li>
+                        <?php endif; ?>
+
+                        <?php if(in_array(Yii::app()->user->role, array("admin", "city", "shelter", "contributer"))): ?>
+                            <li><a href="<?php echo $this->createUrl("story/index") ?>">Stories</a></li>
+                        <?php endif; ?>
+                        
+                    </ul> <!-- /Sub menu -->
                 </li>
                 <?php endif; ?>
           	</ul> <!-- /nav -->
 
-
-          	<form class="navbar-form navbar-right" action="#">
-          		<div class="form-group">
-	              	<div class="input-group input-group-sm">
-						<input class="form-control" id="navbarInput-02" type="search" placeholder="Search">
-						<span class="input-group-btn">
-							<button type="submit" class="btn"><span class="fui-search"></span></button>
-						</span>            
-					</div>
-              	</div>                                    
-            </form>
-
+            <ul class="nav navbar-nav navbar-right">
+                
+                <?php if (!Yii::app()->user->isGuest): ?>
+                    <li>
+                        <a href="#fakelink">
+                            <span class="glyphicon glyphicon-shopping-cart" style='font-size: 20px;'></span><span class="hidden-md hidden-lg">Cart</span>
+                            <span class="navbar-new" style='margin-right: -12px;'>1</span>
+                        </a>
+                    </li>
+                    <li><a href="<?php echo Yii::app()->createUrl('login/logout'); ?>">Logout</a></li>
+                <?php else: ?>
+                    <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#registrationModal">Register</a></li>
+                <?php endif; ?>
+            </ul>
     	</div><!--/.nav-collapse -->
    	</div>
 </header>
+
+<div id='loginModal' class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Login</h3>
+            </div>
+
+            <div class="modal-body">
+                <form id='loginForm' action="<?php echo Yii::app()->createUrl('login/loginProcessor'); ?>" method="post">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" maxlength="16">
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" form='loginForm' class="btn btn-success">Login</button>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<div id='registrationModal' class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Register</h3>
+            </div>
+
+            <div class="modal-body">
+                <form id='registrationForm' action="<?php echo Yii::app()->createUrl('login/registerProcessor'); ?>" method="post">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" maxlength="16">
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" form='registrationForm' class="btn btn-success">Register</button>
+            </div>
+        </div>
+    </div>  
+</div>
