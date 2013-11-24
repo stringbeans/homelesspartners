@@ -3,6 +3,13 @@
 
 class StoryController extends Controller
 {
+    
+    public function actionStory()
+    {
+
+        $this->render("/story/index/story", array());
+    }
+    
 
     public function actionIndex()
     {

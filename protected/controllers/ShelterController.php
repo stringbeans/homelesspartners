@@ -3,6 +3,13 @@
 class ShelterController extends Controller
 {
 
+    public function actionShelterStories()
+    {
+
+        $this->render("/shelter/index/shelterstories", array());
+    }
+    
+
     public function actionIndex()
     {
         //fetch all shelters
