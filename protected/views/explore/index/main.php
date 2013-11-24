@@ -7,8 +7,7 @@
             <table class='table'>
                 <?php foreach($shelters as $shelter): ?>
                 <tr>
-                    <td><?php echo $shelter['scount'] ?></td>
-                    <td><?php echo $shelter['name'] ?></td>
+                    <td><?php echo $shelter['name'] ?> (<?php echo $shelter['scount'] ?>)</td>
                 </tr>
                 <?php endforeach; ?>
             </table>

@@ -146,7 +146,8 @@ public function getShelterCountbyCity($shelterIds = array())
         SELECT count(s.shelter_id) as scount, c.name
         FROM shelters s
         JOIN cities c ON c.city_id = s.city_id
-		GROUP BY c.name";
+		GROUP BY c.name
+		ORDER BY s.shelter_id ASC";
 
         $command = $this->dbConnection->createCommand($sql);
         return $command->queryAll();
