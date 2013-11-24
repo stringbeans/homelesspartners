@@ -124,6 +124,19 @@ $(document).ready(function() {
                 </div>
 
                 <div class='form-group'>
+                    <label>Dropoff Location Name</label>
+                    <input type='text' class='form-control' name='location-name' value='<?php echo !empty($dropoffLocation)?$dropoffLocation->name:"" ?>' />
+                </div>
+                <div class='form-group'>
+                    <label>Dropoff Location Address</label>
+                    <input type='text' class='form-control' name='location-address' value='<?php echo !empty($dropoffLocation)?$dropoffLocation->address:"" ?>' />
+                </div>
+                <div class='form-group'>
+                    <label>Dropoff Location Notes</label>
+                    <textarea class='form-control' name='location-notes'><?php echo !empty($dropoffLocation)?$dropoffLocation->notes:"" ?></textarea>
+                </div>
+
+                <div class='form-group'>
                     <label>Shelter Image</label>
                     <input type='file' class='form-control' name='image' />
                     <?php if(!empty($shelter) && !empty($shelter->img)): ?>
