@@ -106,7 +106,8 @@ $(document).ready(function() {
 
 
                 <div class='form-group'>
-                    <input type='submit' class='btn btn-success' value='Save' />
+                    <input type='submit' class='btn btn-success' value='Save' name="saveButton"/>
+                    <input type='submit' class='btn btn-success' value='Save and Add New' name="saveNewButton"/>
                 </div>
             </form>
         </div>
