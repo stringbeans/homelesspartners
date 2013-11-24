@@ -47,21 +47,14 @@ $(document).ready(function(){
             <?php
              
             if ($pledge_status != "pledged") {
-<<<<<<< HEAD
                echo '<div class="col-md-9 col-xs-6">'. $story['gift_description'] . '</div>';
                echo '<a class="btn btn-primary col-md-3 col-xs-6">Pledge This Gift</a>';
                 //echo Yii::app()->user->id;
             }
             else{
                if (Yii::app()->user->isGuest == 0 AND Yii::app()->user->id == $story['pledge_user']){
-                echo '<div class="col-md-9 col-xs-6">'. $story['gift_description'] . '</div>';
-                echo '<a class="btn btn-danger col-md-3 col-xs-6">Unpledge This Gift</a>';
-=======
-                echo '<a class="btn btn-primary col-md-3 col-xs-6 pledge" href="#" data-id="'. $story['gift_id'] . '">Pledge This Gift</a>';
-            }
-            else{
-                echo '<a class="btn btn-danger col-md-3 col-xs-6 unpledge">Unpledge This Gift</a>';
->>>>>>> 367e697548746a99dad0eadece9ef05e9fe7a27e
+                    echo '<div class="col-md-9 col-xs-6">'. $story['gift_description'] . '</div>';
+                    echo '<a class="btn btn-danger col-md-3 col-xs-6">Unpledge This Gift</a>';
                 }
             }
          ?>
