@@ -16,6 +16,12 @@ DEBUGGING
     font-size: 18px;
   }
 }
+@media screen and (min-width: 768px) {
+  .modal-dialog {
+    left: auto;
+    right: auto;
+  }
+}
 [xclass*="col-"] {
   padding-top: 15px;
   padding-bottom: 15px;

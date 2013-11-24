@@ -43,7 +43,7 @@ class CityController extends Controller
 
 		//get all city coordinators
 		$allCityCoordinators = Users::model()->findAllByAttributes(array(
-			'role_new' => 'city'
+			'role' => 'city'
 		));
 
 		//get current city coordinators for this specific city

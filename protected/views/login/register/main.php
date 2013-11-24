@@ -13,7 +13,9 @@
 					<label for="password">Password</label>
 	    			<input type="password" class="form-control" id="password" name="password" maxlength="16">
 	  			</div>
-				<button type="submit" class="btn btn-default">Register</button>
+	  			<div class="form-group">
+					<button type="submit" class="btn btn-success">Register</button>
+				</div>
 			</form>
 		</div>
 	</div>

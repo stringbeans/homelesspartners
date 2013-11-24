@@ -10,7 +10,7 @@
  * @property string $role
  * @property string $date_created
  * @property integer $enabled
- * @property string $role_new
+ * @property string $role
  *
  * The followings are the available model relations:
  * @property Cities[] $cities
@@ -43,12 +43,12 @@ class Users extends CActiveRecord
 		return array(
 			array('email, pw, date_created', 'required'),
 			array('enabled', 'numerical', 'integerOnly'=>true),
-			array('email, role', 'length', 'max'=>255),
+			array('email', 'length', 'max'=>255),
 			array('pw', 'length', 'max'=>16),
-			array('role_new', 'length', 'max'=>11),
+			array('role', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('user_id, email, pw, role, date_created, enabled, role_new', 'safe', 'on'=>'search'),
+			array('user_id, email, pw, role, date_created, enabled', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -77,7 +77,6 @@ class Users extends CActiveRecord
 			'role' => 'Role',
 			'date_created' => 'Date Created',
 			'enabled' => 'Enabled',
-			'role_new' => 'Role New',
 		);
 	}
 
@@ -105,7 +104,6 @@ class Users extends CActiveRecord
 		$criteria->compare('role',$this->role,true);
 		$criteria->compare('date_created',$this->date_created,true);
 		$criteria->compare('enabled',$this->enabled);
-		$criteria->compare('role_new',$this->role_new,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -123,13 +121,13 @@ class Users extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public function create($email, $password)
+	public function create($email, $password, $role = self::ROLE_USER)
 	{
 		$user = new Users();
 		$user->email = $email;
 		$user->pw = $password;
+		$user->role = $role;
 		$user->date_created = new CDbExpression('NOW()');
-		$user->role_new = self::ROLE_USER;
 
 		if($user->save())
 		{
