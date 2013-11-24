@@ -38,9 +38,12 @@
                 
                 <?php if (!Yii::app()->user->isGuest): ?>
                     <li>
-                        <a href="#fakelink">
-                            <span class="glyphicon glyphicon-shopping-cart" style='font-size: 20px;'></span><span class="hidden-md hidden-lg">Cart</span>
-                            <span class="navbar-new" style='margin-right: -12px;'>1</span>
+                        <a href="<?php echo $this->createUrl("pledge/viewCart") ?>">
+                            Pledge Cart 
+                            <span class="glyphicon glyphicon-shopping-cart" style='font-size: 20px;'></span>
+                            <?php if(isset(Yii::app()->session['pledgeCart']) && sizeof(Yii::app()->session['pledgeCart']) > 0): ?>
+                            <span class="navbar-new" style='margin-right: -12px;'><?php echo sizeof(Yii::app()->session['pledgeCart']) ?></span>
+                            <?php endif; ?>
                         </a>
                     </li>
                     <li><a href="<?php echo Yii::app()->createUrl('login/logout'); ?>">Logout</a></li>

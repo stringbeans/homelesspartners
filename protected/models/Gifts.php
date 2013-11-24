@@ -102,4 +102,32 @@ class Gifts extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function getByIds($giftIds = array())
+	{
+		$sql = "
+        SELECT 
+        	g.*,
+        	s.fname, 
+        	s.lname,
+        	s.story_id,
+        	s.story,
+        	s.assigned_id,
+        	sh.shelter_id,
+        	sh.name as shelterName,
+        	sh.street,
+        	c.name as cityName,
+        	r.name as regionName,
+        	sh.website,
+        	sh.img as shelter_image
+        FROM gifts g
+        JOIN stories s ON g.story_id = s.story_id
+        JOIN shelters sh ON sh.shelter_id = s.shelter_id
+        JOIN cities c ON c.city_id = sh.city_id
+        JOIN region r ON r.region_id = c.region_id
+        WHERE g.gift_id in (".implode(",", $giftIds).")";
+
+        $command = $this->dbConnection->createCommand($sql);
+        return $command->queryAll();
+	}
 }
