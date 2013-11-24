@@ -60,12 +60,6 @@ $(document).ready(function(){
          ?>
     </div>
     <?php endforeach; ?>
-    <div class="shelter-gift row">
-        <div class="col-md-9 col-xs-6">
-            Winter boots for son, size 10 (teen style)
-        </div>
-    </div>
-
 </div>
 
 <div class="shelter-container container">
