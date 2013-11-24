@@ -1,4 +1,3 @@
-<?php echo Yii::app()->user->role; ?>
 <div class='container'>
 	<div class='row'>
 		<div class='col-md-12'>

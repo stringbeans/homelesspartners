@@ -34,24 +34,25 @@ class Controller extends CController
         return array(
             array(
                 'allow',
-                'controllers' => array('user', 'city', 'country', 'region'),
+                'controllers' => array('*'),
                 'users' => array('@'),
                 'roles' => array(Users::ROLE_ADMIN),
             ),
             array(
                 'allow',
-                'controllers' => array('pledge'),
+                'controllers' => array('pledge', 'shelter'),
                 'users' => array('@'),
                 'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER),
             ),
             array(
                 'allow',
-                'controllers' => array('login'),
-                'users' => array('*'),
+                'controllers' => array('story'),
+                'users' => array('@'),
+                'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER, Users::ROLE_CONTRIBUTOR),
             ),
             array(
                 'allow',
-                'controllers' => array('home'),
+                'controllers' => array('home', 'explore'),
                 'users' => array('*'),
             ),
             array('deny',
