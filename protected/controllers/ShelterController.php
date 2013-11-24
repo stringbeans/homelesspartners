@@ -27,12 +27,9 @@ class ShelterController extends Controller
         $shelter = Shelters::model()->findByPk($shelterId);
         $cities = Cities::model()->findAll();
 
-<<<<<<< HEAD
-        //TODO       //this will be the logged in user's ID
-        $userId = 18;
-=======
+
         $userId = Yii::app()->user->getId();
->>>>>>> f49c701bf3165632dec90a638be151dbddf573a8
+
 
         //get all shelter coordinators
         $allShelterCoordinators = Users::model()->findAllByAttributes(array('role_new' => 'shelter'));
@@ -144,13 +141,10 @@ class ShelterController extends Controller
         $shelter->enabled = $enabled;
         $shelterCoordinators = Yii::app()->input->post("shelterCoordinators", array());
 
-<<<<<<< HEAD
-        if ($shelter->save()) {
 
-=======
         if($shelter->save())
         {
->>>>>>> f49c701bf3165632dec90a638be151dbddf573a8
+
             //handle saving coordinators
             ShelterCoordinators::model()->deleteAllByAttributes(array('shelter_id' => $shelter->shelter_id));
 
@@ -208,7 +202,7 @@ class ShelterController extends Controller
         }
     }
 
-<<<<<<< HEAD
+
     /**
      * saves any new dropoff locations entered in the spare fields
      *
@@ -233,7 +227,8 @@ class ShelterController extends Controller
 
         $location->save();
 
-=======
+    }
+
     public function actionMigrateIntoBio()
     {
         $shelters = Shelters::model()->findAll();
@@ -253,7 +248,7 @@ class ShelterController extends Controller
             }
             $shelter->save();
         }
->>>>>>> f49c701bf3165632dec90a638be151dbddf573a8
+
     }
 
 }
