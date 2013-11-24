@@ -13,6 +13,7 @@
                     <li><a href="<?php echo $this->createUrl("region/index") ?>">Region</a></li>
                     <li><a href="<?php echo $this->createUrl("city/index") ?>">City</a></li>
                     <li><a href="<?php echo $this->createUrl("shelters/index") ?>">Shelters</a></li>
+                    <li><a href="<?php echo $this->createUrl("pledge/index") ?>">Pledges</a></li>
                   </ul> <!-- /Sub menu -->
               </li>
             	
