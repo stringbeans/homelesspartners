@@ -1,0 +1,32 @@
+﻿Merge branch 'master' of https://github.com/stringbeans/homelesspartners
+
+Conflicts:
+	protected/controllers/ShelterController.php
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 4 and 5 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#   (use "git commit" to conclude merge)
+#
+# Changes to be committed:
+#
+#	new file:   protected/components/AuthManager.php
+#	modified:   protected/components/Controller.php
+#	modified:   protected/config/main.php
+#	modified:   protected/controllers/ShelterController.php
+#	modified:   protected/models/Shelters.php
+#	modified:   protected/views/layouts/_header.php
+#	modified:   protected/views/shelter/edit/main.php
+#
+

@@ -11,10 +11,41 @@ class ShelterController extends Controller
 
     public function actionIndex()
     {
+ //TODO - currently, this fetches all shelters for a super admin
+ //to filter the list for a specific shelters coordinator, call
+ //the 'getAccessibleIDs' method for a pruned list of allowable
+ //shelters branched in from the sheltercoordinators table
         //fetch all shelters
         $shelters = Shelters::model()->findAll();
 
         $this->render("/shelter/index/main", array('shelters' => $shelters));
+    }
+
+//TODO - this is a placeholder method to be called once we know whether
+//we are dealing with a super user (no need to call this) or a shelter
+//coordinator (requires this filtering method)
+    /**
+     * retrieves a list of shelter ids that a user has access to. This is determined
+     * by the ShelterCoordinators table as a many to many
+     */
+    private function getAccessibleShelterIDs($userId) {
+        $shelters = ShelterCoordinators::model()->findAllByAttributes(array(
+            'user_id' => $userId
+        ));
+
+        $idList = array();
+
+        foreach($shelters as $shelter) {
+            $idList[] = ', ' . $shelter->shelter_id;
+        }
+        if(count($idList) == 0) {
+            //good spot to throw an error and present a warning - this person is
+            //not assigned to any shelters and should not be accessing here
+            return array();
+        }
+
+        //trim the prefixing comma (is prefixing a real word?)
+        return substr($idList,1);
     }
 
     public function actionEdit()
@@ -139,8 +170,8 @@ class ShelterController extends Controller
         $shelter->enabled = $enabled;
         $shelterCoordinators = Yii::app()->input->post("shelterCoordinators", array());
 
-        if ($shelter->save()) {
-
+        if($shelter->save())
+        {
             //handle saving coordinators
             ShelterCoordinators::model()->deleteAllByAttributes(array('shelter_id' => $shelter->shelter_id));
 
@@ -221,5 +252,27 @@ class ShelterController extends Controller
         $location->notes = $dropoffNotes;
 
         $location->save();
+
+    }
+
+    public function actionMigrateIntoBio()
+    {
+        $shelters = Shelters::model()->findAll();
+
+        foreach($shelters as $shelter)
+        {
+            if (!empty($shelter->they_do) && !empty($shelter->they_need))
+            {
+                $shelter->bio = $shelter->they_do . "\n" . $shelter->they_need;
+            }
+            elseif (!empty($shelter->they_do))
+            {
+                $shelter->bio = $shelter->they_do;
+            }
+            else {
+                $shelter->bio = $shelter->they_need;
+            }
+            $shelter->save();
+        }
     }
 }

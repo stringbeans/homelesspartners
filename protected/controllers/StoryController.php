@@ -31,10 +31,11 @@ class StoryController extends Controller
         }
 
         //now get a list of stories where the story is mapped to any of these shelter IDs
-        $stories = Stories::model()->findAll(array(
-            'condition' => '`t`.shelter_id in (' . substr($idList, 1) . ')'
-        ));
+        // $stories = Stories::model()->findAll(array(
+            // 'condition' => '`t`.shelter_id in (' . substr($idList, 1) . ')'
+        // ));
 
+        $stories = $this->loadStoryList(substr($idList, 1));
 
         $this->render("/story/index/main", array('stories' => $stories));
     }
@@ -138,5 +139,20 @@ class StoryController extends Controller
         $this->redirect($this->createUrl("story/edit", array(
             'id' => (($addNew)? '0' : $story->story_id)
         )));
+    }
+
+    private function loadStoryList($shelterIdList) {
+
+     $query = 'select stories.story_id, fname, lname, cities.name as city, shelters.name as `shelter`, users.`email`
+        from stories
+        left join shelters on shelters.`shelter_id` = stories.`shelter_id`
+        left join cities on cities.city_id = shelters.`city_id`
+        left join users on users.`user_id` = stories.`creator_id`
+        where shelters.shelter_id in (' . $shelterIdList . ')';
+
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand($query);
+
+        return $command->queryAll();
     }
 }
