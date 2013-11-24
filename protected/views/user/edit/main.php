@@ -91,13 +91,13 @@ $(document).ready(function() {
 					<div class="col-md-10">
 						<select id="role" class='form-control' name='role'>
 							<?php foreach ($roles as $role => $name): ?>
-							<option value='<?php echo $role; ?>' <?php echo ((empty($user) && $role == Users::ROLE_USER) || $user->role_new == $role)?"selected='selected'":"" ?>><?php echo $name; ?></option>	
+							<option value='<?php echo $role; ?>' <?php echo ((empty($user) && $role == Users::ROLE_USER) || $user->role == $role)?"selected='selected'":"" ?>><?php echo $name; ?></option>	
 							<?php endforeach ?>
 						</select>
 					</div>
 				</div>
 
-				<div id="cities" class='form-group row'<?php echo ($user->role_new != Users::ROLE_CITY)?' style="display: none;"':''; ?>>
+				<div id="cities" class='form-group row'<?php echo ($user->role != Users::ROLE_CITY)?' style="display: none;"':''; ?>>
 					<label class="col-md-2 control-label">Cities</label>
 					<div class="col-md-10">
 						<select class='form-control' name='cityIds[]' multiple="multiple" />
@@ -108,7 +108,7 @@ $(document).ready(function() {
 					</div>
 				</div>
 
-				<div id="shelters" class='form-group row'<?php echo ($user->role_new != Users::ROLE_SHELTER)?' style="display: none;"':''; ?>>
+				<div id="shelters" class='form-group row'<?php echo ($user->role != Users::ROLE_SHELTER)?' style="display: none;"':''; ?>>
 					<label class="col-md-2 control-label">Shelters</label>
 					<div class="col-md-10">
 						<select class='form-control' name='shelterIds[]' multiple="multiple" />

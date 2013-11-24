@@ -6,7 +6,7 @@ class UserController extends Controller
 	public function actionIndex()
 	{
 		//fetch all cities
-		$users = Users::model()->findAll(array('order' => 'role_new ASC'));
+		$users = Users::model()->findAll(array('order' => 'CONCAT(role) ASC'));
 
 		$rolesLookup = array(
 			Users::ROLE_ADMIN => 'Administrator',
@@ -41,7 +41,7 @@ class UserController extends Controller
 		$cities = Cities::model()->findAll();
 
 		$selectedCitiesLookup = array();
-		if(isset($user) && $user->role_new == Users::ROLE_CITY)
+		if(isset($user) && $user->role == Users::ROLE_CITY)
 		{
 			$selectedCities = CityCoordinators::model()->findAllByAttributes(array('user_id' => $userId));
 			
@@ -54,7 +54,7 @@ class UserController extends Controller
 		$shelters = Shelters::model()->findAll();
 
 		$selectedSheltersLookup = array();
-		if (isset($user) && $user->role_new == Users::ROLE_SHELTER) {
+		if (isset($user) && $user->role == Users::ROLE_SHELTER) {
 			$selectedShelters = ShelterCoordinators::model()->findAllByAttributes(array('user_id' => $userId));
 			
 			foreach ($selectedShelters as $selectedShelter) {
@@ -104,7 +104,7 @@ class UserController extends Controller
 			{
 				$user->pw = $password;
 			}
-			$user->role_new = $role;
+			$user->role = $role;
 			$user->save();
 
 			CityCoordinators::model()->deleteAllByAttributes(array('user_id' => $userId));

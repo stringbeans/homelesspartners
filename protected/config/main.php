@@ -42,6 +42,10 @@ return array(
 			'loginUrl' => array('login/index'),
 		),
 
+		'authManager'=>array(
+            'class'=>'AuthManager',
+        ),
+
 		'input'=>array(   
             'class'         => 'CmsInput',  
             'cleanPost'     => false,  
@@ -70,7 +74,7 @@ return array(
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
-			'errorAction'=>'site/error',
+			'errorAction'=>'home/index',
 		),
 		'log'=>array(
 			'class'=>'CLogRouter',

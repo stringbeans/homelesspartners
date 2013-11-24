@@ -8,8 +8,8 @@
 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-		<link href="/css/flatui/flat-ui.css" rel="stylesheet">
-		<link href="/css/style.css" rel="stylesheet">
+		<link href="<?php echo Yii::app()->baseUrl ?>/css/flatui/flat-ui.css" rel="stylesheet">
+		<link href="<?php echo Yii::app()->baseUrl ?>/css/style.css" rel="stylesheet">
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		

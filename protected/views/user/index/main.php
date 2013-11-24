@@ -7,7 +7,7 @@
 				<?php foreach($users as $user): ?>
 				<tr>
 					<td><?php echo $user->email; ?></td>
-					<td><?php echo $rolesLookup[$user->role_new]; ?></td>
+					<td><?php echo $rolesLookup[$user->role]; ?></td>
 					<td>
 						<a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("user/edit", array('id' => $user->user_id)) ?>'>Edit</a>
 					</td>
