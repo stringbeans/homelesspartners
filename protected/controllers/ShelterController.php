@@ -13,18 +13,43 @@ class ShelterController extends Controller
 
     public function actionEdit()
     {
-        $shelterId = Yii::app()->input->get("id");
+        Yii::app()->clientScript->registerCssFile('/css/selectize.bootstrap3.css');
+        Yii::app()->clientScript->registerScriptFile('/js/selectize.min.js', CClientScript::POS_END);
+        Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
 
+        $shelterId = Yii::app()->input->get("id");
         $shelter = Shelters::model()->findByPk($shelterId);
         $cities = Cities::model()->findAll();
 
  //TODO       //this will be the logged in user's ID
         $userId = 18;
 
+
+        //get all shelter coordinators
+        $allShelterCoordinators = Users::model()->findAllByAttributes(array(
+            'role_new' => 'shelter'
+        ));
+
+        //get current city coordinators for this specific city
+        $currentShelterCoordinators = array();
+        if(!empty($shelterId))
+        {
+            $shelterCoordinators = ShelterCoordinators::model()->findAllByAttributes(array(
+                'shelter_id' => $shelterId
+            ));
+
+            foreach($shelterCoordinators as $sc)
+            {
+                $currentShelterCoordinators[] = $sc->user_id;
+            }
+        }
+
         $this->render("/shelter/edit/main", array(
             'shelter' => $shelter,
             'cities' => $cities,
-            'userId' => $userId
+            'userId' => $userId,
+            'allShelterCoordinators' => $allShelterCoordinators,
+            'currentShelterCoordinators' => $currentShelterCoordinators
         ));
     }
 
@@ -78,9 +103,34 @@ class ShelterController extends Controller
         $shelter->email = $email;
         $shelter->mapped = $mapped;
         $shelter->enabled = $enabled;
+        $shelterCoordinators = Yii::app()->input->post("shelterCoordinators", array());
 
         if($shelter->save())
         {
+
+            //handle saving coordinators
+            ShelterCoordinators::model()->deleteAllByAttributes(array(
+                'shelter_id' => $shelter->shelter_id
+            ));
+
+            foreach ($shelterCoordinators as $userId)
+            {
+                $shelterCoordinator = new ShelterCoordinators();
+                $shelterCoordinator->user_id = $userId;
+                $shelterCoordinator->shelter_id = $shelter->shelter_id;
+                $shelterCoordinator->save();
+            }
+
+            $uploadDir = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'shelter'.DIRECTORY_SEPARATOR;
+            $uploadedImage = CUploadedFile::getInstanceByName("image");
+
+            if(is_object($uploadedImage)) {
+                $uploadedImage->saveAs($uploadDir.$uploadedImage->getName());
+                $shelter->img = "/uploads/shelter/".$uploadedImage->getName();
+            }
+
+
+            $shelter->save();
             Yii::app()->user->setFlash('success', "Saved");
 
         }
