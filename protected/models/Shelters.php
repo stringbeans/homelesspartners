@@ -10,8 +10,6 @@
  * @property string $name
  * @property string $street
  * @property string $phone
- * @property string $they_do
- * @property string $they_need
  * @property string $dropoff_details
  * @property string $ID_FORMAT
  * @property string $website
@@ -47,10 +45,10 @@ class Shelters extends CActiveRecord
 			array('name, ID_FORMAT, website, email', 'length', 'max'=>128),
 			array('street', 'length', 'max'=>1024),
 			array('phone', 'length', 'max'=>16),
-			array('they_do, they_need, dropoff_details, bio', 'safe'),
+			array('dropoff_details, bio', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('shelter_id, city_id, creator_id, name, street, phone, they_do, they_need, dropoff_details, ID_FORMAT, website, email, mapped, date_created, enabled', 'safe', 'on'=>'search'),
+			array('shelter_id, city_id, creator_id, name, street, phone, dropoff_details, ID_FORMAT, website, email, mapped, date_created, enabled', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,8 +76,6 @@ class Shelters extends CActiveRecord
 			'name' => 'Name',
 			'street' => 'Street',
 			'phone' => 'Phone',
-			'they_do' => 'They Do',
-			'they_need' => 'They Need',
 			'dropoff_details' => 'Dropoff Details',
 			'ID_FORMAT' => 'Id Format',
 			'website' => 'Website',
@@ -114,8 +110,6 @@ class Shelters extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('street',$this->street,true);
 		$criteria->compare('phone',$this->phone,true);
-		$criteria->compare('they_do',$this->they_do,true);
-		$criteria->compare('they_need',$this->they_need,true);
 		$criteria->compare('dropoff_details',$this->dropoff_details,true);
 		$criteria->compare('ID_FORMAT',$this->ID_FORMAT,true);
 		$criteria->compare('website',$this->website,true);
