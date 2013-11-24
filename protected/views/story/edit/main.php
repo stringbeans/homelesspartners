@@ -1,6 +1,10 @@
 <script type='text/javascript'>
 $(document).ready(function() {
 
+    $("#giftRequests").selectize({
+        plugins: ['remove_button'],
+    });
+
 
     $("#storyForm").validate({
         submitHandler: function(form) {
@@ -94,6 +98,18 @@ $(document).ready(function() {
                         }
                         ?>
                     </select>
+                </div>
+                <div class='form-group'>
+                    <label>Gift Requests</label>
+                    <select id='giftRequests' name='giftRequests[]' multiple>
+                        <?php foreach ($currentGiftRequests as $gift):?>
+                            <option value='<?php echo $gift['id']?>' selected='selected'><?php echo $gift['description']; ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <label>Gift Details</label>
+                    <textarea class='form-control' rows="5" cols = "40" name='gift_description'></textarea>
                 </div>
 
                 <div class='form-group'>

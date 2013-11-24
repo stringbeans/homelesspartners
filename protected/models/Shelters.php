@@ -60,7 +60,7 @@ class Shelters extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'users' => array(self::MANY_MANY, 'Users', 'shelter_coordinators(shelter_id, user_id)'),
+			'users' => array(self::MANY_MANY, 'Users', 'shelter_coordinators(shelter_id, user_id)')
 		);
 	}
 
