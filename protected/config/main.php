@@ -42,6 +42,10 @@ return array(
 			'loginUrl' => array('login/index'),
 		),
 
+		'authManager'=>array(
+            'class'=>'AuthManager',
+        ),
+
 		'input'=>array(   
             'class'         => 'CmsInput',  
             'cleanPost'     => false,  

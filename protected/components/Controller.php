@@ -20,4 +20,43 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+		);
+	}
+
+	public function accessRules()
+    {
+    	return array();
+        return array(
+            array(
+                'allow',
+                'controllers' => array('user', 'city', 'country', 'region'),
+                'users' => array('@'),
+                'roles' => array(Users::ROLE_ADMIN),
+            ),
+            array(
+                'allow',
+                'controllers' => array('pledge'),
+                'users' => array('@'),
+                'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER),
+            ),
+            array(
+                'allow',
+                'controllers' => array('login'),
+                'users' => array('*'),
+            ),
+            array(
+                'allow',
+                'controllers' => array('home'),
+                'users' => array('*'),
+            ),
+            array('deny',
+        		'users' => array('*'),
+    		)
+        );
+    }
 }
