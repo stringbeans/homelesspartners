@@ -1,12 +1,19 @@
-<header>
-	<div class="navbar navbar-default navbar-fixed-top">
+<div id="wrap">
+<header class="navbar navbar-default navbar-fixed-top">
+<!--
+    <div class="container">
+        -->
       	<div class="navbar-header">
       		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>
           	<a href="#fakelink" class="navbar-brand">Homeless Partners</a>
       	</div>          
         <div class="navbar-collapse collapse navbar-collapse-01">
           	<ul class="nav navbar-nav">
-            	<li class="active"><a href="#fakelink">Products</a></li>
+            	<li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Read Stories</a></li>
+                <li><a href="#">Search</a></li>
+                <li><a href="#">About Us</a></li>
+                <!--
             	<li>
               		<a href="#fakelink">Features</a>
               		<ul>
@@ -17,13 +24,15 @@
                     			<li><a href="#fakelink">Element One</a></li>
 		                        <li><a href="#fakelink">Element Two</a></li>
 		                        <li><a href="#fakelink">Element Three</a></li>
-		                    </ul> <!-- /Sub menu -->
+		                    </ul> 
                 		</li>
                 		<li><a href="#fakelink">Element Three</a></li>
-              		</ul> <!-- /Sub menu -->
+              		</ul> 
             	</li>
+                -->
           	</ul> <!-- /nav -->
 
+            <!--
           	<form class="navbar-form navbar-right" action="#">
           		<div class="form-group">
 	              	<div class="input-group input-group-sm">
@@ -34,6 +43,9 @@
 					</div>
               	</div>                                    
             </form>
+            -->
     	</div><!--/.nav-collapse -->
-   	</div>
+        <!--
+    </div>
+    -->
 </header>

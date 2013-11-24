@@ -1,4 +1,126 @@
+/*
+Variables & Mixins
+------------
+*/
+/*
+DEBUGGING 
+------------
+*/
+@media (min-width: 768px) and (max-width: 979px) {
+  .navbar .btn-navbar {
+    display: none;
+  }
+}
+@media (max-width: 979px) {
+  .navbar .navbar-brand {
+    font-size: 18px;
+  }
+}
+[xclass*="col-"] {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #eee;
+  background-color: rgba(86, 61, 124, 0.15);
+  border: 1px solid #ddd;
+  border: 1px solid rgba(86, 61, 124, 0.2);
+}
+/*
+Bootstrap Overrides
+------------
+*/
+.img-responsive {
+  width: 100%;
+}
+/*
+General Styling
+------------
+*/
+html,
+body {
+  height: 100%;
+}
 body {
   position: relative;
   padding-top: 76px;
 }
+/*
+Modules/Widgets (thing reused throughout)
+-----------------
+*/
+.section-title {
+  text-align: center;
+}
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+
+  margin: 0 auto -120px;
+  /* Pad bottom by footer height */
+
+  padding: 0 0 120px;
+}
+/*
+Sections / Pages
+-----------------
+*/
+/* SECTION - City Shelters */
+.shelter-list .shelter {
+  display: block;
+  color: #333333;
+  border-bottom: 1px solid #cccccc;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.shelter-list .shelter:hover {
+  color: #ffffff;
+  background-color: #16a085;
+}
+/* SECTION- Shelter */
+.shelter-container {
+  background-color: #ecf0f1;
+  margin-top: 20px;
+  padding: 20px;
+}
+.shelter-container .action-buttons .btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.shelter-container .shelter-details {
+  margin: 10px 0 0 0;
+}
+.shelter-container .shelter-stats .stat {
+  border-top: 1px solid #cccccc;
+  text-align: center;
+  text-transform: uppercase;
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  padding: 10px;
+}
+.shelter-container .shelter-stats .stat:first-child,
+.shelter-container .shelter-stats .stat:last-child {
+  border-left: none;
+  border-right: none;
+}
+.shelter-stories-container .shelter-story,
+.story-container .shelter-story {
+  background-color: #bdc3c7;
+  margin-top: 20px;
+  padding: 20px;
+}
+.shelter-stories-container .shelter-story .shelter-author,
+.story-container .shelter-story .shelter-author,
+.shelter-stories-container .shelter-story .shelter-id,
+.story-container .shelter-story .shelter-id {
+  color: #333333;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.shelter-stories-container .shelter-gift,
+.story-container .shelter-gift {
+  background-color: #ffffff;
+  border-bottom: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
+}
+/* SECTION - Story */

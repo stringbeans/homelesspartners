@@ -1,3 +1,4 @@
+</div><!-- /#wrap -->
 <footer>
 	<div class="bottom-menu bottom-menu-inverse">
 		<div class="container">
