@@ -3,13 +3,13 @@
 
 class StoryController extends Controller
 {
-    
+
     public function actionStory()
     {
 
         $this->render("/story/index/story", array());
     }
-    
+
 
     public function actionIndex()
     {
@@ -102,6 +102,8 @@ class StoryController extends Controller
         $storyToTell = Yii::app()->input->post("story");
         $display_order = Yii::app()->input->post("displayOrder");
         $enabled = Yii::app()->input->post("enabled", 0);
+        $addNew = ('' != Yii::app()->input->post("saveNewButton"));
+
 
         $story = new Stories();
         if(!empty($storyId))
@@ -134,7 +136,7 @@ class StoryController extends Controller
         }
 
         $this->redirect($this->createUrl("story/edit", array(
-            'id' => $story->story_id
+            'id' => (($addNew)? '0' : $story->story_id)
         )));
     }
 }

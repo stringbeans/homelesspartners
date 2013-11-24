@@ -5,6 +5,11 @@ $(document).ready(function() {
         plugins: ['remove_button'],
     });
 
+    $("#dropoffLocations").selectize({
+        plugins: ['remove_button'],
+    });
+
+
     $("#shelterForm").validate({
         submitHandler: function(form) {
             form.submit();
@@ -61,7 +66,7 @@ $(document).ready(function() {
                     <label>City</label>
                     <select class='form-control' name='cityId' />
                         <?php foreach ($cities as $city): ?>
-                        <option value='<?php echo $city->city_id ?>'><?php echo $city->name ?></option>
+                        <option value='<?php echo $city->city_id ?>' <?php echo ((!empty($shelter) && $shelter->city_id == $city->city_id)?' selected':'')?>><?php echo $city->name ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
@@ -82,10 +87,7 @@ $(document).ready(function() {
                     <label>Biography</label>
                     <textarea class='form-control'rows="5" cols = "40" name='bio'><?php echo !empty($shelter)?$shelter->bio:"" ?></textarea>
                 </div>
-                <div class='form-group'>
-                    <label>Drop Off Details</label>
-                    <textarea class='form-control' rows="5" cols = "40" name='dropoff_details'><?php echo !empty($shelter)?$shelter->dropoff_details:"" ?></textarea>
-                </div>
+
                 <div class='form-group'>
                     <label>ID Format</label>
                     <input type='text' class='form-control' name='ID_FORMAT' value='<?php echo !empty($shelter)?$shelter->ID_FORMAT:"" ?>' />
@@ -117,6 +119,30 @@ $(document).ready(function() {
                             <option value='<?php echo $user->user_id ?>' <?php echo in_array($user->user_id, $currentShelterCoordinators)?"selected='selected'":"" ?>><?php echo $user->email ?></option>
                         <?php endforeach ?>
                     </select>
+                </div>
+                <div class='form-group'>
+                    <label>Dropoff Locations</label>
+                    <select id='dropoffLocations' name='dropoffLocations[]' multiple>
+                        <?php foreach ($currentDropoffLocations as $location):?>
+                            <option value='<?php echo $location['id']?>' selected='selected'><?php echo $location['name'] . ': ' . $location['address']; ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <label>Drop Off Details</label>
+                    <textarea class='form-control' rows="5" cols = "40" name='dropoff_details'></textarea>
+                </div>
+                <div class='form-group'>
+                    <label>Dropoff Location Name</label>
+                    <input type='text' class='form-control' name='location-name' />
+                </div>
+                <div class='form-group'>
+                    <label>Dropoff Location Address</label>
+                    <input type='text' class='form-control' name='location-address' />
+                </div>
+                <div class='form-group'>
+                    <label>Dropoff Location Notes</label>
+                    <textarea class='form-control' name='location-notes'></textarea>
                 </div>
 
                 <div class='form-group'>
