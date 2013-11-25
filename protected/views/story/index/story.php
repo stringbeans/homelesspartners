@@ -61,12 +61,17 @@ $(document).ready(function(){
 });
 </script>
 
-<div class="story-container container">
+<div class="shelter-container container">
 
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <h3>Read Their Story And Make A Pledge Today</h3>
+        </div>
+    </div>
 
 
 <!-- PHP for each wishlist -->
-        <div class="panel panel-default col-md-10">
+        <div class="panel panel-default col-md-12">
           <div class="panel-body">
             <div class="row">
                 <div class="col-xs-6 col-md-6">
@@ -115,7 +120,7 @@ $(document).ready(function(){
 
 
 
-<div class="explore-shelter well col-md-10">
+<div class="explore-shelter well col-md-12">
 
     <div class="row">
         <div class="col-md-3">
