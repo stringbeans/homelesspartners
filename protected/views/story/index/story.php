@@ -3,17 +3,61 @@ $(document).ready(function(){
 
     $(".story-container").on("click", ".pledge", function(event){
         event.preventDefault();
-        $(event.currentTarget).removeClass("pledge").addClass("unpledge").removeClass("btn-primary").addClass("btn-danger").text("Unpledge This Gift");
+
+        <?php if(Yii::app()->user->isGuest): ?>
+
+        $("#loginModal").modal("show");
+
+        <?php else: ?>
+
+        $(event.currentTarget).removeClass("pledge").addClass("unpledge").removeClass("btn-info").addClass("btn-danger").html('<span class="glyphicon glyphicon-gift"></span> Unpledge This Gift');
+        
+        var giftId = $(event.currentTarget).data("id");
         $.post(
             "<?php echo $this->createUrl("pledge/addPledge") ?>",
             {
-
+                'giftId': giftId
             },
             function() {
                 //update cart counter
+                if($("#pledgeCartCount").is(":hidden"))
+                {
+                    $("#pledgeCartCount").text("1").show();
+                }
+                else
+                {
+                    $("#pledgeCartCount").text(parseInt($("#pledgeCartCount").text()) + 1);
+                }
             }
         )
+        <?php endif; ?>
     });
+
+    <?php if(!Yii::app()->user->isGuest): ?>
+    $(".story-container").on("click", ".unpledge", function(event){
+        event.preventDefault();
+        $(event.currentTarget).addClass("pledge").removeClass("unpledge").addClass("btn-info").removeClass("btn-danger").html('<span class="glyphicon glyphicon-gift"></span> Pledge This Gift');
+        
+        var giftId = $(event.currentTarget).data("id");
+
+        $.post(
+            "<?php echo $this->createUrl("pledge/deletePledgeFromSession") ?>",
+            {
+                'giftId': giftId
+            },
+            function() {
+                var numPledges = parseInt($("#pledgeCartCount").text());
+                
+                $("#pledgeCartCount").text(numPledges - 1);
+                if(numPledges == 1)
+                {
+                    $("#pledgeCartCount").hide();
+                }
+            }
+        )
+
+    });
+    <?php endif;?>
 });
 </script>
 
@@ -47,26 +91,21 @@ $(document).ready(function(){
                             <th></th>
                         </thead>
                         <tbody>
-                            <?php foreach($stories as $story): ?>
-                             <tr>
-                                <td class="col-xs-9 gift-name"><?php echo $story['gift_description'] ?></td>
-                                <?php
-                                 $pledge_status=$story['pledge_status'];
-                                 if ($pledge_status != "pledged" AND $pledge_status != "droppedoff" AND $pledge_status != "received") {
-                                    echo '<td class="col-xs-3"><button class="btn btn-sm btn-info btn-block"><span class="glyphicon glyphicon-gift"></span>Pledge This Gift</button></td>';
-                                 } 
-                                else{
-                                    if (Yii::app()->user->isGuest == 0 AND Yii::app()->user->id == $story['pledge_user']){
-                                        echo '<td class="col-xs-3"><button class="btn btn-sm btn-danger btn-block"><span class="glyphicon glyphicon-gift"></span>Unpledge This Gift</button></td>';
-                                    }
-                                    else
-                                        echo '<td class="col-xs-3"><button class="btn btn-sm btn-default btn-block" disabled="disabled"><span class="glyphicon glyphicon-gift"></span>Gifted</button></td>';
-                                    }
 
-
-                                ?>
-                            </tr>
-                            <?php endforeach; ?>
+                            <?php foreach ($gifts as $gift): ?>
+                                <tr>
+                                    <td class="col-xs-9 gift-name"><?php echo $gift['description'] ?></td>
+                                    <td class="col-xs-3">
+                                        <?php if(in_array($gift['gift_id'], $currentPledgeCart) || (!Yii::app()->user->isGuest && ($gift['user_id'] == Yii::app()->user->id))): ?>
+                                        <button class="btn btn-sm btn-danger btn-block unpledge" data-id="<?php echo $gift['gift_id'] ?>"><span class="glyphicon glyphicon-gift"></span>Unpledge This Gift</button>
+                                        <?php elseif (empty($gift['numPledges'])): ?>
+                                        <button class="btn btn-sm btn-info btn-block pledge" data-id="<?php echo $gift['gift_id'] ?>"><span class="glyphicon glyphicon-gift"></span>Pledge This Gift</button>    
+                                        <?php else: ?>
+                                        <button class="btn btn-sm btn-default btn-block" disabled="disabled"><span class="glyphicon glyphicon-gift"></span>Gifted</button>
+                                        <?php endif ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
                         </tbody>
                     </table>
                 </div>
