@@ -8,9 +8,9 @@ class HomeController extends Controller
 	 */
 	public function actionIndex()
 	{
-		//$this->render('/home/index/main');
+		$this->render('/home/index/main');
         //$this->render('/home/static/cityshelters');
         //$this->render('/home/static/shelterstories');
-        $this->render('/home/static/story');
+        //$this->render('/home/static/story');
 	}
 }
