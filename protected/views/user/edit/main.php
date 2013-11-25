@@ -31,11 +31,12 @@ $(document).ready(function() {
 	{
 		if($(this).is(':checked'))
 		{
-			$('#password').prop('disabled', false);
+			$('#userEditPassword').prop('disabled', false);
 		}
 		else
 		{
-			$('#password').prop('disabled', true);
+			$('#userEditPassword').prop('disabled', true);
+			$('#userEditPassword').val('');
 		}
 	});
 });
@@ -70,16 +71,16 @@ $(document).ready(function() {
 				<input type='hidden' name='userId' value='<?php echo !empty($user) ? $user->user_id : ''; ?>' />
 
 				<div class="form-group row">
-    				<label for="email" class="col-md-2 control-label">Email</label>
+    				<label for="userEditEmail" class="col-md-2 control-label">Email</label>
     				<div class="col-md-10">
-      					<input class="form-control" id="email" value="<?php echo $user->email; ?>" name="email" />
+      					<input class="form-control" id="userEditEmail" value="<?php echo $user->email; ?>" name="email" />
     				</div>
   				</div>
 
   				<div class="form-group row">
-    				<label for="password" class="col-md-2 control-label">Password</label>
+    				<label for="userEditPassword" class="col-md-2 control-label">Password</label>
     				<div class="col-md-10">
-      					<input type="password" class="form-control" id="password" name="password" maxlength="16"<?php echo !empty($user)?' disabled="disabled"':''; ?> />
+      					<input type="password" class="form-control" id="userEditPassword" name="password" maxlength="16"<?php echo !empty($user)?' disabled="disabled"':''; ?> />
 	    				<?php if(!empty($user)): ?>
 	  					<div>
 	    					<label class="checkbox" style="padding-top: 0; margin-top: 10px;">
