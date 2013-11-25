@@ -76,9 +76,36 @@ class StoryController extends Controller
             'story' => $story,
             'shelters' => $selectableShelters,
             'storyId' => $storyId,
-            'userId' => $userId
+            'userId' => $userId,
+            'currentGiftRequests' => $this->getCurrentGiftRequest($story->story_id)
         ));
     }
+
+
+    /**
+     * retrieves list of currently selected locations for dropoff
+     *
+     * @param int shelterId
+     */
+    private function getCurrentGiftRequest($storyId)
+    {
+        if (empty($storyId)) {
+            return array();
+        }
+        $currentGiftRequests = array();
+
+        $gifts = Gifts::model()->findAllByAttributes(array('story_id' => $storyId));
+
+        foreach ($gifts as $gift) {
+            $currentGiftRequests[] = array(
+                'id' => $gift->gift_id,
+                'description' => $gift->description
+            );
+        }
+
+        return $currentGiftRequests;
+    }
+
 
     public function actionDelete()
     {
@@ -129,17 +156,71 @@ class StoryController extends Controller
         if($story->save())
         {
 
+            $this->pruneRemovedGiftRequests($story->story_id);
+            $this->saveNewGiftRequest($story->story_id);
+
             Yii::app()->user->setFlash('success', "Saved");
 
         }
         else
         {
+
             Yii::app()->user->setFlash('error', "Shelter wasnt saved!");
         }
 
         $this->redirect($this->createUrl("story/edit", array(
             'id' => (($addNew)? '0' : $story->story_id)
         )));
+    }
+
+
+    /**
+     * removes any requested gifts from the database that have been
+     * removed from the list within the GUI
+     *
+     * @param int storyId
+     */
+    private function pruneRemovedGiftRequests($storyId)
+    {
+
+        $currentGiftRequests = Yii::app()->input->post("giftRequests", array());
+
+        $existingGiftRequests = Gifts::model()->findAllByAttributes(array('story_id' => $storyId));
+        $existingGiftIds = array();
+
+        foreach ($existingGiftRequests as $giftRequest) {
+            $existingGiftIds[] = $giftRequest->gift_id;
+        }
+
+        foreach ($existingGiftIds as $giftId) {
+
+            if (!in_array($giftId, $currentGiftRequests)) {
+                Gifts::model()->deleteAllByAttributes(array('gift_id' => $giftId));
+            }
+        }
+    }
+
+    /**
+     * saves any new requests entered in the spare fields
+     *
+     * @param int storyId
+     */
+    private function saveNewGiftRequest($storyId)
+    {
+
+        $description = Yii::app()->input->post("gift_description");
+        if (strlen($description) == 0) {
+            return;
+        }
+
+        $gift = new Gifts();
+
+        $gift->story_id = $storyId;
+        $gift->description = $description;
+        $gift->date_created = new CDbExpression('NOW()');
+
+        $gift->save();
+
     }
 
     private function loadStoryList($shelterIdList) {
