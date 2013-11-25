@@ -86,6 +86,25 @@ class PledgeController extends Controller
 		echo json_encode(array('success' => 1));
 	}
 
+	public function actionDeletePledgeFromSession()
+	{
+		$giftId = Yii::app()->input->post("giftId");
+
+		if(isset(Yii::app()->session['pledgeCart']))
+		{
+			$currentPledgeCart = Yii::app()->session['pledgeCart'];
+
+			if(($key = array_search($giftId, $currentPledgeCart)) !== false) {
+			    unset($currentPledgeCart[$key]);
+			}
+
+			//store in session
+			Yii::app()->session['pledgeCart'] = $currentPledgeCart;
+		}
+
+		echo json_encode(array('success' => 1));
+	}
+
 	public function actionViewCart()
 	{
 		Yii::app()->clientScript->registerScriptFile('/js/jquery-ui-1.10.3.custom.min.js', CClientScript::POS_END);

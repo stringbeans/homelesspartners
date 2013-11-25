@@ -42,7 +42,7 @@
                             Pledge Cart 
                             <span class="glyphicon glyphicon-shopping-cart" style='font-size: 20px;'></span>
                             <?php if(isset(Yii::app()->session['pledgeCart']) && sizeof(Yii::app()->session['pledgeCart']) > 0): ?>
-                            <span class="navbar-new" style='margin-right: -12px;'><?php echo sizeof(Yii::app()->session['pledgeCart']) ?></span>
+                            <span class="navbar-new" id='pledgeCartCount' style='margin-right: -12px;'><?php echo sizeof(Yii::app()->session['pledgeCart']) ?></span>
                             <?php endif; ?>
                         </a>
                     </li>

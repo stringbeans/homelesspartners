@@ -7,8 +7,24 @@ class StoryController extends Controller
     {
         $storyid = Yii::app()->input->get("id");
         $stories = Stories::model()->getStorySummarybyID($storyid);
-     //var_dump($stories); exit;
-        $this->render("/story/index/story", array('stories' => $stories   ));
+
+        $gifts = Gifts::model()->findAllByStoryIdWithPledgeCount($storyid);
+
+        $currentPledgeCart = array();
+        if(isset(Yii::app()->session['pledgeCart']))
+        {
+            $currentPledgeCart = Yii::app()->session['pledgeCart'];
+        }
+
+        //var_dump($currentPledgeCart);
+        //exit;
+
+        $this->render("/story/index/story", array(
+            'stories' => $stories,
+            'currentPledgeCart' => $currentPledgeCart,
+            'gifts' => $gifts
+
+        ));
     }
 
 
