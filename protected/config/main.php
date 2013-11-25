@@ -18,7 +18,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-		'application.models.*',
+		'application.components.Email',
 	),
 
 	'modules'=>array(
@@ -51,7 +51,7 @@ return array(
             'cleanPost'     => false,  
             'cleanGet'      => false,   
         ),
-		
+      
 		// uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(
@@ -97,6 +97,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'MAILGUN_API_KEY'=>'key-0-btbu-qb7trplmbftn96me4mhi0jak8',
+		'HP_SENDER_EMAIL_ADDRESS' => 'aastfalk@gmail.com'//'homelesspartners@gmail.com'
 	),
 );

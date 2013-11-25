@@ -42,7 +42,7 @@
                             Pledge Cart 
                             <span class="glyphicon glyphicon-shopping-cart" style='font-size: 20px;'></span>
                             <?php if(isset(Yii::app()->session['pledgeCart']) && sizeof(Yii::app()->session['pledgeCart']) > 0): ?>
-                            <span class="navbar-new" style='margin-right: -12px;'><?php echo sizeof(Yii::app()->session['pledgeCart']) ?></span>
+                            <span class="navbar-new" id='pledgeCartCount' style='margin-right: -12px;'><?php echo sizeof(Yii::app()->session['pledgeCart']) ?></span>
                             <?php endif; ?>
                         </a>
                     </li>
@@ -50,6 +50,7 @@
                 <?php else: ?>
                     <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
                     <li><a href="#" data-toggle="modal" data-target="#registrationModal">Register</a></li>
+                    <li><a href="<?php echo Yii::app()->createUrl('home/contact'); ?>">Contact</a></li>
                 <?php endif; ?>
             </ul>
     	</div><!--/.nav-collapse -->

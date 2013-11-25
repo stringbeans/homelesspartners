@@ -130,4 +130,20 @@ class Gifts extends CActiveRecord
         $command = $this->dbConnection->createCommand($sql);
         return $command->queryAll();
 	}
+
+	public function findAllByStoryIdWithPledgeCount($storyId)
+	{
+		$sql = "
+        SELECT 
+        	g.*,
+        	count(p.pledge_id) as numPledges
+        FROM gifts g
+        LEFT JOIN pledges p ON g.gift_id = p.gift_id
+        WHERE g.story_id = :storyId
+        GROUP BY g.gift_id";
+
+        $command = $this->dbConnection->createCommand($sql);
+        $command->bindParam(":storyId", $storyId, PDO::PARAM_INT);
+        return $command->queryAll();
+	}
 }
