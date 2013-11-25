@@ -76,4 +76,65 @@ class LoginController extends Controller
         Yii::app()->user->logout();
         $this->redirect($this->createUrl('home/index'));
     }
+
+    public function actionforgotPassword()
+    {
+        $this->pageTitle = 'Forgot Password';
+        $this->render('/login/forgotpassword/main');
+    }
+
+    public function actionforgotPasswordProcessor()
+    {
+        $email = Yii::app()->input->post('email');
+        $user = Users::model()->findByAttributes(array('email' => $email));
+
+        if(empty($user))
+        {
+            Yii::app()->user->setFlash('error', 'There is no account using this email address. You can <a href="' . Yii::app()->createUrl('login/register') . '">register</a> an account using this email.');
+            $this->redirect($this->createUrl('login/forgotPassword'));
+        }
+        $resetPasswordKey = uniqid();
+        $user->reset_key = $resetPasswordKey;
+        $user->reset_key_expires_date = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s'). ' + 1  days'));
+        $user->save();
+        
+        $text = "Click the following link to reset your password:\n\n" . Yii::app()->createAbsoluteUrl(Yii::app()->createUrl('login/resetPassword', array('key' => $resetPasswordKey)));
+        $html = "Click the following link to reset your password:<br /><br />" . Yii::app()->createAbsoluteUrl(Yii::app()->createUrl('login/resetPassword', array('key' => $resetPasswordKey)));
+
+        $emailMessage = new Email();
+        $emailMessage->send(Yii::app()->params['HP_SENDER_NO_REPLY_EMAIL_ADDRESS'], $email, 'Homeless Partners Reset Password', $text, $html);
+
+
+        Yii::app()->user->setFlash('success', 'A reset password link has been sent to your email.');
+        $this->render('/login/forgotpassword/main');
+    }
+
+    public function actionResetPassword()
+    {
+        $resetPasswordKey = Yii::app()->input->get('key');
+        $this->render('/login/resetpassword/main', array(
+            'resetPasswordKey' => $resetPasswordKey
+        ));
+    }
+
+    public function actionResetPasswordProcessor()
+    {
+        $email = Yii::app()->input->post('email');
+        $password = Yii::app()->input->post('password');
+        $resetPasswordKey = Yii::app()->input->post('resetPasswordKey');
+
+        $user = Users::model()->findByAttributes(array('email' => $email));
+
+        if(strtotime($user->reset_key_expires_date) > strtotime(date('Y-m-d H:i:s')))
+        {
+            $user->pw = $password;
+            $user->reset_key = null;
+            $user->reset_key_expires_date = null;
+            $user->save();
+            Yii::app()->user->setFlash('success', 'Your password has been changed. Please login.');
+            $this->redirect($this->createUrl('login/index'));
+        }
+        Yii::app()->user->setFlash('error', 'There was an error resetting your password');
+        $this->redirect($this->createUrl('login/resetPassword', array('key' => $resetPasswordKey)));
+    }
 }

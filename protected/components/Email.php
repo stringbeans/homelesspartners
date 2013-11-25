@@ -3,21 +3,24 @@ use Mailgun\Mailgun;
 
 class Email
 {
-	public function send($from, $to, $subject, $text)
+	public function send($from, $to, $subject, $text, $html = null)
 	{
 		$mgClient = new Mailgun(Yii::app()->params['MAILGUN_API_KEY']);
         $domain = "homelesspartners.com";
 
-        $result = $mgClient->sendMessage("$domain",
-            array('from'    => $from,
-                'to'      => $to,
-                'subject' => $subject,
-                'text'    => $text,
-                //'cc'      => 'baz@example.com',
-                //'bcc'     => 'bar@example.com',
-                //'html'    => '<html>HTML version of the body</html>'
-            )
+        $data = array(
+            'from'    => $from,
+            'to'      => $to,
+            'subject' => $subject,
+            'text'    => $text,
         );
+
+        if(!empty($html))
+        {
+            $data['html'] = $html;
+        }
+
+        $result = $mgClient->sendMessage("$domain", $data);
 
         if($result->http_response_code == 200)
         {
