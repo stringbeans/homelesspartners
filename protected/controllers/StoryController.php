@@ -76,7 +76,7 @@ class StoryController extends Controller
             'shelters' => $selectableShelters,
             'storyId' => $storyId,
             'userId' => $userId,
-            'currentGiftRequests' => $this->getCurrentGiftRequest($story->story_id)
+            'currentGiftRequests' => $this->getCurrentGiftRequest($storyId)
         ));
     }
 
