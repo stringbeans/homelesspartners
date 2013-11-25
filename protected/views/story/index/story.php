@@ -19,52 +19,66 @@ $(document).ready(function(){
 
 <div class="story-container container">
 
-    <!-- story -->
-    <div class="shelter-story row">
-        <div class="shelter-author col-md-6">
-            Name: <?php echo $stories[0]['fname']?> <?php echo $stories[0]['lname']?>
-        </div>
-        <div class="shelter-id col-md-6">
-            ID: <a href="#"><?php echo $stories[0]['assigned_id']?></a>
-        </div>
 
-        <div class="col-md-12">
 
-            <p>
-                <small>
-                <?php echo $stories[0]['story']?>
-                </small>
-            </p>
+<!-- PHP for each wishlist -->
+        <div class="panel panel-default col-md-10">
+          <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <strong>Name:</strong>
+                    <?php echo $stories[0]['fname']?>  <?php echo $stories[0]['lname']?>
+                </div>
+                <div class="col-xs-6 col-md-6 text-right">
+                    <strong>ID:</strong>
+                    <?php echo $stories[0]['assigned_id']?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <p><?php echo $stories[0]['story']?></p>
+                </div>
+            </div>            
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <table class="table table-hover explore-gifts">
+                        <thead>
+                            <th>Wish List</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <?php foreach($stories as $story): ?>
+                             <tr>
+                                <td class="col-xs-9 gift-name"><?php echo $story['gift_description'] ?></td>
+                                <?php
+                                 $pledge_status=$story['pledge_status'];
+                                 if ($pledge_status != "pledged" AND $pledge_status != "droppedoff" AND $pledge_status != "received") {
+                                    echo '<td class="col-xs-3"><button class="btn btn-sm btn-info btn-block"><span class="glyphicon glyphicon-gift"></span>Pledge This Gift</button></td>';
+                                 } 
+                                else{
+                                    if (Yii::app()->user->isGuest == 0 AND Yii::app()->user->id == $story['pledge_user']){
+                                        echo '<td class="col-xs-3"><button class="btn btn-sm btn-danger btn-block"><span class="glyphicon glyphicon-gift"></span>Unpledge This Gift</button></td>';
+                                    }
+                                    else
+                                        echo '<td class="col-xs-3"><button class="btn btn-sm btn-default btn-block" disabled="disabled"><span class="glyphicon glyphicon-gift"></span>Gifted</button></td>';
+                                    }
 
-        </div>
-    </div>
-    
 
-    <?php foreach($stories as $story): ?>
-        <div class="shelter-gift row">
+                                ?>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+        </div> <!-- end of wishlist -->
 
-         <?php $pledge_status=$story['pledge_status']?>
-            <?php
-             
-            if ($pledge_status != "pledged") {
-               echo '<div class="col-md-9 col-xs-6">'. $story['gift_description'] . '</div>';
-               echo '<a class="btn btn-primary col-md-3 col-xs-6">Pledge This Gift</a>';
-                //echo Yii::app()->user->id;
-            }
-            else{
-               if (Yii::app()->user->isGuest == 0 AND Yii::app()->user->id == $story['pledge_user']){
-                    echo '<div class="col-md-9 col-xs-6">'. $story['gift_description'] . '</div>';
-                    echo '<a class="btn btn-danger col-md-3 col-xs-6">Unpledge This Gift</a>';
-                }
-            }
-         ?>
-    </div>
-    <?php endforeach; ?>
-</div>
 
-<div class="shelter-container container">
 
-    <div class="shelter-information row">
+<div class="explore-shelter well col-md-10">
+
+    <div class="row">
         <div class="col-md-3">
             <img class="img-responsive" src="http://lorempixel.com/output/city-q-g-640-480-8.jpg" />
         </div>
