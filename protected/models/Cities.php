@@ -110,4 +110,88 @@ class Cities extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+
+	public function getShelterCountbyCity($shelterIds = array())
+	{
+		$sql = "
+        SELECT count(s.shelter_id) as scount, c.name
+        FROM shelters s
+        JOIN cities c ON c.city_id = s.city_id
+		GROUP BY c.name
+		ORDER BY s.shelter_id ASC";
+
+        $command = $this->dbConnection->createCommand($sql);
+        return $command->queryAll();
+	}
+
+	public function getSheltersWithTotalStoryCount($currentCityId)
+	{
+		$sql = "
+		SELECT region.name as region_name, cities.name as city_name, shelters.shelter_id, shelters.they_do as shelter_description, shelters.name as shelter_name, count(stories.story_id) as total_stories
+		FROM shelters
+		join cities on shelters.city_id = cities.city_id
+		join region on cities.region_id = region.region_id
+		join stories on shelters.shelter_id = stories.shelter_id
+		join gifts on stories.story_id = gifts.story_id
+		join pledges on gifts.gift_id = pledges.gift_id
+		WHERE cities.city_id =:currentCityId
+		GROUP BY region_name, city_name, shelter_name";
+		$command = $this->dbConnection->createCommand($sql);
+		$command->bindParam(":currentCityId", $currentCityId, PDO::PARAM_INT);
+		return $command->queryAll();
+	}
+
+public function getSheltersWithTotalPledges($currentCityId)
+	{
+		$sql = "
+SELECT 
+*
+FROM (
+SELECT 
+	region.name as region_name, 
+	cities.city_id, 
+	cities.name as city_name, 
+	shelters.shelter_id, 
+	shelters.name as shelter_name, 
+	shelters.bio as shelter_bio,
+	count(stories.story_id) as total_stories
+	#count(gifts.gift_id) as numGifts
+	#'' as num of pledged gifts
+FROM shelters
+join cities on shelters.city_id = cities.city_id
+join region on cities.region_id = region.region_id
+join stories on shelters.shelter_id = stories.shelter_id
+join gifts on stories.story_id = gifts.story_id
+join pledges on gifts.gift_id = pledges.gift_id
+GROUP BY region_name, city_name, shelter_name
+) a
+LEFT JOIN (
+SELECT c.city_id, count(g.gift_id) as numGifts
+FROM cities c
+JOIN shelters s ON c.city_id = s.city_id
+JOIN stories st ON st.shelter_id = s.shelter_id
+JOIN gifts g ON g.story_id = st.story_id
+group by c.city_id
+) b ON a.city_id = b.city_id
+LEFT JOIN (
+SELECT c.city_id, count(p.pledge_id) as numPledges
+FROM cities c
+JOIN shelters s ON c.city_id = s.city_id
+JOIN stories st ON st.shelter_id = s.shelter_id
+JOIN gifts g ON g.story_id = st.story_id
+JOIN pledges p ON p.gift_id = g.gift_id
+group by c.city_id
+
+) c ON b.city_id = c.city_id
+		WHERE c.city_id =:currentCityId";
+
+
+		
+		$command = $this->dbConnection->createCommand($sql);
+		$command->bindParam(":currentCityId", $currentCityId, PDO::PARAM_INT);
+		return $command->queryAll();
+	}
+
+
 }

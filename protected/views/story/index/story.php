@@ -1,65 +1,107 @@
-<div class="story-container container">
+<script type='text/javascript'>
+$(document).ready(function(){
 
-    <!-- story -->
-    <div class="shelter-story row">
-        <div class="shelter-author col-md-6">
-            Name: {AUTHOR.NAME}
-        </div>
-        <div class="shelter-id col-md-6">
-            ID: <a href="#">{AUTHOR.NAME}</a>
-        </div>
+    $(".story-container").on("click", ".pledge", function(event){
+        event.preventDefault();
+        $(event.currentTarget).removeClass("pledge").addClass("unpledge").removeClass("btn-primary").addClass("btn-danger").text("Unpledge This Gift");
+        $.post(
+            "<?php echo $this->createUrl("pledge/addPledge") ?>",
+            {
 
-        <div class="col-md-12">
-
-            <p>
-                <small>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </small>
-            </p>
-
-        </div>
-    </div>
-    <div class="shelter-gift row">
-        <div class="col-md-9 col-xs-6">
-            Winter coat for daughter, purple, size X-L
-        </div>
-        <a class="btn btn-primary col-md-3 col-xs-6">
-            Pledge This Gift
-        </a>
-    </div>
-    <div class="shelter-gift row">
-        <div class="col-md-9 col-xs-6">
-            Winter boots for son, size 10 (teen style)
-        </div>
-        <a class="btn btn-danger col-md-3 col-xs-6">
-            Unpledge This Gift
-        </a>
-    </div>
-
-</div>
+            },
+            function() {
+                //update cart counter
+            }
+        )
+    });
+});
+</script>
 
 <div class="shelter-container container">
 
-    <div class="shelter-information row">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <h3>Read Their Story And Make A Pledge Today</h3>
+        </div>
+    </div>
+
+
+<!-- PHP for each wishlist -->
+        <div class="panel panel-default col-md-12">
+          <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <strong>Name:</strong>
+                    <?php echo $stories[0]['fname']?>  <?php echo $stories[0]['lname']?>
+                </div>
+                <div class="col-xs-6 col-md-6 text-right">
+                    <strong>ID:</strong>
+                    <?php echo $stories[0]['assigned_id']?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <p><?php echo $stories[0]['story']?></p>
+                </div>
+            </div>            
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <table class="table table-hover explore-gifts">
+                        <thead>
+                            <th>Wish List</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <?php foreach($stories as $story): ?>
+                             <tr>
+                                <td class="col-xs-9 gift-name"><?php echo $story['gift_description'] ?></td>
+                                <?php
+                                 $pledge_status=$story['pledge_status'];
+                                 if ($pledge_status != "pledged" AND $pledge_status != "droppedoff" AND $pledge_status != "received") {
+                                    echo '<td class="col-xs-3"><button class="btn btn-sm btn-info btn-block"><span class="glyphicon glyphicon-gift"></span>Pledge This Gift</button></td>';
+                                 } 
+                                else{
+                                    if (Yii::app()->user->isGuest == 0 AND Yii::app()->user->id == $story['pledge_user']){
+                                        echo '<td class="col-xs-3"><button class="btn btn-sm btn-danger btn-block"><span class="glyphicon glyphicon-gift"></span>Unpledge This Gift</button></td>';
+                                    }
+                                    else
+                                        echo '<td class="col-xs-3"><button class="btn btn-sm btn-default btn-block" disabled="disabled"><span class="glyphicon glyphicon-gift"></span>Gifted</button></td>';
+                                    }
+
+
+                                ?>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+        </div> <!-- end of wishlist -->
+
+
+
+<div class="explore-shelter well col-md-12">
+
+    <div class="row">
         <div class="col-md-3">
             <img class="img-responsive" src="http://lorempixel.com/output/city-q-g-640-480-8.jpg" />
         </div>
 
         <div class="col-md-7">
-            <h4>{SHELTER.TITLE}</h4>
-            <h6>{CITY},{PROVINCE}</h6>
-            <a href="#">http://shelterlink.com</a>
+            <h4><?php echo $stories[0]['shelter_name']?></h4>
+            <h6><?php echo $stories[0]['city_name']?>, <?php echo $stories[0]['region_name']?></h6>
+            <a href="<?php echo $stories[0]['shelter_website']?>" target="_blank"><?php echo $stories[0]['shelter_website']?></a>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
+                <?php echo $stories[0]['shelter_bio']?>
             </p>
         </div>
 
     </div>
 
     <div class="col-md-12 text-center">
-        <a href="#">View more stories from the Living Room</a>
+        <a href="<?php echo $this->createUrl("shelter/shelterstories", array('id' => $stories[0]['shelter_id'])) ?>">View more stories from the Living Room</a>
     </div>
 
 
