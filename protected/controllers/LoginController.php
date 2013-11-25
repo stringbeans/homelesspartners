@@ -3,7 +3,7 @@
 class LoginController extends Controller
 {
     public function actionIndex()
-    {        
+    {
         $this->pageTitle = 'Login';
         $this->render('/login/index/main');
     }

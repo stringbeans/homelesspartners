@@ -259,8 +259,13 @@ class PledgeController extends Controller
 			$email .= "\n Estimated drop off date: " . date("F j, Y", strtotime($deliverDate[$story->shelter_id]));
 		}
 
-		//TODO:
-		//send email?
+		$email = new Email();
+		$result = $email->send(
+			Yii::app()->params['HP_SENDER_EMAIL_ADDRESS'], 
+			Yii::app()->user->email,
+			'Thank you', 
+			$email
+		);
 
 		//reset session
 		unset(Yii::app()->session['pledgeCart']);

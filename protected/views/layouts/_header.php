@@ -50,6 +50,7 @@
                 <?php else: ?>
                     <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
                     <li><a href="#" data-toggle="modal" data-target="#registrationModal">Register</a></li>
+                    <li><a href="<?php echo Yii::app()->createUrl('home/contact'); ?>">Contact</a></li>
                 <?php endif; ?>
             </ul>
     	</div><!--/.nav-collapse -->

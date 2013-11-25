@@ -28,24 +28,30 @@ $(document).ready(function() {
 	});
 
 	$('#changePassword').on('change', function()
-	{console.log($('#password').prop('disabled'));
+	{
 		if($(this).is(':checked'))
 		{
-			$('#password').prop('disabled', false);
+			$('#userEditPassword').prop('disabled', false);
 		}
 		else
 		{
-			$('#password').prop('disabled', true);
+			$('#userEditPassword').prop('disabled', true);
+			$('#userEditPassword').val('');
 		}
 	});
-
 });
 </script>
 
 <div class='container'>
 	<div class='row'>
 		<div class='col-md-12'>
-			<h2><?php echo empty($userId)?'Create User':'Edit User'; ?></h2>
+			<ul class="breadcrumb" style="margin-top: 20px;">
+	  			<li>
+	    			<a href="<?php echo Yii::app()->createUrl('user/index'); ?>">User Management</a>
+	  			</li>
+	  			<li class="active"><?php echo empty($user)?'Create User':'Edit User'; ?></a></li>
+			</ul>
+			<?php /*<h2><?php echo empty($user)?'Create User':'Edit User'; ?></h2>*/ ?>
 		</div>
 		<div class='col-md-12'>
 			<?php if(Yii::app()->user->hasFlash('error')): ?>
@@ -65,16 +71,16 @@ $(document).ready(function() {
 				<input type='hidden' name='userId' value='<?php echo !empty($user) ? $user->user_id : ''; ?>' />
 
 				<div class="form-group row">
-    				<label for="email" class="col-md-2 control-label">Email</label>
+    				<label for="userEditEmail" class="col-md-2 control-label">Email</label>
     				<div class="col-md-10">
-      					<input class="form-control" id="email" value="<?php echo $user->email; ?>" name="email" />
+      					<input class="form-control" id="userEditEmail" value="<?php echo $user->email; ?>" name="email" />
     				</div>
   				</div>
 
   				<div class="form-group row">
-    				<label for="password" class="col-md-2 control-label">Password</label>
+    				<label for="userEditPassword" class="col-md-2 control-label">Password</label>
     				<div class="col-md-10">
-      					<input type="password" class="form-control" id="password" name="password" maxlength="16"<?php echo !empty($user)?' disabled="disabled"':''; ?> />
+      					<input type="password" class="form-control" id="userEditPassword" name="password" maxlength="16"<?php echo !empty($user)?' disabled="disabled"':''; ?> />
 	    				<?php if(!empty($user)): ?>
 	  					<div>
 	    					<label class="checkbox" style="padding-top: 0; margin-top: 10px;">
