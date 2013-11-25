@@ -1,7 +1,7 @@
 <script type='text/javascript'>
 $(document).ready(function(){
 
-    $(".story-container").on("click", ".pledge", function(event){
+    $(".shelter-container").on("click", ".pledge", function(event){
         event.preventDefault();
 
         <?php if(Yii::app()->user->isGuest): ?>
@@ -34,7 +34,7 @@ $(document).ready(function(){
     });
 
     <?php if(!Yii::app()->user->isGuest): ?>
-    $(".story-container").on("click", ".unpledge", function(event){
+    $(".shelter-container").on("click", ".unpledge", function(event){
         event.preventDefault();
         $(event.currentTarget).addClass("pledge").removeClass("unpledge").addClass("btn-info").removeClass("btn-danger").html('<span class="glyphicon glyphicon-gift"></span> Pledge This Gift');
         
@@ -101,7 +101,7 @@ $(document).ready(function(){
                                 <tr>
                                     <td class="col-xs-9 gift-name"><?php echo $gift['description'] ?></td>
                                     <td class="col-xs-3">
-                                        <?php if(in_array($gift['gift_id'], $currentPledgeCart) || (!Yii::app()->user->isGuest && ($gift['user_id'] == Yii::app()->user->id))): ?>
+                                        <?php if(in_array($gift['gift_id'], $currentPledgeCart) || (!Yii::app()->user->isGuest && ($gift['gift_id'] == Yii::app()->user->id))): ?>
                                         <button class="btn btn-sm btn-danger btn-block unpledge" data-id="<?php echo $gift['gift_id'] ?>"><span class="glyphicon glyphicon-gift"></span>Unpledge This Gift</button>
                                         <?php elseif (empty($gift['numPledges'])): ?>
                                         <button class="btn btn-sm btn-info btn-block pledge" data-id="<?php echo $gift['gift_id'] ?>"><span class="glyphicon glyphicon-gift"></span>Pledge This Gift</button>    

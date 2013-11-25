@@ -61,7 +61,7 @@
               <h4>Sponsored By: {SPONSOR NAME}</h4>
               <p>{SPONSOR DESCRIPTION}</p>
             </div>
-            <?php if ($currentShelter) { ?>
+            <?php //if ($currentShelter) { ?>
             <div class="explore-shelter well">
                 <div class="row">
                     <div class="col-xs-3 col-md-3">
@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            <?php } ?> <!-- end of explore-shelter -->
+            <?php //} ?> <!-- end of explore-shelter -->
 
             <!-- PHP for each wishlist -->
             <div class="panel panel-default">

@@ -16,9 +16,6 @@ class StoryController extends Controller
             $currentPledgeCart = Yii::app()->session['pledgeCart'];
         }
 
-        //var_dump($currentPledgeCart);
-        //exit;
-
         $this->render("/story/index/story", array(
             'stories' => $stories,
             'currentPledgeCart' => $currentPledgeCart,
@@ -65,9 +62,12 @@ class StoryController extends Controller
 
         $storyId = Yii::app()->input->get("id");
         $story = Stories::model()->findByPk($storyId);
+        $gifts = Gifts::model()->findAllByAttributes(array(
+            'story_id' => $storyId
+        ));
         $shelters = Shelters::model()->findAll();
-//TODO  this ia a hard coded userId during development, determined by logged in user
-        $userId = 4437;
+
+        $userId = Yii::app()->user->id;
 
         //now get a list of shelters they have access to
         $shelters = ShelterCoordinators::model()->findAllByAttributes(array(
@@ -80,16 +80,23 @@ class StoryController extends Controller
             $idList .= ', "' . $shelter->shelter_id . '"';
         }
 
-        //now get a list of stories where the story is mapped to any of these shelter IDs
-        $selectableShelters = Shelters::model()->findAll(array(
-            'condition' => '`t`.shelter_id in (' . substr($idList, 1) . ')'
-        ));
+        $selectableShelters = array();
+        if(!empty($idList))
+        {
+            //now get a list of stories where the story is mapped to any of these shelter IDs
+            $selectableShelters = Shelters::model()->findAll(array(
+                'condition' => '`t`.shelter_id in (' . substr($idList, 1) . ')'
+            ));
+        }
+        else
+        {
+            $selectableShelters = Shelters::model()->findAll();
+        }
         //fget their userId
- //TODO put something in as a place holder
-        $userId = 4437;
 
         $this->render("/story/edit/main", array(
             'story' => $story,
+            'gifts' => $gifts,
             'shelters' => $selectableShelters,
             'storyId' => $storyId,
             'userId' => $userId,
@@ -149,6 +156,14 @@ class StoryController extends Controller
         $enabled = Yii::app()->input->post("enabled", 0);
         $addNew = ('' != Yii::app()->input->post("saveNewButton"));
 
+        $giftDescriptions = Yii::app()->input->post("gifts", array());
+        $giftsToDelete = Yii::app()->input->post("giftsToDelete");
+
+        $giftIdsToDeleteArray = array();
+        if(!empty($giftsToDelete))
+        {
+            $giftIdsToDeleteArray = json_decode($giftsToDelete);
+        }
 
         $story = new Stories();
         if(!empty($storyId))
@@ -172,11 +187,28 @@ class StoryController extends Controller
         if($story->save())
         {
 
-            $this->pruneRemovedGiftRequests($story->story_id);
-            $this->saveNewGiftRequest($story->story_id);
+            //$this->pruneRemovedGiftRequests($story->story_id);
+            //$this->saveNewGiftRequest($story->story_id);
+
+            if(!empty($giftIdsToDeleteArray))
+            {
+                foreach($giftIdsToDeleteArray as $giftId)
+                {
+                    Gifts::model()->deleteByPk($giftId);
+                }
+            }
+
+            foreach($giftDescriptions as $description)
+            {
+                $gift = new Gifts();
+                $gift->story_id = $story->story_id;
+                $gift->description = $description;
+                $gift->date_created = new CDbExpression('NOW()');
+                $gift->enabled = 1;
+                $gift->save();
+            }
 
             Yii::app()->user->setFlash('success', "Saved");
-
         }
         else
         {

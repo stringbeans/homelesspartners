@@ -29,9 +29,12 @@ $(document).ready(function() {
         errorClass: "has-error",
         ignore: ":hidden",
         rules: {
-            'name': 'required',
+            'fname': 'required',
+            'lname': 'required',
             'cityId': 'required',
-            'gender': 'required'
+            'gender': 'required',
+            'assignedId': 'required',
+            'story': 'required',
         }
     });
 });
@@ -44,6 +47,9 @@ $(document).ready(function() {
             <h2>Edit Story</h2>
             <?php else: ?>
             <h2>Create Story</h2>
+            <p>
+                To add a new story please include all the details below. Make sure you choose the correct shelter!
+            </p>
             <?php endif; ?>
         </div>
         <div class='col-md-6'>
@@ -72,8 +78,8 @@ $(document).ready(function() {
                     <input type='text' class='form-control' name='fname' value='<?php echo !empty($story)?$story->fname:"" ?>' />
                 </div>
                 <div class='form-group'>
-                    <label>Last Name</label>
-                    <input type='text' class='form-control' name='lname' value='<?php echo !empty($story)?$story->lname:"" ?>' />
+                    <label>Last Name (Initial)</label>
+                    <input type='text' class='form-control' name='lname' maxlength='1' value='<?php echo !empty($story)?$story->lname:"" ?>' />
                 </div>
                 <div class='form-group'>
                     <label>Gender</label>
@@ -81,24 +87,17 @@ $(document).ready(function() {
                     <input type="radio" name="gender" value="F" <?php echo (!empty($story) && $story->gender=='F')?'checked=checked':'' ?> /> Female
                 </div>
                 <div class='form-group'>
-                    <label>Assigned ID</label>
+                    <label>Assigned ID <a data-toggle="tooltip" title="This will be provided to the homeless person. They will reference this when picking up gifts from the shelter." class='extra-info'>(What is this?)</a></label>
                     <input type='text' class='form-control' name='assignedId' value='<?php echo !empty($story)?$story->assigned_id:"" ?>' />
                 </div>
                 <div class='form-group'>
                     <label>Story</label>
                     <textarea class='form-control' rows="5" cols = "40" name='story'><?php echo !empty($story)?$story->story:"" ?></textarea>
                 </div>
-                <div class='form-group'>
-                    <label>Display Order</label>
-                    <select name="displayOrder">
-                        <?php
-                        for($i = 0; $i < 11; $i++) {
-                            echo '<option value="' . $i . '" ' . ((!empty($story) && $story->display_order == $i)? ' selected' :'') .
-                                '>' . $i . '</option>';
-                        }
-                        ?>
-                    </select>
-                </div>
+                <input type='hidden' name='displayOrder' value='0' />
+                
+                <?php /*
+
                 <div class='form-group'>
                     <label>Gift Requests</label>
                     <select id='giftRequests' name='giftRequests[]' multiple>
@@ -111,15 +110,86 @@ $(document).ready(function() {
                     <label>Gift Details</label>
                     <textarea class='form-control' rows="5" cols = "40" name='gift_description'></textarea>
                 </div>
+                */?>
+
+                <script type='text/javascript'>
+
+
+                $(document).ready(function(){
+
+                    $(".extra-info").tooltip();
+
+                    $("#giftTable .newGiftDescription").keypress(function(event){
+                        if(event.which == 13)
+                        {
+                            $("#giftTable .add").click();
+                            event.preventDefault();
+                        }
+                    });
+
+                    $("#giftTable .add").click(function(event) {
+                        var giftDescription = $(event.currentTarget).closest("tr").find("input").val();
+                        if(giftDescription != "")
+                        {
+                            var markup = '<tr><td>' + giftDescription  + '</td><td><a href="#"" class="btn btn-xs btn-danger delete">Delete</a><input type="hidden" name="gifts[]" value="' + giftDescription + '" /></td></tr>';
+                            $("#giftTable tbody").append(markup);
+                            $(event.currentTarget).closest("tr").find("input").val("");
+                        }
+
+                        event.preventDefault();
+                    });
+
+                    $("#giftTable").on("click", ".delete", function(event) {
+                        if($(event.currentTarget).closest("tr").find("input").length)
+                        {
+                            var giftId = $(event.currentTarget).closest("tr").find("input.giftId").val();
+
+                            var currentGifts = [];
+                            if($("#giftsToDelete").val() != "")
+                            {
+                                currentGifts = JSON.parse($("#giftsToDelete").val());
+
+                            }
+                            currentGifts.push(giftId);
+
+                            $("#giftsToDelete").val(JSON.stringify(currentGifts));
+                        }
+
+                        $(event.currentTarget).closest("tr").remove();
+                        event.preventDefault();
+                    });
+                });
+                </script>
 
                 <div class='form-group'>
-                    <label>Date Created: <?php echo !empty($story)?$story->date_created:"" ?></label>
+                    <label>Gifts Requested</label>
+                    <table id='giftTable' class='table'>
+                        <tbody>
+                            <?php foreach ($gifts as $gift): ?>
+                                <tr>
+                                    <td><?php echo $gift->description ?></td>
+                                    <td><a href='#' class='btn btn-xs btn-danger delete'>Delete</a> <input type='hidden' class='giftId' name='giftId' value='<?php echo $gift->gift_id ?>' /></td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><input type='text' class='form-control newGiftDescription' /></td>
+                                <td><a href='#' class='btn btn-xs btn-info add'>+ Add</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <input type='hidden' name='giftsToDelete' id='giftsToDelete' value='' />
                 </div>
+
+                <input type='hidden' name='enabled' value='1' />
+
+                <?php /*
                 <div class='form-group'>
                     <label>Enabled</label>
                     <input type="checkbox" name='enabled' value='1' <?php echo (!empty($story) && !empty($story->enabled))?"checked='checked'":"" ?> data-toggle="switch" />
                 </div>
-
+                */ ?>
 
                 <div class='form-group'>
                     <input type='submit' class='btn btn-success' value='Save' name="saveButton"/>

@@ -8,6 +8,8 @@ class PledgeController extends Controller
 		
 		$pledges = array();
 
+		$myShelterIds = array();
+
 		if(Yii::app()->user->role == 'shelter')
 		{
 			//assuming you're the shelter manager...
@@ -16,7 +18,6 @@ class PledgeController extends Controller
 				'user_id' => Yii::app()->user->id
 			));
 
-			$myShelterIds = array();
 			foreach($shelterCoordinators as $shelterCoordinator)
 			{
 				$myShelterIds[] = $shelterCoordinator->shelter_id;

@@ -4,8 +4,8 @@ class ExploreController extends Controller
 {
     public function actionIndex()
     {
-        $cities = [];
-        $stories = [];
+        $cities = array();
+        $stories = array();
         $cityResults = Cities::model()->findAll();
         $currentCityId = Yii::app()->input->get('cityId');
         $currentShelterId = Yii::app()->input->get('shelterId');
