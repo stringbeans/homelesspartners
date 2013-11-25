@@ -25,10 +25,9 @@ class UserController extends Controller
 	public function actionEdit()
 	{
 		Yii::app()->clientScript->registerCssFile('/css/selectize.bootstrap3.css');
-		//Yii::app()->clientScript->registerScriptFile('/js/application.js', CClientScript::POS_END);
 		Yii::app()->clientScript->registerScriptFile('/js/flatui-checkbox.js', CClientScript::POS_END);
         Yii::app()->clientScript->registerScriptFile('/js/selectize.min.js', CClientScript::POS_END);
-		Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
+		//Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
 
 		$userId = Yii::app()->input->get("id");
 

@@ -28,7 +28,7 @@ $(document).ready(function() {
 	});
 
 	$('#changePassword').on('change', function()
-	{console.log($('#password').prop('disabled'));
+	{
 		if($(this).is(':checked'))
 		{
 			$('#password').prop('disabled', false);
@@ -38,14 +38,19 @@ $(document).ready(function() {
 			$('#password').prop('disabled', true);
 		}
 	});
-
 });
 </script>
 
 <div class='container'>
 	<div class='row'>
 		<div class='col-md-12'>
-			<h2><?php echo empty($userId)?'Create User':'Edit User'; ?></h2>
+			<ul class="breadcrumb" style="margin-top: 20px;">
+	  			<li>
+	    			<a href="<?php echo Yii::app()->createUrl('user/index'); ?>">User Management</a>
+	  			</li>
+	  			<li class="active"><?php echo empty($user)?'Create User':'Edit User'; ?></a></li>
+			</ul>
+			<?php /*<h2><?php echo empty($user)?'Create User':'Edit User'; ?></h2>*/ ?>
 		</div>
 		<div class='col-md-12'>
 			<?php if(Yii::app()->user->hasFlash('error')): ?>
