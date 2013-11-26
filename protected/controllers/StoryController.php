@@ -307,7 +307,8 @@ class StoryController extends Controller
 
     private function loadStoryList($shelterIdList) {
 
-     $query = 'select stories.story_id, fname, lname, cities.name as city, shelters.name as `shelter`, users.`email`
+     $query = 'select 
+            stories.story_id, fname, lname, cities.name as city, shelters.name as `shelter`, users.`email`, stories.assigned_id
         from stories
         left join shelters on shelters.`shelter_id` = stories.`shelter_id`
         left join cities on cities.city_id = shelters.`city_id`

@@ -2,7 +2,7 @@
 $(document).ready(function(){
     
     var options = {
-        valueNames: ['name', 'city', 'shelter', 'email']
+        valueNames: ['name', 'city', 'shelter', 'email', 'assignedId']
     };
     var pledgeList = new List('storiesList', options);
 });
@@ -27,20 +27,23 @@ $(document).ready(function(){
             <table class='table'>
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Interviewer Email</th>
+                        <th>Assigned ID</th>
                         <th>City</th>
                         <th>Shelter</th>
-                        <th>Typist Email</th>
+                        <th>Name</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody class='list'>
                     <?php foreach($stories as $story): ?>
                     <tr>
-                        <td class='name'><?php echo $story['fname'] . ' ' . $story['lname'] ?></td>
+                        <td class='email'><?php echo $story['email'] ?></td>
+                        <td class='assignedId'><?php echo $story['assigned_id'] ?></td>
                         <td class='city'><?php echo $story['city'] ?></td>
                         <td class='shelter'><?php echo $story['shelter'] ?></td>
-                        <td class='email'><?php echo $story['email'] ?></td>
+                        <td class='name'><?php echo $story['fname'] . ' ' . $story['lname'] ?></td>
+                        
                         <td><a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("story/edit", array('id' => $story['story_id'])) ?>'>Edit</a>
                             <a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("story/delete", array('id' => $story['story_id'])) ?>'>Delete</a>
                         </td>
