@@ -11,12 +11,51 @@ class ShelterController extends Controller
 
     public function actionIndex()
     {
- //TODO - currently, this fetches all shelters for a super admin
- //to filter the list for a specific shelters coordinator, call
- //the 'getAccessibleIDs' method for a pruned list of allowable
- //shelters branched in from the sheltercoordinators table
         //fetch all shelters
-        $shelters = Shelters::model()->findAll();
+        $shelters = array();
+        if(Yii::app()->user->role == "admin")
+        {
+            $shelters = Shelters::model()->findAll();
+        }
+        elseif(Yii::app()->user->role == "city")
+        {
+            $cityCoordinators = CityCoordinators::model()->findAllByAttributes(array(
+                'user_id' => Yii::app()->user->id
+            ));
+
+            $cityIds = array();
+            foreach($cityCoordinators as $cc)
+            {
+                $cityIds[] = $cc->city_id;
+            }
+
+            if(!empty($cityIds))
+            {
+                $shelters = Shelters::model()->findAll(array(
+                    'condition' => 't.city_id in ('.implode(",", $cityIds).')'
+                ));
+            }
+        }
+        elseif(Yii::app()->user->role == "shelter")
+        {
+            //now get a list of shelters they have access to
+            $shelterCoordinators = ShelterCoordinators::model()->findAllByAttributes(array(
+                'user_id' => $userId
+            ));
+
+            $shelterIds = array();
+            foreach($shelterCoordinators as $sc)
+            {
+                $shelterIds[] = $sc->shelter_id;
+            }
+
+            if(!empty($shelterIds))
+            {
+                $shelters = Shelters::model()->findAll(array(
+                    'condition' => 't.shelter_id in ('.implode(",", $shelterIds).')'
+                ));
+            }
+        }
 
         $this->render("/shelter/index/main", array('shelters' => $shelters));
     }
@@ -56,7 +95,62 @@ class ShelterController extends Controller
 
         $shelterId = Yii::app()->input->get("id");
         $shelter = Shelters::model()->findByPk($shelterId);
-        $cities = Cities::model()->findAll();
+        $cities = array();
+
+        if(Yii::app()->user->role == "admin")
+        {
+            $cities = Cities::model()->findAll();
+        }
+        elseif(Yii::app()->user->role == "city")
+        {
+            $cityCoordinators = CityCoordinators::model()->findAllByAttributes(array(
+                'user_id' => Yii::app()->user->id
+            ));
+
+            $cityIds = array();
+            foreach($cityCoordinators as $cc)
+            {
+                $cityIds[] = $cc->city_id;
+            }
+
+            if(!empty($cityIds))
+            {
+                $cities = Cities::model()->findAll(array(
+                    'condition' => 't.city_id in ('.implode(",", $cityIds).')'
+                ));
+            }
+        }
+        elseif(Yii::app()->user->role == "shelter")
+        {
+            //now get a list of shelters they have access to
+            $shelterCoordinators = ShelterCoordinators::model()->findAllByAttributes(array(
+                'user_id' => $userId
+            ));
+
+            $shelterIds = array();
+            foreach($shelterCoordinators as $sc)
+            {
+                $shelterIds[] = $sc->shelter_id;
+            }
+
+            if(!empty($shelterIds))
+            {
+                $shelters = Shelters::model()->findAll(array(
+                    'condition' => 't.shelter_id in ('.implode(",", $shelterIds).')'
+                ));
+
+                $cityIds = array();
+                foreach($shelters as $s)
+                {
+                    $cityIds[] = $s->city_id;
+                }
+
+                $cities = Cities::model()->findAll(array(
+                    'condition' => 't.city_id in ('.implode(",", $cityIds).')'
+                ));
+            }
+        }
+
 
         $userId = Yii::app()->user->getId();
 
