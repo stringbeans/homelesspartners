@@ -1,0 +1,1 @@
+rsync -rvzltgoD -e "ssh -i homelesspartners.cer" . ubuntu@54.201.112.184:/var/www/sites/homelesspartners.com --chmod=ugo=rwx --exclude ".git" --exclude ".gitignore" --exclude "deploy"
