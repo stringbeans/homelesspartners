@@ -45,7 +45,7 @@ $(document).ready(function() {
 			<h2>Edit City</h2>
 
 			<ul class="breadcrumb">
-			  	<li>Admin</li>
+			  	<li>City Management</li>
 			  	<li><a href='<?php echo $this->createUrl("city/index") ?>'>View Cities</a></li>
 			  	<li class='active'>Edit City</li>
 			</ul>
@@ -53,7 +53,7 @@ $(document).ready(function() {
 			<h2>Create City</h2>
 
 			<ul class="breadcrumb">
-			  	<li>Admin</li>
+			  	<li>City Management</li>
 			  	<li><a href='<?php echo $this->createUrl("city/index") ?>'>View Cities</a></li>
 			  	<li class='active'>Create City</li>
 			</ul>

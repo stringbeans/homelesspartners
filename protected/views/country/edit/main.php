@@ -38,7 +38,7 @@ $(document).ready(function() {
 			<h2>Edit Country</h2>
 
             <ul class="breadcrumb">
-                <li>Admin</li>
+                <li>Country Management</li>
                 <li><a href="<?php echo $this->createUrl("country/index") ?>">View Countries</a></li>
                 <li class='active'>Edit Country</li>
             </ul>
@@ -47,7 +47,7 @@ $(document).ready(function() {
 			<h2>Create Country</h2>
 
             <ul class="breadcrumb">
-                <li>Admin</li>
+                <li>Country Management</li>
                 <li><a href="<?php echo $this->createUrl("country/index") ?>">View Countries</a></li>
                 <li class='active'>Create Country</li>
             </ul>

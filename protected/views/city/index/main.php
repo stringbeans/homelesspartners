@@ -4,7 +4,7 @@
 			<h2>View Cities</h2>
 
 			<ul class="breadcrumb">
-			  	<li>Admin</li>
+			  	<li>City Management</li>
 			  	<li class='active'>View Cities</li>
 			</ul>
 

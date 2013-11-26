@@ -11,22 +11,22 @@
                     <a href="#">Admin</a>
                     <ul>
                         <?php if(in_array(Yii::app()->user->role, array("admin"))): ?>
-                            <li><a href="<?php echo $this->createUrl("country/index") ?>">Country</a></li>
-                            <li><a href="<?php echo $this->createUrl("region/index") ?>">Region</a></li>
-                            <li><a href="<?php echo $this->createUrl("city/index") ?>">City</a></li>
+                            <li><a href="<?php echo $this->createUrl("country/index") ?>">Country Management</a></li>
+                            <li><a href="<?php echo $this->createUrl("region/index") ?>">Region Management</a></li>
+                            <li><a href="<?php echo $this->createUrl("city/index") ?>">City Management</a></li>
                         <?php endif;?>
 
                         <?php if(in_array(Yii::app()->user->role, array("admin", "city"))): ?>
-                            <li><a href="<?php echo $this->createUrl("shelter/index") ?>">Shelters</a></li>
+                            <li><a href="<?php echo $this->createUrl("shelter/index") ?>">Shelter Management</a></li>
                             <li><a href="<?php echo $this->createUrl("user/index") ?>">User Management</a></li>
                         <?php endif; ?>
 
                         <?php if(in_array(Yii::app()->user->role, array("admin", "city", "shelter"))): ?>
-                            <li><a href="<?php echo $this->createUrl("pledge/index") ?>">Pledges</a></li>
+                            <li><a href="<?php echo $this->createUrl("pledge/index") ?>">Pledge Management</a></li>
                         <?php endif; ?>
 
                         <?php if(in_array(Yii::app()->user->role, array("admin", "city", "shelter", "contributer"))): ?>
-                            <li><a href="<?php echo $this->createUrl("story/index") ?>">Stories</a></li>
+                            <li><a href="<?php echo $this->createUrl("story/index") ?>">Story Management</a></li>
                         <?php endif; ?>
                         
                     </ul> <!-- /Sub menu -->

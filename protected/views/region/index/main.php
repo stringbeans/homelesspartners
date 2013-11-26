@@ -4,7 +4,7 @@
 			<h2>View Regions</h2>
 
 			<ul class="breadcrumb">
-			  	<li>Admin</li>
+			  	<li>Region Management</li>
 			  	<li class='active'>View Regions</li>
 			</ul>
 

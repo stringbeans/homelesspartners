@@ -13,7 +13,7 @@ $(document).ready(function(){
 			<h2>View Pledges</h2>
 
 			<ul class="breadcrumb">
-                <li>Admin</li>
+                <li>Pledge Management</li>
                 <li class='active'>View Pledges</li>
             </ul>
 

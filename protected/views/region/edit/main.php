@@ -39,7 +39,7 @@ $(document).ready(function() {
 			<h2>Edit Region</h2>
 
 			<ul class="breadcrumb">
-			  	<li>Admin</li>
+			  	<li>Region Management</li>
 			  	<li><a href='<?php echo $this->createUrl("region/index") ?>'>View Regions</a></li>
 			  	<li class='active'>Edit Region</li>
 			</ul>
@@ -47,7 +47,7 @@ $(document).ready(function() {
 			<h2>Create Region</h2>
 
 			<ul class="breadcrumb">
-			  	<li>Admin</li>
+			  	<li>Region Management</li>
 			  	<li><a href='<?php echo $this->createUrl("region/index") ?>'>View Regions</a></li>
 			  	<li class='active'>Create Regions</li>
 			</ul>

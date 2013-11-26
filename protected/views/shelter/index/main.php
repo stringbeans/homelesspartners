@@ -5,7 +5,7 @@
             <h2>View Shelters</h2>
 
             <ul class="breadcrumb">
-                <li>Admin</li>
+                <li>Shelter Management</li>
                 <li class='active'>View Shelters</li>
             </ul>
 

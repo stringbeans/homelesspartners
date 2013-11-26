@@ -50,7 +50,7 @@ $(document).ready(function() {
             <h2>Edit Shelter</h2>
 
             <ul class="breadcrumb">
-                <li>Admin</li>
+                <li>Shelter Management</li>
                 <li><a href='<?php echo $this->createUrl("shelter/index") ?>'>View Shelters</a></li>
                 <li class='active'>Edit Shelter</li>
             </ul>
@@ -58,7 +58,7 @@ $(document).ready(function() {
             <h2>Create Shelter</h2>
 
             <ul class="breadcrumb">
-                <li>Admin</li>
+                <li>Shelter Management</li>
                 <li><a href='<?php echo $this->createUrl("shelter/index") ?>'>View Shelters</a></li>
                 <li class='active'>Create Shelter</li>
             </ul>

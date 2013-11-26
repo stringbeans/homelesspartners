@@ -14,7 +14,7 @@ $(document).ready(function(){
             <h2>View Stories</h2>
 
             <ul class="breadcrumb">
-                <li>Admin</li>
+                <li>Story Management</li>
                 <li class='active'>View Stories</li>
             </ul>
 

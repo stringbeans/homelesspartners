@@ -47,7 +47,7 @@ $(document).ready(function() {
             <h2>Edit Story</h2>
 
             <ul class="breadcrumb">
-                <li>Admin</li>
+                <li>Story Management</li>
                 <li><a href='<?php echo $this->createUrl("story/index") ?>'>View Stories</a></li>
                 <li class='active'>Edit Story</li>
             </ul>
@@ -56,7 +56,7 @@ $(document).ready(function() {
             <h2>Create Story</h2>
 
             <ul class="breadcrumb">
-                <li>Admin</li>
+                <li>Story Management</li>
                 <li><a href='<?php echo $this->createUrl("story/index") ?>'>View Stories</a></li>
                 <li class='active'>Create Story</li>
             </ul>

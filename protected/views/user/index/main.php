@@ -5,7 +5,7 @@
 			<h2>View Users</h2>
 
 			<ul class="breadcrumb">
-                <li>Admin</li>
+                <li>User Management</li>
                 <li class='active'>View Users</li>
             </ul>
 

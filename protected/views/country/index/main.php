@@ -5,7 +5,7 @@
 			<h2>View Countries</h2>
 
 			<ul class="breadcrumb">
-			  <li>Admin</li>
+			  <li>Country Management</li>
 			  <li class='active'>View Countries</li>
 			</ul>
 
