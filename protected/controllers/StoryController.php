@@ -61,6 +61,7 @@ class StoryController extends Controller
         Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
 
         $storyId = Yii::app()->input->get("id");
+        $selectedShelterId = Yii::app()->input->get("shelterId");
         $story = Stories::model()->findByPk($storyId);
         $gifts = Gifts::model()->findAllByAttributes(array(
             'story_id' => $storyId
@@ -98,6 +99,7 @@ class StoryController extends Controller
             'story' => $story,
             'gifts' => $gifts,
             'shelters' => $selectableShelters,
+            'selectedShelterId' => $selectedShelterId,
             'storyId' => $storyId,
             'userId' => $userId,
             'currentGiftRequests' => $this->getCurrentGiftRequest($storyId)
@@ -216,9 +218,18 @@ class StoryController extends Controller
             Yii::app()->user->setFlash('error', "Shelter wasnt saved!");
         }
 
-        $this->redirect($this->createUrl("story/edit", array(
-            'id' => (($addNew)? '0' : $story->story_id)
-        )));
+        $redirectParams = array(
+            'id' => $story->story_id
+        );
+        if($addNew)
+        {
+            $redirectParams = array(
+                'id' => 0,
+                'shelterId' => $shelterId
+            );
+        }
+
+        $this->redirect($this->createUrl("story/edit", $redirectParams));
     }
 
 

@@ -68,7 +68,7 @@ $(document).ready(function() {
                     <label>Shelter</label>
                     <select class='form-control' name='shelterId' />
                         <?php foreach ($shelters as $shelter): ?>
-                        <option value='<?php echo $shelter->shelter_id ?>' <?php echo ((!empty($story) && $story->shelter_id == $shelter->shelter_id)?' selected':'')?>><?php echo $shelter->name ?></option>
+                        <option value='<?php echo $shelter->shelter_id ?>' <?php echo (((!empty($story) && $story->shelter_id == $shelter->shelter_id) || ($selectedShelterId == $shelter->shelter_id))?' selected':'')?>><?php echo $shelter->name ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
@@ -95,22 +95,6 @@ $(document).ready(function() {
                     <textarea class='form-control' rows="5" cols = "40" name='story'><?php echo !empty($story)?$story->story:"" ?></textarea>
                 </div>
                 <input type='hidden' name='displayOrder' value='0' />
-                
-                <?php /*
-
-                <div class='form-group'>
-                    <label>Gift Requests</label>
-                    <select id='giftRequests' name='giftRequests[]' multiple>
-                        <?php foreach ($currentGiftRequests as $gift):?>
-                            <option value='<?php echo $gift['id']?>' selected='selected'><?php echo $gift['description']; ?></option>
-                        <?php endforeach ?>
-                    </select>
-                </div>
-                <div class='form-group'>
-                    <label>Gift Details</label>
-                    <textarea class='form-control' rows="5" cols = "40" name='gift_description'></textarea>
-                </div>
-                */?>
 
                 <script type='text/javascript'>
 
@@ -158,11 +142,22 @@ $(document).ready(function() {
                         $(event.currentTarget).closest("tr").remove();
                         event.preventDefault();
                     });
+
+                    $("input[type='submit']").click(function(event){
+                        if($(".newGiftDescription").val() != "")
+                        {
+                            if(!confirm("You have an un-added gift. Continue?"))
+                            {
+                                event.preventDefault();
+                            }
+                        }
+                        
+                    });
                 });
                 </script>
 
                 <div class='form-group'>
-                    <label>Gifts Requested</label>
+                    <label>Gifts Requested <a data-toggle="tooltip" title="Click 'Add' to add a gift to the story!" class='extra-info'>(?)</a></label>
                     <table id='giftTable' class='table'>
                         <tbody>
                             <?php foreach ($gifts as $gift): ?>
