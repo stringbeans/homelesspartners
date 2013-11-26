@@ -3,6 +3,12 @@
     <div class='row'>
         <div class='col-md-12'>
             <h2>View Shelters</h2>
+
+            <ul class="breadcrumb">
+                <li>Admin</li>
+                <li class='active'>View Shelters</li>
+            </ul>
+
             <p class='text-right'>
                 <a href='<?php echo $this->createUrl("shelter/edit") ?>' class='btn btn-warning'>+ Create new</a>
             </p>

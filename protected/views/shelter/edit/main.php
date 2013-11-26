@@ -46,8 +46,20 @@ $(document).ready(function() {
         <div class='col-md-12'>
             <?php if(!empty($shelter)): ?>
             <h2>Edit Shelter</h2>
+
+            <ul class="breadcrumb">
+                <li>Admin</li>
+                <li><a href='<?php echo $this->createUrl("shelter/index") ?>'>View Shelters</a></li>
+                <li class='active'>Edit Shelter</li>
+            </ul>
             <?php else: ?>
             <h2>Create Shelter</h2>
+
+            <ul class="breadcrumb">
+                <li>Admin</li>
+                <li><a href='<?php echo $this->createUrl("shelter/index") ?>'>View Shelters</a></li>
+                <li class='active'>Create Shelter</li>
+            </ul>
             <?php endif; ?>
         </div>
         <div class='col-md-6'>

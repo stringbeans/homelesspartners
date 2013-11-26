@@ -3,6 +3,12 @@
 		<div class='col-md-12'>
 			<p class="pull-right"><a href="<?php echo Yii::app()->createUrl('user/edit'); ?>" class="btn btn-info">Create User</a></p>
 			<h2>View Users</h2>
+
+			<ul class="breadcrumb">
+                <li>Admin</li>
+                <li class='active'>View Users</li>
+            </ul>
+
 			<table class='table table-hover'>
 				<?php foreach($users as $user): ?>
 				<tr>

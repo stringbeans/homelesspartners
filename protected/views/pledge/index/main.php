@@ -10,7 +10,12 @@ $(document).ready(function(){
 <div class='container'>
 	<div class='row'>
 		<div class='col-md-12'>
-			<h2>View Undelivered Pledges</h2>
+			<h2>View Pledges</h2>
+
+			<ul class="breadcrumb">
+                <li>Admin</li>
+                <li class='active'>View Pledges</li>
+            </ul>
 
 			<?php if(Yii::app()->user->hasFlash('success')): ?>
 		 	<div class="alert alert-success">

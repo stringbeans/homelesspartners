@@ -3,6 +3,11 @@
 		<div class='col-md-12'>
 			<h2>View Cities</h2>
 
+			<ul class="breadcrumb">
+			  	<li>Admin</li>
+			  	<li class='active'>View Cities</li>
+			</ul>
+
 			<?php if(Yii::app()->user->hasFlash('success')): ?>
 		 	<div class="alert alert-success">
 		    <?php echo Yii::app()->user->getFlash('success'); ?>

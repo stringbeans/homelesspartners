@@ -46,9 +46,8 @@ $(document).ready(function() {
 	<div class='row'>
 		<div class='col-md-12'>
 			<ul class="breadcrumb" style="margin-top: 20px;">
-	  			<li>
-	    			<a href="<?php echo Yii::app()->createUrl('user/index'); ?>">User Management</a>
-	  			</li>
+				<li>Admin</li>
+	  			<li><a href="<?php echo Yii::app()->createUrl('user/index'); ?>">View Users</a></li>
 	  			<li class="active"><?php echo empty($user)?'Create User':'Edit User'; ?></a></li>
 			</ul>
 			<?php /*<h2><?php echo empty($user)?'Create User':'Edit User'; ?></h2>*/ ?>

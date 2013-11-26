@@ -17,7 +17,7 @@
                         <?php endif;?>
 
                         <?php if(in_array(Yii::app()->user->role, array("admin", "city"))): ?>
-                            <li><a href="<?php echo $this->createUrl("shelters/index") ?>">Shelters</a></li>
+                            <li><a href="<?php echo $this->createUrl("shelter/index") ?>">Shelters</a></li>
                             <li><a href="<?php echo $this->createUrl("user/index") ?>">User Management</a></li>
                         <?php endif; ?>
 

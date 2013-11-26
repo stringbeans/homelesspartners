@@ -45,8 +45,22 @@ $(document).ready(function() {
         <div class='col-md-12'>
             <?php if(!empty($story)): ?>
             <h2>Edit Story</h2>
+
+            <ul class="breadcrumb">
+                <li>Admin</li>
+                <li><a href='<?php echo $this->createUrl("story/index") ?>'>View Stories</a></li>
+                <li class='active'>Edit Story</li>
+            </ul>
+
             <?php else: ?>
             <h2>Create Story</h2>
+
+            <ul class="breadcrumb">
+                <li>Admin</li>
+                <li><a href='<?php echo $this->createUrl("story/index") ?>'>View Stories</a></li>
+                <li class='active'>Create Story</li>
+            </ul>
+
             <p>
                 To add a new story please include all the details below. Make sure you choose the correct shelter!
             </p>
@@ -75,7 +89,7 @@ $(document).ready(function() {
 
                 <div class='form-group'>
                     <label>First Name</label>
-                    <input type='text' class='form-control' name='fname' value='<?php echo !empty($story)?$story->fname:"" ?>' />
+                    <input type='text' class='form-control' id='storyFirstName' name='fname' value='<?php echo !empty($story)?$story->fname:"" ?>' />
                 </div>
                 <div class='form-group'>
                     <label>Last Name (Initial)</label>
@@ -100,6 +114,8 @@ $(document).ready(function() {
 
 
                 $(document).ready(function(){
+
+                    $("#storyFirstName").focus();
 
                     $(".extra-info").tooltip();
 

@@ -40,8 +40,20 @@ $(document).ready(function() {
 		<div class='col-md-12'>
 			<?php if(!empty($city)): ?>
 			<h2>Edit City</h2>
+
+			<ul class="breadcrumb">
+			  	<li>Admin</li>
+			  	<li><a href='<?php echo $this->createUrl("city/index") ?>'>View Cities</a></li>
+			  	<li class='active'>Edit City</li>
+			</ul>
 			<?php else: ?>
 			<h2>Create City</h2>
+
+			<ul class="breadcrumb">
+			  	<li>Admin</li>
+			  	<li><a href='<?php echo $this->createUrl("city/index") ?>'>View Cities</a></li>
+			  	<li class='active'>Create City</li>
+			</ul>
 			<?php endif; ?>
 		</div>
 		<div class='col-md-12'>

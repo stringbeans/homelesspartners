@@ -36,10 +36,26 @@ $(document).ready(function() {
 		<div class='col-md-12'>
 			<?php if(!empty($country)): ?>
 			<h2>Edit Country</h2>
+
+            <ul class="breadcrumb">
+                <li>Admin</li>
+                <li><a href="<?php echo $this->createUrl("country/index") ?>">View Countries</a></li>
+                <li class='active'>Edit Country</li>
+            </ul>
+
 			<?php else: ?>
 			<h2>Create Country</h2>
+
+            <ul class="breadcrumb">
+                <li>Admin</li>
+                <li><a href="<?php echo $this->createUrl("country/index") ?>">View Countries</a></li>
+                <li class='active'>Create Country</li>
+            </ul>
 			<?php endif; ?>
 		</div>
+
+
+
 		<div class='col-md-6'>
 			<form id='countryForm' action='<?php echo $this->createUrl("country/save") ?>' method='post'>
 				<?php if(!empty($country)): ?>
