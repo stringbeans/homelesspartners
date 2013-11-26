@@ -37,6 +37,27 @@ Bootstrap Overrides
 .img-responsive {
   width: 100%;
 }
+.btn-white {
+  color: #34495e !important;
+  background-color: white;
+  border: 2px solid #bdc3c7;
+}
+.btn-white:hover {
+  color: #34495e;
+}
+.btn-white .caret {
+  border-bottom-color: #34495e;
+  border-top-color: #34495e;
+}
+.btn-group.open .btn-white.dropdown-toggle {
+  color: #34495e;
+}
+.btn-group.select {
+  width: 100%;
+}
+.btn-group.select .btn-white {
+  width: 100%;
+}
 /*
 General Styling
 ------------
@@ -130,29 +151,3 @@ Sections / Pages
   border-left: 1px solid #cccccc;
 }
 /* SECTION - Story */
-
-
-
-/* SECTION - Explore */
-.explore-shelter .img-rounded {
-  width: 140px;
-  height: 140px;
-}
-.explore-shelter .shelter-info {
-  padding-top: 10px;
-}
-.explore-shelter .shelter-stats {
-  border-top: 1px solid #cccccc;
-}
-.explore-shelter .shelter-stats div:not(:last-child) {
-  border-right: 1px solid #cccccc;
-}
-.explore-gifts {  
-  margin-bottom: -5px;
-}
-.explore-gifts .gift-name {
-  vertical-align: middle;
-}
-.explore-gifts .glyphicon {
-  margin-right: 3px;
-}

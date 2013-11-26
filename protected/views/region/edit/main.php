@@ -27,6 +27,8 @@ $(document).ready(function() {
             'region': 'required'
         }
     });
+
+    $("select").selectpicker({style: 'btn-white', menuStyle: 'dropdown'});
 });
 </script>
 
@@ -51,6 +53,21 @@ $(document).ready(function() {
 			</ul>
 			<?php endif; ?>
 		</div>
+
+		<div class='col-md-12'>
+			<?php if(Yii::app()->user->hasFlash('error')): ?>
+		 	<div class="alert alert-danger">
+		    <?php echo Yii::app()->user->getFlash('error'); ?>
+			</div>
+		 	<?php endif; ?>
+
+		 	<?php if(Yii::app()->user->hasFlash('success')): ?>
+		 	<div class="alert alert-success">
+		    <?php echo Yii::app()->user->getFlash('success'); ?>
+			</div>
+		 	<?php endif; ?>
+		</div>
+
 		<div class='col-md-6'>
 			<form id='regionForm' action='<?php echo $this->createUrl("region/save") ?>' method='post'>
 				<?php if(!empty($region)): ?>
@@ -58,8 +75,8 @@ $(document).ready(function() {
 				<?php endif; ?>
 				
 				<div class='form-group'>
-					<label>Country</label>
-					<select class='form-control' name='countryId' />
+					<label style='display: block;'>Country</label>
+					<select name='countryId' />
 						<?php foreach ($countries as $country): ?>
 						<option value='<?php echo $country->country_id ?>' <?php echo (!empty($region) && $country->country_id == $region->country_id)?"selected='selected'":"" ?>><?php echo $country->name ?></option>
 						<?php endforeach ?>

@@ -38,6 +38,8 @@ $(document).ready(function() {
             'ID_FORMAT': 'required'
         }
     });
+
+    $("#citySelect").selectpicker({style: 'btn-white', menuStyle: 'dropdown'});
 });
 </script>
 
@@ -75,8 +77,8 @@ $(document).ready(function() {
                 <?php endif; ?>
 
                 <div class='form-group'>
-                    <label>City</label>
-                    <select class='form-control' name='cityId' />
+                    <label style='display: block;'>City</label>
+                    <select id='citySelect' name='cityId' />
                         <?php foreach ($cities as $city): ?>
                         <option value='<?php echo $city->city_id ?>' <?php echo ((!empty($shelter) && $shelter->city_id == $city->city_id)?' selected':'')?>><?php echo $city->name ?></option>
                         <?php endforeach ?>

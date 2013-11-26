@@ -79,8 +79,8 @@ $(document).ready(function() {
                 <?php endif; ?>
 
                 <div class='form-group'>
-                    <label>Shelter</label>
-                    <select class='form-control' name='shelterId' />
+                    <label style='display: none;'>Shelter</label>
+                    <select name='shelterId' />
                         <?php foreach ($shelters as $shelter): ?>
                         <option value='<?php echo $shelter->shelter_id ?>' <?php echo (((!empty($story) && $story->shelter_id == $shelter->shelter_id) || ($selectedShelterId == $shelter->shelter_id))?' selected':'')?>><?php echo $shelter->name ?></option>
                         <?php endforeach ?>
@@ -169,6 +169,8 @@ $(document).ready(function() {
                         }
                         
                     });
+
+                    $("select").selectpicker({style: 'btn-white', menuStyle: 'dropdown'});
                 });
                 </script>
 

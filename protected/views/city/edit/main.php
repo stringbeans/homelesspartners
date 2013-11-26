@@ -32,6 +32,9 @@ $(document).ready(function() {
             'region': 'required'
         }
     });
+
+	$("#regionSelect").selectpicker({style: 'btn-white', menuStyle: 'dropdown'});
+				
 });
 </script>
 
@@ -76,8 +79,8 @@ $(document).ready(function() {
 				<?php endif; ?>
 
 				<div class='form-group'>
-					<label>Region</label>
-					<select class='form-control' name='regionId' />
+					<label style='display: block;'>Region</label>
+					<select id='regionSelect' name='regionId' />
 						<?php foreach ($regions as $region): ?>
 						<option value='<?php echo $region->region_id ?>' <?php echo (!empty($city) && $region->region_id == $city->region_id)?"selected='selected'":"" ?>><?php echo $region->name ?></option>	
 						<?php endforeach ?>

@@ -24,30 +24,56 @@ class StoryController extends Controller
         ));
     }
 
+    private function _getApplicableShelters()
+    {
+        $shelters = array();
+        if(Yii::app()->user->role == "admin")
+        {
+            $shelters = Shelters::model()->findAll();
+        }
+        elseif(Yii::app()->user->role == "city")
+        {
+            $cityCoordinators = CityCoordinators::model()->findAllByAttributes(array(
+                'user_id' => Yii::app()->user->id
+            ));
+
+            $cityIds = array();
+            foreach($cityCoordinators as $cc)
+            {
+                $cityIds[] = $cc->city_id;
+            }
+
+            if(!empty($cityIds))
+            {
+                $shelters = Shelters::model()->findAll(array(
+                    'condition' => 't.city_id in ('.implode(",", $cityIds).')'
+                ));
+            }
+        }
+        elseif(Yii::app()->user->role == "shelter")
+        {
+            //now get a list of shelters they have access to
+            $shelters = ShelterCoordinators::model()->findAllByAttributes(array(
+                'user_id' => $userId
+            ));
+        }
+
+        return $shelters;
+    }
+
 
     public function actionIndex()
     {
+        Yii::app()->clientScript->registerScriptFile('/js/list.min.js', CClientScript::POS_END);
+
         //fetch all stories based on logged in userId and shelter_coordinators mapped shelterId
-
-        //first get their userId
- //TODO put something in as a place holder
-        $userId = 4437;
-
-        //now get a list of shelters they have access to
-        $shelters = ShelterCoordinators::model()->findAllByAttributes(array(
-            'user_id' => $userId
-        ));
+        $shelters = $this->_getApplicableShelters();
 
         //trim the shelter IDs into a commma separated list for the next query
         $idList = '';
         foreach($shelters as $shelter) {
             $idList .= ', "' . $shelter->shelter_id . '"';
         }
-
-        //now get a list of stories where the story is mapped to any of these shelter IDs
-        // $stories = Stories::model()->findAll(array(
-            // 'condition' => '`t`.shelter_id in (' . substr($idList, 1) . ')'
-        // ));
 
         $stories = $this->loadStoryList(substr($idList, 1));
 
@@ -66,14 +92,11 @@ class StoryController extends Controller
         $gifts = Gifts::model()->findAllByAttributes(array(
             'story_id' => $storyId
         ));
-        $shelters = Shelters::model()->findAll();
 
         $userId = Yii::app()->user->id;
 
         //now get a list of shelters they have access to
-        $shelters = ShelterCoordinators::model()->findAllByAttributes(array(
-            'user_id' => $userId
-        ));
+        $shelters = $this->_getApplicableShelters();
 
         //trim the shelter IDs into a commma separated list for the next query
         $idList = '';

@@ -21,6 +21,11 @@ class Controller extends CController
 	 */
 	public $breadcrumbs=array();
 
+    public function init()
+    {
+        Yii::app()->clientScript->registerScriptFile('/js/bootstrap-select.js', CClientScript::POS_END);
+    }
+
 	public function filters()
 	{
 		return array(
