@@ -21,7 +21,7 @@
                             <li><a href="<?php echo $this->createUrl("user/index") ?>">User Management</a></li>
                         <?php endif; ?>
 
-                        <?php if(in_array(Yii::app()->user->role, array(Users::ROLE_ADMIN, Users::ROLE_CITY, "shelter"))): ?>
+                        <?php if(in_array(Yii::app()->user->role, array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER))): ?>
                             <li><a href="<?php echo $this->createUrl("pledge/index") ?>">Pledge Management</a></li>
                         <?php endif; ?>
 

@@ -15,7 +15,9 @@
 					<td><?php echo $user->email; ?></td>
 					<td><?php echo $rolesLookup[$user->role]; ?></td>
 					<td>
+						<?php if(Yii::app()->user->role == Users::ROLE_ADMIN): ?>
 						<a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("user/edit", array('id' => $user->user_id)) ?>'>Edit</a>
+						<?php endif; ?>
 					</td>
 				</tr>
 				<?php endforeach; ?>

@@ -77,13 +77,25 @@ class UserController extends Controller
 			}
 		}
 
-		$roles = array(
-			Users::ROLE_ADMIN => 'Administrator',
-			Users::ROLE_CITY => 'City Coordinator',
-			Users::ROLE_SHELTER => 'Shelter Coordinator',
-			Users::ROLE_CONTRIBUTOR => 'Contributor',
-			Users::ROLE_USER => 'User',
-		);
+		$roles = array();
+
+		if(Yii::app()->user->role == Users::ROLE_ADMIN)
+		{
+			$roles = array(
+				Users::ROLE_ADMIN => 'Administrator',
+				Users::ROLE_CITY => 'City Coordinator',
+				Users::ROLE_SHELTER => 'Shelter Coordinator',
+				Users::ROLE_CONTRIBUTOR => 'Contributor',
+				Users::ROLE_USER => 'User',
+			);
+		}
+		if(Yii::app()->user->role == Users::ROLE_CITY)
+		{
+			$roles = array(
+				Users::ROLE_SHELTER => 'Shelter Coordinator',
+				Users::ROLE_CONTRIBUTOR => 'Contributor',
+			);
+		}
 
 		$this->render("/user/edit/main", array(
 			'user' => $user,

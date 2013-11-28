@@ -26,7 +26,7 @@ $(document).ready(function() {
 			$('#cities').show();
 			$('#shelters').show();
 		}
-	});
+	}).change();
 
 	$('[data-toggle="checkbox"]').each(function () {
   		$(this).checkbox();
@@ -108,7 +108,7 @@ $(document).ready(function() {
 				</div>
 
 				<div id="cities" class='form-group row'<?php echo (empty($user) || ($user->role != Users::ROLE_CITY && $user->role != Users::ROLE_CONTRIBUTOR ) )?' style="display: none;"':''; ?>>
-					<label class="col-md-2 control-label">Cities</label>
+					<label class="col-md-2 control-label">Cities </label>
 					<div class="col-md-10">
 						<select class='form-control' name='cityIds[]' multiple="multiple" />
 							<?php foreach ($cities as $city): ?>
