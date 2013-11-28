@@ -160,7 +160,12 @@ $(document).ready(function() {
                     });
 
                     $("input[type='submit']").click(function(event){
-                        if($(".newGiftDescription").val() != "")
+                        if($("#giftTable tbody tr").length == 0)
+                        {
+                            alert("You have not added any gifts to this story. You must add at least 1 gift to save this story.");
+                            event.preventDefault();
+                        }
+                        else if($(".newGiftDescription").val() != "")
                         {
                             if(!confirm("You have an un-added gift. Continue?"))
                             {
