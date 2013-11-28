@@ -34,8 +34,7 @@ $(document).ready(function() {
         ignore: ":hidden",
         rules: {
             'name': 'required',
-            'cityId': 'required',
-            'ID_FORMAT': 'required'
+            'cityId': 'required'
         }
     });
 
@@ -64,7 +63,7 @@ $(document).ready(function() {
             </ul>
             <?php endif; ?>
         </div>
-        <div class='col-md-6'>
+        <div class='col-md-12'>
             <form id='shelterForm' action='<?php echo $this->createUrl("shelter/save") ?>' method='post' enctype="multipart/form-data">
                 <?php if(!empty($shelter)): ?>
                 <input type='hidden' name='shelterId' value='<?php echo $shelter->shelter_id ?>' />
@@ -76,64 +75,80 @@ $(document).ready(function() {
                     <input type='hidden' name='creatorId' value='<?php echo $userId ?>' />
                 <?php endif; ?>
 
-                <div class='form-group'>
-                    <label style='display: block;'>City</label>
-                    <select id='citySelect' name='cityId' />
-                        <?php foreach ($cities as $city): ?>
-                        <option value='<?php echo $city->city_id ?>' <?php echo ((!empty($shelter) && $shelter->city_id == $city->city_id)?' selected':'')?>><?php echo $city->name ?></option>
-                        <?php endforeach ?>
-                    </select>
+                <div class='row'>
+                    <div class='form-group col-md-6'>
+                        <label style='display: block;'>City</label>
+                        <select id='citySelect' name='cityId' />
+                            <?php foreach ($cities as $city): ?>
+                            <option value='<?php echo $city->city_id ?>' <?php echo ((!empty($shelter) && $shelter->city_id == $city->city_id)?' selected':'')?>><?php echo $city->name ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
                 </div>
 
-                <div class='form-group'>
-                    <label>Name</label>
-                    <input type='text' class='form-control' name='name' value='<?php echo !empty($shelter)?$shelter->name:"" ?>' />
-                </div>
-                <div class='form-group'>
-                    <label>Street</label>
-                    <textarea class='form-control' name='street'><?php echo !empty($shelter)?$shelter->street:"" ?></textarea>
-                </div>
-                <div class='form-group'>
-                    <label>Phone</label>
-                    <input type='text' class='form-control' name='phone' value='<?php echo !empty($shelter)?$shelter->phone:"" ?>' />
-                </div>
-                <div class='form-group'>
-                    <label>Biography</label>
-                    <textarea class='form-control'rows="5" cols = "40" name='bio'><?php echo !empty($shelter)?$shelter->bio:"" ?></textarea>
+                <div class='row'>
+                    <div class='form-group col-md-6'>
+                        <label>Name</label>
+                        <input type='text' class='form-control' name='name' value='<?php echo !empty($shelter)?$shelter->name:"" ?>' />
+                    </div>
                 </div>
 
-                <div class='form-group'>
-                    <label>ID Format</label>
-                    <input type='text' class='form-control' name='ID_FORMAT' value='<?php echo !empty($shelter)?$shelter->ID_FORMAT:"" ?>' />
-                </div>
-                <div class='form-group'>
-                    <label>Website</label>
-                    <input type='text' class='form-control' name='website' value='<?php echo !empty($shelter)?$shelter->website:"" ?>' />
-                </div>
-                <div class='form-group'>
-                    <label>Email</label>
-                    <input type='text' class='form-control' name='email' value='<?php echo !empty($shelter)?$shelter->email:"" ?>' />
-                </div>
-                <div class='form-group'>
-                    <label>Mapped</label>
-                    <input type="checkbox" name='mapped' value='1' <?php echo (!empty($shelter) && $shelter->mapped)?"checked='checked'":"" ?> data-toggle="switch" />
-                </div>
-                <div class='form-group'>
-                    <label>Date Created: <?php echo !empty($shelter)?$shelter->date_created:"" ?></label>
-                </div>
-                <div class='form-group'>
-                    <label>Enabled</label>
-                    <input type="checkbox" name='enabled' value='1' <?php echo (!empty($shelter) && !empty($shelter->enabled))?"checked='checked'":"" ?> data-toggle="switch" />
+                <div class='row'>
+                    <div class='form-group col-md-6'>
+                        <label>Street</label>
+                        <textarea class='form-control' name='street'><?php echo !empty($shelter)?$shelter->street:"" ?></textarea>
+                    </div>
                 </div>
 
-                <div class='form-group'>
-                    <label>Shelter Coordinators</label>
-                    <select id='shelterCoordinators' name='shelterCoordinators[]' multiple>
-                        <?php foreach ($allShelterCoordinators as $user): ?>
-                            <option value='<?php echo $user->user_id ?>' <?php echo in_array($user->user_id, $currentShelterCoordinators)?"selected='selected'":"" ?>><?php echo $user->email ?></option>
-                        <?php endforeach ?>
-                    </select>
+                <div class='row'>
+                    <div class='form-group col-md-6'>
+                        <label>Phone</label>
+                        <input type='text' class='form-control' name='phone' value='<?php echo !empty($shelter)?$shelter->phone:"" ?>' />
+                    </div>
                 </div>
+
+                <div class='row'>
+                    <div class='form-group col-md-6'>
+                        <label>Biography</label>
+                        <textarea class='form-control'rows="5" cols = "40" name='bio'><?php echo !empty($shelter)?$shelter->bio:"" ?></textarea>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='form-group col-md-6'>
+                        <label>ID Format</label>
+                        <input type='text' class='form-control' name='ID_FORMAT' value='<?php echo !empty($shelter)?$shelter->ID_FORMAT:"" ?>' />
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='form-group col-md-6'>
+                        <label>Website</label>
+                        <input type='text' class='form-control' name='website' value='<?php echo !empty($shelter)?$shelter->website:"" ?>' />
+                    </div>
+                </div>
+                
+                <div class='row'>
+                    <div class='form-group col-md-6'>
+                        <label>Email</label>
+                        <input type='text' class='form-control' name='email' value='<?php echo !empty($shelter)?$shelter->email:"" ?>' />
+                    </div>
+                </div>
+                
+                <input type='hidden' name='enabled' value='1' />
+
+                <div class='row'>
+                    <div class='form-group col-md-6'>
+                        <label>Shelter Coordinators</label>
+                        <select id='shelterCoordinators' name='shelterCoordinators[]' multiple>
+                            <?php foreach ($allShelterCoordinators as $user): ?>
+                                <option value='<?php echo $user->user_id ?>' <?php echo in_array($user->user_id, $currentShelterCoordinators)?"selected='selected'":"" ?>><?php echo $user->email ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                </div>
+
+                <?php /*
                 <div class='form-group'>
                     <label>Dropoff Locations</label>
                     <select id='dropoffLocations' name='dropoffLocations[]' multiple>
@@ -158,14 +173,104 @@ $(document).ready(function() {
                     <label>Dropoff Location Notes</label>
                     <textarea class='form-control' name='location-notes'></textarea>
                 </div>
+                */ ?>
 
-                <div class='form-group'>
-                    <label>Shelter Image</label>
-                    <input type='file' class='form-control' name='image' />
-                    <?php if(!empty($shelter) && !empty($shelter->img)): ?>
-                    <img src='<?php echo $shelter->img ?>' />
-                    <?php endif; ?>
+                <div class='row'>
+                    <div class='form-group col-md-6'>
+
+                        <label>Shelter Image</label>
+                        <input type='file' class='form-control' name='image' />
+                        <?php if(!empty($shelter) && !empty($shelter->img)): ?>
+                        <img src='<?php echo $shelter->img ?>' />
+                        <?php endif; ?>
+                    </div>
                 </div>
+
+
+                <script type='text/javascript'>
+                $(document).ready(function(){
+                    $(".extra-info").tooltip();
+                    
+                    $("#dropoffTable .add").click(function(event) {
+                        var $row = $(event.currentTarget).closest("tr");
+                        var dropoffName = $row.find(".dropoffName").val();
+                        var dropoffAddress = $row.find(".dropoffAddress").val();
+                        var dropoffDetails = $row.find(".dropoffDetails").val();
+                        var dropoffNotes = $row.find(".dropoffNotes").val();
+
+                        if(dropoffName != "" && dropoffAddress != "")
+                        {
+                            var markup = '<tr>';
+                                markup += '<td>' + dropoffName + '<input type="hidden" name="dropoffName[]" value="' + dropoffName +'" /></td>';
+                                markup += '<td>' + dropoffAddress + '<input type="hidden" name="dropoffAddress[]" value="' + dropoffAddress +'" /></td>';
+                                markup += '<td>' + dropoffNotes + '<input type="hidden" name="dropoffNotes[]" value="' + dropoffNotes +'" /></td>';
+                                markup += '<td><a href="#" class="btn btn-xs btn-danger delete">Delete</a></td>';
+                                markup +=  '</tr>';
+                            $("#dropoffTable tbody").append(markup);
+                            $(event.currentTarget).closest("tr").find("input, textarea").val("");
+                        }
+
+                        event.preventDefault();
+                    });
+
+                    $("#dropoffTable").on("click", ".delete", function(event) {
+                        $(event.currentTarget).closest("tr").remove();
+                        event.preventDefault();
+                    });
+
+                    $("#dropoffTable tfoot").find("input, textarea").keypress(function(event){
+                        if(event.which == 13)
+                        {
+                            $("#dropoffTable .add").click();
+                            event.preventDefault();
+                        }
+                    });
+                });
+                </script>
+
+                <div class='row'>
+                    <div class='form-group dropoffLocations col-md-12'>
+                        <label>Drop off locations <a data-toggle="tooltip" title="Click 'Add' to add multiple dropoff locations" class='extra-info'>(?)</a></label>
+                        <table id='dropoffTable' class='table'>
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Address</td>
+                                    <td>Additional Notes</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($currentDropoffLocations as $dropoff): ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo $dropoff->name ?>
+                                            <input type='hidden' name='dropoffName[]' value='<?php echo $dropoff->name ?>' />
+                                        </td>
+                                        <td>
+                                            <?php echo $dropoff->address ?>
+                                            <input type='hidden' name='dropoffAddress[]' value='<?php echo $dropoff->address ?>' />
+                                        </td>
+                                        <td>
+                                            <?php echo $dropoff->notes ?>
+                                            <input type='hidden' name='dropoffNotes[]' value='<?php echo $dropoff->notes ?>' />
+                                        </td>
+                                        <td><a href="#" class="btn btn-xs btn-danger delete">Delete</a></td>
+                                    </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td><input type='text' class='dropoffName form-control' /></td>
+                                    <td><input type='text' class='dropoffAddress form-control' /></td>
+                                    <td><textarea class='dropoffNotes form-control'></textarea></td>
+                                    <td><a href='#' class='btn btn-xs btn-info add'>+ Add</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
 
                 <div class='form-group'>
                     <input type='submit' class='btn btn-success' value='Save' />

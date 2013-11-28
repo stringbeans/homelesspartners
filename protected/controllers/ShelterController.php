@@ -202,17 +202,7 @@ class ShelterController extends Controller
         }
         $currentDropoffLocations = array();
 
-        $dropoffLocations = ShelterDropoffs::model()->findAllByAttributes(array('shelter_id' => $shelterId));
-
-        foreach ($dropoffLocations as $location) {
-            $currentDropoffLocations[] = array(
-                'id' => $location->dropoff_id,
-                'name' => $location->name,
-                'address' => $location->address
-            );
-        }
-
-        return $currentDropoffLocations;
+        return ShelterDropoffs::model()->findAllByAttributes(array('shelter_id' => $shelterId));
     }
 
     public function actionDelete()
@@ -235,12 +225,15 @@ class ShelterController extends Controller
         $street = Yii::app()->input->post("street");
         $phone = Yii::app()->input->post("phone");
         $bio = Yii::app()->input->post("bio");
-        $dropoff_details = Yii::app()->input->post("dropoff_details");
         $ID_FORMAT = Yii::app()->input->post("ID_FORMAT");
         $website = Yii::app()->input->post("website");
         $email = Yii::app()->input->post("email");
         $mapped = Yii::app()->input->post("mapped", 0);
         $enabled = Yii::app()->input->post("enabled", 0);
+
+        $dropoffNames = Yii::app()->input->post("dropoffName", array());
+        $dropoffAddresses = Yii::app()->input->post("dropoffAddress", array());
+        $dropoffNotes = Yii::app()->input->post("dropoffNotes", array());
 
         $shelter = new Shelters();
         if (!empty($shelterId)) {
@@ -256,7 +249,6 @@ class ShelterController extends Controller
         $shelter->street = $street;
         $shelter->phone = $phone;
         $shelter->bio = $bio;
-        $shelter->dropoff_details = $dropoff_details;
         $shelter->ID_FORMAT = $ID_FORMAT;
         $shelter->website = $website;
         $shelter->email = $email;
@@ -285,8 +277,29 @@ class ShelterController extends Controller
             }
 
             $shelter->save();
-            $this->pruneRemovedDropoffLocations($shelter->shelter_id);
-            $this->saveNewDropoffLocation($shelter->shelter_id);
+            
+
+            //handle dropoff locations
+            if(!empty($dropoffNames))
+            {
+                //start by deleting all dropoff locations
+                ShelterDropoffs::model()->deleteAll();
+
+                //now add dropoff locations
+                foreach($dropoffNames as $i => $dropoffName)
+                {
+                    $dropoffAddress = $dropoffAddresses[$i];
+                    $notes = $dropoffNotes[$i];
+
+                    $shelterDropoff = new ShelterDropoffs();
+                    $shelterDropoff->shelter_id = $shelter->shelter_id;
+                    $shelterDropoff->name = $dropoffName;
+                    $shelterDropoff->address = $dropoffAddress;
+                    $shelterDropoff->notes = $notes;
+                    $shelterDropoff->save();
+                }
+            }
+
 
             Yii::app()->user->setFlash('success', "Saved");
 

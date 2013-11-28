@@ -131,7 +131,7 @@ $(document).ready(function() {
                         var giftDescription = $(event.currentTarget).closest("tr").find("input").val();
                         if(giftDescription != "")
                         {
-                            var markup = '<tr><td>' + giftDescription  + '</td><td><a href="#"" class="btn btn-xs btn-danger delete">Delete</a><input type="hidden" name="gifts[]" value="' + giftDescription + '" /></td></tr>';
+                            var markup = '<tr><td>' + giftDescription  + '</td><td><a href="#" class="btn btn-xs btn-danger delete">Delete</a><input type="hidden" name="gifts[]" value="' + giftDescription + '" /></td></tr>';
                             $("#giftTable tbody").append(markup);
                             $(event.currentTarget).closest("tr").find("input").val("");
                         }
