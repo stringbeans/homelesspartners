@@ -21,6 +21,11 @@ $(document).ready(function() {
 		{
 			$('#shelters').show();
 		}
+		else if($(this).val() == '<?php echo Users::ROLE_CONTRIBUTOR; ?>')
+		{
+			$('#cities').show();
+			$('#shelters').show();
+		}
 	});
 
 	$('[data-toggle="checkbox"]').each(function () {
@@ -102,7 +107,7 @@ $(document).ready(function() {
 					</div>
 				</div>
 
-				<div id="cities" class='form-group row'<?php echo (empty($user) || $user->role != Users::ROLE_CITY)?' style="display: none;"':''; ?>>
+				<div id="cities" class='form-group row'<?php echo (empty($user) || ($user->role != Users::ROLE_CITY && $user->role != Users::ROLE_CONTRIBUTOR ) )?' style="display: none;"':''; ?>>
 					<label class="col-md-2 control-label">Cities</label>
 					<div class="col-md-10">
 						<select class='form-control' name='cityIds[]' multiple="multiple" />
@@ -113,7 +118,7 @@ $(document).ready(function() {
 					</div>
 				</div>
 
-				<div id="shelters" class='form-group row'<?php echo (empty($user) || $user->role != Users::ROLE_SHELTER)?' style="display: none;"':''; ?>>
+				<div id="shelters" class='form-group row'<?php echo (empty($user) || ($user->role != Users::ROLE_SHELTER && $user->role != Users::ROLE_CONTRIBUTOR))?' style="display: none;"':''; ?>>
 					<label class="col-md-2 control-label">Shelters</label>
 					<div class="col-md-10">
 						<select class='form-control' name='shelterIds[]' multiple="multiple" />

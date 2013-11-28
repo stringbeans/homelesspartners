@@ -49,12 +49,28 @@ class UserController extends Controller
 				$selectedCitiesLookup[$selectedCity->city_id] = true;
 			}
 		}
+		elseif(isset($user) && $user->role == Users::ROLE_CONTRIBUTOR)
+		{
+			$selectedCities = CityContributor::model()->findAllByAttributes(array('user_id' => $userId));
+			
+			foreach($selectedCities as $selectedCity)
+			{
+				$selectedCitiesLookup[$selectedCity->city_id] = true;
+			}
+		}
 			
 		$shelters = Shelters::model()->findAll();
 
 		$selectedSheltersLookup = array();
 		if (isset($user) && $user->role == Users::ROLE_SHELTER) {
 			$selectedShelters = ShelterCoordinators::model()->findAllByAttributes(array('user_id' => $userId));
+			
+			foreach ($selectedShelters as $selectedShelter) {
+				$selectedSheltersLookup[$selectedShelter->shelter_id] = true;
+			}
+		}
+		elseif (isset($user) && $user->role == Users::ROLE_CONTRIBUTOR) {
+			$selectedShelters = ShelterContributor::model()->findAllByAttributes(array('user_id' => $userId));
 			
 			foreach ($selectedShelters as $selectedShelter) {
 				$selectedSheltersLookup[$selectedShelter->shelter_id] = true;
@@ -108,6 +124,8 @@ class UserController extends Controller
 
 			CityCoordinators::model()->deleteAllByAttributes(array('user_id' => $userId));
 			ShelterCoordinators::model()->deleteAllByAttributes(array('user_id' => $userId));
+			CityContributor::model()->deleteAllByAttributes(array('user_id' => $userId));
+			ShelterContributor::model()->deleteAllByAttributes(array('user_id' => $userId));
 		}
 		else {
 			$user = Users::model()->create($email, $password, $role);
@@ -121,6 +139,22 @@ class UserController extends Controller
 			foreach($shelterIds as $shelterId) {
 				ShelterCoordinators::model()->create($shelterId, $user->user_id);
 			}
+		} elseif ($role == Users::ROLE_CONTRIBUTOR) {
+			
+			foreach($shelterIds as $shelterId) {
+				$shelterContributor = new ShelterContributor();
+				$shelterContributor->user_id = $user->user_id;
+				$shelterContributor->shelter_id = $shelterId;
+				$shelterContributor->save();
+			}
+
+			foreach($cityIds as $cityId) {
+				$cityContributor = new CityContributor();
+				$cityContributor->user_id = $user->user_id;
+				$cityContributor->city_id = $cityId;
+				$cityContributor->save();
+			}
+
 		}
 
 		Yii::app()->user->setFlash('success', "Saved");

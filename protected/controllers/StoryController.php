@@ -24,17 +24,19 @@ class StoryController extends Controller
         ));
     }
 
-    private function _getApplicableShelters()
+    private function _getApplicableShelters($userId)
     {
-        $shelters = array();
+        $shelterIds = array();
         if(Yii::app()->user->role == "admin")
         {
             $shelters = Shelters::model()->findAll();
+
+            $shelterIds = $this->_createShelterIdList($shelters);
         }
         elseif(Yii::app()->user->role == "city")
         {
             $cityCoordinators = CityCoordinators::model()->findAllByAttributes(array(
-                'user_id' => Yii::app()->user->id
+                'user_id' => $userId
             ));
 
             $cityIds = array();
@@ -48,6 +50,8 @@ class StoryController extends Controller
                 $shelters = Shelters::model()->findAll(array(
                     'condition' => 't.city_id in ('.implode(",", $cityIds).')'
                 ));
+
+                $shelterIds = $this->_createShelterIdList($shelters);
             }
         }
         elseif(Yii::app()->user->role == "shelter")
@@ -56,9 +60,44 @@ class StoryController extends Controller
             $shelters = ShelterCoordinators::model()->findAllByAttributes(array(
                 'user_id' => $userId
             ));
+
+            $shelterIds = $this->_createShelterIdList($shelters);
+        }
+        elseif(Yii::app()->user->role == Users::ROLE_CONTRIBUTOR)
+        {
+            $cityContributors = CityContributor::model()->findAllByAttributes(array(
+                'user_id' => $userId
+            ));
+
+            foreach($cityContributors as $cityContributor)
+            {
+                $shelters = Shelters::model()->findAllByAttributes(array(
+                    'city_id' => $cityContributor->city_id
+                ));
+
+                $shelterIds = $this->_createShelterIdList($shelters);
+            }
+
+            $shelterContributors = ShelterContributor::model()->findAllByAttributes(array(
+                'user_id' => $userId
+            ));
+
+            $shelterIds = array_merge($shelterIds, $this->_createShelterIdList($shelterContributors));
+            $shelterIds = array_unique($shelterIds);
         }
 
-        return $shelters;
+        return $shelterIds;
+    }
+
+    private function _createShelterIdList($shelters = array())
+    {
+        $shelterIds = array();
+        foreach($shelters as $shelter)
+        {
+            $shelterIds[] = $shelter->shelter_id;
+        }
+
+        return $shelterIds;
     }
 
 
@@ -67,15 +106,8 @@ class StoryController extends Controller
         Yii::app()->clientScript->registerScriptFile('/js/list.min.js', CClientScript::POS_END);
 
         //fetch all stories based on logged in userId and shelter_coordinators mapped shelterId
-        $shelters = $this->_getApplicableShelters();
-
-        //trim the shelter IDs into a commma separated list for the next query
-        $idList = '';
-        foreach($shelters as $shelter) {
-            $idList .= ', "' . $shelter->shelter_id . '"';
-        }
-
-        $stories = $this->loadStoryList(substr($idList, 1));
+        $shelterIds = $this->_getApplicableShelters(Yii::app()->user->id);
+        $stories = $this->loadStoryList($shelterIds);
 
         $this->render("/story/index/main", array('stories' => $stories));
     }
@@ -96,20 +128,14 @@ class StoryController extends Controller
         $userId = Yii::app()->user->id;
 
         //now get a list of shelters they have access to
-        $shelters = $this->_getApplicableShelters();
-
-        //trim the shelter IDs into a commma separated list for the next query
-        $idList = '';
-        foreach($shelters as $shelter) {
-            $idList .= ', "' . $shelter->shelter_id . '"';
-        }
+        $shelterIds = $this->_getApplicableShelters(Yii::app()->user->id);
 
         $selectableShelters = array();
-        if(!empty($idList))
+        if(!empty($shelterIds))
         {
             //now get a list of stories where the story is mapped to any of these shelter IDs
             $selectableShelters = Shelters::model()->findAll(array(
-                'condition' => '`t`.shelter_id in (' . substr($idList, 1) . ')'
+                'condition' => '`t`.shelter_id in (' . implode(",", $shelterIds) . ')'
             ));
         }
         else
@@ -305,7 +331,7 @@ class StoryController extends Controller
 
     }
 
-    private function loadStoryList($shelterIdList) {
+    private function loadStoryList($shelterIds) {
 
      $query = 'select 
             stories.story_id, fname, lname, cities.name as city, shelters.name as `shelter`, users.`email`, stories.assigned_id
@@ -313,7 +339,7 @@ class StoryController extends Controller
         left join shelters on shelters.`shelter_id` = stories.`shelter_id`
         left join cities on cities.city_id = shelters.`city_id`
         left join users on users.`user_id` = stories.`creator_id`
-        where shelters.shelter_id in (' . $shelterIdList . ')';
+        where shelters.shelter_id in (' . implode(", ", $shelterIds) . ')';
 
         $connection = Yii::app()->db;
         $command = $connection->createCommand($query);
