@@ -127,6 +127,7 @@ class UserController extends Controller
 
 		if (!empty($userId)) {
 			$user = Users::model()->findByPk($userId);
+			$user->email = $validEmail;
 			if (!empty($password))
 			{
 				$user->pw = $password;
