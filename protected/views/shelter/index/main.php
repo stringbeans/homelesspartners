@@ -18,7 +18,7 @@
                     <td><?php echo $shelter->shelter_id ?></td>
                     <td><?php echo $shelter->name ?></td>
                     <td><a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("shelter/edit", array('id' => $shelter->shelter_id)) ?>'>Edit</a>
-                        <a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("shelter/delete", array('id' => $shelter->shelter_id)) ?>'>Delete</a>
+                        <a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("shelter/delete", array('id' => $shelter->shelter_id)) ?>' onclick='return confirm("Deleting this shelter will delete all the stories that belong to this shelter. Continue?");'>Delete</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

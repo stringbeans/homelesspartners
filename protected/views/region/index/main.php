@@ -23,7 +23,7 @@
 					<td><?php echo $region->region_id ?></td>
 					<td><?php echo $region->name ?></td>
 					<td><a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("region/edit", array('id' => $region->region_id)) ?>'>Edit</a>
-						<a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("region/delete", array('id' => $region->region_id)) ?>' onclick='return confirm("Deleting this region will delete all things associated with the city. Continue?");'>Delete</a></td>
+						<a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("region/delete", array('id' => $region->region_id)) ?>' onclick='return confirm("Deleting this region will delete all things associated with the region. Continue?");'>Delete</a></td>
 				</tr>
 				<?php endforeach; ?>
 			</table>

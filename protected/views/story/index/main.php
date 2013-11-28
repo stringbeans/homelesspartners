@@ -45,7 +45,7 @@ $(document).ready(function(){
                         <td class='name'><?php echo $story['fname'] . ' ' . $story['lname'] ?></td>
                         
                         <td><a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("story/edit", array('id' => $story['story_id'])) ?>'>Edit</a>
-                            <a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("story/delete", array('id' => $story['story_id'])) ?>'>Delete</a>
+                            <a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("story/delete", array('id' => $story['story_id'])) ?>' onclick='return confirm("Are you sure you want to delete this story? This will delete all the pledges for it. Continue?");'>Delete</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
