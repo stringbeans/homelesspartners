@@ -188,7 +188,7 @@ $(document).ready(function() {
                         <tfoot>
                             <tr>
                                 <td><input type='text' class='form-control newGiftDescription' /></td>
-                                <td><a href='#' class='btn btn-xs btn-info add'>+ Add</td>
+                                <td><a href='#' class='btn btn-xs btn-info add'>+ Add Gift</td>
                             </tr>
                         </tfoot>
                     </table>

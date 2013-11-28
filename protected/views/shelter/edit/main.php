@@ -264,7 +264,7 @@ $(document).ready(function() {
                                     <td><input type='text' class='dropoffName form-control' /></td>
                                     <td><input type='text' class='dropoffAddress form-control' /></td>
                                     <td><textarea class='dropoffNotes form-control'></textarea></td>
-                                    <td><a href='#' class='btn btn-xs btn-info add'>+ Add</td>
+                                    <td><a href='#' class='btn btn-xs btn-info add'>+ Add Dropoff Location</td>
                                 </tr>
                             </tfoot>
                         </table>
