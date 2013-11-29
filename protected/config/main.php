@@ -100,6 +100,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'MAILGUN_API_KEY'=>'key-0-btbu-qb7trplmbftn96me4mhi0jak8',
-		'HP_SENDER_EMAIL_ADDRESS' => 'homelesspartners@gmail.com'
+		'HP_SENDER_EMAIL_ADDRESS' => 'pledges@homelesspartners.com'
 	),
 );
