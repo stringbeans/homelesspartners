@@ -5,8 +5,21 @@ class ShelterController extends Controller
 
     public function actionShelterStories()
     {
+        $shelterId = Yii::app()->input->get("id");
+        $shelter = Shelters::model()->with(array('shelterDropoffs', 'city.region', 'stories.gifts'))->findByPk($shelterId);
+        $shelterStats = $shelter->getStats();
 
-        $this->render("/shelter/index/shelterstories", array());
+        $currentPledgeCart = array();
+        if(isset(Yii::app()->session['pledgeCart']))
+        {
+            $currentPledgeCart = Yii::app()->session['pledgeCart'];
+        }
+
+        $this->render("/shelter/index/shelterstories", array(
+            'shelter' => $shelter,
+            'shelterStats' => $shelterStats,
+            'currentPledgeCart' => $currentPledgeCart
+        ));
     }
 
     public function actionIndex()

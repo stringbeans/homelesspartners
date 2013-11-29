@@ -10,7 +10,7 @@ $(document).ready(function(){
 
         <?php else: ?>
 
-        $(event.currentTarget).removeClass("pledge").addClass("unpledge").removeClass("btn-info").addClass("btn-danger").html('<span class="glyphicon glyphicon-gift"></span> Unpledge This Gift');
+        $(event.currentTarget).removeClass("pledge").addClass("unpledge").removeClass("btn-primary").addClass("btn-danger").html('<span class="glyphicon glyphicon-gift"></span> Unpledge This Gift');
         
         var giftId = $(event.currentTarget).data("id");
         $.post(
@@ -36,7 +36,7 @@ $(document).ready(function(){
     <?php if(!Yii::app()->user->isGuest): ?>
     $(".shelter-container").on("click", ".unpledge", function(event){
         event.preventDefault();
-        $(event.currentTarget).addClass("pledge").removeClass("unpledge").addClass("btn-info").removeClass("btn-danger").html('<span class="glyphicon glyphicon-gift"></span> Pledge This Gift');
+        $(event.currentTarget).addClass("pledge").removeClass("unpledge").addClass("btn-primary").removeClass("btn-danger").html('<span class="glyphicon glyphicon-gift"></span> Pledge This Gift');
         
         var giftId = $(event.currentTarget).data("id");
 
@@ -102,9 +102,9 @@ $(document).ready(function(){
                                     <td class="col-xs-9 gift-name"><?php echo $gift['description'] ?></td>
                                     <td class="col-xs-3">
                                         <?php if(in_array($gift['gift_id'], $currentPledgeCart) || (!Yii::app()->user->isGuest && ($gift['gift_id'] == Yii::app()->user->id))): ?>
-                                        <button class="btn btn-sm btn-danger btn-block unpledge" data-id="<?php echo $gift['gift_id'] ?>"><span class="glyphicon glyphicon-gift"></span>Unpledge This Gift</button>
+                                        <button class="btn btn-sm btn-danger btn-block unpledge" data-id="<?php echo $gift['gift_id'] ?>"><span class="glyphicon glyphicon-gift"></span> Unpledge This Gift</button>
                                         <?php elseif (empty($gift['numPledges'])): ?>
-                                        <button class="btn btn-sm btn-info btn-block pledge" data-id="<?php echo $gift['gift_id'] ?>"><span class="glyphicon glyphicon-gift"></span>Pledge This Gift</button>    
+                                        <button class="btn btn-sm btn-primary btn-block pledge" data-id="<?php echo $gift['gift_id'] ?>"><span class="glyphicon glyphicon-gift"></span> Pledge This Gift</button>    
                                         <?php else: ?>
                                         <button class="btn btn-sm btn-default btn-block" disabled="disabled"><span class="glyphicon glyphicon-gift"></span>Gifted</button>
                                         <?php endif ?>
@@ -124,7 +124,7 @@ $(document).ready(function(){
 
     <div class="row">
         <div class="col-md-3">
-            <img class="img-responsive" src="http://lorempixel.com/output/city-q-g-640-480-8.jpg" />
+            <img class="img-responsive" src="<?php echo $stories[0]['img'] ?>" />
         </div>
 
         <div class="col-md-7">

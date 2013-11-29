@@ -6,14 +6,18 @@ class CityController extends Controller
     public function actionCityShelters()
     {
         //fetch all shelters
-        $cityid = Yii::app()->input->get("id");
+        $cityId = Yii::app()->input->get("id");
 
-        $city = Cities::model()->findByPk($cityid);
+        $city = Cities::model()->findByPk($cityId);
+        $region = Region::model()->findByPk($city->region_id);
 
-        $shelters = Cities::model()->getSheltersWithTotalPledges($cityid);
-           
+        $shelters = Shelters::model()->findAllByAttributes(array(
+        	'city_id' => $cityId
+        ));
+
         $this->render("/city/index/cityshelters", array(
         	'city' => $city,
+        	'region' => $region,
         	'shelters' => $shelters
     	));
     }

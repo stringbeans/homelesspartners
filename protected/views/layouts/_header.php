@@ -32,6 +32,18 @@
                     </ul> <!-- /Sub menu -->
                 </li>
                 <?php endif; ?>
+                <li>
+                    <a href='#'>Cities</a>
+                    <?php $cities = Cities::model()->findAll(array(
+                        'order' => 'name'
+                    )); ?>
+                    <ul>
+                        <?php foreach ($cities as $city): ?>
+                            <li><a href='<?php echo $this->createUrl("city/cityShelters", array('id' => $city->city_id)) ?>'><?php echo $city->name ?></a></li>
+                        <?php endforeach ?>
+                    </ul>
+                <li>
+
           	</ul> <!-- /nav -->
 
             <ul class="nav navbar-nav navbar-right">
@@ -43,6 +55,8 @@
                             <span class="glyphicon glyphicon-shopping-cart" style='font-size: 20px;'></span>
                             <?php if(isset(Yii::app()->session['pledgeCart']) && sizeof(Yii::app()->session['pledgeCart']) > 0): ?>
                             <span class="navbar-new" id='pledgeCartCount' style='margin-right: -12px;'><?php echo sizeof(Yii::app()->session['pledgeCart']) ?></span>
+                            <?php else: ?>
+                            <span class="navbar-new" id='pledgeCartCount' style='margin-right: -12px; display: none;'><?php echo sizeof(Yii::app()->session['pledgeCart']) ?></span>
                             <?php endif; ?>
                         </a>
                     </li>
@@ -67,6 +81,7 @@
 
             <div class="modal-body">
                 <form id='loginForm' action="<?php echo Yii::app()->createUrl('login/loginProcessor'); ?>" method="post">
+                    <input type='hidden' name='redirectUrl' value='<?php echo Yii::app()->request->url ?>' />
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" id="email" name="email">
@@ -79,6 +94,7 @@
             </div>
 
             <div class="modal-footer">
+                <a href='#' class='pull-left showRegistration'><small>Or click here to register a new account</small></a>
                 <button type="submit" form='loginForm' class="btn btn-success">Login</button>
             </div>
         </div>
@@ -95,6 +111,7 @@
 
             <div class="modal-body">
                 <form id='registrationForm' action="<?php echo Yii::app()->createUrl('login/registerProcessor'); ?>" method="post">
+                    <input type='hidden' name='redirectUrl' value='<?php echo Yii::app()->request->url ?>' />
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" id="email" name="email">
@@ -107,8 +124,25 @@
             </div>
 
             <div class="modal-footer">
+                <a href='#' class='pull-left showLogin'><small>Or click here if you already have an account</small></a>
                 <button type="submit" form='registrationForm' class="btn btn-success">Register</button>
             </div>
         </div>
     </div>  
 </div>
+
+<script type='text/javascript'>
+$(document).ready(function(){
+    $(".showRegistration").click(function(event){
+        $("#loginModal").modal("hide");
+        $("#registrationModal").modal("show");
+        event.preventDefault();
+    });
+
+    $(".showLogin").click(function(event){
+        $("#loginModal").modal("show");
+        $("#registrationModal").modal("hide");
+        event.preventDefault();
+    });
+});
+</script>

@@ -95,7 +95,11 @@ class PledgeController extends Controller
 		{
 			$currentPledgeCart = Yii::app()->session['pledgeCart'];
 
-			if(($key = array_search($giftId, $currentPledgeCart)) !== false) {
+			if((sizeof($currentPledgeCart) == 1) && in_array($giftId, $currentPledgeCart))
+			{
+				$currentPledgeCart = array();
+			}
+			elseif(($key = array_search($giftId, $currentPledgeCart)) !== false) {
 			    unset($currentPledgeCart[$key]);
 			}
 
@@ -259,11 +263,11 @@ class PledgeController extends Controller
 			$email .= "\n Estimated drop off date: " . date("F j, Y", strtotime($deliverDate[$story->shelter_id]));
 		}
 
-		$email = new Email();
-		$result = $email->send(
+		$emailer = new Email();
+		$result = $emailer->send(
 			Yii::app()->params['HP_SENDER_EMAIL_ADDRESS'], 
 			Yii::app()->user->email,
-			'Thank you', 
+			'Thank you for your pledge!', 
 			$email
 		);
 

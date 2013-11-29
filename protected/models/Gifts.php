@@ -46,7 +46,9 @@ class Gifts extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-		);
+            'story' => array(self::BELONGS_TO, 'Stories', 'story_id'),
+            'pledges' => array(self::HAS_MANY, 'Pledges', 'gift_id'),
+        );
 	}
 
 	/**

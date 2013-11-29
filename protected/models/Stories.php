@@ -55,7 +55,9 @@ class Stories extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-		);
+            'gifts' => array(self::HAS_MANY, 'Gifts', 'story_id'),
+            'shelter' => array(self::BELONGS_TO, 'Shelters', 'shelter_id'),
+        );
 	}
 
 	/**
@@ -128,7 +130,26 @@ class Stories extends CActiveRecord
 public function getStorySummarybyID($currentStoryId)
 	{
 		$sql = "
-		SELECT st.story_id, st.shelter_id, shelters.name as shelter_name, shelters.website as shelter_website, shelters.bio as shelter_bio, pledges.user_id as pledge_user, pledges.status as pledge_status, shelters.city_id, cities.name as city_name, cities.region_id, region.name as region_name, st.creator_id, gifts.gift_id, gifts.description as gift_description, st.fname as fname, st.lname, st.assigned_id, st.story
+		SELECT 
+			st.story_id, 
+			st.shelter_id, 
+			shelters.name as shelter_name, 
+			shelters.website as shelter_website, 
+			shelters.bio as shelter_bio, 
+			shelters.img,
+			pledges.user_id as pledge_user, 
+			pledges.status as pledge_status, 
+			shelters.city_id, 
+			cities.name as city_name, 
+			cities.region_id, 
+			region.name as region_name, 
+			st.creator_id, 
+			gifts.gift_id, 
+			gifts.description as gift_description, 
+			st.fname as fname, 
+			st.lname, 
+			st.assigned_id, 
+			st.story
 		FROM stories st
 		JOIN shelters on st.shelter_id=shelters.shelter_id
 		join cities on shelters.city_id = cities.city_id

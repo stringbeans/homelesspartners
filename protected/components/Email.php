@@ -1,6 +1,4 @@
 <?php
-
-require 'protected/vendors/autoload.php';
 use Mailgun\Mailgun;
 
 class Email

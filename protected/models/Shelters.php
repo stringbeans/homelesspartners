@@ -52,17 +52,17 @@ class Shelters extends CActiveRecord
 		);
 	}
 
-	/**
-	 * @return array relational rules.
-	 */
 	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'users' => array(self::MANY_MANY, 'Users', 'shelter_coordinators(shelter_id, user_id)')
-		);
-	}
+    {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'users' => array(self::MANY_MANY, 'Users', 'shelter_coordinators(shelter_id, user_id)'),
+            'shelterDropoffs' => array(self::HAS_MANY, 'ShelterDropoffs', 'shelter_id'),
+            'city' => array(self::BELONGS_TO, 'Cities', 'city_id'),
+            'stories' => array(self::HAS_MANY, 'Stories', 'shelter_id'),
+        );
+    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -161,6 +161,41 @@ public function getShelterCountbyCity($shelterIds = array())
 		$command = $this->dbConnection->createCommand($sql);
 		$command->bindParam(":currentShelterId", $currentShelterId, PDO::PARAM_INT);
 		return $command->queryAll();
+	}
+
+	public function getStats($shelterId = null)
+	{
+
+		if(empty($shelterId))
+		{
+			$shelterId = $this->shelter_id;
+		}
+
+		$sql = "
+		SELECT *
+		FROM (
+			SELECT COUNT(*) as totalStories
+			FROM stories s
+			WHERE s.shelter_id = :shelterId
+		) totalStories
+		JOIN (
+			SELECT COUNT(*) as totalGifts
+			FROM gifts g 
+			JOIN stories s ON g.story_id = s.story_id
+			WHERE s.shelter_id = :shelterId
+		) gifts 
+		JOIN (
+			SELECT COUNT(*) as totalPledges
+			FROM gifts g 
+			JOIN pledges p ON p.gift_id = g.gift_id
+			JOIN stories s ON g.story_id = s.story_id
+			WHERE s.shelter_id = :shelterId 
+		) pledges
+		";
+
+		$command = $this->dbConnection->createCommand($sql);
+		$command->bindParam(":shelterId", $shelterId, PDO::PARAM_INT);
+		return $command->queryRow();
 	}
 
 }

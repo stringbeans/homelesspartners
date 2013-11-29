@@ -1,105 +1,168 @@
-<div class="shelter-container container">
+<script type='text/javascript'>
+$(document).ready(function(){
+
+    $(".shelter-stories-container").on("click", ".pledge", function(event){
+        event.preventDefault();
+
+        <?php if(Yii::app()->user->isGuest): ?>
+
+        $("#loginModal").modal("show");
+
+        <?php else: ?>
+
+        $(event.currentTarget).removeClass("pledge").addClass("unpledge").removeClass("btn-primary").addClass("btn-danger").html('<span class="glyphicon glyphicon-gift"></span> Unpledge This Gift');
+        
+        var giftId = $(event.currentTarget).data("id");
+        $.post(
+            "<?php echo $this->createUrl("pledge/addPledge") ?>",
+            {
+                'giftId': giftId
+            },
+            function() {
+                //update cart counter
+                if($("#pledgeCartCount").is(":hidden"))
+                {
+                    $("#pledgeCartCount").text("1").show();
+                }
+                else
+                {
+                    $("#pledgeCartCount").text(parseInt($("#pledgeCartCount").text()) + 1);
+                }
+            }
+        )
+        <?php endif; ?>
+    });
+
+    <?php if(!Yii::app()->user->isGuest): ?>
+    $(".shelter-stories-container").on("click", ".unpledge", function(event){
+        event.preventDefault();
+        $(event.currentTarget).addClass("pledge").removeClass("unpledge").addClass("btn-primary").removeClass("btn-danger").html('<span class="glyphicon glyphicon-gift"></span> Pledge This Gift');
+        
+        var giftId = $(event.currentTarget).data("id");
+
+        $.post(
+            "<?php echo $this->createUrl("pledge/deletePledgeFromSession") ?>",
+            {
+                'giftId': giftId
+            },
+            function() {
+                var numPledges = parseInt($("#pledgeCartCount").text());
+                
+                $("#pledgeCartCount").text(numPledges - 1);
+                if(numPledges == 1)
+                {
+                    $("#pledgeCartCount").hide();
+                }
+            }
+        )
+
+    });
+    <?php endif;?>
+});
+</script>
+
+<div class="shelter-container container" style='padding-bottom: 0px;'>
 
     <!-- shelter -->
 
-        <div class="shelter-information row">
-            <div class="col-md-3 col-sm-6">
-                <img class="img-responsive" src="http://lorempixel.com/output/city-q-g-640-480-8.jpg" />
-            </div>
-
-            <div class="col-md-7 col-sm-6">
-                <h4>{SHELTER.TITLE}</h4>
-                <h6>{CITY},{PROVINCE}</h6>
-                <a href="#">http://shelterlink.com</a>
-            </div>
-
-            <div class="action-buttons col-md-2">
-                <a class="col-md-12 btn btn-danger">Ask Question</a>
-                <a class="col-md-12 btn btn-info">Donate Money</a>
-            </div>
+    <div class="shelter-information row">
+        <div class="col-md-3 col-sm-6">
+            <img class="img-responsive" src="<?php echo $shelter->img ?>" />
         </div>
 
-
-        <div class="shelter-details row">
-            <div class="col-md-12">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
-                </p>
-            </div>
+        <div class="col-md-9 col-sm-6">
+            <h4><?php echo $shelter->name ?></h4>
+            <h6><?php echo $shelter->city->name ?>, <?php echo $shelter->city->region->name ?></h6>
+            <?php if(!empty($shelter->website)): ?>
+            <a href="<?php echo $shelter->website ?>" target='_blank'><?php echo $shelter->website ?></a>
+            <?php endif; ?>
         </div>
+    </div>
 
-        <div class="shelter-locations row">
-            <div class="col-md-12">
-                <h6>Drop off Locations:</h6>
-                <ul>
-                    <?php for($i=0; $i<3; $i++) { ?>
-                    <li><a href="#">{LOCATION}</a></li>
-                    <?php } ?>
-                </ul>
-            </div>
+
+    <div class="shelter-details row">
+        <div class="col-md-12">
+            <p>
+                <?php echo $shelter->bio ?>
+            </p>
         </div>
+    </div>
 
-        <div class="shelter-stats row">
-            <div class="stat col-md-4">
-                <strong>Stories</strong>
-                <p>
-                    75
-                </p>
-            </div>
-            <div class="stat col-md-4">
-                <strong>Gifts</strong>
-                <p>
-                    26 
-                </p>
-            </div>
-            <div class="stat col-md-4">
-                <strong>Pledged Gifts</strong>
-                <p>
-                    0 of 26 
-                </p>
-            </div>
+    <?php if(!empty($shelter->shelterDropoffs)): ?>
+    <div class="shelter-locations row">
+        <div class="col-md-12">
+            <h6>Drop off Locations:</h6>
+            <ul>
+                <?php foreach($shelter->shelterDropoffs as $dropoff): ?>
+                <li>
+                    <strong>
+                        <?php echo $dropoff->name ?>, <?php echo $dropoff->address ?>
+                    </strong>
+                    <?php if(!empty($dropoff->notes)): ?>
+                    , <em><?php echo $dropoff->notes ?></em>
+                    <?php endif; ?>
+                </li>
+                <?php endforeach; ?>
+            </ul>
         </div>
+    </div>
+    <?php endif; ?>
 
+    <div class="shelter-stats row">
+        <div class="stat col-md-4">
+            <strong>Stories</strong>
+            <p>
+                <?php echo $shelterStats['totalStories'] ?>
+            </p>
+        </div>
+        <div class="stat col-md-4">
+            <strong>Gifts</strong>
+            <p>
+                <?php echo $shelterStats['totalGifts'] ?>
+            </p>
+        </div>
+        <div class="stat col-md-4">
+            <strong>Pledged Gifts</strong>
+            <p>
+                <?php echo $shelterStats['totalPledges'] ?> of <?php echo $shelterStats['totalGifts'] ?>
+            </p>
+        </div>
+    </div>
 </div>
 
+<?php if(!empty($shelter->stories)): ?>
 <div class="shelter-stories-container container">
 
-    <?php for ($i=0; $i< 3; $i++) { ?>
-    <div class="shelter-story row">
-        <div class="shelter-author col-md-6">
-            Name: {AUTHOR.NAME}
+    <?php foreach($shelter->stories as $story): ?>
+        <div class="shelter-story row">
+            <div class="shelter-author col-md-6">
+                <?php if(!empty($story->fname)): ?>
+                Name: <?php echo $story->fname ?> <?php echo $story->lname ?>
+                <?php endif; ?>
+            </div>
+            <div class="shelter-id col-md-6 text-right">
+                ID: <a href='<?php echo $this->createUrl("story/story", array('id' => $story->story_id)) ?>'><?php echo $story->assigned_id ?></a>
+            </div>
         </div>
-        <div class="shelter-id col-md-6">
-            ID: <a href="#">{AUTHOR.NAME}</a>
+        <div class='shelter-story row' style='margin-top: 0px;'>
+            <div class="col-md-12">
+                <p>
+                    <?php echo htmlspecialchars($story->story) ?>
+                </p>
+            </div>
         </div>
-
-        <div class="col-md-12">
-
-            <p>
-                <small>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </small>
-            </p>
-
-        </div>
-    </div>
-    <div class="shelter-gift row">
-        <div class="col-md-9 col-xs-6">
-            Winter coat for daughter, purple, size X-L
-        </div>
-        <a class="btn btn-primary col-md-3 col-xs-6">
-            Pledge This Gift
-        </a>
-    </div>
-    <div class="shelter-gift row">
-        <div class="col-md-9 col-xs-6">
-            Winter boots for son, size 10 (teen style)
-        </div>
-        <a class="btn btn-danger col-md-3 col-xs-6">
-            Unpledge This Gift
-        </a>
-    </div>
-    <?php } ?>
-
+        <?php foreach($story->gifts as $gift): ?>
+            <div class="shelter-gift row">
+                <div class="col-md-9 col-xs-6">
+                    <?php echo $gift->description ?>
+                </div>
+                <?php if(in_array($gift->gift_id, $currentPledgeCart)): ?>
+                <a class="btn btn-danger col-md-3 col-xs-6 unpledge" data-id='<?php echo $gift->gift_id ?>'><span class="glyphicon glyphicon-gift"></span> Unpledge This Gift</a>
+                <?php else: ?> 
+                <a class="btn btn-primary col-md-3 col-xs-6 pledge" data-id='<?php echo $gift->gift_id ?>'><span class="glyphicon glyphicon-gift"></span> Pledge This Gift</a>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    <?php endforeach; ?>
 </div>
+<?php endif; ?>

@@ -47,13 +47,15 @@ class Cities extends CActiveRecord
 	 * @return array relational rules.
 	 */
 	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'users' => array(self::MANY_MANY, 'Users', 'city_coordinators(city_id, user_id)'),
-		);
-	}
+    {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'region' => array(self::BELONGS_TO, 'Region', 'region_id'),
+            'users' => array(self::MANY_MANY, 'Users', 'city_coordinators(city_id, user_id)'),
+            'shelters' => array(self::HAS_MANY, 'Shelters', 'city_id'),
+        );
+    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)

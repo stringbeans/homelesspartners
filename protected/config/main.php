@@ -1,5 +1,7 @@
 <?php
 
+require dirname(__FILE__).DIRECTORY_SEPARATOR.'..' . "/vendors/autoload.php";
+
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -98,6 +100,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'MAILGUN_API_KEY'=>'key-0-btbu-qb7trplmbftn96me4mhi0jak8',
-		'HP_SENDER_EMAIL_ADDRESS' => 'aastfalk@gmail.com'//'homelesspartners@gmail.com'
+		'HP_SENDER_EMAIL_ADDRESS' => 'homelesspartners@gmail.com'
 	),
 );

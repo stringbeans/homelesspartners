@@ -18,6 +18,25 @@
 		$("a.remove").click(function(event){
 			event.preventDefault();
 			$(event.currentTarget).closest("tr").remove();
+
+			var giftId = $(event.currentTarget).data("id");
+
+			$.post(
+	            "<?php echo $this->createUrl("pledge/deletePledgeFromSession") ?>",
+	            {
+	                'giftId': giftId
+	            },
+	            function() {
+	                var numPledges = parseInt($("#pledgeCartCount").text());
+	                
+	                $("#pledgeCartCount").text(numPledges - 1);
+	                $("#giftCount").text($("#giftCount").text() - 1);
+	                if(numPledges == 1)
+	                {
+	                    $("#pledgeCartCount").hide();
+	                }
+	            }
+	        )
 		});
 
 		$("#pledgeCheckoutForm").validate({
@@ -83,7 +102,7 @@
 						</td>
 						<td class='text-center'>
 							<h6>Gifts for this shelter</h6>
-							<h4><?php echo $shelter['giftCount'] ?></h4>
+							<h4 id='giftCount'><?php echo $shelter['giftCount'] ?></h4>
 						</td>
 					</tr>
 				</table>
@@ -122,7 +141,7 @@
 								<tr>
 									<td><?php echo $gift['description'] ?></td>
 									<td class='text-right'>
-										<a href='#' class='btn btn-danger remove'><span class='glyphicon glyphicon-gift'></span> Unpledge Gift</a>
+										<a href='#' class='btn btn-danger remove' data-id='<?php echo $gift['giftId'] ?>'><span class='glyphicon glyphicon-gift'></span> Unpledge Gift</a>
 										<input type='hidden' name='giftId[]' value='<?php echo $gift['giftId'] ?>' />
 									</td>
 								</tr>
@@ -150,7 +169,7 @@
 	</div>
 <?php endforeach ?>
 
-<div class='container'>
+<div class='container' style='margin-top: 20px;'>
 	<div class='row'>
 		<div class='col-md-12 text-center'>
 

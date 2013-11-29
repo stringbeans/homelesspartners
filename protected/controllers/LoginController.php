@@ -12,13 +12,14 @@ class LoginController extends Controller
     {
         $email = Yii::app()->input->post('email');
         $password = Yii::app()->input->post('password');
+        $redirectUrl = Yii::app()->input->post('redirectUrl', $this->createUrl("home/index"));
 
         $identity = new UserIdentity($email, $password);
 
         if ($identity->authenticate()) {
             //log user in for 7 days using cookies
             Yii::app()->user->login($identity,3600*24*7);
-            $this->redirect($this->createUrl('home/index'));
+            $this->redirect($redirectUrl);
         }
         else {
             Yii::app()->user->setFlash('error', 'Your credentials are incorrect.');
@@ -36,6 +37,7 @@ class LoginController extends Controller
     {
         $email = Yii::app()->input->post('email');
         $password = Yii::app()->input->post('password');
+        $redirectUrl = Yii::app()->input->post('redirectUrl', $this->createUrl("home/index"));
 
         $user = null;
         try {
@@ -62,7 +64,7 @@ class LoginController extends Controller
         if ($identity->authenticate()) {
             //log user in for 7 days using cookies
             Yii::app()->user->login($identity,3600*24*7);
-            $this->redirect($this->createUrl('home/index'));
+            $this->redirect($redirectUrl);
         }
         else {
             $this->redirect($this->createUrl('login/register'));
