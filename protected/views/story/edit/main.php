@@ -30,7 +30,6 @@ $(document).ready(function() {
         ignore: ":hidden",
         rules: {
             'fname': 'required',
-            'lname': 'required',
             'cityId': 'required',
             'gender': 'required',
             'assignedId': 'required',

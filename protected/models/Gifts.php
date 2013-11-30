@@ -148,4 +148,26 @@ class Gifts extends CActiveRecord
         $command->bindParam(":storyId", $storyId, PDO::PARAM_INT);
         return $command->queryAll();
 	}
+
+	public function getGiftsByStoryLookup($giftIds = array())
+	{
+		$sql = "
+		SELECT g.gift_id, s.story_id
+		FROM gifts g
+		JOIN stories s ON g.story_id = s.story_id
+		WHERE g.gift_id IN (" . implode(",", $giftIds) . ");
+        ";
+
+        $command = $this->dbConnection->createCommand($sql);
+        $rows = $command->queryAll();
+
+        $lookup = array();
+
+        foreach($rows as $row)
+        {
+        	$lookup[$row['story_id']][] = $row['gift_id'];
+        }
+
+        return $lookup;
+	}
 }
