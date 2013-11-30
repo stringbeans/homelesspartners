@@ -44,10 +44,7 @@ $(document).ready(function() {
 			<form id="js-reset-password-form" class="form" action='<?php echo $this->createUrl("login/resetPasswordProcessor") ?>' method="post">
 				<p>Enter your email address and your new password</p>
   				<input type='hidden' name='resetPasswordKey' value='<?php echo $resetPasswordKey; ?>' />
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" id="email" name="email">
-                </div>
+  				<input type='hidden' name='userId' value='<?php echo $userId; ?>' />
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" name="password" maxlength="16">
