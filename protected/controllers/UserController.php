@@ -11,7 +11,7 @@ class UserController extends Controller
 		$rolesLookup = array(
 			Users::ROLE_ADMIN => 'Administrator',
 			Users::ROLE_CITY => 'City Coordinator',
-			Users::ROLE_SHELTER => 'Shelter Coordinator',
+			Users::ROLE_SHELTER => 'Shelter Manager',
 			Users::ROLE_CONTRIBUTOR => 'Typist',
 			Users::ROLE_USER => 'User',
 		);
@@ -84,7 +84,7 @@ class UserController extends Controller
 			$roles = array(
 				Users::ROLE_ADMIN => 'Administrator',
 				Users::ROLE_CITY => 'City Coordinator',
-				Users::ROLE_SHELTER => 'Shelter Coordinator',
+				Users::ROLE_SHELTER => 'Shelter Manager',
 				Users::ROLE_CONTRIBUTOR => 'Typist',
 				Users::ROLE_USER => 'User',
 			);
@@ -92,7 +92,7 @@ class UserController extends Controller
 		if(Yii::app()->user->role == Users::ROLE_CITY)
 		{
 			$roles = array(
-				Users::ROLE_SHELTER => 'Shelter Coordinator',
+				Users::ROLE_SHELTER => 'Shelter Manager',
 				Users::ROLE_CONTRIBUTOR => 'Contributor',
 			);
 		}
