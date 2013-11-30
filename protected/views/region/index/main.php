@@ -18,12 +18,19 @@
 				<a href='<?php echo $this->createUrl("region/edit") ?>' class='btn btn-warning'>+ Create new</a>
 			</p>
 			<table class='table table-hover'>
-				<?php foreach($region as $region): ?>
+				<th>Region Name</th>
+				<th>Country</th>
+				<th>Cities</th>
+				<th>Shelters</th>
+				<?php foreach($regions as $region): ?>
 				<tr>
-					<td><?php echo $region->region_id ?></td>
-					<td><?php echo $region->name ?></td>
-					<td><a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("region/edit", array('id' => $region->region_id)) ?>'>Edit</a>
-						<a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("region/delete", array('id' => $region->region_id)) ?>' onclick='return confirm("Deleting this region will delete all things associated with the region. Continue?");'>Delete</a></td>
+					<td><?php echo $region['region_name'] ?></td>
+					<td><?php echo $region['country_name'] ?></td>
+					<td><?php echo $region['numCities'] ?></td>
+					<td><?php echo $region['numShelters'] ?></td>					
+					<td>
+						<a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("region/edit", array('id' => $region['region_id'])) ?>'>Edit</a>
+						<a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("region/delete", array('id' => $region['region_id'])) ?>' onclick='return confirm("Deleting this region will delete all things associated with the region. Continue?");'>Delete</a></td>
 				</tr>
 				<?php endforeach; ?>
 			</table>

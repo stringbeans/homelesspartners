@@ -6,7 +6,8 @@ class CountryController extends Controller
 	public function actionIndex()
 	{
 		//fetch all countries
-		$countries = Country::model()->findAll();
+		//$countries = Country::model()->findAll();
+		$countries = Country::model()->getCountrySummary();
 
 		$this->render("/country/index/main", array(
 			'countries' => $countries

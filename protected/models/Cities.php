@@ -144,6 +144,11 @@ class Cities extends CActiveRecord
 		return $command->queryAll();
 	}
 
+
+	
+
+
+
 public function getSheltersWithTotalPledges($currentCityId)
 	{
 		$sql = "
@@ -194,6 +199,28 @@ group by c.city_id
 		$command->bindParam(":currentCityId", $currentCityId, PDO::PARAM_INT);
 		return $command->queryAll();
 	}
+
+
+
+public function getCitySummary()
+	{
+		$sql = "
+		SELECT c.city_id, r.region_id, c.name as name,
+		count(distinct sh.shelter_id) as numShelters,
+		count(distinct st.story_id) as numStories,
+		count(distinct g.gift_id) as numGifts,
+		count(distinct p.pledge_id) as numPledges 
+		FROM cities c
+		JOIN region r on r.region_id = c.region_id
+		LEFT JOIN shelters sh ON c.city_id = sh.city_id
+		LEFT JOIN stories st ON st.shelter_id = sh.shelter_id
+		LEFT JOIN gifts g ON g.story_id = st.story_id
+		LEFT JOIN pledges p ON g.gift_id = p.gift_id
+		group by c.city_id";
+		$command = $this->dbConnection->createCommand($sql);
+		return $command->queryAll();
+	}
+
 
 
 }

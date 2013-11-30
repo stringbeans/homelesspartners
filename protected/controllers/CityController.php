@@ -27,8 +27,8 @@ class CityController extends Controller
 	public function actionIndex()
 	{
 		//fetch all cities
-		$cities = Cities::model()->findAll();
-
+		//$cities = Cities::model()->findAll();
+		$cities = Cities::model()->getCitySummary();
 		$this->render("/city/index/main", array(
 			'cities' => $cities
 		));

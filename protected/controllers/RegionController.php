@@ -6,10 +6,10 @@ class RegionController extends Controller
 	public function actionIndex()
 	{
 		//fetch all cities
-		$regions = Region::model()->findAll();
-
+		//$regions = Region::model()->findAll();
+		$regions = Region::model()->getRegionSummary();
 		$this->render("/region/index/main", array(
-			'region' => $regions
+			'regions' => $regions
 		));
 	}
 	
