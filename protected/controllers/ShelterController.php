@@ -24,7 +24,10 @@ class ShelterController extends Controller
 
     public function actionIndex()
     {
-        //fetch all shelters
+        
+        //including the following because it was on pledge, trying to implement sorting
+        Yii::app()->clientScript->registerScriptFile('/js/list.min.js', CClientScript::POS_END);
+        //intialize shelters array
         $shelters = array();
 
         if(Yii::app()->user->role == "admin")

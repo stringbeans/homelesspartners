@@ -28,7 +28,7 @@
 				<?php foreach($cities as $city): ?>
 				<tr>
 					
-					<td><?php echo $city['name'] ?></td>
+					<td><a href='<?php echo $this->createUrl("city/cityShelters", array('id' => $city['city_id'])) ?>'><?php echo $city['name'] ?></a></td>
 					<td><?php echo $city['numShelters'] ?></td>
 					<td><?php echo $city['numStories'] ?></td>
 					<td><?php echo $city['numGifts'] ?></td>
