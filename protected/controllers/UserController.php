@@ -12,7 +12,7 @@ class UserController extends Controller
 			Users::ROLE_ADMIN => 'Administrator',
 			Users::ROLE_CITY => 'City Coordinator',
 			Users::ROLE_SHELTER => 'Shelter Coordinator',
-			Users::ROLE_CONTRIBUTOR => 'Contributor',
+			Users::ROLE_CONTRIBUTOR => 'Typist',
 			Users::ROLE_USER => 'User',
 		);
 
@@ -85,7 +85,7 @@ class UserController extends Controller
 				Users::ROLE_ADMIN => 'Administrator',
 				Users::ROLE_CITY => 'City Coordinator',
 				Users::ROLE_SHELTER => 'Shelter Coordinator',
-				Users::ROLE_CONTRIBUTOR => 'Contributor',
+				Users::ROLE_CONTRIBUTOR => 'Typist',
 				Users::ROLE_USER => 'User',
 			);
 		}
