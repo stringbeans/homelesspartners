@@ -282,7 +282,9 @@ class ShelterController extends Controller
             if(!empty($dropoffNames))
             {
                 //start by deleting all dropoff locations
-                ShelterDropoffs::model()->deleteAll();
+                ShelterDropoffs::model()->deleteAllByAttributes(array(
+                    'shelter_id' => $shelter->shelter_id
+                ));
 
                 //now add dropoff locations
                 foreach($dropoffNames as $i => $dropoffName)
