@@ -218,11 +218,13 @@ class PledgeController extends Controller
 
 		$email .= "\n\n\n";
 		$email .= "SUMMARY";
+		$email .= "\n\n";
 		$email .= "=====================================";
 		$email .= "\n\n";
 		$email .= "TOTAL PLEDGES: " . sizeof($giftIds);
 		$email .= "\n";
 		$email .= "SHELTERS: " . sizeof($shelterIds);
+		$email .= "\n\n";
 		$email .= "=====================================";
 		$email .= "\n\n";
 
@@ -230,7 +232,7 @@ class PledgeController extends Controller
 		{
 			$shelter = Shelters::model()->findByPk($shelterId);
 
-			$email .= "SHELTER {$shelterCount}:";
+			$email .= "SHELTER " . ($shelterCount + 1);
 			$email .= "\n\n";
 			$email .= "Shelter Name: {$shelter->name}";
 			$email .= "\n";
@@ -292,6 +294,7 @@ class PledgeController extends Controller
 					$email .= "Gift: {$gift->description}";
 					$email .= "\n";
 				}
+				$email .= "\n\n";
 				
 			}
 			$email .= "\n\n";
@@ -309,7 +312,7 @@ class PledgeController extends Controller
 		$email .= "\n\n";
 		$email .= "Thank you for your pledge,";
 		$email .= "\n\n";
-		$meail .= "- Homeless Partners";
+		$email .= "- Homeless Partners";
 
 
 		$emailer = new Email();
