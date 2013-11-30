@@ -98,11 +98,11 @@ class LoginController extends Controller
         $user->reset_key_expires_date = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s'). ' + 1  days'));
         $user->save();
         
-        $text = "Click the following link to reset your password:\n\n" . Yii::app()->createAbsoluteUrl(Yii::app()->createUrl('login/resetPassword', array('key' => $resetPasswordKey)));
-        $html = "Click the following link to reset your password:<br /><br />" . Yii::app()->createAbsoluteUrl(Yii::app()->createUrl('login/resetPassword', array('key' => $resetPasswordKey)));
+        $text = "Click the following link to reset your password:\n\n" . Yii::app()->createAbsoluteUrl(Yii::app()->createUrl('login/resetPassword', array('key' => $resetPasswordKey)) . "\n\nIf you didn't request a password reset, simply disregard this email.\n\n- Homeless Partners Team");
+        $html = "Click the following link to reset your password:<br /><br />" . Yii::app()->createAbsoluteUrl(Yii::app()->createUrl('login/resetPassword', array('key' => $resetPasswordKey)) . "<br /><br />If you didn't request a password reset, simply disregard this email.<br /><br />- Homeless Partners Team");
 
         $emailMessage = new Email();
-        $emailMessage->send(Yii::app()->params['HP_SENDER_NO_REPLY_EMAIL_ADDRESS'], $email, 'Homeless Partners Reset Password', $text, $html);
+        $emailMessage->send('Homeless Partners <' . Yii::app()->params['HP_SENDER_NO_REPLY_EMAIL_ADDRESS'] . '>', $email, 'Reset Password Request', $text, $html);
 
 
         Yii::app()->user->setFlash('success', 'A reset password link has been sent to your email.');
