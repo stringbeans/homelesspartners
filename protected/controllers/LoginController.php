@@ -138,6 +138,7 @@ class LoginController extends Controller
 
     public function actionResetPassword()
     {
+        Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
         $resetPasswordKey = Yii::app()->input->get('key');
         $this->render('/login/resetpassword/main', array(
             'resetPasswordKey' => $resetPasswordKey
@@ -149,6 +150,12 @@ class LoginController extends Controller
         $email = Yii::app()->input->post('email');
         $password = Yii::app()->input->post('password');
         $resetPasswordKey = Yii::app()->input->post('resetPasswordKey');
+
+        if(empty($password) || strlen($password) < 6 || strlen($password) > 16)
+        {
+            Yii::app()->user->setFlash('error', 'Your password must be atleast six characters long, and less than 16');
+            $this->redirect($this->createUrl('login/resetPassword', array('key' => $resetPasswordKey)));
+        }
 
         $user = Users::model()->findByAttributes(array('email' => $email));
 
