@@ -323,17 +323,18 @@ class PledgeController extends Controller
 			$email
 		);
 
-
-
 		//reset session
 		unset(Yii::app()->session['pledgeCart']);
 
-		$this->redirect($this->createUrl("pledge/thankYou"));
+		$this->render("/pledge/thankYou/main", array(
+			'email' => $email
+		));
 	}
 
 	public function actionThankYou()
 	{
 		$this->render("/pledge/thankYou/main", array(
+			'email' => "fdsfdsfdsfs"
 		));
 	}
 }

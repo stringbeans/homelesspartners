@@ -1,12 +1,47 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
 <div class='container'>
 	<div class='row'>
 		<div class='col-md-12'>
-			<h2>Thank you for your contribution!</h2>
+			<h2>Thank you for your pledge.</h2>
+			<p>Your pledge makes a significant difference in your community, and to every homeless person. We've sent a copy of your pledges to your email address.</p>
+			<h3>Next Steps:</h3>
+			<p>
+				<ol>
+					<li><a href='' onclick='window.print();'>Print off your order</a></li>
+					<li>Purchase pledge(s), wrap it, and attach the assigned id for each gift. Add a personal note for each recipient (optional, but recommended)</li>
+					<li>Drop off pledges at corresponding drop off locations before your estimated delivery time</li>
+					<li>Help get other gifts pledged by sharing this site with friends and family</li>
+				</ol>
+			</p>
 		</div>
+	</div>
+	<div class='row'>
 		<div class='col-md-12'>
-			<p>Toffee apple pie carrot cake carrot cake unerdwear.com chocolate. Chocolate cake gingerbread pastry powder candy canes biscuit jelly beans. Donut danish carrot cake liquorice topping biscuit gummi bears powder. Gummi bears toffee muffin powder candy canes marzipan fruitcake tart. Cake gummies chupa chups sweet gummi bears jelly beans gummies. Jujubes tart pie icing brownie tart. Applicake toffee apple pie fruitcake. Jelly beans tiramisu croissant lemon drops sugar plum tiramisu cupcake topping pastry. Liquorice oat cake chupa chups bear claw wafer marshmallow toffee dragée biscuit. Chocolate danish bonbon cake apple pie powder tootsie roll. Marzipan pastry icing marzipan tootsie roll jujubes sweet roll icing applicake. Applicake oat cake pie candy cookie. Ice cream soufflé chocolate cake chocolate cake ice cream. Halvah oat cake marzipan applicake marzipan.</p>
-<p>Chupa chups cupcake jujubes sesame snaps fruitcake fruitcake candy canes chupa chups chupa chups. Chocolate cake tart donut candy lollipop marzipan apple pie pudding gummi bears. Tootsie roll fruitcake tootsie roll donut. Gummies liquorice cookie cheesecake. Pie bonbon danish dragée. Liquorice gingerbread icing marshmallow muffin ice cream. Danish chocolate cake chocolate cake icing jelly. Caramels marshmallow chocolate chocolate fruitcake wafer. Brownie cotton candy tiramisu tootsie roll. Jujubes jelly-o pie jelly pudding bonbon. Sugar plum chocolate bar pie sesame snaps dessert macaroon chocolate bar sugar plum. Bear claw dessert halvah cheesecake jelly-o tiramisu. Dragée wafer apple pie. Jujubes caramels tootsie roll cookie cupcake ice cream icing cake sesame snaps.</p>
-<p>Chocolate bar sweet cupcake caramels gingerbread unerdwear.com cake pastry. Ice cream dragée sweet roll cupcake pastry halvah. Sweet roll brownie brownie jelly beans cake pudding. Unerdwear.com topping jujubes soufflé caramels candy canes toffee. Dragée unerdwear.com pastry applicake lemon drops gummi bears jujubes ice cream jelly. Tootsie roll pie lemon drops bear claw marzipan pudding fruitcake. Macaroon halvah cupcake sweet sweet roll bonbon sugar plum jelly beans carrot cake. Donut dragée sweet topping. Cheesecake cake gummi bears cheesecake sugar plum danish chocolate chocolate cake tootsie roll. Liquorice ice cream jelly halvah cupcake brownie pudding topping. Soufflé pudding biscuit soufflé ice cream marzipan fruitcake. Topping lollipop marzipan cake applicake.</p>
+				<a href="https://twitter.com/share" class="twitter-share-button pull-left" data-url="http://www.homelesspartners.com" data-text="I just pledged gifts to those that need it most. To help homeless in your community, visit">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+				<div class="fb-share-button pull-left" data-href="http://www.homelesspartners.com" data-type="button_count" style='margin-top: -7px;'></div>
+		</div>
+	</div>
+
+	<hr/>
+
+	<div class='row'>
+		<div class='col-md-12'>	
+			<h3>Summary:</h3>
+			<pre>
+<?php echo $email ?>
+			</pre>
 		</div>
 	</div>
 </div>
