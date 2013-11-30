@@ -158,7 +158,9 @@ $(document).ready(function(){
                 </div>
                 <?php if(in_array($gift->gift_id, $currentPledgeCart)): ?>
                 <a class="btn btn-danger col-md-3 col-xs-6 unpledge" data-id='<?php echo $gift->gift_id ?>'><span class="glyphicon glyphicon-gift"></span> Unpledge This Gift</a>
-                <?php else: ?> 
+                <?php elseif(!empty($gift->pledges)): ?> 
+                <button class="btn btn-default col-md-3 col-xs-6" disabled="disabled"><span class="glyphicon glyphicon-gift"></span>Gifted</button>
+                <?php else: ?>
                 <a class="btn btn-primary col-md-3 col-xs-6 pledge" data-id='<?php echo $gift->gift_id ?>'><span class="glyphicon glyphicon-gift"></span> Pledge This Gift</a>
                 <?php endif; ?>
             </div>

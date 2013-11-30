@@ -6,7 +6,7 @@ class ShelterController extends Controller
     public function actionShelterStories()
     {
         $shelterId = Yii::app()->input->get("id");
-        $shelter = Shelters::model()->with(array('shelterDropoffs', 'city.region', 'stories.gifts'))->findByPk($shelterId);
+        $shelter = Shelters::model()->with(array('shelterDropoffs', 'city.region', 'stories.gifts.pledges'))->findByPk($shelterId);
         $shelterStats = $shelter->getStats();
 
         $currentPledgeCart = array();
@@ -282,7 +282,9 @@ class ShelterController extends Controller
             if(!empty($dropoffNames))
             {
                 //start by deleting all dropoff locations
-                ShelterDropoffs::model()->deleteAll();
+                ShelterDropoffs::model()->deleteAllByAttributes(array(
+                    'shelter_id' => $shelter->shelter_id
+                ));
 
                 //now add dropoff locations
                 foreach($dropoffNames as $i => $dropoffName)

@@ -1,11 +1,37 @@
-.dropdown-arrow-inverse {
-  border-bottom-color: #34495e !important;
-  border-top-color: #34495e !important;
-}
+// Loading config with variables (changing them leads to changing a color scheme)
+@import "variables";
+
+// Utility mixins for greater good
+@import "mixins";
+
 /*
 Variables & Mixins
 ------------
 */
+
+// colours
+@black: #333;
+@white: #fff;
+@gray: #ccc;
+
+// flat-ui colours
+@colour-wet-asphalt: #34495e;
+@colour-concrete: #95A5A6;
+@colour-asbestos: #7F8C8D;
+@colour-green-sea: #16A085;
+@colour-clouds: #ECF0F1;
+@colour-silver: #BDC3C7;
+@colour-peter-river: #3498DB;
+@colour-belize-hole: #2980B9;
+
+// link
+@colour-link-alt: @white;
+
+// consistent spacing 
+@base-container-padding: 20px;
+@base-widgets-padding: 10px;
+
+
 /*
 DEBUGGING 
 ------------
@@ -160,45 +186,67 @@ Sections / Pages
   border-left: 1px solid #cccccc;
 }
 /* SECTION - Story */
+
+
+.on-dark {
+  //h1, h2, h3, h4, p { color: white; }
+}
+
 .center-block {
   display: block;
   margin-right: auto;
   margin-left: auto;
   float: none;
 }
+
+
+// Jumbotron
+// --------------------------------------------------
+
 .jumbotron {
-  background: #2c3e50;
+  background: @midnight-blue;
   text-align: center;
   padding: 10% 0;
-  border-bottom: 2px solid #ee1e4e;
+  border-bottom: 2px solid @brand-secondary;
+  h1, h2, h3, h4, p { color: white; }
 }
-.jumbotron h1,
-.jumbotron h2,
-.jumbotron h3,
-.jumbotron h4,
-.jumbotron p {
-  color: white;
-}
+
 section {
   padding: 5% 0;
   border-bottom: 1px solid #e8eaef;
 }
 .section-offset {
-  background: #eceef0;
+  background: mix(@brand-primary, white, 9.5%);
 }
+
+// Mission
+// --------------------------------------------------
+
 .mission {
   text-align: center;
 }
+
+// How it Works
+// --------------------------------------------------
+
 .how-it-works {
   width: 800px;
   text-align: center;
 }
+
+// As Seen on TV
+// --------------------------------------------------
+
 .seen-on {
   text-align: center;
+  img {
+    display: inline-block;
+  }
 }
-.seen-on img {
-  display: inline-block;
-}
+
+// Testimonials
+// --------------------------------------------------
+
 .testimonial {
   border: 0px;
   font-size: 18px;
@@ -207,53 +255,72 @@ section {
   padding: 0 10%;
   height: 100px;
 }
-.nav-testimonial li a {
-  overflow: hidden;
-  padding: 0;
-  color: #a7a7a7;
+.nav-testimonial {
+  li a { 
+    overflow: hidden; 
+    padding: 0;
+    color: #a7a7a7;
+
+    &:hover {
+      background: none;
+    }
+  }
+  img {
+    height: 60px;
+    width: 60px;
+    float: left;
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }
+  .active {
+    img {
+      -webkit-filter: grayscale(0);
+      -moz-filter: grayscale(0);
+      filter: grayscale(0);
+    }
+    a {
+      color: inherit;
+    }
+  }
+  .nav-testimonial-content {
+    float: left;
+    margin-left: .5em;
+
+    h3 {
+      font-size: 18px;
+      margin: .5em 0 0 0;
+    }
+  }
 }
-.nav-testimonial li a:hover {
-  background: none;
-}
-.nav-testimonial img {
-  height: 60px;
-  width: 60px;
-  float: left;
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  filter: grayscale(100%);
-}
-.nav-testimonial .active img {
-  -webkit-filter: grayscale(0);
-  -moz-filter: grayscale(0);
-  filter: grayscale(0);
-}
-.nav-testimonial .active a {
-  color: inherit;
-}
-.nav-testimonial .nav-testimonial-content {
-  float: left;
-  margin-left: .5em;
-}
-.nav-testimonial .nav-testimonial-content h3 {
-  font-size: 18px;
-  margin: .5em 0 0 0;
-}
+
+// Wish List Counter
+// --------------------------------------------------
+
 .wish-list {
   width: 550px;
   text-align: center;
+
+  strong {
+    font-size: 32px;
+    display: block;
+  }
+
+  .table {
+    background: white;
+  }
 }
-.wish-list strong {
-  font-size: 32px;
-  display: block;
-}
-.wish-list .table {
-  background: white;
-}
+
+// Stories
+// --------------------------------------------------
 .stories {
   width: 800px;
   text-align: center;
 }
+
+
+// Call to action
+// --------------------------------------------------
 .action {
   text-align: center;
 }
