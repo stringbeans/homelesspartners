@@ -162,4 +162,26 @@ public function getStorySummarybyID($currentStoryId)
 		$command->bindParam(":currentStoryId", $currentStoryId, PDO::PARAM_INT);
 		return $command->queryAll();
 	}
+
+	public function getStoriesByShelterLookup($giftIds = array())
+	{
+		$sql = "
+		SELECT s.shelter_id, s.story_id
+		FROM gifts g
+		JOIN stories s ON g.story_id = s.story_id
+		WHERE g.gift_id IN (" . implode(",", $giftIds) . ");
+        ";
+
+        $command = $this->dbConnection->createCommand($sql);
+        $rows = $command->queryAll();
+
+        $lookup = array();
+
+        foreach($rows as $row)
+        {
+        	$lookup[$row['shelter_id']][] = $row['story_id'];
+        }
+
+        return $lookup;
+	}
 }
