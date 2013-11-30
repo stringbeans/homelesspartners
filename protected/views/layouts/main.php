@@ -36,6 +36,7 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.27/jquery.form-validator.min.js"></script>	
+		<script src="<?php echo Yii::app()->baseUrl ?>/js/holder.js"></script>	
 
 	</body>
 </html>
