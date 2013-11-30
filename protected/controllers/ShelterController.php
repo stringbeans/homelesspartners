@@ -6,7 +6,7 @@ class ShelterController extends Controller
     public function actionShelterStories()
     {
         $shelterId = Yii::app()->input->get("id");
-        $shelter = Shelters::model()->with(array('shelterDropoffs', 'city.region', 'stories.gifts'))->findByPk($shelterId);
+        $shelter = Shelters::model()->with(array('shelterDropoffs', 'city.region', 'stories.gifts.pledges'))->findByPk($shelterId);
         $shelterStats = $shelter->getStats();
 
         $currentPledgeCart = array();
