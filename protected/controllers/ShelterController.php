@@ -26,51 +26,28 @@ class ShelterController extends Controller
     {
         //fetch all shelters
         $shelters = array();
+
         if(Yii::app()->user->role == "admin")
         {
-            $shelters = Shelters::model()->findAll();
+            //$shelters = Shelters::model()->findAll();
+            $shelters = Shelters::model()->getShelterSummary();
+            $this->render("/shelter/index/main", array('shelters' => $shelters));
         }
+        
         elseif(Yii::app()->user->role == "city")
         {
-            $cityCoordinators = CityCoordinators::model()->findAllByAttributes(array(
-                'user_id' => Yii::app()->user->id
-            ));
-
-            $cityIds = array();
-            foreach($cityCoordinators as $cc)
-            {
-                $cityIds[] = $cc->city_id;
-            }
-
-            if(!empty($cityIds))
-            {
-                $shelters = Shelters::model()->findAll(array(
-                    'condition' => 't.city_id in ('.implode(",", $cityIds).')'
-                ));
-            }
+            $currentUserId=Yii::app()->user->id;
+            $shelters = Shelters::model()->getShelterSummarybyCCOUserID($currentUserId);
+            $this->render("/shelter/index/main", array('shelters' => $shelters));
         }
         elseif(Yii::app()->user->role == "shelter")
         {
-            //now get a list of shelters they have access to
-            $shelterCoordinators = ShelterCoordinators::model()->findAllByAttributes(array(
-                'user_id' => $userId
-            ));
-
-            $shelterIds = array();
-            foreach($shelterCoordinators as $sc)
-            {
-                $shelterIds[] = $sc->shelter_id;
-            }
-
-            if(!empty($shelterIds))
-            {
-                $shelters = Shelters::model()->findAll(array(
-                    'condition' => 't.shelter_id in ('.implode(",", $shelterIds).')'
-                ));
-            }
+            $currentUserId=Yii::app()->user->id;
+            $shelters = Shelters::model()->getShelterSummarybySCOUserID($currentUserId);
+            $this->render("/shelter/index/main", array('shelters' => $shelters));
         }
 
-        $this->render("/shelter/index/main", array('shelters' => $shelters));
+        
     }
 
 //TODO - this is a placeholder method to be called once we know whether
