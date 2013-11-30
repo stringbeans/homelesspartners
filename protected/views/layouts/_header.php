@@ -11,17 +11,17 @@
                     <a href="#">Admin</a>
                     <ul>
                         <?php if(in_array(Yii::app()->user->role, array(Users::ROLE_ADMIN))): ?>
+                            <li><a href="<?php echo $this->createUrl("city/index") ?>">City Management</a></li>
                             <li><a href="<?php echo $this->createUrl("country/index") ?>">Country Management</a></li>
                             <li><a href="<?php echo $this->createUrl("region/index") ?>">Region Management</a></li>
-                            <li><a href="<?php echo $this->createUrl("city/index") ?>">City Management</a></li>
                         <?php endif;?>
 
                         <?php if(in_array(Yii::app()->user->role, array(Users::ROLE_ADMIN, Users::ROLE_CITY))): ?>
-                            <li><a href="<?php echo $this->createUrl("shelter/index") ?>">Shelter Management</a></li>
                             <li><a href="<?php echo $this->createUrl("user/index") ?>">User Management</a></li>
                         <?php endif; ?>
 
                         <?php if(in_array(Yii::app()->user->role, array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER))): ?>
+                            <li><a href="<?php echo $this->createUrl("shelter/index") ?>">Shelter Management</a></li>
                             <li><a href="<?php echo $this->createUrl("pledge/index") ?>">Pledge Management</a></li>
                         <?php endif; ?>
 
@@ -29,7 +29,7 @@
                             <li><a href="<?php echo $this->createUrl("story/index") ?>">Story Management</a></li>
                         <?php endif; ?>
                         
-                    </ul> <!-- /Sub menu -->
+                    </ul><!-- /Sub menu -->
                 </li>
                 <?php endif; ?>
                 <li>

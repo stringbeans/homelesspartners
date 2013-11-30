@@ -198,4 +198,63 @@ public function getShelterCountbyCity($shelterIds = array())
 		return $command->queryRow();
 	}
 
+
+public function getShelterSummary()
+	{
+		$sql = "
+		SELECT sh.shelter_id, c.city_id, sh.name as shelter_name, c.name as city_name,
+		count(distinct st.story_id) as numStories,
+		count(distinct g.gift_id) as numGifts,
+		count(distinct p.pledge_id) as numPledges 
+		FROM shelters sh
+		LEFT JOIN cities c ON c.city_id = sh.city_id
+		LEFT JOIN stories st ON st.shelter_id = sh.shelter_id
+		LEFT JOIN gifts g ON g.story_id = st.story_id
+		LEFT JOIN pledges p ON g.gift_id = p.gift_id
+		GROUP by shelter_name";
+		$command = $this->dbConnection->createCommand($sql);
+		return $command->queryAll();
+	}
+
+	public function getShelterSummarybyCCOUserID($currentUserId)
+	{
+		$sql = "
+		SELECT sh.shelter_id, c.city_id, sh.name as shelter_name, c.name as city_name,
+		count(distinct st.story_id) as numStories,
+		count(distinct g.gift_id) as numGifts,
+		count(distinct p.pledge_id) as numPledges 
+		FROM shelters sh
+		LEFT JOIN cities c ON c.city_id = sh.city_id
+		LEFT JOIN stories st ON st.shelter_id = sh.shelter_id
+		LEFT JOIN gifts g ON g.story_id = st.story_id
+		LEFT JOIN pledges p ON g.gift_id = p.gift_id
+		JOIN city_coordinators cco on cco.city_id = c.city_id
+		WHERE cco.user_id =:currentUserId
+		GROUP by shelter_name";
+		$command = $this->dbConnection->createCommand($sql);
+		$command->bindParam(":currentUserId", $currentUserId, PDO::PARAM_INT);
+		return $command->queryAll();
+	}
+
+	public function getShelterSummarybySCOUserID($currentUserId)
+	{
+		$sql = "
+		SELECT sh.shelter_id, c.city_id, sh.name as shelter_name, c.name as city_name,
+		count(distinct st.story_id) as numStories,
+		count(distinct g.gift_id) as numGifts,
+		count(distinct p.pledge_id) as numPledges 
+		FROM shelters sh
+		LEFT JOIN cities c ON c.city_id = sh.city_id
+		LEFT JOIN stories st ON st.shelter_id = sh.shelter_id
+		LEFT JOIN gifts g ON g.story_id = st.story_id
+		LEFT JOIN pledges p ON g.gift_id = p.gift_id
+		JOIN shelter_coordinators sco on sco.shelter_id = sh.shelter_id
+		WHERE sco.user_id =:currentUserId
+		GROUP by shelter_name";
+		$command = $this->dbConnection->createCommand($sql);
+		$command->bindParam(":currentUserId", $currentUserId, PDO::PARAM_INT);
+		return $command->queryAll();
+	}
+
+
 }
