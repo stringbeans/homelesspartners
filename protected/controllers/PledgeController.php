@@ -209,7 +209,7 @@ class PledgeController extends Controller
 		//create a gifts lookup by shelter id
 		$giftsByStoryLookup = Gifts::model()->getGiftsByStoryLookup($giftIds);
 		$storiesByShelterLookup = Stories::model()->getStoriesByShelterLookup($giftIds);
-		
+
 		$email = "Thank you so very much for your kind and generous gift(s). You never know how an act of kindness, like the one you have shown, will affect others. Maybe that one gift/card can give them the encouragement they need to not only make a difference in their day, but in their life.";
 		$email .= "\n\n\n";
 		$email .= "Here is a copy of your pledge order. Please print this email and bring it with you when dropping off gifts.";
@@ -289,7 +289,6 @@ class PledgeController extends Controller
 					$pledge->estimated_delivery_date = date("Y-m-d", strtotime($deliverDate[$gift->story->shelter_id]));
 					$pledge->date_created = new CDbExpression('NOW()');
 					$pledge->save();
-					
 					
 					$email .= "Gift: {$gift->description}";
 					$email .= "\n";
