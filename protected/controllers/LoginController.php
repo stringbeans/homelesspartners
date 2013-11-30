@@ -29,6 +29,7 @@ class LoginController extends Controller
 
     public function actionRegister()
     {
+        Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
         $this->pageTitle = 'Register';
         $this->render('/login/register/main');
     }
@@ -37,11 +38,37 @@ class LoginController extends Controller
     {
         $email = Yii::app()->input->post('email');
         $password = Yii::app()->input->post('password');
+        $name = Yii::app()->input->post('name');
+
         $redirectUrl = Yii::app()->input->post('redirectUrl', $this->createUrl("home/index"));
+
+        $validRegistrationInfo = true;
+        if(empty($name))
+        {
+            $validRegistrationInfo = false;
+            Yii::app()->user->setFlash('error', 'This enter a name');
+        }
+
+        if(empty($email))
+        {
+            $validRegistrationInfo = false;
+            Yii::app()->user->setFlash('error', 'This enter an email');
+        }
+
+        if(empty($password) || strlen($password) < 6 || strlen($password) > 16)
+        {
+            $validRegistrationInfo = false;
+            Yii::app()->user->setFlash('error', 'Your password must be atleast six characters long, and less than 16');
+        }
+
+        if(!$validRegistrationInfo)
+        {
+            $this->redirect($this->createUrl('login/register'));
+        }
 
         $user = null;
         try {
-            $user = Users::model()->create($email, $password);
+            $user = Users::model()->create($name, $email, $password);
         } catch (CDbException $e) {
             if (empty($user)) {
                 $duplicateUser = Users::model()->findByAttributes(array('email' => $email));

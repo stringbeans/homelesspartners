@@ -112,14 +112,13 @@ class UserController extends Controller
 		$userId = Yii::app()->input->post("userId");
 		$password = Yii::app()->input->post("password");
 		$email = Yii::app()->input->post("email");
+		$name = Yii::app()->input->post("name");
 		$role = Yii::app()->input->post("role");
 		$cityIds = Yii::app()->input->post("cityIds", array());
 		$shelterIds = Yii::app()->input->post("shelterIds", array());
 
-		$validEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
-
-		if ($validEmail === false) {
-			Yii::app()->user->setFlash('error', "The email '" . $email . "' is not valid.");
+		if (empty($email)) {
+			Yii::app()->user->setFlash('error', "Please enter an email.");
 			$this->redirect($this->createUrl("user/edit", array(
 				'id' => $userId
 			)));
@@ -127,12 +126,13 @@ class UserController extends Controller
 
 		if (!empty($userId)) {
 			$user = Users::model()->findByPk($userId);
-			$user->email = $validEmail;
+			$user->email = $email;
 			if (!empty($password))
 			{
 				$user->pw = $password;
 			}
 			$user->role = $role;
+			$user->name = $name;
 			$user->save();
 
 			CityCoordinators::model()->deleteAllByAttributes(array('user_id' => $userId));
@@ -141,7 +141,7 @@ class UserController extends Controller
 			ShelterContributor::model()->deleteAllByAttributes(array('user_id' => $userId));
 		}
 		else {
-			$user = Users::model()->create($email, $password, $role);
+			$user = Users::model()->create($name, $email, $password, $role);
 		}
 
 		if ($role == Users::ROLE_CITY) {

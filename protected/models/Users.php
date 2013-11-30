@@ -48,7 +48,7 @@ class Users extends CActiveRecord
 			array('role', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('user_id, email, pw, role, date_created, enabled', 'safe', 'on'=>'search'),
+			array('user_id, name, email, pw, role, date_created, enabled', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -77,6 +77,7 @@ class Users extends CActiveRecord
 			'role' => 'Role',
 			'date_created' => 'Date Created',
 			'enabled' => 'Enabled',
+			'name' => 'Name'
 		);
 	}
 
@@ -104,6 +105,7 @@ class Users extends CActiveRecord
 		$criteria->compare('role',$this->role,true);
 		$criteria->compare('date_created',$this->date_created,true);
 		$criteria->compare('enabled',$this->enabled);
+		$criteria->compare('name',$this->name);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -121,9 +123,10 @@ class Users extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public function create($email, $password, $role = self::ROLE_USER)
+	public function create($name, $email, $password, $role = self::ROLE_USER)
 	{
 		$user = new Users();
+		$user->name = $name;
 		$user->email = $email;
 		$user->pw = $password;
 		$user->role = $role;

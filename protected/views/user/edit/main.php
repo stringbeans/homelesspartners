@@ -75,6 +75,13 @@ $(document).ready(function() {
 				<input type='hidden' name='userId' value='<?php echo !empty($user) ? $user->user_id : ''; ?>' />
 
 				<div class="form-group row">
+    				<label for="userEditName" class="col-md-2 control-label">Name</label>
+    				<div class="col-md-10">
+      					<input class="form-control" id="userEditName" value="<?php echo !empty($user) ? $user->name: ''; ?>" name="name" />
+    				</div>
+  				</div>
+
+				<div class="form-group row">
     				<label for="userEditEmail" class="col-md-2 control-label">Email</label>
     				<div class="col-md-10">
       					<input class="form-control" id="userEditEmail" value="<?php echo !empty($user) ? $user->email: ''; ?>" name="email" />

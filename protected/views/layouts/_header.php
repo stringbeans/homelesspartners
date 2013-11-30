@@ -107,6 +107,36 @@ $(document).ready(function() {
     </div>  
 </div>
 
+<script type='text/javascript'>
+$(document).ready(function() {
+
+    $('#registrationModal #registrationForm').validate({
+        submitHandler: function(form) {
+            form.submit();
+        },
+        errorLabelContainer: "#js-registrationModel-message",
+        onsubmit: true,
+        rules: {
+            'name': 'required',
+            'email': {
+                required: true,
+                email: true
+            },
+            'password': {
+                required: true,
+                minlength: 6
+            }
+        },
+        messages: {
+            name: "Please enter a name",
+            password: "Password must be minimum 6 characters long",
+            email: {
+                required: "Please enter a valid email address"
+            }
+        }
+    });
+});
+</script>
 <div id='registrationModal' class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -119,6 +149,10 @@ $(document).ready(function() {
                 <form id='registrationForm' action="<?php echo Yii::app()->createUrl('login/registerProcessor'); ?>" method="post">
                     <input type='hidden' name='redirectUrl' value='<?php echo Yii::app()->request->url ?>' />
                     <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" id="email" name="email">
                     </div>
@@ -127,12 +161,14 @@ $(document).ready(function() {
                         <input type="password" class="form-control" id="password" name="password" maxlength="16">
                     </div>
                 </form>
+                <div id="js-registrationModel-message" class="alert alert-danger" style="display: none;"></div>
             </div>
 
             <div class="modal-footer">
                 <a href='#' class='pull-left showLogin'><small>Or click here if you already have an account</small></a>
                 <button type="submit" form='registrationForm' class="btn btn-success">Register</button>
             </div>
+            
         </div>
     </div>  
 </div>
