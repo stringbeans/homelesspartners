@@ -11,26 +11,34 @@
             <p class='text-right'>
                 <a href='<?php echo $this->createUrl("shelter/edit") ?>' class='btn btn-warning'>+ Create new</a>
             </p>
-            <table class='table'>
-                    <th>Name</th>
-                    <th>City</th>
-                    <th>Stories</th>
-                    <th>Gift Requests</th>
-                    <th>Pledged Gifts</th>
+            <!--TODO: tried to implement sorting like on the pledge page but couldn't quite figure it out -->
 
+            <table class='table table-hover'>
+                <thead>
+                    <tr>
+                    <th><a class="sort asc" data-sort="name">Name</a></th>
+                    <th><a class="sort asc" data-sort="city">City</a></th>
+                    <th><a class="sort asc" data-sort="stories">Stories</a></th>
+                    <th><a class="sort asc" data-sort="gifts">Gift Requests<a></th>
+                    <th><a class="sort asc" data-sort="pledges">Pledged Gifts</a></th>
+                    <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class='list'>
                 <?php foreach($shelters as $shelter): ?>
                 <tr>
-                    <td><?php echo $shelter['shelter_name'] ?></td>
-                    <td><?php echo $shelter['city_name'] ?></td>
-                    <td><?php echo $shelter['numStories'] ?></td>
-                    <td><?php echo $shelter['numGifts'] ?></td>
-                    <td><?php echo $shelter['numPledges'] ?></td>
+                    <td class="name"><a href='<?php echo $this->createUrl("shelter/shelterStories", array('id' => $shelter['shelter_id'])) ?>'><?php echo $shelter['shelter_name'] ?></a></td>
+                    <td class="city"><?php echo $shelter['city_name'] ?></td>
+                    <td class="stories"><?php echo $shelter['numStories'] ?></td>
+                    <td class="gifts"><?php echo $shelter['numGifts'] ?></td>
+                    <td class="pledges"><?php echo $shelter['numPledges'] ?></td>
                     
                     <td><a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("shelter/edit", array('id' => $shelter['shelter_id'])) ?>'>Edit</a>
                         <a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("shelter/delete", array('id' => $shelter['shelter_id'])) ?>' onclick='return confirm("Deleting this shelter will delete all the stories that belong to this shelter. Continue?");'>Delete</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
+                </tbody>
             </table>
         </div>
     </div>
