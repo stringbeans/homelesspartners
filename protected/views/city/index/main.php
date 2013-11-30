@@ -14,9 +14,11 @@
 			</div>
 		 	<?php endif; ?>
 
-			<p class='text-right'>
-				<a href='<?php echo $this->createUrl("city/edit") ?>' class='btn btn-warning'>+ Create new</a>
-			</p>
+			<?php if(Yii::app()->user->role == "admin"): ?>
+				<p class='text-right'>
+					<a href='<?php echo $this->createUrl("city/edit") ?>' class='btn btn-warning'>+ Create new</a>
+				</p>
+			<?php endif; ?>
 			<table class='table table-hover'>
 					<th>Name</th>
 					<th>Shelters</th>

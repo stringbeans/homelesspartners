@@ -28,10 +28,26 @@ class CityController extends Controller
 	{
 		//fetch all cities
 		//$cities = Cities::model()->findAll();
-		$cities = Cities::model()->getCitySummary();
+		if(Yii::app()->user->role == "admin")
+        {
+			$cities = Cities::model()->getCitySummary();
+			$this->render("/city/index/main", array(
+					'cities' => $cities
+			));
+        	
+        }
+
+        if(Yii::app()->user->role == "city")
+        {
+		$currentUserId=Yii::app()->user->id;
+		$cities = Cities::model()->getCitySummarybyUserID($currentUserId);
 		$this->render("/city/index/main", array(
 			'cities' => $cities
 		));
+        }
+
+
+
 	}
 	
 	public function actionEdit()
