@@ -200,6 +200,12 @@ class ShelterController extends Controller
 
     public function actionDelete()
     {
+        //couldnt get access controls to work in Controller, so did this instead
+        if(Yii::app()->user->role != Users::ROLE_ADMIN)
+        {
+            exit("Denied.");
+        }
+
         $shelterId = Yii::app()->input->get("id");
 
         Shelters::model()->deleteByPk($shelterId);

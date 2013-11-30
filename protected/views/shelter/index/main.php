@@ -34,7 +34,7 @@
                     <td class="pledges"><?php echo $shelter['numPledges'] ?></td>
                     
                     <td><a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("shelter/edit", array('id' => $shelter['shelter_id'])) ?>'>Edit</a>
-                        <a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("shelter/delete", array('id' => $shelter['shelter_id'])) ?>' onclick='return confirm("Deleting this shelter will delete all the stories that belong to this shelter. Continue?");'>Delete</a>
+                    <?php if(Yii::app()->user->role == Users::ROLE_ADMIN): ?><a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("shelter/delete", array('id' => $shelter['shelter_id'])) ?>' onclick='return confirm("Deleting this shelter will delete all the stories that belong to this shelter. Continue?");'>Delete</a><?php endif; ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
