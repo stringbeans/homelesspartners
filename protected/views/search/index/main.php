@@ -29,7 +29,7 @@
 					
 					<?php foreach ($results as $result): ?>
 					<tr>
-						<td><?php echo $result['assigned_id']?></td>
+						<td><a href="<?php echo $this->createUrl("story/story", array('id' => $result['story_id'])) ?>"><?php echo $result['assigned_id']?></a></td>
 						<td><?php echo ucwords($result['fname']).' '.ucwords($result['lname'])?></td>
 						<td><?php echo $result['city_name']?></td>
 						<td><?php echo $result['shelter_name']?></td>
