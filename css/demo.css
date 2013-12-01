@@ -77,7 +77,7 @@
   width: 580px;
 }
 .demo-content.demo-content-article {
-  font-size: 21px;
+  font-size: 18px;
 }
 .demo-content.demo-content-article p {
   margin-bottom: 20px;
@@ -87,7 +87,7 @@
   margin-left: 0;
 }
 .demo-content.demo-content-article li {
-  line-height: 31px;
+  line-height: 27px;
   padding: 0 0 5px;
 }
 .demo-content-wide {
@@ -197,7 +197,7 @@
   display: inline-block;
 }
 .demo-labels {
-  font-size: 16px;
+  font-size: 14px;
 }
 .demo-labels .visible-lg {
   display: inline !important;
@@ -278,7 +278,7 @@
   padding: 0;
 }
 .demo-sidebar {
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.214;
   height: 100%;
   left: 0;
@@ -319,7 +319,7 @@
     width: auto;
   }
   .demo-headline {
-    font-size: 75px !important;
+    font-size: 66px !important;
     text-align: left;
     padding-left: 15px;
     padding-right: 15px;

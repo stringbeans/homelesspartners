@@ -22,18 +22,18 @@
 	<div class="container how-it-works">
 		<h2>How It Works</h2>
 		<div class="row">
-			<div class="col-md-4">
-				<img src="holder.js/260x180" class="thumbnail img-responsive"/>
+			<div class="col-sm-4">
+				<img src="holder.js/260x180"/>
 				<h3>Read Stories</h3>
 				<p>Browse personal stories of people in need near you</p>
 			</div>
-			<div class="col-md-4">
-				<img src="holder.js/260x180" class="thumbnail img-responsive"/>
+			<div class="col-sm-4">
+				<img src="holder.js/260x180"/>
 				<h3>Pledge</h3>
 				<p>Make a pledge to make their wish happen</p>
 			</div>
-			<div class="col-md-4">
-				<img src="holder.js/260x180" class="thumbnail img-responsive"/>
+			<div class="col-sm-4">
+				<img src="holder.js/260x180"/>
 				<h3>Drop Off</h3>
 				<p>Attach a personal message. Your gift helps change their life</p>
 			</div>
@@ -43,19 +43,18 @@
 
 <section class="section-offset">
 	<div class="seen-on container">
-		<img src="holder.js/150x100" alt="CBC Television" class="img-responsive"/>
-		<img src="holder.js/150x100" alt="GlobalTV" class="img-responsive"/>
-		<img src="holder.js/150x100" alt="The Globe and Mail" class="img-responsive"/>
-		<img src="holder.js/150x100" alt="CBC Radio" class="img-responsive"/>
-		<img src="holder.js/150x100" alt="Metro" class="img-responsive"/>
+		<img src="holder.js/150x100" alt="CBC Television"/>
+		<img src="holder.js/150x100" alt="GlobalTV"/>
+		<img src="holder.js/150x100" alt="The Globe and Mail"/>
+		<img src="holder.js/150x100" alt="CBC Radio"/>
+		<img src="holder.js/150x100" alt="Metro"/>
 	</div>
 </section>
 
 <section>
-	<div class="container">
+	<div class="testimonials container">
 		<p class="lead text-center">Together we’ve successfully pledged over <strong>7,000</strong><br/>gifts in <strong>11</strong> cities across North America</p>
-
-		<div class="tab-content testimonial">
+		<div class="tab-content">
 		  <div class="tab-pane active" id="testimonial-one">
 		  	Homeless Partners has made a huge difference for the people that we serve. It has allowed the public to personally connect with people's needs and to help ensure that each person receives a meaningful gift at this special time of year.
 			</div>
@@ -66,39 +65,38 @@
 		  <div class="tab-pane" id="testimonial-four">
 				Cupcake cupcake pastry. Powder jelly-o fruitcake biscuit toffee. Jujubes jelly chocolate cake chocolate bar applicake jelly beans sweet roll applicake.		  </div>
 		</div>
-
-		<ul class="nav nav-testimonial row">
-			<li class="col-sm-3 col-xs-6">
+		<ul class="row nav">
+			<li class="media col-sm-3 col-xs-6 active">
 				<a href="#testimonial-one" data-toggle="tab">
 					<img src="images/faces/129.jpg" class="img-circle"/>
-					<div class="nav-testimonial-content">
+					<div class="media-body">
 						<h3>John Smith</h3>
 						<p>Homeless Person</p>
 					</div>
 				</a>
 			</li>
-			<li class="col-sm-3 col-xs-6">
+			<li class="media col-sm-3 col-xs-6">
 				<a href="#testimonial-two" data-toggle="tab">
 					<img src="images/faces/128.jpg" class="img-circle"/>
-					<div class="nav-testimonial-content">
+					<div class="media-body">
 						<h3>John Smith</h3>
 						<p>Pledger</p>
 					</div>
 				</a>
 			</li>
-			<li class="col-sm-3 col-xs-6">
+			<li class="media col-sm-3 col-xs-6">
 				<a href="#testimonial-three" data-toggle="tab">
 					<img src="images/faces/131.jpg" class="img-circle"/>
-					<div class="nav-testimonial-content">
+					<div class="media-body">
 						<h3>Rebecca Cochran</h3>
 						<p>Shelter Manager</p>
 					</div>
 				</a>
 			</li>
-			<li class="col-sm-3 col-xs-6 active">
-				<a href="#testimonial-four" data-toggle="tab">
+			<li class="media col-sm-3 col-xs-6">
+				<a href="#testimonial-four"  data-toggle="tab">
 					<img src="images/faces/130.jpg" class="img-circle"/>
-					<div class="nav-testimonial-content">
+					<div class="media-body">
 						<h3>Steph Smith</h3>
 						<p>City Coordinator</p>
 					</div>
@@ -110,17 +108,20 @@
 
 <section class="section-offset">
 	<div class="wish-list container">
-		<h3>2013 Wish List Counter</h3>
+		<h2>2013 Wish List Counter</h2>
 		<table class="table table-bordered">
 			<tr>
 				<td>
-					Total stories <strong>451</strong>
+					<h4>Total stories</h4>
+					<strong>451</strong>
 				</td>
 				<td class="col-md-4">
-					Gift Requests <strong>1,025</strong>
+					<h4>Gift Requests</h4>
+					<strong>1,025</strong>
 				</td>
 				<td class="col-md-4">
-					Pledgeed Gifts <strong>11</strong>
+					<h4>Pledged Gifts</h4>
+					<strong>11</strong>
 				</td>
 			</tr>
 		</table>
@@ -129,32 +130,32 @@
 
 <section>
 	<div class="stories container">
-		<h1>Read stories from your city</h1>
+		<h2>Read stories from your city</h2>
 		<div class="row">
-			<div class="col-md-4">
-				<img src="holder.js/260x180" class="thumbnail img-responsive"/>
+			<div class="col-sm-6 col-md-4">
+				<img src="holder.js/260x180"/>
 				<h3>Vancouver</h3>
 			</div>
-			<div class="col-md-4">
-				<img src="holder.js/260x180" class="thumbnail img-responsive"/>
+			<div class="col-sm-6 col-md-4">
+				<img src="holder.js/260x180"/>
 				<h3>Regina</h3>
 			</div>
-			<div class="col-md-4">
-				<img src="holder.js/260x180" class="thumbnail img-responsive"/>
+			<div class="col-sm-6 col-md-4">
+				<img src="holder.js/260x180"/>
 				<h3>Victoria</h3>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4">
-				<img src="holder.js/260x180" class="thumbnail img-responsive"/>
+			<div class="col-sm-6 col-md-4">
+				<img src="holder.js/260x180"/>
 				<h3>North Vancouver</h3>
 			</div>
-			<div class="col-md-4">
-				<img src="holder.js/260x180" class="thumbnail img-responsive"/>
+			<div class="col-sm-6 col-md-4">
+				<img src="holder.js/260x180"/>
 				<h3>Surrey</h3>
 			</div>
-			<div class="col-md-4">
-				<img src="holder.js/260x180" class="thumbnail img-responsive"/>
+			<div class="col-sm-6 col-md-4">
+				<img src="holder.js/260x180"/>
 				<h3>New Westminster</h3>
 			</div>
 		</div>

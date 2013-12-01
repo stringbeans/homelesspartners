@@ -80,6 +80,21 @@ body {
 body {
   position: relative;
 }
+@media (min-width: 768px) {
+  body,
+  p {
+    font-size: 18px;
+  }
+}
+.lead {
+  font-size: 1.556em;
+}
+img {
+  max-width: 100%;
+}
+h2 {
+  font-weight: 300;
+}
 /*
 Modules/Widgets (thing reused throughout)
 -----------------
@@ -172,6 +187,9 @@ Sections / Pages
   transition: all .25s linear;
   border-radius: 0;
 }
+.navbar .nav > li > a {
+  font-size: 14px;
+}
 .navbar .navbar-right > li > a.btn {
   padding: 0px 20px;
   margin: 20px 10px;
@@ -203,6 +221,17 @@ Sections / Pages
 .jumbotron p {
   color: white;
 }
+.jumbotron h1 {
+  font-size: 1.611em;
+}
+@media (min-width: 768px) {
+  .jumbotron h1 {
+    font-size: 3.444em;
+  }
+}
+.jumbotron p {
+  font-size: 1.125em;
+}
 .jumbotron .img {
   background-image: url(../images/header-1hp.jpg);
   background-size: cover;
@@ -223,8 +252,16 @@ section {
   padding: 5% 0;
   border-bottom: 1px solid #e8eaef;
 }
+.container > h2,
+.container > h3 {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
 .section-offset {
   background: #eceef0;
+}
+.section-offset h2 {
+  font-weight: 500;
 }
 .mission {
   text-align: center;
@@ -233,8 +270,12 @@ section {
   text-align: center;
 }
 .how-it-works .row {
-  width: 80%;
   margin: 0 auto;
+}
+@media (min-width: 992px) {
+  .how-it-works .row {
+    width: 80%;
+  }
 }
 .seen-on {
   text-align: center;
@@ -242,61 +283,85 @@ section {
 .seen-on img {
   display: inline-block;
 }
-.testimonial {
+.testimonials .tab-content {
   border: 0px;
-  font-size: 18px;
+  font-size: 1.2em;
+  font-weight: normal;
   text-align: center;
   color: #a7a7a7;
   padding: 0 10%;
   min-height: 100px;
+  margin-bottom: 2em;
 }
-@media (min-width: 992px) {
-  .nav-testimonial .nav-testimonial-content {
-    float: left;
-    text-align: left;
-  }
-  .nav-testimonial img {
-    float: left;
-    margin-right: .5em;
+.testimonials .media {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+@media (max-width: 991px) {
+  .testimonials .media {
+    text-align: center;
   }
 }
-.nav-testimonial li a {
-  overflow: hidden;
-  padding: 0;
+.testimonials .media a {
+  padding: 0px;
   color: #a7a7a7;
-  text-align: center;
 }
-.nav-testimonial li a:hover {
+.testimonials .media a:hover {
   background: none;
 }
-.nav-testimonial img {
+.testimonials .media h3 {
+  font-size: 1em;
+  margin: .5em 0 0 0;
+}
+.testimonials .media img {
   height: 60px;
   width: 60px;
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
   filter: grayscale(100%);
 }
-.nav-testimonial .active img {
+@media (min-width: 992px) {
+  .testimonials .media img {
+    float: left;
+    margin-right: 10px;
+  }
+}
+.testimonials .media.active img {
   -webkit-filter: grayscale(0);
   -moz-filter: grayscale(0);
   filter: grayscale(0);
 }
-.nav-testimonial .active a {
+.testimonials .media.active a {
   color: inherit;
-}
-.nav-testimonial .nav-testimonial-content h3 {
-  font-size: 18px;
-  margin: .5em 0 0 0;
 }
 .wish-list {
   text-align: center;
 }
 .wish-list .table {
-  width: 80%;
   margin: 0 auto;
+  font-size: 1em;
+}
+@media (min-width: 992px) {
+  .wish-list .table {
+    width: 80%;
+  }
+}
+.wish-list .table td h4 {
+  margin-top: 0;
+}
+@media (max-width: 991px) {
+  .wish-list .table td {
+    padding: 9px 9px;
+  }
+}
+.wish-list h4 {
+  text-transform: uppercase;
+  color: #a7a7a7;
+  font-weight: 300;
+  font-size: 1em;
 }
 .wish-list strong {
-  font-size: 32px;
+  font-size: 2em;
   display: block;
 }
 .wish-list .table {
@@ -306,8 +371,12 @@ section {
   text-align: center;
 }
 .stories .row {
-  width: 80%;
   margin: 0 auto;
+}
+@media (min-width: 992px) {
+  .stories .row {
+    width: 80%;
+  }
 }
 .action {
   text-align: center;

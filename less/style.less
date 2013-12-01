@@ -107,6 +107,20 @@ body {
   position: relative;
   //padding-top: 76px;
 }
+body, p {
+  @media (min-width: @screen-sm-min) { font-size: 18px; }
+}
+.lead {
+  font-size: 1.556em;
+}
+
+img {
+  max-width: 100%;
+}
+
+h2 {
+  font-weight: 300;
+}
 /*
 Modules/Widgets (thing reused throughout)
 -----------------
@@ -200,7 +214,7 @@ Sections / Pages
 }
 
 
-// Jumbotron
+// Navbar
 // --------------------------------------------------
 
 .navbar {
@@ -209,6 +223,12 @@ Sections / Pages
   -o-transition: all .25s linear;
   transition: all .25s linear;
   border-radius: 0;
+  .nav {
+    //@media (max-width: 979px) { float: left !important; }
+  }
+  .nav > li > a {
+    font-size: @font-size-base;
+  }
   .navbar-right > li > a.btn {
     padding: 0px 20px;
     margin: 20px 10px;
@@ -251,6 +271,13 @@ Sections / Pages
   border-bottom: 2px solid @brand-secondary;
   position: relative;
   h1, h2, h3, h4, p { color: white; }
+  h1 {
+    font-size: @font-size-h4;
+    @media (min-width: @screen-sm-min) { font-size: @font-size-h1; }
+  }
+  p {
+    font-size: 1.125em;
+  }
   .img {
     background-image: url(../images/header-1hp.jpg);
     background-size: cover;
@@ -273,8 +300,17 @@ section {
   padding: 5% 0;
   border-bottom: 1px solid #e8eaef;
 }
+.container {
+  > h2, > h3 {
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+}
 .section-offset {
   background: mix(@brand-primary, white, 9.5%);
+  h2 {
+    font-weight: 500;
+  }
 }
 
 // Mission
@@ -290,7 +326,7 @@ section {
 .how-it-works {
   text-align: center;
   .row {
-    width: 80%;
+    @media (min-width: @screen-md-min) { width: 80%; }
     margin: 0 auto;
   }
 }
@@ -308,73 +344,78 @@ section {
 // Testimonials
 // --------------------------------------------------
 
-.testimonial {
-  border: 0px;
-  font-size: 18px;
-  text-align: center;
-  color: #a7a7a7;
-  padding: 0 10%;
-  min-height: 100px;
-}
-.nav-testimonial {
-  @media (min-width: @screen-md-min) { 
-    .nav-testimonial-content {
-      float: left;
-      text-align: left;
-    }
-    img {
-      float: left;
-      margin-right: .5em;
-    } 
+.testimonials {
+  .tab-content {
+    border: 0px;
+    font-size: 1.2em;
+    font-weight: normal;
+    text-align: center;
+    color: #a7a7a7;
+    padding: 0 10%;
+    min-height: 100px;
+    margin-bottom: 2em;
   }
 
-  li a { 
-    overflow: hidden; 
-    padding: 0;
-    color: #a7a7a7;
-    text-align: center;
-
-    &:hover {
+  .media {
+    margin-top: 0;
+    margin-bottom: 15px;
+    @media (max-width: @screen-sm-max) { text-align: center; }
+    a {
+      padding: 0px;
+      color: #a7a7a7;
+    }
+    a:hover {
       background: none;
     }
-  }
-  img {
-    height: 60px;
-    width: 60px;
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    filter: grayscale(100%);
-  }
-  .active {
+    h3 {
+      font-size: 1em;
+      margin: .5em 0 0 0;
+    }
     img {
+      height: 60px;
+      width: 60px;
+      -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+      filter: grayscale(100%);
+      @media (min-width: @screen-md-min) { float: left; margin-right: 10px; }
+    }
+    &.active {
+      img {
       -webkit-filter: grayscale(0);
       -moz-filter: grayscale(0);
       filter: grayscale(0);
-    }
-    a {
-      color: inherit;
-    }
-  }
-  .nav-testimonial-content {
-    h3 {
-      font-size: 18px;
-      margin: .5em 0 0 0;
+      }
+      a {
+        color: inherit;
+      }
     }
   }
 }
+
 
 // Wish List Counter
 // --------------------------------------------------
 
 .wish-list {
   .table {
-    width: 80%;
+    @media (min-width: @screen-md-min) { width: 80%; }
     margin: 0 auto;
+    font-size: 1em;
+    td {
+      h4 { margin-top: 0; }
+      @media (max-width: @screen-sm-max) { padding: 9px 9px; }
+    }
   }
   text-align: center;
 
+  h4 {
+    text-transform: uppercase;
+    color: #a7a7a7;
+    font-weight: 300;
+    font-size: 1em;
+  }
   strong {
-    font-size: 32px;
+    font-size: @font-size-h3;
     display: block;
   }
 
@@ -387,7 +428,7 @@ section {
 // --------------------------------------------------
 .stories {
   .row {
-    width: 80%;
+    @media (min-width: @screen-md-min) { width: 80%; }
     margin: 0 auto;
   }
   text-align: center;

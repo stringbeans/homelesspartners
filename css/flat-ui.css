@@ -414,7 +414,7 @@ you can use the generic selector below, but it's slower:
 }
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.72222;
   color: #34495e;
   background-color: #ffffff;
@@ -434,25 +434,25 @@ a:focus {
   border-radius: 6px;
 }
 .img-comment {
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.72222;
   font-style: italic;
   margin: 24px 0;
 }
 p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.72222;
-  margin: 0 0 13.5px;
+  margin: 0 0 12px;
 }
 .lead {
-  margin-bottom: 27px;
-  font-size: 24px;
+  margin-bottom: 24px;
+  font-size: 21px;
   line-height: 1.46428571;
   font-weight: 300;
 }
 @media (min-width: 768px) {
   .lead {
-    font-size: 26.672px;
+    font-size: 23.338px;
   }
 }
 small,
@@ -530,53 +530,53 @@ h6 small,
 h1,
 h2,
 h3 {
-  margin-top: 27px;
-  margin-bottom: 13.5px;
+  margin-top: 24px;
+  margin-bottom: 12px;
 }
 h4,
 h5,
 h6 {
-  margin-top: 13.5px;
-  margin-bottom: 13.5px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 h6 {
   font-weight: normal;
 }
 h1,
 .h1 {
-  font-size: 55px;
+  font-size: 3.444em;
 }
 h2,
 .h2 {
-  font-size: 47px;
+  font-size: 2.889em;
 }
 h3,
 .h3 {
-  font-size: 36px;
+  font-size: 2em;
 }
 h4,
 .h4 {
-  font-size: 26px;
+  font-size: 1.611em;
 }
 h5,
 .h5 {
-  font-size: 25px;
+  font-size: 1.556em;
 }
 h6,
 .h6 {
-  font-size: 22px;
+  font-size: 1.333em;
 }
 .page-header {
-  padding-bottom: 12.5px;
-  margin: 54px 0 27px;
+  padding-bottom: 11px;
+  margin: 48px 0 24px;
   border-bottom: 1px solid #e7e9ec;
 }
 ul,
 ol {
-  margin-bottom: 13.5px;
+  margin-bottom: 12px;
 }
 dl {
-  margin-bottom: 27px;
+  margin-bottom: 24px;
 }
 dt,
 dd {
@@ -597,16 +597,16 @@ abbr[data-original-title] {
 blockquote {
   border-left: 3px solid #e7e9ec;
   padding: 0 0 0 16px;
-  margin: 0 0 27px;
+  margin: 0 0 24px;
 }
 blockquote p {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.55;
   font-weight: normal;
   margin-bottom: .4em;
 }
 blockquote small {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.72222;
   font-style: italic;
   color: inherit;
@@ -624,7 +624,7 @@ blockquote.pull-right small:after {
   content: "";
 }
 address {
-  margin-bottom: 27px;
+  margin-bottom: 24px;
   line-height: 1.72222;
 }
 code,
@@ -640,9 +640,9 @@ code {
   border-radius: 4px;
 }
 pre {
-  padding: 7px;
-  margin: 0 0 13.5px;
-  font-size: 11px;
+  padding: 6px;
+  margin: 0 0 12px;
+  font-size: 9px;
   line-height: 1.72222;
   color: inherit;
   background-color: #ffffff;
@@ -654,7 +654,7 @@ pre {
 }
 .btn {
   border: none;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   line-height: 1.4;
   border-radius: 4px;
@@ -1223,25 +1223,25 @@ fieldset[disabled] .btn-link:focus {
 }
 .btn-hg {
   padding: 13px 20px;
-  font-size: 20px;
+  font-size: 17px;
   line-height: 1.227;
   border-radius: 6px;
 }
 .btn-lg {
   padding: 10px 19px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.471;
   border-radius: 6px;
 }
 .btn-sm {
   padding: 9px 13px;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.385;
   border-radius: 4px;
 }
 .btn-xs {
   padding: 6px 9px;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.083;
   border-radius: 3px;
 }
@@ -1255,7 +1255,7 @@ fieldset[disabled] .btn-link:focus {
 }
 [class*="btn-social-"] {
   padding: 10px 15px;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.077;
   border-radius: 4px;
 }
@@ -1353,25 +1353,25 @@ fieldset[disabled] .btn-link:focus {
 }
 .btn-group-xs > .btn {
   padding: 6px 9px;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.083;
   border-radius: 3px;
 }
 .btn-group-sm > .btn {
   padding: 9px 13px;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.385;
   border-radius: 4px;
 }
 .btn-group-lg > .btn {
   padding: 10px 19px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.471;
   border-radius: 6px;
 }
 .btn-group-gh > .btn {
   padding: 13px 20px;
-  font-size: 20px;
+  font-size: 17px;
   line-height: 1.227;
   border-radius: 6px;
 }
@@ -1443,14 +1443,14 @@ fieldset[disabled] .btn-link:focus {
   border-left-width: 6px;
 }
 .navbar {
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 6px;
   border: none;
 }
 .navbar .navbar-brand {
   border-radius: 6px 0 0 6px;
   color: #526476;
-  font-size: 22px;
+  font-size: 19px;
   line-height: 29.55px;
   font-weight: 700;
   padding: 23px 28px 24px 17px;
@@ -1528,7 +1528,7 @@ fieldset[disabled] .btn-link:focus {
   color: #526476;
   display: inline-block;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 28px;
   padding: 22px 20px;
   text-shadow: none;
@@ -1600,7 +1600,7 @@ fieldset[disabled] .btn-link:focus {
   border-radius: 2px;
   color: #ffffff;
   display: block;
-  font-size: 14px;
+  font-size: 12px;
   padding: 6px 9px;
   text-decoration: none;
 }
@@ -1624,7 +1624,7 @@ fieldset[disabled] .btn-link:focus {
 .navbar .btn-navbar:before {
   content: "\e00c";
   font-family: "Flat-UI-Icons";
-  font-size: 21px;
+  font-size: 18px;
   font-style: normal;
   font-weight: normal;
   -webkit-font-smoothing: antialiased;
@@ -1641,7 +1641,7 @@ fieldset[disabled] .btn-link:focus {
 }
 .navbar-inverse {
   background: #34495e;
-  font-size: 16px;
+  font-size: 14px;
 }
 .navbar-inverse .navbar-brand {
   border-bottom: 2px solid #2c3e50;
@@ -1676,7 +1676,7 @@ fieldset[disabled] .btn-link:focus {
   padding-left: 20px;
 }
 .navbar-inverse .nav > li > a {
-  font-size: 14px;
+  font-size: 12px;
   border-bottom: 2px solid #2c3e50;
   border-left: 2px solid #2c3e50 !important;
   color: #ffffff;
@@ -1840,7 +1840,7 @@ fieldset[disabled] .btn-link:focus {
   background-color: #ffffff;
   border: 2px solid transparent;
   color: #526476;
-  font-size: 14px;
+  font-size: 12px;
 }
 .navbar .navbar-form .form-control:-moz-placeholder {
   color: #798795;
@@ -1863,7 +1863,7 @@ fieldset[disabled] .btn-link:focus {
 .navbar .navbar-form .input-group-btn .btn {
   border-color: transparent;
   color: #9aa4af;
-  font-size: 14px;
+  font-size: 12px;
 }
 .navbar.navbar-fixed-bottom .navbar-inner .navbar-form .form-control,
 .navbar.navbar-fixed-top .navbar-inner .navbar-form .form-control {
@@ -1885,7 +1885,7 @@ fieldset[disabled] .btn-link:focus {
   bottom: 80%;
   top: auto;
 }
-@media (max-width: 979px) {
+@media (max-width: 767px) {
   .navbar.navbar-inverse .navbar-brand {
     border: none;
     padding-top: 11px;
@@ -2162,7 +2162,7 @@ fieldset[disabled] .btn-link:focus {
   border-top-color: #ffffff;
 }
 textarea {
-  font-size: 18px;
+  font-size: 15px;
   line-height: 24px;
   padding: 5px 11px;
 }
@@ -2189,7 +2189,7 @@ label {
   border: 2px solid #bdc3c7;
   color: #34495e;
   font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   padding: 8px 12px;
   height: 42px;
   -webkit-appearance: none;
@@ -2226,7 +2226,7 @@ fieldset[disabled] .form-control {
 .input-sm {
   height: 35px;
   padding: 6px 10px;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.72222;
   border-radius: 6px;
 }
@@ -2240,7 +2240,7 @@ textarea.input-sm {
 .input-lg {
   height: 45px;
   padding: 10px 15px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.72222;
   border-radius: 6px;
 }
@@ -2254,7 +2254,7 @@ textarea.input-lg {
 .input-hg {
   height: 53px;
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 17px;
   line-height: 1.72222;
   border-radius: 6px;
 }
@@ -2383,7 +2383,7 @@ textarea.input-hg {
   right: 2px;
   line-height: 37px;
   vertical-align: middle;
-  font-size: 19px;
+  font-size: 16px;
   color: #b2bcc5;
   background-color: #ffffff;
   padding: 0 12px 0 0;
@@ -2398,7 +2398,7 @@ textarea.input-hg {
   padding: 0 15px 0 0;
 }
 .input-sm + .input-icon {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 30px;
   padding: 0 10px 0 0;
 }
@@ -2423,7 +2423,7 @@ fieldset[disabled] .form-control + .input-icon,
 .input-group-hg > .input-group-btn > .btn {
   height: 53px;
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 17px;
   line-height: 1.72222;
   border-radius: 6px;
 }
@@ -2443,7 +2443,7 @@ textarea.input-group-hg > .input-group-btn > .btn {
 .input-group-lg > .input-group-btn > .btn {
   height: 45px;
   padding: 10px 15px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.72222;
   border-radius: 6px;
 }
@@ -2463,7 +2463,7 @@ textarea.input-group-lg > .input-group-btn > .btn {
 .input-group-sm > .input-group-btn > .btn {
   height: 35px;
   padding: 6px 10px;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.72222;
   border-radius: 6px;
 }
@@ -2480,7 +2480,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 .input-group-addon {
   padding: 10px 12px;
-  font-size: 14px;
+  font-size: 12px;
   color: #ffffff;
   text-align: center;
   background-color: #bdc3c7;
@@ -2491,18 +2491,18 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 .input-group-sm .input-group-addon {
   padding: 6px 10px;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1;
   border-radius: 6px;
 }
 .input-group-lg .input-group-addon {
   padding: 10px 15px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1;
 }
 .input-group-hg .input-group-addon {
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 17px;
   line-height: 1;
 }
 .input-group .form-control:first-child,
@@ -2867,7 +2867,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
   position: relative;
   -webkit-transition: color 0.25s linear;
   transition: color 0.25s linear;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
 }
 .checkbox input,
@@ -3018,7 +3018,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
   border-radius: 4px;
   background-color: #ebedef;
   color: #7b8996;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
   display: inline-block;
   margin-right: 5px;
@@ -3047,7 +3047,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
   border: none;
   color: #34495e;
   font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   margin: 0px;
   padding: 0 0 0 5px;
   outline: none !important;
@@ -3086,7 +3086,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
   color: #ffffff;
   cursor: pointer;
   display: inline-block;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1;
   margin-bottom: 5px;
   padding: 7px 9px;
@@ -3193,7 +3193,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
 }
 .ui-slider-value {
   float: right;
-  font-size: 12px;
+  font-size: 10px;
   margin-top: 12px;
 }
 .ui-slider-value.first {
@@ -3349,7 +3349,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
   margin: 0 52px;
   line-height: 44px;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
 }
 .ui-datepicker .ui-datepicker-prev span,
 .ui-datepicker .ui-datepicker-next span {
@@ -3375,7 +3375,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
   border-left-color: #ffffff;
 }
 .ui-datepicker table {
-  font-size: 14px;
+  font-size: 12px;
   margin: 0 0 3px;
   width: 100%;
 }
@@ -3616,7 +3616,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
 .pagination ul li.previous > span,
 .pagination ul li.next > span {
   border-right: 2px solid #e4e7ea;
-  font-size: 14px;
+  font-size: 12px;
   min-width: auto;
   padding: 12px 17px;
 }
@@ -3647,7 +3647,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
   border: none;
   border-left: 2px solid #e4e7ea;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 16px;
   min-height: 41px;
   min-width: 41px;
@@ -3671,7 +3671,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
 .pagination > .btn.previous,
 .pagination > .btn.next {
   margin-right: 8px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.429;
   padding-left: 23px;
   padding-right: 23px;
@@ -4002,7 +4002,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
   border-color: #ca1a42;
 }
 .pagination-plain {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   list-style-type: none;
   margin: 0 0 20px;
@@ -4076,7 +4076,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
   border-top-color: #d6dbdf;
 }
 .tooltip {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.286;
 }
 .tooltip.in {
@@ -4357,7 +4357,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
   }
 }
 .table {
-  font-size: 14px;
+  font-size: 12px;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -4398,7 +4398,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
 }
 .table-bordered {
   border: 2px solid #eef0f0;
-  font-size: 14px;
+  font-size: 12px;
 }
 .table-bordered > thead > tr th,
 .table-bordered > tbody > tr th,
@@ -4554,7 +4554,7 @@ fieldset[disabled] .input-group .input-group-btn:first-child .btn-default.active
   background-color: #ca1a42;
 }
 .badge {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: normal;
   color: #ffffff;
   line-height: 1.615;
@@ -4574,7 +4574,7 @@ a.list-group-item.active > .badge,
   text-shadow: none;
   background-color: #f9f8f3;
   border: 2px solid #ebece8;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.625;
   border-radius: 6px;
 }
@@ -4594,7 +4594,7 @@ a.list-group-item.active > .badge,
   color: rgba(255, 255, 255, 0.75);
 }
 .alert h4 {
-  font-size: 23px;
+  font-size: 20px;
   line-height: 1.2;
   margin-bottom: 4px;
 }
@@ -4650,12 +4650,12 @@ a.list-group-item.active > .badge,
   padding: 39px 0 42px;
 }
 .bottom-menu .navbar-brand {
-  font-size: 22px;
+  font-size: 19px;
   margin-top: -4px;
   padding: 0;
 }
 .bottom-menu .title {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
   margin-top: 0;
 }
@@ -4672,7 +4672,7 @@ a.list-group-item.active > .badge,
   vertical-align: middle;
 }
 .bottom-menu .bottom-links {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.286;
 }
 .bottom-menu .bottom-links:before,
@@ -4689,7 +4689,7 @@ a.list-group-item.active > .badge,
   clear: both;
 }
 .bottom-icons {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1;
 }
 .bottom-menu-inverse {
@@ -4774,7 +4774,7 @@ a.list-group-item.active > .badge,
   background-color: #ee1e4e;
   border-left: 2px solid #ca1a42;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 1;
   margin: 0;
@@ -4869,7 +4869,7 @@ a.list-group-item.active > .badge,
 }
 .nav-tabs > li > a {
   border-width: 2px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   padding: 7px 21px 8px;
   color: #7f8c9a;
@@ -5003,7 +5003,7 @@ a.list-group-item.active > .badge,
 }
 .nav-list > li > a {
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.333;
   font-weight: 700;
   margin-left: -13px;
@@ -5016,7 +5016,7 @@ a.list-group-item.active > .badge,
 }
 .nav-header {
   color: #aeb6bf;
-  font-size: 12px;
+  font-size: 10px;
   text-transform: uppercase;
 }
 .nav-list-vivid {
@@ -5040,7 +5040,7 @@ a.list-group-item.active > .badge,
 .nav-list-vivid > li > a {
   border-radius: 0;
   color: #526476;
-  font-size: 14px;
+  font-size: 12px;
 }
 .nav-list-vivid > li > a:hover,
 .nav-list-vivid > li > a:focus {
@@ -5085,7 +5085,7 @@ a.list-group-item.active > .badge,
 .iconbar > ul > li > a {
   color: #ffffff;
   display: block;
-  font-size: 23px;
+  font-size: 20px;
   line-height: 1;
   padding: 8px 30px 32px;
   position: relative;
@@ -5140,7 +5140,7 @@ a.list-group-item.active > .badge,
   border-radius: 50%;
   color: #ffffff;
   font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
   line-height: 1.667;
   min-width: 20px;
@@ -5222,7 +5222,7 @@ a.list-group-item.active > .badge,
 }
 .breadcrumb {
   background-color: #f3f4f5;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 1;
   padding: 13px 20px;
@@ -5237,7 +5237,7 @@ a.list-group-item.active > .badge,
   content: "\e002";
   display: inline-block;
   font-family: 'Flat-UI-Icons';
-  font-size: 9.1px;
+  font-size: 7.800000000000001px;
   margin: -4px 9px 0 13px;
   vertical-align: middle;
   -webkit-font-smoothing: antialiased;
@@ -5264,7 +5264,7 @@ a.list-group-item.active > .badge,
 .breadcrumb-text .caption {
   font-weight: 700;
   margin: 0 0 3px;
-  font-size: 17px;
+  font-size: 15px;
 }
 .breadcrumb-text .caption:after {
   content: "\e02c";
@@ -5277,7 +5277,7 @@ a.list-group-item.active > .badge,
   -webkit-font-smoothing: antialiased;
 }
 .breadcrumb-text p {
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 700;
   margin-bottom: 20px;
 }
@@ -5323,7 +5323,7 @@ a.list-group-item.active > .badge,
 .popover-title {
   background-color: #bcc3ca;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.2;
   font-weight: 700;
   padding: 10px 20px 11px;
@@ -5332,13 +5332,13 @@ a.list-group-item.active > .badge,
   padding: 9px 20px 1px;
 }
 .popover-content p {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.286;
 }
 .dialog {
   background-color: #edeff1;
   border-top: 2px solid #d6dbdf;
-  font-size: 14px;
+  font-size: 12px;
   margin-bottom: 20px;
   padding: 16px 0 20px;
   position: relative;
@@ -5454,14 +5454,14 @@ a.list-group-item.active > .badge,
 }
 .modal-title {
   margin: 0;
-  font-size: 23px;
+  font-size: 20px;
   line-height: 30px;
 }
 .modal-body {
   padding: 20px 24px 20px;
 }
 .modal-body p {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.625;
 }
 .modal-footer {
@@ -5556,7 +5556,7 @@ a.list-group-item.active > .badge,
 }
 .has-switch span {
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   float: left;
   height: 29px;
@@ -5715,12 +5715,12 @@ a.list-group-item.active > .badge,
   color: #ffffff;
 }
 .carousel-caption h3 {
-  font-size: 17px;
+  font-size: 15px;
   line-height: 20px;
   margin: 0 0 5px;
 }
 .carousel-caption p {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 20px;
   margin-bottom: 0;
 }
