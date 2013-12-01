@@ -126,8 +126,65 @@ class Stories extends CActiveRecord
 		return parent::model($className);
 	}
 
+	public function getStorySearchResultsByAssignee($term) {
+		$wheres = 'st.assigned_id LIKE :termStartsWith';
+		$bindings = array(':termStartsWith'=>$term.'%');
+		return $this->getStorySearchResults($term, $wheres, $bindings);
+	}
 
-public function getStorySummarybyID($currentStoryId)
+	public function getStorySearchResultsByName($term) {
+		$wheres = 'st.fname LIKE :termStartsWith';
+		$bindings = array(':termStartsWith'=>$term.'%');
+		return $this->getStorySearchResults($term, $wheres, $bindings);
+	}
+
+	public function getStorySearchResultsByGiftDescription($term) {
+		$wheres = 'gifts.description LIKE :termAny';
+		$bindings = array(':termAny'=>'%'.$term.'%');
+		return $this->getStorySearchResults($term, $wheres, $bindings);
+	}
+
+	public function getStorySearchResultsByAll($term) {
+		$wheres = "
+			st.assigned_id LIKE :termStartsWith OR 
+			st.fname LIKE :termStartsWith OR
+			gifts.description LIKE :termAny";	
+		$bindings = array(':termStartsWith'=>$term.'%', ':termAny'=>'%'.$term.'%');
+		return $this->getStorySearchResults($term, $wheres, $bindings);
+	}
+
+	protected function getStorySearchResults($term, $wheres, $bindings)  
+	{
+		$sql = "
+		SELECT 
+			st.story_id, 
+			st.assigned_id, 
+			st.fname as fname, 
+			st.lname, 
+			shelters.name as shelter_name, 
+			cities.name as city_name, 
+			pledges.status as pledge_status, 
+			gifts.description as gift_description 
+		FROM stories st
+		JOIN shelters on st.shelter_id=shelters.shelter_id
+		join cities on shelters.city_id = cities.city_id
+		join region on cities.region_id = region.region_id
+		join gifts on st.story_id = gifts.story_id
+		left join pledges on gifts.gift_id = pledges.gift_id
+		WHERE " . $wheres;
+
+		//GROUP BY gift_description";
+		$command = $this->dbConnection->createCommand($sql);
+
+		foreach ($bindings as $key=>$val) {
+			$command->bindParam($key, $val, PDO::PARAM_STR);	
+		}
+		return $command->queryAll();
+		
+	}
+
+
+	public function getStorySummarybyID($currentStoryId)
 	{
 		$sql = "
 		SELECT 
