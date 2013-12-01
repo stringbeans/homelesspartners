@@ -209,7 +209,7 @@ class PledgeController extends Controller
 		//create a gifts lookup by shelter id
 		$giftsByStoryLookup = Gifts::model()->getGiftsByStoryLookup($giftIds);
 		$storiesByShelterLookup = Stories::model()->getStoriesByShelterLookup($giftIds);
-		
+
 		$email = "Thank you so very much for your kind and generous gift(s). You never know how an act of kindness, like the one you have shown, will affect others. Maybe that one gift/card can give them the encouragement they need to not only make a difference in their day, but in their life.";
 		$email .= "\n\n\n";
 		$email .= "Here is a copy of your pledge order. Please print this email and bring it with you when dropping off gifts.";
@@ -290,7 +290,6 @@ class PledgeController extends Controller
 					$pledge->date_created = new CDbExpression('NOW()');
 					$pledge->save();
 					
-					
 					$email .= "Gift: {$gift->description}";
 					$email .= "\n";
 				}
@@ -323,17 +322,18 @@ class PledgeController extends Controller
 			$email
 		);
 
-
-
 		//reset session
 		unset(Yii::app()->session['pledgeCart']);
 
-		$this->redirect($this->createUrl("pledge/thankYou"));
+		$this->render("/pledge/thankYou/main", array(
+			'email' => $email
+		));
 	}
 
 	public function actionThankYou()
 	{
 		$this->render("/pledge/thankYou/main", array(
+			'email' => "fdsfdsfdsfs"
 		));
 	}
 }

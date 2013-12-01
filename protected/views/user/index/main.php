@@ -10,9 +10,17 @@
             </ul>
 
 			<table class='table table-hover'>
+				<thead>
+					<tr>
+						<th>Email</th>
+						<th>Name</th>
+						<th>Role</th>
+					</tr>
+				</thead>
 				<?php foreach($users as $user): ?>
 				<tr>
 					<td><?php echo $user->email; ?></td>
+					<td><?php echo $user->name; ?></td>
 					<td><?php echo $rolesLookup[$user->role]; ?></td>
 					<td>
 						<?php if(Yii::app()->user->role == Users::ROLE_ADMIN): ?>

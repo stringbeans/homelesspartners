@@ -29,6 +29,7 @@ class LoginController extends Controller
 
     public function actionRegister()
     {
+        Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
         $this->pageTitle = 'Register';
         $this->render('/login/register/main');
     }
@@ -37,11 +38,37 @@ class LoginController extends Controller
     {
         $email = Yii::app()->input->post('email');
         $password = Yii::app()->input->post('password');
+        $name = Yii::app()->input->post('name');
+
         $redirectUrl = Yii::app()->input->post('redirectUrl', $this->createUrl("home/index"));
+
+        $validRegistrationInfo = true;
+        if(empty($name))
+        {
+            $validRegistrationInfo = false;
+            Yii::app()->user->setFlash('error', 'This enter a name');
+        }
+
+        if(empty($email))
+        {
+            $validRegistrationInfo = false;
+            Yii::app()->user->setFlash('error', 'This enter an email');
+        }
+
+        if(empty($password) || strlen($password) < 6 || strlen($password) > 16)
+        {
+            $validRegistrationInfo = false;
+            Yii::app()->user->setFlash('error', 'Your password must be atleast six characters long, and less than 16');
+        }
+
+        if(!$validRegistrationInfo)
+        {
+            $this->redirect($this->createUrl('login/register'));
+        }
 
         $user = null;
         try {
-            $user = Users::model()->create($email, $password);
+            $user = Users::model()->create($name, $email, $password);
         } catch (CDbException $e) {
             if (empty($user)) {
                 $duplicateUser = Users::model()->findByAttributes(array('email' => $email));
@@ -98,11 +125,11 @@ class LoginController extends Controller
         $user->reset_key_expires_date = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s'). ' + 1  days'));
         $user->save();
         
-        $text = "Click the following link to reset your password:\n\n" . Yii::app()->createAbsoluteUrl(Yii::app()->createUrl('login/resetPassword', array('key' => $resetPasswordKey)));
-        $html = "Click the following link to reset your password:<br /><br />" . Yii::app()->createAbsoluteUrl(Yii::app()->createUrl('login/resetPassword', array('key' => $resetPasswordKey)));
+        $text = "Click the following link to reset your password:\n\n" . Yii::app()->createAbsoluteUrl(Yii::app()->createUrl('login/resetPassword', array('user_id' => $user->user_id, 'key' => $resetPasswordKey)) . "\n\nIf you didn't request a password reset, simply disregard this email.\n\n- Homeless Partners Team");
+        $html = "Click the following link to reset your password:<br /><br />" . Yii::app()->createAbsoluteUrl(Yii::app()->createUrl('login/resetPassword', array('user_id' => $user->user_id, 'key' => $resetPasswordKey)) . "<br /><br />If you didn't request a password reset, simply disregard this email.<br /><br />- Homeless Partners Team");
 
         $emailMessage = new Email();
-        $emailMessage->send(Yii::app()->params['HP_SENDER_NO_REPLY_EMAIL_ADDRESS'], $email, 'Homeless Partners Reset Password', $text, $html);
+        $emailMessage->send('Homeless Partners <' . Yii::app()->params['HP_SENDER_NO_REPLY_EMAIL_ADDRESS'] . '>', $email, 'Reset Password Request', $text, $html);
 
 
         Yii::app()->user->setFlash('success', 'A reset password link has been sent to your email.');
@@ -111,19 +138,34 @@ class LoginController extends Controller
 
     public function actionResetPassword()
     {
+        Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
         $resetPasswordKey = Yii::app()->input->get('key');
+        $userId = Yii::app()->input->get('user_id');
         $this->render('/login/resetpassword/main', array(
-            'resetPasswordKey' => $resetPasswordKey
+            'resetPasswordKey' => $resetPasswordKey,
+            'userId' => $userId
         ));
     }
 
     public function actionResetPasswordProcessor()
     {
-        $email = Yii::app()->input->post('email');
         $password = Yii::app()->input->post('password');
+        $userId = Yii::app()->input->post('userId');
         $resetPasswordKey = Yii::app()->input->post('resetPasswordKey');
 
-        $user = Users::model()->findByAttributes(array('email' => $email));
+        if(empty($password) || strlen($password) < 6 || strlen($password) > 16)
+        {
+            Yii::app()->user->setFlash('error', 'Your password must be atleast six characters long, and less than 16');
+            $this->redirect($this->createUrl('login/resetPassword', array('key' => $resetPasswordKey)));
+        }
+
+        $user = Users::model()->findByPk($userId);
+
+        if(empty($user) || $user->reset_key != $resetPasswordKey)
+        {
+            Yii::app()->user->setFlash('error', 'There was an error resetting your password');
+            $this->redirect($this->createUrl('login/resetPassword', array('key' => $resetPasswordKey)));
+        }
 
         if(strtotime($user->reset_key_expires_date) > strtotime(date('Y-m-d H:i:s')))
         {

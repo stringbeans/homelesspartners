@@ -169,7 +169,8 @@ public function getStorySummarybyID($currentStoryId)
 		SELECT s.shelter_id, s.story_id
 		FROM gifts g
 		JOIN stories s ON g.story_id = s.story_id
-		WHERE g.gift_id IN (" . implode(",", $giftIds) . ");
+		WHERE g.gift_id IN (" . implode(",", $giftIds) . ")
+		GROUP BY s.story_id
         ";
 
         $command = $this->dbConnection->createCommand($sql);

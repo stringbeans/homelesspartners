@@ -24,6 +24,7 @@ class Controller extends CController
     public function init()
     {
         Yii::app()->clientScript->registerScriptFile('/js/bootstrap-select.js', CClientScript::POS_END);
+        Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
     }
 
 	public function filters()
