@@ -5,6 +5,7 @@
 		?>
 
 <section class="jumbotron on-dark">
+	<div class="img"></div>
 	<div class="container">
 		<h1>Help Homeless In Your Community</h1>
 		<p>Read their story and pledge a Christmas gift today</p>
@@ -18,7 +19,7 @@
 </section>
 
 <section>
-	<div class="how-it-works container">
+	<div class="container how-it-works">
 		<h2>How It Works</h2>
 		<div class="row">
 			<div class="col-md-4">
@@ -67,7 +68,7 @@
 		</div>
 
 		<ul class="nav nav-testimonial row">
-			<li class="col-md-3">
+			<li class="col-sm-3 col-xs-6">
 				<a href="#testimonial-one" data-toggle="tab">
 					<img src="images/faces/129.jpg" class="img-circle"/>
 					<div class="nav-testimonial-content">
@@ -76,7 +77,7 @@
 					</div>
 				</a>
 			</li>
-			<li class="col-md-3">
+			<li class="col-sm-3 col-xs-6">
 				<a href="#testimonial-two" data-toggle="tab">
 					<img src="images/faces/128.jpg" class="img-circle"/>
 					<div class="nav-testimonial-content">
@@ -85,7 +86,7 @@
 					</div>
 				</a>
 			</li>
-			<li class="col-md-3">
+			<li class="col-sm-3 col-xs-6">
 				<a href="#testimonial-three" data-toggle="tab">
 					<img src="images/faces/131.jpg" class="img-circle"/>
 					<div class="nav-testimonial-content">
@@ -94,7 +95,7 @@
 					</div>
 				</a>
 			</li>
-			<li class="col-md-3 active">
+			<li class="col-sm-3 col-xs-6 active">
 				<a href="#testimonial-four" data-toggle="tab">
 					<img src="images/faces/130.jpg" class="img-circle"/>
 					<div class="nav-testimonial-content">

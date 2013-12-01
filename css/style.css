@@ -79,7 +79,6 @@ body {
 }
 body {
   position: relative;
-  padding-top: 76px;
 }
 /*
 Modules/Widgets (thing reused throughout)
@@ -166,11 +165,36 @@ Sections / Pages
   margin-left: auto;
   float: none;
 }
+.navbar {
+  -webkit-transition: all .25s linear;
+  -moz-transition: all .25s linear;
+  -o-transition: all .25s linear;
+  transition: all .25s linear;
+  border-radius: 0;
+}
+.navbar .navbar-right > li > a.btn {
+  padding: 0px 20px;
+  margin: 20px 10px;
+  border-radius: 10px;
+}
+.navbar-ondark .navbar-brand,
+.navbar-ondark .btn-navbar {
+  color: #ffffff;
+}
+.navbar-ondark .nav > li.active > a,
+.navbar-ondark .nav > li.active > a:hover,
+.navbar-ondark .nav > li.active > a:focus {
+  color: #ffffff;
+}
+.navbar-ondark .nav > li > a {
+  color: #ffffff;
+}
 .jumbotron {
   background: #2c3e50;
   text-align: center;
-  padding: 10% 0;
+  padding: 13% 0 10% 0;
   border-bottom: 2px solid #ee1e4e;
+  position: relative;
 }
 .jumbotron h1,
 .jumbotron h2,
@@ -178,6 +202,22 @@ Sections / Pages
 .jumbotron h4,
 .jumbotron p {
   color: white;
+}
+.jumbotron .img {
+  background-image: url(../images/header-1hp.jpg);
+  background-size: cover;
+  background-position-y: 75%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.25;
+  -ms-filter: "alpha(Opacity=25)";
+  filter: alpha(opacity=25);
+}
+.jumbotron .container {
+  position: relative;
 }
 section {
   padding: 5% 0;
@@ -190,8 +230,11 @@ section {
   text-align: center;
 }
 .how-it-works {
-  width: 800px;
   text-align: center;
+}
+.how-it-works .row {
+  width: 80%;
+  margin: 0 auto;
 }
 .seen-on {
   text-align: center;
@@ -205,12 +248,23 @@ section {
   text-align: center;
   color: #a7a7a7;
   padding: 0 10%;
-  height: 100px;
+  min-height: 100px;
+}
+@media (min-width: 992px) {
+  .nav-testimonial .nav-testimonial-content {
+    float: left;
+    text-align: left;
+  }
+  .nav-testimonial img {
+    float: left;
+    margin-right: .5em;
+  }
 }
 .nav-testimonial li a {
   overflow: hidden;
   padding: 0;
   color: #a7a7a7;
+  text-align: center;
 }
 .nav-testimonial li a:hover {
   background: none;
@@ -218,7 +272,6 @@ section {
 .nav-testimonial img {
   height: 60px;
   width: 60px;
-  float: left;
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
   filter: grayscale(100%);
@@ -231,17 +284,16 @@ section {
 .nav-testimonial .active a {
   color: inherit;
 }
-.nav-testimonial .nav-testimonial-content {
-  float: left;
-  margin-left: .5em;
-}
 .nav-testimonial .nav-testimonial-content h3 {
   font-size: 18px;
   margin: .5em 0 0 0;
 }
 .wish-list {
-  width: 550px;
   text-align: center;
+}
+.wish-list .table {
+  width: 80%;
+  margin: 0 auto;
 }
 .wish-list strong {
   font-size: 32px;
@@ -251,8 +303,11 @@ section {
   background: white;
 }
 .stories {
-  width: 800px;
   text-align: center;
+}
+.stories .row {
+  width: 80%;
+  margin: 0 auto;
 }
 .action {
   text-align: center;

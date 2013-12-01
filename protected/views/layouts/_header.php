@@ -4,7 +4,8 @@ $(document).ready(function() {
 });
 </script>
 <header>
-	<div class="navbar navbar-default navbar-fixed-top">
+	<div class="navbar navbar-ondark navbar-fixed-top">
+        <div class="container">
       	<div class="navbar-header">
       		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>
           	<a href="<?php echo Yii::app()->baseUrl ?>/" class="navbar-brand">Homeless Partners</a>
@@ -67,12 +68,13 @@ $(document).ready(function() {
                     </li>
                     <li><a href="<?php echo Yii::app()->createUrl('login/logout'); ?>">Logout</a></li>
                 <?php else: ?>
-                    <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#registrationModal">Register</a></li>
-                    <li><a href="<?php echo Yii::app()->createUrl('home/contact'); ?>">Contact</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#loginModal" class="btn btn-default">Login</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#registrationModal" class="btn btn-default">Register</a></li>
+                    <li><a href="<?php echo Yii::app()->createUrl('home/contact'); ?>" class="btn btn-default">Contact</a></li>
                 <?php endif; ?>
             </ul>
     	</div><!--/.nav-collapse -->
+    </div>
    	</div>
 </header>
 

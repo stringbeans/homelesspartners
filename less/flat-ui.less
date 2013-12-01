@@ -11,6 +11,47 @@
 // Utility mixins for greater good
 @import "mixins";
 
+// Outline Buttons
+// --------------------------------------------------
+// Button variants
+// -------------------------
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+.button-variant(@color; @background; @hover-background; @active-background; @disabled-background: @gray-light) {
+  border-color: @background;
+  color: @background;
+  border-width: 2px;
+  border-style: solid;
+  background: none;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open .dropdown-toggle& {
+    color: @color;
+    background-color: @hover-background;
+    border-color: @hover-background;
+  }
+  &:active,
+  &.active,
+  .open .dropdown-toggle& {
+    background: @active-background;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      background-color: @background;
+    }
+  }
+}
+
+
 @import "scaffolding";
 
 // Modules
