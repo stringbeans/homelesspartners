@@ -7,6 +7,7 @@ class SearchController extends Controller
 	{
 		$query = Yii::app()->input->post('query', '');
 		$filter = Yii::app()->input->post('filter', 'all');
+		$results = false;
 
 		$filters = array(
 			'all' => 'All Fields',
@@ -15,24 +16,24 @@ class SearchController extends Controller
 			'gift' => 'Gift'
 		);
 
-		switch ($filter) {
-			case 'assignee':
-				$results = Stories::model()->getStorySearchResultsByAssignee($query);
-				break;
-			case 'name':
-				$results = Stories::model()->getStorySearchResultsByName($query);
-				break;
-			case 'gift':
-				$results = Stories::model()->getStorySearchResultsByGiftDescription($query);
-				break;
-			case 'all':
-			default:
-				$results = Stories::model()->getStorySearchResultsByAll($query);
-				break;
+		if (!empty($query)) {
+			switch ($filter) {
+				case 'assignee':
+					$results = Stories::model()->getStorySearchResultsByAssignee($query);
+					break;
+				case 'name':
+					$results = Stories::model()->getStorySearchResultsByName($query);
+					break;
+				case 'gift':
+					$results = Stories::model()->getStorySearchResultsByGiftDescription($query);
+					break;
+				case 'all':
+				default:
+					$results = Stories::model()->getStorySearchResultsByAll($query);
+					break;
+			}
 		}
 
-
 		$this->render("/search/index/main", compact('query', 'filter', 'filters', 'results'));
-
 	}
 }

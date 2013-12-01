@@ -40,7 +40,7 @@
 					<?php endforeach;?>
 				</table>
 			</div>
-			<?php else: ?>
+			<?php elseif ($results !== false): ?>
 				<h3>Sorry, no results found</h3>
 				<h4>Please try a different search term.</h4>
 			<?php endif; ?>
