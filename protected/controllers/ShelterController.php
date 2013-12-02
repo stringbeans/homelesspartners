@@ -229,6 +229,8 @@ class ShelterController extends Controller
         $email = Yii::app()->input->post("email");
         $mapped = Yii::app()->input->post("mapped", 0);
         $enabled = Yii::app()->input->post("enabled", 0);
+        $removeImage = Yii::app()->input->post("remove_image");
+
 
         $dropoffNames = Yii::app()->input->post("dropoffName", array());
         $dropoffAddresses = Yii::app()->input->post("dropoffAddress", array());
@@ -254,6 +256,10 @@ class ShelterController extends Controller
         $shelter->mapped = $mapped;
         $shelter->enabled = $enabled;
         $shelterCoordinators = Yii::app()->input->post("shelterCoordinators", array());
+
+        if ($removeImage == 'on') {
+            $shelter->img = '';
+        }
 
         if($shelter->save())
         {

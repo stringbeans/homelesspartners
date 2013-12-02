@@ -108,6 +108,7 @@ $(document).ready(function() {
 					<label>City Sponsor Image</label>
 					<input type='file' class='form-control' name='image' />
 					<?php if(!empty($city) && !empty($city->img)): ?>
+					<div><label><input type='checkbox' name='remove_image' autocomplete='off' /> Remove Image</label></div>
 					<img src='<?php echo $city->img ?>' />
 					<?php endif; ?>
 				</div>

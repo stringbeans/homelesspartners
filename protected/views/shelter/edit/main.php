@@ -181,6 +181,7 @@ $(document).ready(function() {
                         <label>Shelter Image</label>
                         <input type='file' class='form-control' name='image' />
                         <?php if(!empty($shelter) && !empty($shelter->img)): ?>
+                        <div><label><input type='checkbox' name='remove_image' autocomplete='off' /> Remove Image</label></div>
                         <img src='<?php echo $shelter->img ?>' />
                         <?php endif; ?>
                     </div>

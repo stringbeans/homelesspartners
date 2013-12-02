@@ -96,6 +96,7 @@ class CityController extends Controller
 		$enabled = Yii::app()->input->post("enabled", 0);
 		$cityCoordinators = Yii::app()->input->post("cityCoordinators", array());
 		$imageLinkUrl = Yii::app()->input->post("image_link_url");
+		$removeImage = Yii::app()->input->post("remove_image");
 
 		$city = new Cities();
 		if(!empty($cityId))
@@ -108,6 +109,10 @@ class CityController extends Controller
 		$city->name = $name;
 		$city->enabled = $enabled;
 		$city->img_link_url = $imageLinkUrl;
+
+		if ($removeImage == 'on') {
+			$city->img = '';
+		}
 
 		if($city->save())
 		{
