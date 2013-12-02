@@ -102,6 +102,11 @@ class Pledges extends CActiveRecord
 		return parent::model($className);
 	}
 
+	public function hasPledge($giftId)
+	{
+		return $this->count("gift_id=:giftId", array("giftId" => $giftId)) > 0;
+	}
+
 	public function getAllPledgesForShelters($shelterIds = array())
 	{
 		$sql = "

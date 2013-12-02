@@ -121,6 +121,8 @@ class PledgeController extends Controller
 
 		//$currentPledgeCart = array(6359);
 
+		$currentPledgeCart = $this->pruneAlreadyPledgedGifts($currentPledgeCart, true);
+
 		$pledgeCartInfo = array();
 
 		$totalGifts = 0;
@@ -205,6 +207,12 @@ class PledgeController extends Controller
 	{
 		$giftIds = Yii::app()->input->post("giftId", array()); //array of gift ids we're pledging
 		$deliverDate = Yii::app()->input->post("deliveryDate", array()); //indexed by shelterid
+
+		$giftIds = $this->pruneAlreadyPledgedGifts($giftIds);
+		if (empty($giftIds)) {
+			// if we pruned away all the gift ids, redirect back to cart
+			$this->redirect($this->createUrl("pledge/viewCart"));
+		}
 
 		//create a gifts lookup by shelter id
 		$giftsByStoryLookup = Gifts::model()->getGiftsByStoryLookup($giftIds);
@@ -335,5 +343,34 @@ class PledgeController extends Controller
 		$this->render("/pledge/thankYou/main", array(
 			'email' => "fdsfdsfdsfs"
 		));
+	}
+
+	protected function pruneAlreadyPledgedGifts($giftIds, $saveSession=false) 
+	{		
+		// if false or null, make sure we are working with an array
+		if (empty($giftIds)) {
+			$giftIds = array();
+		}
+
+		$removedPledges = array();
+		foreach ($giftIds as $key=>$giftId) {
+			if (Pledges::model()->hasPledge($giftId)) {
+				$gifts = Gifts::model()->getByIds(array($giftId));
+				$removedPledges[] = $gifts[0]['description'];
+				unset($giftIds[$key]);
+			}
+		}
+		if (!empty($removedPledges)) {
+			Yii::app()->user->setFlash('error', sprintf(
+				"The following Pledges have been removed from your cart because somebody else already Pledged them: <ul>%s</ul>",
+				'<li>'.implode('</li><li>',$removedPledges).'</li>'
+			));
+
+			if ($saveSession) {
+				Yii::app()->session['pledgeCart'] = $giftIds;	
+			}
+		}
+
+		return $giftIds;
 	}
 }

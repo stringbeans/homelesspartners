@@ -74,6 +74,20 @@
 		<div class='col-md-12'>
 
 			<h2>Pledge Cart</h2>
+
+			<?php if(Yii::app()->user->hasFlash('success')): ?>
+		 	<div class="alert alert-success">
+		    <?php echo Yii::app()->user->getFlash('success'); ?>
+			</div>
+		 	<?php endif; ?>
+
+		 	<?php if(Yii::app()->user->hasFlash('error')): ?>
+		 	<div class="alert alert-danger">
+		    <?php echo Yii::app()->user->getFlash('error'); ?>
+			</div>
+		 	<?php endif; ?>
+
+			
 			<p>
 				You currently have <strong><?php echo $totalGifts ?> gifts</strong> in your pledge cart for <strong><?php echo sizeof($pledgeCartInfo) ?> shelter lists</strong>. 
 				Please confirm each gift, provide an estimated delivery date, and complete your pledge(s). 

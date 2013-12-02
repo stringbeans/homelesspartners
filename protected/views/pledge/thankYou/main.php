@@ -13,6 +13,19 @@
 	<div class='row'>
 		<div class='col-md-12'>
 			<h2>Thank you for your pledge.</h2>
+
+			<?php if(Yii::app()->user->hasFlash('success')): ?>
+		 	<div class="alert alert-success">
+		    <?php echo Yii::app()->user->getFlash('success'); ?>
+			</div>
+		 	<?php endif; ?>
+
+		 	<?php if(Yii::app()->user->hasFlash('error')): ?>
+		 	<div class="alert alert-danger">
+		    <?php echo Yii::app()->user->getFlash('error'); ?>
+			</div>
+		 	<?php endif; ?>
+
 			<p>Your pledge makes a significant difference in your community, and to every homeless person. We've sent a copy of your pledges to your email address.</p>
 			<h3>Next Steps:</h3>
 			<p>
