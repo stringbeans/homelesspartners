@@ -93,7 +93,7 @@ class Country extends CActiveRecord
 	}
 
 
-public function getCountrySummary()
+	public function getCountrySummary()
 	{
 		$sql = "
 		SELECT country.country_id, country.name as name,
@@ -101,7 +101,7 @@ public function getCountrySummary()
 		count(distinct c.city_id) as numCities,
 		count(distinct s.shelter_id) as numShelters
 		FROM country 
-		JOIN region r on country.country_id = r.country_id
+		LEFT JOIN region r on country.country_id = r.country_id
 		LEFT JOIN cities c on c.region_id = r.region_id
 		LEFT JOIN shelters s ON c.city_id = s.city_id
 		group by country.country_id";
