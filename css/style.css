@@ -2,6 +2,10 @@
   border-bottom-color: #34495e !important;
   border-top-color: #34495e !important;
 }
+.alert-success {
+  background-color: #eef6f5;
+  border-color: #e0eaeb;
+}
 /*
 DEBUGGING 
 ------------
@@ -37,7 +41,9 @@ body {
 }
 @media (min-width: 768px) {
   body,
-  p {
+  p,
+  .table,
+  .alert {
     font-size: 18px;
   }
 }
@@ -88,6 +94,9 @@ Bootstrap Overrides
 }
 .btn-group.select .btn-white {
   width: 100%;
+}
+.list-group-item-heading {
+  font-size: inherit;
 }
 .list-group-item .btn {
   margin: 1em 0;
@@ -221,8 +230,6 @@ Sections / Pages
 .stats {
   margin: 0 auto;
   font-size: 1em;
-  background: white;
-  text-align: center;
   border: 1px solid #a1a1a1;
   width: 100%;
 }
@@ -234,20 +241,27 @@ Sections / Pages
 .stats .stat-metric {
   border: 1px solid #a1a1a1 !important;
   width: 33%;
+  background: white;
 }
 @media (max-width: 991px) {
   .stats .stat-metric {
     padding: 9px 9px;
   }
 }
-.stats .stat-metric .stat-name {
+.stat-metric {
+  text-align: center;
+  margin-top: 12px;
+  width: 150px;
+}
+.stat-metric .stat-name {
   color: #a7a7a7;
   text-transform: uppercase;
   font-weight: 300;
   font-size: 1em;
   margin-bottom: 0;
+  margin-top: 0;
 }
-.stats .stat-metric .stat-count {
+.stat-metric .stat-count {
   display: block;
   font-size: 2em;
 }
@@ -423,4 +437,32 @@ Sections / Pages
 }
 .action .btn {
   margin: 0 10px;
+}
+.pledge-checkout .media-body {
+  margin-left: 1em;
+}
+.pledge-checkout .media-heading {
+  font-size: 1.5em;
+  margin-top: .25em;
+}
+.pledge-checkout .table {
+  margin-bottom: 0;
+}
+.pledge-checkout .table td {
+  vertical-align: middle;
+}
+.pledge-checkout .checkout-item .btn {
+  float: right;
+}
+.pledge-checkout .control-label {
+  text-align: left;
+}
+.pledge-checkout .list-group-item {
+  overflow: hidden;
+}
+.pledge-checkout .list-group-item .btn {
+  margin: 0;
+}
+.pledge-checkout .list-group-item .btn-success {
+  float: right;
 }

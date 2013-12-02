@@ -8,6 +8,11 @@
 @base-container-padding: 20px;
 @base-widgets-padding: 10px;
 
+.alert-success {
+  background-color: mix(#1abc9c, @alert-bg, 5%);
+  border-color: mix(#1abc9c, @alert-border, 5%);
+}
+
 // consistent spacing 
 
 
@@ -48,7 +53,7 @@ body {
   position: relative;
   padding-top: 76px;
 }
-body, p {
+body, p, .table, .alert {
   @media (min-width: @screen-sm-min) { font-size: 18px; }
 }
 
@@ -95,6 +100,10 @@ Bootstrap Overrides
 }
 .btn-group.select .btn-white {
   width: 100%;
+}
+
+.list-group-item-heading {
+  font-size: inherit;
 }
 
 .list-group-item .btn {
@@ -252,26 +261,31 @@ Sections / Pages
 .stats {
   margin: 0 auto;
   font-size: 1em;
-  background: white;
-  text-align: center;
   border: 1px solid #a1a1a1;
   width: 100%;
   @media (min-width: @screen-md-min) { width: 80%; }
   .stat-metric {
-    border: 1px solid #a1a1a1 !important;
-    width: 33%;
-    @media (max-width: @screen-sm-max) { padding: 9px 9px; }
-    .stat-name { 
-      color: #a7a7a7;
-      text-transform: uppercase;
-      font-weight: 300;
-      font-size: 1em;
-      margin-bottom: 0;
-    }
-    .stat-count {
-      display: block;
-      font-size: @font-size-h3;
-    }
+      border: 1px solid #a1a1a1 !important;
+      width: 33%;
+      @media (max-width: @screen-sm-max) { padding: 9px 9px; }
+      background: white;
+  }
+}
+.stat-metric {
+  text-align: center;
+  margin-top: 12px;
+  width: 150px;
+  .stat-name { 
+    color: #a7a7a7;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 1em;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .stat-count {
+    display: block;
+    font-size: @font-size-h3;
   }
 }
 
@@ -394,6 +408,7 @@ Sections / Pages
 }
 
 
+
 // Stories
 // --------------------------------------------------
 .city-stories {
@@ -438,4 +453,40 @@ Sections / Pages
   }
 }
 
+
+// Stories
+// --------------------------------------------------
+.pledge-checkout {
+  .media-body {
+    margin-left: 1em;
+  }
+  .media-heading {
+    font-size: 1.5em;
+    margin-top: .25em;
+  }
+  .table {
+    margin-bottom: 0;
+    td {
+      vertical-align: middle;
+    }
+  }
+  .checkout-item {
+    .btn {
+      float: right;
+    }
+  }
+
+  .control-label {
+    text-align: left;
+  }
+  .list-group-item {
+    overflow: hidden;
+      .btn {
+        margin: 0;
+      }
+     .btn-success {
+      float: right;
+     }
+  }
+}
 
