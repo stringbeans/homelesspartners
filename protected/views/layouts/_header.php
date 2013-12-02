@@ -4,7 +4,7 @@ $(document).ready(function() {
 });
 </script>
 <header>
-	<div class="navbar navbar-ondark navbar-fixed-top">
+	<div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
       	<div class="navbar-header">
       		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>

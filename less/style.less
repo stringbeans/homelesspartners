@@ -31,6 +31,31 @@ DEBUGGING
   background-color: #eee;
   background-color: rgba(86, 61, 124, 0.15);
 }
+
+/*
+General Styling
+------------
+*/
+html,
+body {
+  height: 100%;
+}
+body {
+  position: relative;
+  padding-top: 76px;
+}
+body, p {
+  @media (min-width: @screen-sm-min) { font-size: 18px; }
+}
+
+.lead {
+  font-size: 1.556em;
+}
+
+.on-dark {
+  h1, h2, h3, h4, p { color: white; }
+}
+
 /*
 Bootstrap Overrides
 ------------
@@ -58,30 +83,6 @@ Bootstrap Overrides
 }
 .btn-group.select .btn-white {
   width: 100%;
-}
-
-/*
-General Styling
-------------
-*/
-html,
-body {
-  height: 100%;
-}
-body {
-  position: relative;
-  padding-top: 76px;
-}
-body, p {
-  @media (min-width: @screen-sm-min) { font-size: 18px; }
-}
-
-.lead {
-  font-size: 1.556em;
-}
-
-.on-dark {
-  h1, h2, h3, h4, p { color: white; }
 }
 
 

@@ -21,34 +21,6 @@ DEBUGGING
   background-color: rgba(86, 61, 124, 0.15);
 }
 /*
-Bootstrap Overrides
-------------
-*/
-.img-responsive {
-  width: 100%;
-}
-.btn-white {
-  border: 2px solid #bdc3c7;
-  background-color: white;
-  color: #34495e !important;
-}
-.btn-white:hover {
-  color: #34495e;
-}
-.btn-white .caret {
-  border-top-color: #34495e;
-  border-bottom-color: #34495e;
-}
-.btn-group.open .btn-white.dropdown-toggle {
-  color: #34495e;
-}
-.btn-group.select {
-  width: 100%;
-}
-.btn-group.select .btn-white {
-  width: 100%;
-}
-/*
 General Styling
 ------------
 */
@@ -75,6 +47,34 @@ body {
 .on-dark h4,
 .on-dark p {
   color: white;
+}
+/*
+Bootstrap Overrides
+------------
+*/
+.img-responsive {
+  width: 100%;
+}
+.btn-white {
+  border: 2px solid #bdc3c7;
+  background-color: white;
+  color: #34495e !important;
+}
+.btn-white:hover {
+  color: #34495e;
+}
+.btn-white .caret {
+  border-top-color: #34495e;
+  border-bottom-color: #34495e;
+}
+.btn-group.open .btn-white.dropdown-toggle {
+  color: #34495e;
+}
+.btn-group.select {
+  width: 100%;
+}
+.btn-group.select .btn-white {
+  width: 100%;
 }
 /*
 Modules/Widgets (thing reused throughout)
