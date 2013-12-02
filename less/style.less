@@ -114,13 +114,10 @@ body, p {
   font-size: 1.556em;
 }
 
-img {
-  max-width: 100%;
-}
-
 h2 {
   font-weight: 300;
 }
+
 /*
 Modules/Widgets (thing reused throughout)
 -----------------
@@ -223,6 +220,12 @@ Sections / Pages
   -o-transition: all .25s linear;
   transition: all .25s linear;
   border-radius: 0;
+  .navbar-brand {
+    text-indent: -9999999px;
+    background: url('../images/logos/hp.png') center center no-repeat;
+    width: 160px;
+    background-size: 100%;
+  }
   .nav {
     //@media (max-width: 979px) { float: left !important; }
   }
@@ -237,7 +240,10 @@ Sections / Pages
 }
 
 .navbar-ondark {  
-  .navbar-brand, .btn-navbar {
+  .navbar-brand {
+    background-image: url('../images/logos/hp-inverse.png');
+  }
+  .btn-navbar {
     color: @inverse;
   }
   .nav {
@@ -338,6 +344,11 @@ section {
   text-align: center;
   img {
     display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px;
+    width: 70px;
+    @media (min-width: @screen-sm-min) { width: 100px; }
+    @media (min-width: @screen-md-min) { width: 150px; }
   }
 }
 
@@ -345,6 +356,16 @@ section {
 // --------------------------------------------------
 
 .testimonials {
+  .quote-mark {
+    height: 4em;
+    margin: 0 auto;
+    span {
+      font-family: "PT Sans";
+      font-size: 9em;
+      color: #bcc3cb;
+      line-height: 1;
+    }
+  }
   .tab-content {
     border: 0px;
     font-size: 1.2em;
@@ -352,7 +373,7 @@ section {
     text-align: center;
     color: #a7a7a7;
     padding: 0 10%;
-    min-height: 100px;
+    min-height: 150px;
     margin-bottom: 2em;
   }
 
@@ -434,11 +455,38 @@ section {
   text-align: center;
 }
 
+.city-tile {
+  color: #FFF;
+  margin-bottom: 2em;
+  position: relative;
+  background: #000;
+  display: block;
+  &:hover { 
+    color: #FFF; 
+    img { opacity: .8; }
+  }
+  
+  .city-title {
+    position: absolute;
+    top: 38%;
+    left: 0;
+    width: 100%;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    text-align: center;
+    line-height: 1;
+    font-size: 30px;
+    margin: 0;
+  }
+}
+
 
 // Call to action
 // --------------------------------------------------
 .action {
   text-align: center;
+  .btn {
+    margin: 0 10px;
+  }
 }
 
 

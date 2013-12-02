@@ -89,9 +89,6 @@ body {
 .lead {
   font-size: 1.556em;
 }
-img {
-  max-width: 100%;
-}
 h2 {
   font-weight: 300;
 }
@@ -187,6 +184,12 @@ Sections / Pages
   transition: all .25s linear;
   border-radius: 0;
 }
+.navbar .navbar-brand {
+  text-indent: -9999999px;
+  background: url('../images/logos/hp.png') center center no-repeat;
+  width: 160px;
+  background-size: 100%;
+}
 .navbar .nav > li > a {
   font-size: 14px;
 }
@@ -195,7 +198,9 @@ Sections / Pages
   margin: 20px 10px;
   border-radius: 10px;
 }
-.navbar-ondark .navbar-brand,
+.navbar-ondark .navbar-brand {
+  background-image: url('../images/logos/hp-inverse.png');
+}
 .navbar-ondark .btn-navbar {
   color: #ffffff;
 }
@@ -282,6 +287,29 @@ section {
 }
 .seen-on img {
   display: inline-block;
+  vertical-align: middle;
+  margin: 0 10px;
+  width: 70px;
+}
+@media (min-width: 768px) {
+  .seen-on img {
+    width: 100px;
+  }
+}
+@media (min-width: 992px) {
+  .seen-on img {
+    width: 150px;
+  }
+}
+.testimonials .quote-mark {
+  height: 4em;
+  margin: 0 auto;
+}
+.testimonials .quote-mark span {
+  font-family: "PT Sans";
+  font-size: 9em;
+  color: #bcc3cb;
+  line-height: 1;
 }
 .testimonials .tab-content {
   border: 0px;
@@ -290,7 +318,7 @@ section {
   text-align: center;
   color: #a7a7a7;
   padding: 0 10%;
-  min-height: 100px;
+  min-height: 150px;
   margin-bottom: 2em;
 }
 .testimonials .media {
@@ -378,6 +406,33 @@ section {
     width: 80%;
   }
 }
+.city-tile {
+  color: #FFF;
+  margin-bottom: 2em;
+  position: relative;
+  background: #000;
+  display: block;
+}
+.city-tile:hover {
+  color: #FFF;
+}
+.city-tile:hover img {
+  opacity: .8;
+}
+.city-tile .city-title {
+  position: absolute;
+  top: 38%;
+  left: 0;
+  width: 100%;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  line-height: 1;
+  font-size: 30px;
+  margin: 0;
+}
 .action {
   text-align: center;
+}
+.action .btn {
+  margin: 0 10px;
 }

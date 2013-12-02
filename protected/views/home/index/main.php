@@ -23,17 +23,17 @@
 		<h2>How It Works</h2>
 		<div class="row">
 			<div class="col-sm-4">
-				<img src="holder.js/260x180"/>
+				<img src="images/icons/user-interface.svg" alt="">
 				<h3>Read Stories</h3>
 				<p>Browse personal stories of people in need near you</p>
 			</div>
 			<div class="col-sm-4">
-				<img src="holder.js/260x180"/>
+				<img src="images/icons/money.svg" alt="">
 				<h3>Pledge</h3>
 				<p>Make a pledge to make their wish happen</p>
 			</div>
 			<div class="col-sm-4">
-				<img src="holder.js/260x180"/>
+				<img src="images/icons/gift-box.svg" alt="">
 				<h3>Drop Off</h3>
 				<p>Attach a personal message. Your gift helps change their life</p>
 			</div>
@@ -43,11 +43,13 @@
 
 <section class="section-offset">
 	<div class="seen-on container">
-		<img src="holder.js/150x100" alt="CBC Television"/>
-		<img src="holder.js/150x100" alt="GlobalTV"/>
-		<img src="holder.js/150x100" alt="The Globe and Mail"/>
-		<img src="holder.js/150x100" alt="CBC Radio"/>
-		<img src="holder.js/150x100" alt="Metro"/>
+		<div class="row">
+			<img src="images/logos/cbc.png" alt="CBC Television"/>
+			<img src="images/logos/global.png" alt="GlobalTV"/>
+			<img src="images/logos/globeandmail.png" alt="The Globe and Mail"/>
+			<img src="images/logos/cbcradio.png" alt="CBC Radio"/>
+			<img src="images/logos/metro.png" alt="Metro"/>
+		</div>
 	</div>
 </section>
 
@@ -55,6 +57,7 @@
 	<div class="testimonials container">
 		<p class="lead text-center">Together we’ve successfully pledged over <strong>7,000</strong><br/>gifts in <strong>11</strong> cities across North America</p>
 		<div class="tab-content">
+			<div class="quote-mark"><span>“</span></div>
 		  <div class="tab-pane active" id="testimonial-one">
 		  	Homeless Partners has made a huge difference for the people that we serve. It has allowed the public to personally connect with people's needs and to help ensure that each person receives a meaningful gift at this special time of year.
 			</div>
@@ -133,30 +136,40 @@
 		<h2>Read stories from your city</h2>
 		<div class="row">
 			<div class="col-sm-6 col-md-4">
-				<img src="holder.js/260x180"/>
-				<h3>Vancouver</h3>
+				<a href="city/cityShelters?id=4" class="city-tile">
+					<img src="images/cities/vancouver.png" class="img-responsive"/>
+					<h3 class="city-title">Vancouver</h3>
+				</a>
 			</div>
 			<div class="col-sm-6 col-md-4">
-				<img src="holder.js/260x180"/>
-				<h3>Regina</h3>
+				<a href="city/cityShelters?id=7" class="city-tile">
+					<img src="images/cities/regina.png" class="img-responsive"/>
+					<h3 class="city-title">Regina</h3>
+				</a>
 			</div>
 			<div class="col-sm-6 col-md-4">
-				<img src="holder.js/260x180"/>
-				<h3>Victoria</h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6 col-md-4">
-				<img src="holder.js/260x180"/>
-				<h3>North Vancouver</h3>
+				<a href="city/cityShelters?id=18" class="city-tile">
+					<img src="images/cities/victoria.png" class="img-responsive"/>
+					<h3 class="city-title">Victoria</h3>
+				</a>
 			</div>
 			<div class="col-sm-6 col-md-4">
-				<img src="holder.js/260x180"/>
-				<h3>Surrey</h3>
+				<a href="city/cityShelters?id=29" class="city-tile">
+					<img src="images/cities/northvan.png" class="img-responsive"/>
+					<h3 class="city-title">North Vancouver</h3>
+				</a>
 			</div>
 			<div class="col-sm-6 col-md-4">
-				<img src="holder.js/260x180"/>
-				<h3>New Westminster</h3>
+				<a href="city/cityShelters?id=28" class="city-tile">
+					<img src="images/cities/surrey.png" class="img-responsive"/>
+					<h3 class="city-title">Surrey</h3>
+				</a>
+			</div>
+			<div class="col-sm-6 col-md-4">
+				<a href="#" class="city-tile">
+					<img src="images/cities/newwest.png" class="img-responsive"/>
+					<h3 class="city-title">New Westminster</h3>
+				</a>
 			</div>
 		</div>
 	</div>
