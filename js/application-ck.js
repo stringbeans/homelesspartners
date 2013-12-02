@@ -1,1 +1,1 @@
-(function(e){var t=jQuery(window).height()/3})(jQuery);
+(function(e){if(e("body").hasClass("home")){e(".navbar").addClass("navbar-ondark");e(window).scroll(function(){e(window).scrollTop()>80?e(".navbar").removeClass("navbar-ondark"):e(".navbar").addClass("navbar-ondark")})}})(jQuery);
