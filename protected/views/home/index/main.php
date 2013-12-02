@@ -20,7 +20,7 @@
 
 <section>
 	<div class="container how-it-works">
-		<h2>How It Works</h2>
+		<h2 class="section-title">How It Works</h2>
 		<div class="row">
 			<div class="col-sm-4">
 				<img src="images/icons/user-interface.svg" alt="">
@@ -110,21 +110,21 @@
 </section>
 
 <section class="section-offset">
-	<div class="wish-list container">
-		<h2>2013 Wish List Counter</h2>
-		<table class="table table-bordered">
+	<div class="container">
+		<h2 class="section-title">2013 Wish List Counter</h2>
+		<table class="table table-bordered wish-counter">
 			<tr>
 				<td>
-					<h4>Total stories</h4>
-					<strong>451</strong>
+					<h4 class="wish-title">Total stories</h4>
+					<strong class="wish-number">451</strong>
 				</td>
-				<td class="col-md-4">
-					<h4>Gift Requests</h4>
-					<strong>1,025</strong>
+				<td>
+					<h4 class="wish-title">Gift Requests</h4>
+					<strong class="wish-number">1,025</strong>
 				</td>
-				<td class="col-md-4">
-					<h4>Pledged Gifts</h4>
-					<strong>11</strong>
+				<td>
+					<h4 class="wish-title">Pledged Gifts</h4>
+					<strong class="wish-number">11</strong>
 				</td>
 			</tr>
 		</table>
@@ -132,8 +132,8 @@
 </section>
 
 <section>
-	<div class="stories container">
-		<h2>Read stories from your city</h2>
+	<div class="city-stories container">
+		<h2 class="section-title">Read stories from your city</h2>
 		<div class="row">
 			<div class="col-sm-6 col-md-4">
 				<a href="city/cityShelters?id=4" class="city-tile">
