@@ -20,12 +20,13 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+	public $classes = false;
 
-    public function init()
-    {
-        Yii::app()->clientScript->registerScriptFile('/js/bootstrap-select.js', CClientScript::POS_END);
-        Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
-    }
+	public function init()
+	{
+		Yii::app()->clientScript->registerScriptFile('/js/bootstrap-select.js', CClientScript::POS_END);
+		Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
+	}
 
 	public function filters()
 	{
@@ -35,69 +36,79 @@ class Controller extends CController
 	}
 
 	public function accessRules()
-    {	
+	{	
 
-        return array(
-            array(
-                'allow',
-                'controllers' => array('city'),
-                'users' => array('@'),
-                'roles' => array(Users::ROLE_ADMIN),
-            ),
-            array(
-                'allow',
-                'controllers' => array('country'),
-                'users' => array('@'),
-                'roles' => array(Users::ROLE_ADMIN),
-            ),
-            array(
-                'allow',
-                'controllers' => array('explore'),
-                'users' => array('*'),
-            ),
-            array(
-                'allow',
-                'controllers' => array('home'),
-                'users' => array('*'),
-            ),
-            array(
-                'allow',
-                'controllers' => array('login'),
-                'users' => array('*'),
-            ),
-            array(
-                'allow',
-                'controllers' => array('pledge'),
-                'users' => array('@'),
-                'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER),
-            ),
-            array(
-                'allow',
-                'controllers' => array('region'),
-                'users' => array('@'),
-                'roles' => array(Users::ROLE_ADMIN),
-            ),
-            array(
-                'allow',
-                'controllers' => array('shelter'),
-                'users' => array('@'),
-                'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY),
-            ),
-            array(
-                'allow',
-                'controllers' => array('story'),
-                'users' => array('@'),
-                'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER, Users::ROLE_CONTRIBUTOR),
-            ),
-            array(
-                'allow',
-                'controllers' => array('user'),
-                'users' => array('@'),
-                'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY),
-            ),
-            array('deny',
-        		'users' => array('*'),
-    		)
-        );
-    }
+		return array(
+			array(
+				'allow',
+				'controllers' => array('city'),
+				'users' => array('@'),
+				'roles' => array(Users::ROLE_ADMIN),
+			),
+			array(
+				'allow',
+				'controllers' => array('country'),
+				'users' => array('@'),
+				'roles' => array(Users::ROLE_ADMIN),
+			),
+			array(
+				'allow',
+				'controllers' => array('explore'),
+				'users' => array('*'),
+			),
+			array(
+				'allow',
+				'controllers' => array('home'),
+				'users' => array('*'),
+			),
+			array(
+				'allow',
+				'controllers' => array('login'),
+				'users' => array('*'),
+			),
+			array(
+				'allow',
+				'controllers' => array('pledge'),
+				'users' => array('@'),
+				'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER),
+			),
+			array(
+				'allow',
+				'controllers' => array('region'),
+				'users' => array('@'),
+				'roles' => array(Users::ROLE_ADMIN),
+			),
+			array(
+				'allow',
+				'controllers' => array('shelter'),
+				'users' => array('@'),
+				'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY),
+			),
+			array(
+				'allow',
+				'controllers' => array('story'),
+				'users' => array('@'),
+				'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER, Users::ROLE_CONTRIBUTOR),
+			),
+			array(
+				'allow',
+				'controllers' => array('user'),
+				'users' => array('@'),
+				'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY),
+			),
+			array('deny',
+				'users' => array('*'),
+			)
+		);
+	}
+
+	public function getBodyClasses() {
+		if (!$this->classes) {
+			$classes = array();
+			$classes[] = $this->id;
+			$classes[] = $this->id.'-'.$this->action->id;
+			$this->classes = implode(' ', $classes);
+		}
+		return $this->classes;
+	}     
 }

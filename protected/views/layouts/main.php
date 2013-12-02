@@ -27,7 +27,7 @@
 		<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 	</head>
 
-	<body>
+	<body class="<?php echo $this->getBodyClasses()?>">
 		<?php $this->renderPartial("/layouts/_header") ?>
 
 		<?php echo $content; ?>
