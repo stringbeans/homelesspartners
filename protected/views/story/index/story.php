@@ -60,89 +60,58 @@ $(document).ready(function(){
     <?php endif;?>
 });
 </script>
-
-<div class="shelter-container container">
-
-    <div class="row">
-        <div class="col-xs-12 col-md-12">
-            <h3>Read Their Story And Make A Pledge Today</h3>
-        </div>
-    </div>
-
-
-<!-- PHP for each wishlist -->
-        <div class="panel panel-default col-md-12">
-          <div class="panel-body">
-            <div class="row">
-                <div class="col-xs-6 col-md-6">
-                    <strong>Name:</strong>
-                    <?php echo $stories[0]['fname']?>  <?php echo $stories[0]['lname']?>
+<section>
+    <div class="container">
+        <h2 class="section-title">Read Their Story And Make A Pledge Today</h2>
+        <div class="row">
+            <div class="col-md-7">
+                <p><?php echo $stories[0]['story']?></p>
+            </div>
+            <div class="col-md-4 col-md-offset-1">
+                <div class="profile">
+                    <h3 class="profile-name m-notop"><?php echo $stories[0]['fname']?>  <?php echo $stories[0]['lname']?></h3>
+                    <p class="profile-id">ID: <?php echo $stories[0]['assigned_id']?></p>
                 </div>
-                <div class="col-xs-6 col-md-6 text-right">
-                    <strong>ID:</strong>
-                    <?php echo $stories[0]['assigned_id']?>
+
+                <div class="panel panel-default">
+                  <div class="panel-heading">Wish List</div>
+                  <ul class="list-group">
+                      <?php foreach ($gifts as $gift): ?>
+                          <li class="list-group-item">
+                            <p class="list-group-item-text"><?php echo $gift['description'] ?></p>
+                            <?php if(in_array($gift['gift_id'], $currentPledgeCart) || (!Yii::app()->user->isGuest && ($gift['gift_id'] == Yii::app()->user->id))): ?>
+                            <button class="btn btn-danger unpledge" data-id="<?php echo $gift['gift_id'] ?>"><span class="glyphicon glyphicon-gift"></span> Unpledge This Gift</button>
+                            <?php elseif (empty($gift['numPledges'])): ?>
+                            <button class="btn btn-primary pledge" data-id="<?php echo $gift['gift_id'] ?>"><span class="glyphicon glyphicon-gift"></span> Pledge This Gift</button>    
+                            <?php else: ?>
+                            <button class="btn btn-default" disabled="disabled"><span class="glyphicon glyphicon-gift"></span>Gifted</button>
+                            <?php endif ?>
+                          </li>
+                      <?php endforeach ?>
+                  </ul>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12 col-md-12">
-                    <p><?php echo $stories[0]['story']?></p>
-                </div>
-            </div>            
-            <div class="row">
-                <div class="col-xs-12 col-md-12">
-                    <table class="table table-hover explore-gifts">
-                        <thead>
-                            <th>Wish List</th>
-                            <th></th>
-                        </thead>
-                        <tbody>
+        </div>
+    </div>
+</section>
 
-                            <?php foreach ($gifts as $gift): ?>
-                                <tr>
-                                    <td class="col-xs-9 gift-name"><?php echo $gift['description'] ?></td>
-                                    <td class="col-xs-3">
-                                        <?php if(in_array($gift['gift_id'], $currentPledgeCart) || (!Yii::app()->user->isGuest && ($gift['gift_id'] == Yii::app()->user->id))): ?>
-                                        <button class="btn btn-sm btn-danger btn-block unpledge" data-id="<?php echo $gift['gift_id'] ?>"><span class="glyphicon glyphicon-gift"></span> Unpledge This Gift</button>
-                                        <?php elseif (empty($gift['numPledges'])): ?>
-                                        <button class="btn btn-sm btn-primary btn-block pledge" data-id="<?php echo $gift['gift_id'] ?>"><span class="glyphicon glyphicon-gift"></span> Pledge This Gift</button>    
-                                        <?php else: ?>
-                                        <button class="btn btn-sm btn-default btn-block" disabled="disabled"><span class="glyphicon glyphicon-gift"></span>Gifted</button>
-                                        <?php endif ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach ?>
-                        </tbody>
-                    </table>
-                </div>
+<section class="section-offset">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h4><?php echo $stories[0]['shelter_name']?></h4>
+                <h6><?php echo $stories[0]['city_name']?>, <?php echo $stories[0]['region_name']?></h6>
+                <p>
+                    <?php echo $stories[0]['shelter_bio']?>
+                </p>
+                <a class="btn btn-default btn-lg" href="<?php echo $stories[0]['shelter_website']?>" target="_blank">Visit Website</a>
+                <a class="btn btn-primary btn-lg" href="<?php echo $this->createUrl("shelter/shelterstories", array('id' => $stories[0]['shelter_id'])) ?>">View more stories from the Living Room</a>
+
             </div>
-          </div>
-        </div> <!-- end of wishlist -->
-
-
-
-<div class="explore-shelter well col-md-12">
-
-    <div class="row">
-        <div class="col-md-3">
-            <img class="img-responsive" src="<?php echo $stories[0]['img'] ?>" />
+            <div class="col-md-4 col-md-offset-1">
+                <img class="img-responsive" src="<?php echo $stories[0]['img'] ?>" />
+            </div>
         </div>
-
-        <div class="col-md-7">
-            <h4><?php echo $stories[0]['shelter_name']?></h4>
-            <h6><?php echo $stories[0]['city_name']?>, <?php echo $stories[0]['region_name']?></h6>
-            <a href="<?php echo $stories[0]['shelter_website']?>" target="_blank"><?php echo $stories[0]['shelter_website']?></a>
-
-            <p>
-                <?php echo $stories[0]['shelter_bio']?>
-            </p>
-        </div>
-
     </div>
-
-    <div class="col-md-12 text-center">
-        <a href="<?php echo $this->createUrl("shelter/shelterstories", array('id' => $stories[0]['shelter_id'])) ?>">View more stories from the Living Room</a>
-    </div>
-
-
-</div>
+</section>
 
