@@ -60,9 +60,14 @@ $(document).ready(function(){
     <?php endif;?>
 });
 </script>
-<section>
+
+<section class="section-offset">
     <div class="container">
-        <p class="lead text-center">Read Their Story And Make A Pledge Today</h2>
+       <p class="lead text-center">Read Their Story And Make A Pledge Today</h2>
+    </div>
+</section>
+<section>
+    <div class="container shelter-container">
         <div class="page-header">
           <h3><?php echo $stories[0]['fname']?>  <?php echo $stories[0]['lname']?> <small class="pull-right">ID: <?php echo $stories[0]['assigned_id']?></small></h3>
         </div>

@@ -44,6 +44,13 @@ body {
 .lead {
   font-size: 1.556em;
 }
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small {
+  color: #B7B9BD;
+}
 .on-dark h1,
 .on-dark h2,
 .on-dark h3,
@@ -103,13 +110,6 @@ section {
 }
 .section-offset h2 {
   font-weight: 500;
-}
-.section-offset h1 small,
-.section-offset h2 small,
-.section-offset h3 small,
-.section-offset h4 small,
-.section-offset h5 small {
-  color: #B7B9BD;
 }
 /*
 .container {
@@ -171,11 +171,6 @@ Sections / Pages
   color: #ffffff;
 }
 /* SECTION- Shelter */
-.shelter-container {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #ecf0f1;
-}
 .shelter-container .action-buttons .btn {
   margin-top: 10px;
   margin-bottom: 10px;
