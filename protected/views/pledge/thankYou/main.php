@@ -17,7 +17,7 @@
 			<h3>Next Steps:</h3>
 			<p>
 				<ol>
-					<li><a href='' onclick='window.print();'>Print off your order</a></li>
+					<li><a href='#' onclick='window.print(); return false;'>Print off your order</a></li>
 					<li>Purchase pledge(s), wrap it, and attach the assigned id for each gift. Add a personal note for each recipient (optional, but recommended)</li>
 					<li>Drop off pledges at corresponding drop off locations before your estimated delivery time</li>
 					<li>Help get other gifts pledged by sharing this site with friends and family</li>
