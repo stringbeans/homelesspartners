@@ -247,6 +247,33 @@ Sections / Pages
   margin-left: auto;
 }
 
+// Stats Counter
+// --------------------------------------------------
+.stats {
+  margin: 0 auto;
+  font-size: 1em;
+  background: white;
+  text-align: center;
+  border: 1px solid #a1a1a1;
+  width: 100%;
+  @media (min-width: @screen-md-min) { width: 80%; }
+  .stat-metric {
+    border: 1px solid #a1a1a1 !important;
+    width: 33%;
+    @media (max-width: @screen-sm-max) { padding: 9px 9px; }
+    .stat-name { 
+      color: #a7a7a7;
+      text-transform: uppercase;
+      font-weight: 300;
+      font-size: 1em;
+      margin-bottom: 0;
+    }
+    .stat-count {
+      display: block;
+      font-size: @font-size-h3;
+    }
+  }
+}
 
 // Homepage
 // --------------------------------------------------
@@ -363,29 +390,6 @@ Sections / Pages
       -moz-filter: grayscale(100%);
       @media (min-width: @screen-md-min) { float: left; margin-right: 10px; }
     }
-  }
-}
-
-/* Wish Counter */
-.wish-counter {
-  margin: 0 auto;
-  font-size: 1em;
-  background: white;
-  text-align: center;
-  @media (min-width: @screen-md-min) { width: 80%; }
-  td {
-    .wish-title { 
-      margin-top: 0; 
-      color: #a7a7a7;
-      text-transform: uppercase;
-      font-weight: 300;
-      font-size: 1em;
-    }
-    .wish-number {
-      display: block;
-      font-size: @font-size-h3;
-    }
-    @media (max-width: @screen-sm-max) { padding: 9px 9px; }
   }
 }
 

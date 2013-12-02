@@ -218,6 +218,39 @@ Sections / Pages
   margin-right: auto;
   margin-left: auto;
 }
+.stats {
+  margin: 0 auto;
+  font-size: 1em;
+  background: white;
+  text-align: center;
+  border: 1px solid #a1a1a1;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  .stats {
+    width: 80%;
+  }
+}
+.stats .stat-metric {
+  border: 1px solid #a1a1a1 !important;
+  width: 33%;
+}
+@media (max-width: 991px) {
+  .stats .stat-metric {
+    padding: 9px 9px;
+  }
+}
+.stats .stat-metric .stat-name {
+  color: #a7a7a7;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 1em;
+  margin-bottom: 0;
+}
+.stats .stat-metric .stat-count {
+  display: block;
+  font-size: 2em;
+}
 /* Jumbotron banner */
 .jumbotron {
   position: relative;
@@ -350,34 +383,6 @@ Sections / Pages
   .testimonials .media img {
     float: left;
     margin-right: 10px;
-  }
-}
-/* Wish Counter */
-.wish-counter {
-  margin: 0 auto;
-  font-size: 1em;
-  background: white;
-  text-align: center;
-}
-@media (min-width: 992px) {
-  .wish-counter {
-    width: 80%;
-  }
-}
-.wish-counter td .wish-title {
-  margin-top: 0;
-  color: #a7a7a7;
-  text-transform: uppercase;
-  font-weight: 300;
-  font-size: 1em;
-}
-.wish-counter td .wish-number {
-  display: block;
-  font-size: 2em;
-}
-@media (max-width: 991px) {
-  .wish-counter td {
-    padding: 9px 9px;
   }
 }
 .city-stories .row {

@@ -112,19 +112,19 @@
 <section class="section-offset">
 	<div class="container">
 		<h2 class="section-title">2013 Wish List Counter</h2>
-		<table class="table table-bordered wish-counter">
+		<table class="stats">
 			<tr>
-				<td>
-					<h4 class="wish-title">Total stories</h4>
-					<strong class="wish-number">451</strong>
+				<td class="stat-metric">
+					<h4 class="stat-name">Total stories</h4>
+					<strong class="stat-count">451</strong>
 				</td>
-				<td>
-					<h4 class="wish-title">Gift Requests</h4>
-					<strong class="wish-number">1,025</strong>
+				<td class="stat-metric">
+					<h4 class="stat-name">Gift Requests</h4>
+					<strong class="stat-count">1,025</strong>
 				</td>
-				<td>
-					<h4 class="wish-title">Pledged Gifts</h4>
-					<strong class="wish-number">11</strong>
+				<td class="stat-metric">
+					<h4 class="stat-name">Pledged Gifts</h4>
+					<strong class="stat-count">11</strong>
 				</td>
 			</tr>
 		</table>
