@@ -104,6 +104,13 @@ section {
 .section-offset h2 {
   font-weight: 500;
 }
+.section-offset h1 small,
+.section-offset h2 small,
+.section-offset h3 small,
+.section-offset h4 small,
+.section-offset h5 small {
+  color: #B7B9BD;
+}
 /*
 .container {
   @media (min-width: @screen-sm-min) { width: @screen-sm-min - @grid-gutter-width; }

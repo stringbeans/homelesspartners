@@ -62,20 +62,20 @@ $(document).ready(function(){
 </script>
 <section>
     <div class="container">
-        <h2 class="section-title">Read Their Story And Make A Pledge Today</h2>
+        <p class="lead text-center">Read Their Story And Make A Pledge Today</h2>
+        <div class="page-header">
+          <h3><?php echo $stories[0]['fname']?>  <?php echo $stories[0]['lname']?> <small class="pull-right">ID: <?php echo $stories[0]['assigned_id']?></small></h3>
+        </div>
         <div class="row">
             <div class="col-md-7">
                 <p><?php echo $stories[0]['story']?></p>
             </div>
             <div class="col-md-4 col-md-offset-1">
-                <div class="profile">
-                    <h3 class="profile-name m-notop"><?php echo $stories[0]['fname']?>  <?php echo $stories[0]['lname']?></h3>
-                    <p class="profile-id">ID: <?php echo $stories[0]['assigned_id']?></p>
-                </div>
+                
 
                 <div class="panel panel-default">
                   <div class="panel-heading">Wish List</div>
-                  <ul class="list-group">
+                  <ul class="list-group explore-gifts">
                       <?php foreach ($gifts as $gift): ?>
                           <li class="list-group-item">
                             <p class="list-group-item-text"><?php echo $gift['description'] ?></p>
@@ -84,7 +84,7 @@ $(document).ready(function(){
                             <?php elseif (empty($gift['numPledges'])): ?>
                             <button class="btn btn-primary pledge" data-id="<?php echo $gift['gift_id'] ?>"><span class="glyphicon glyphicon-gift"></span> Pledge This Gift</button>    
                             <?php else: ?>
-                            <button class="btn btn-default" disabled="disabled"><span class="glyphicon glyphicon-gift"></span>Gifted</button>
+                            <button class="btn btn-default" disabled="disabled"><span class="glyphicon glyphicon-gift"></span> Gifted</button>
                             <?php endif ?>
                           </li>
                       <?php endforeach ?>
@@ -99,8 +99,8 @@ $(document).ready(function(){
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h4><?php echo $stories[0]['shelter_name']?></h4>
-                <h6><?php echo $stories[0]['city_name']?>, <?php echo $stories[0]['region_name']?></h6>
+                <h4><?php echo $stories[0]['shelter_name']?><br/><small><?php echo $stories[0]['city_name']?>, <?php echo $stories[0]['region_name']?></small></h4>
+                
                 <p>
                     <?php echo $stories[0]['shelter_bio']?>
                 </p>
