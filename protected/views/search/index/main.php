@@ -2,7 +2,13 @@
 	<div class='row'>
 		<div class='col-md-12'>
 			<h2>Search</h2>
-			<p>Use this search dashboard to search all stories ...</p>
+
+            <ul class="breadcrumb">
+                <li><a href="/">Homeless Partners</a></li>
+                <li class='active'>Search</li>
+            </ul>
+
+			<p>Use this search dashboard to search all stories, shelters, and gifts through the entire Homeless Partners platform. Select the entire site, or set specific search requirements.</p>
 
 			<form method='post'>
 				<input type='text' name='query' placeholder='Search term...' value='<?php echo $query?>' />

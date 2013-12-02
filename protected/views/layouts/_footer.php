@@ -9,6 +9,7 @@
 			  <h5 class="title">Homeless Partners</h5>
 				<ul class="bottom-links">
 					<li><a href="#fakelink">How It Works</a></li>
+					<li><a href="/search">Search</a></li>
 					<li><a href="#fakelink">Contact Us</a></li>
 					<li><a href="#fakelink">Privacy</a></li>
 					<li><a href="#fakelink">Terms</a></li>
