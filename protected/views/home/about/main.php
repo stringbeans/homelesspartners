@@ -10,7 +10,6 @@
         <h2>Our History</h2>
         <p>The Homeless Partners Christmas Wish List was started by Dan and Jennie Keeran in Vancouver,   British Columbia in 2005. They were inspired to create the program after sharing breakfast with a homeless person and hearing their story and challenges living on the street.</p>
 
-        <h2>Quote</h2>
         <p>"If other people could hear this story, they would be moved, just like us and want to help. If there was only a way that people in the community could hear this story and be able to help him, personally.."</p>
 
         <p>That was the seed of Homeless Partners - listing the stories and Christmas wish lists of the homeless on a website so that others could read the story and give a gift and caring message - a practical way to help the poor. After all, that's what everyone is looking for - to be loved and cared for, and this is a way that people could do it practically, safely and personally.</p>
