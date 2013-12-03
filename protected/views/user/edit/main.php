@@ -44,6 +44,37 @@ $(document).ready(function() {
 			$('#userEditPassword').val('');
 		}
 	});
+
+	$('#js-user-edit-form').validate({
+        submitHandler: function(form) {
+            form.submit();
+        },
+        errorLabelContainer: "#js-registration-message-box",
+        onsubmit: true,
+        errorElement: "div",
+        rules: {
+        	'name': 'required',
+            'email': {
+      			required: true,
+      			email: true
+    		},
+            'password': {
+            	required: {
+                    depends: function(element) {
+                        return $("#changePassword").is(":checked") || $("#changePassword").length == 0;
+                    }
+                },
+      			minlength: 6,
+            }
+        },
+        messages: {
+        	name: "Please enter a name",
+	    	password: "Password must be minimum 6 characters long",
+	    	email: {
+	      		required: "Please enter a valid email address"
+	    	}
+	  	}
+	});
 });
 </script>
 
@@ -71,7 +102,7 @@ $(document).ready(function() {
 		 	<?php endif; ?>
 		</div>
 		<div class='col-md-6'>
-			<form class="form-horizontal" action='<?php echo $this->createUrl("user/save") ?>' method="post">
+			<form id="js-user-edit-form" class="form-horizontal" action='<?php echo $this->createUrl("user/save") ?>' method="post">
 				<input type='hidden' name='userId' value='<?php echo !empty($user) ? $user->user_id : ''; ?>' />
 
 				<div class="form-group row">
@@ -139,6 +170,7 @@ $(document).ready(function() {
 				<div class='form-group row'>
 					<div class="col-md-10">
 						<input type='submit' class='btn btn-success' value="<?php echo empty($user)?'Create':'Save'; ?>" />
+						<div id="js-registration-message-box"></div>
 					</div>
 				</div>
 			</form>
