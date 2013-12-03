@@ -1,5 +1,5 @@
 <div class='container'>
-	<div class='row text-center'>
+	<div class='row'>
 		<?php foreach(Yii::app()->user->getFlashes() as $key => $message): ?>
 			<div class="alert alert-<?php echo $key ?>" style="margin-top: 20px;">
 			<?php echo $message; ?>
@@ -18,6 +18,7 @@
 	<div class="row">
 		<div class="col-md-3 col-md-offset-3">
 			<img src="" width="150" height="150" />
+			<!-- THE MAP GOES HERE -->
 		</div>
 		<div class="col-md-3">
 			<p>Homeless Partners<br />
@@ -28,24 +29,49 @@
 		</div>
 
 	</div>
+	<div class="row">
+		<div class='col-md-12'>
+			<h3>Contact us via social media</h3>
+			<?php $social = array(
+				'twitter' => array('Twitter','http://twitter.com/homelesspartner'),
+				'facebook' => array('Facebook','http://facebook.com/homelesspartners'),
+				'googleplus' => array('Google Plus','https://plus.google.com/b/110397886742818442511/110397886742818442511/'),
+				'instagram' => array('Instagram','http://instagram.com/homelesspartners'),
+				'youtube' => array('YouTube','http://www.youtube.com/channel/UCRBq-7iRdoyErE3fCmcTJ5g/'),
+				'linkedin' => array('LinkedIn','http://www.linkedin.com/company/homeless-partners')
+			); ?>
 
-	<div class="row" style="margin-bottom: 20px;">
-		<div class='col-md-6 col-md-offset-3'>
-		<h3>Send us a message</h3>
-			<form action="<?php echo Yii::app()->createUrl('home/contactProcessor'); ?>" method="post">
-	  			<div class="form-group">
-	    			<label for="name">Name</label>
-	    			<input type="text" class="form-control" id="name" name="name">
-	  			</div>
-	  			<div class="form-group">
-	    			<label for="email">Email</label>
-	    			<input type="text" class="form-control" id="email" name="email">
-	  			</div>
-	  			<div class="form-group">
-	    			<textarea id="body" name="body" class="form-control" placeholder="Message..." style="height: 150px;"></textarea>
-	  			</div>
-	  			<button type="submit" class="btn btn-success pull-right">Send</button>
-			</form>
+			<?php foreach ($social as $classname=>$label): ?>
+			<a href="<?php echo $label[1]?>" class="btn btn-social-<?php echo $classname?>">
+				<i class="fui-<?php echo $classname?>"></i>
+				<?php echo $label[0] ?>
+			</a>
+			<?php endforeach; ?>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class='col-md-12'>
+			<h3>Send us a message</h3>
+			<div id="wufoo-r1sfdc9u1dao5ax">
+			Fill out my <a href="https://homelesspartners.wufoo.com/forms/r1sfdc9u1dao5ax">online form</a>.
+			</div>
+			<script type="text/javascript">var r1sfdc9u1dao5ax;(function(d, t) {
+			var s = d.createElement(t), options = {
+			'userName':'homelesspartners', 
+			'formHash':'r1sfdc9u1dao5ax', 
+			'autoResize':true,
+			'height':'751',
+			'async':true,
+			'host':'wufoo.com',
+			'header':'show', 
+			'ssl':true};
+			s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
+			s.onload = s.onreadystatechange = function() {
+			var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+			try { r1sfdc9u1dao5ax = new WufooForm();r1sfdc9u1dao5ax.initialize(options);r1sfdc9u1dao5ax.display(); } catch (e) {}};
+			var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+			})(document, 'script');</script>			
 		</div>
 	</div>
 </div>
