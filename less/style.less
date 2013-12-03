@@ -53,8 +53,20 @@ body {
   position: relative;
   padding-top: 76px;
 }
-body, p, .table, .alert {
+body, p, .table, .alert, blockquote p {
   @media (min-width: @screen-sm-min) { font-size: 18px; }
+}
+
+blockquote {
+  font-style: italic;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 80%;
+}
+
+blockquote p {
+  font-size: 21px;
+  font-weight: 300;
 }
 
 .lead {
@@ -161,19 +173,24 @@ section {
 // Navbar
 // --------------------------------------------------
 
+.navbar-brand {
+  width: 160px;
+  height: 60px;
+  background: url('../images/logos/hp.png') center center no-repeat;
+  //background-image: url('../images/logos/hp.svg');
+  background-size: 100%;
+  text-indent: -9999999px;
+  display: block;
+  float: none;
+}
+
 .navbar {
   border-radius: 0;
   -webkit-transition: all .25s linear;
   -moz-transition: all .25s linear;
   -o-transition: all .25s linear;
   transition: all .25s linear;
-  .navbar-brand {
-    width: 160px;
-    background: url('../images/logos/hp.png') center center no-repeat;
-    //background-image: url('../images/logos/hp.svg');
-    background-size: 100%;
-    text-indent: -9999999px;
-  }
+
   .nav {
     //@media (max-width: 979px) { float: left !important; }
   }
@@ -191,15 +208,19 @@ section {
 
 .navbar-ondark {  
   background: none;
-  .navbar-brand { 
-    background-image: url('../images/logos/hp-inverse.png');
-    //background-image: url('../images/logos/hp-inverse.svg');
-   }
   .nav > li > a { color: @inverse; }
   .btn-navbar:before {
     color: white;
   }
 }
+
+.navbar-ondark, .on-dark {  
+  .navbar-brand { 
+    background-image: url('../images/logos/hp-inverse.png');
+    //background-image: url('../images/logos/hp-inverse.svg');
+   }
+}
+
 
 /*
 Sections / Pages
@@ -552,3 +573,55 @@ Sections / Pages
   }
 }
 
+
+.tile {
+  margin-bottom: 60px;
+  text-align: center;
+  h3 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 15px;
+    margin-bottom: 33px;
+  }
+}
+
+.narrow-container .row {
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+.bottom-menu .title {
+  font-size: 13px;
+}
+
+.bottom-menu .bottom-links {
+  font-size: 13px;
+}
+
+.bottom-menu .navbar-brand {
+  width: 140px;
+  margin-bottom: 20px;
+}
+
+.map { 
+  margin-bottom: 20px;
+}
+
+.contact-address {
+  margin-top: 70px;
+}
+
+
+[class*="btn-social-"] {
+  .button-size(10px, 19px, @btn-font-size-hg, @btn-line-height-hg, @border-radius-large);
+  margin: 10px;
+}
+
+.btn-social-youtube {
+  .social-button-variant(@btn-default-color, @social-youtube);
+}
+.btn-social-instagram {
+  .social-button-variant(@btn-default-color, @social-instagram);
+}

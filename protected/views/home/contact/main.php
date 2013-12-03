@@ -1,23 +1,15 @@
 <section>
 	<div class='container'>
 		<div class='row'>
-			<?php foreach(Yii::app()->user->getFlashes() as $key => $message): ?>
-				<div class="alert alert-<?php echo $key ?>" style="margin-top: 20px;">
-				<?php echo $message; ?>
-				</div>
-			<?php endforeach; ?>
-			<div class="col-md-6 pull-left">
-				<h3>Contact Us</h3>
+			<div class="col-md-9 center-block">
+				<h2>Contact Us</h2>
 				<p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+				Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+				when an unknown printer took a galley of type and scrambled it to make a type 
+				specimen book.</p>
+				<a href="#contact-us" class="btn btn-primary btn-hg">Send us a message</a>
 			</div>
-			<div class="col-md-5 col-md-offset-1 pull-right text-center">
-				<img src="http://placehold.it/300x200"/><br/>
-				<p>Homeless Partners<br />
-				123 Some Street<br />
-				Vancouver, BC<br />
-				123 !@#<br />
-				</p>
-			</div> 
 		</div>
 	</div>
 </section>
@@ -25,7 +17,35 @@
 <section class="section-offset">
 	<div class='container'>
 		<div class='row'>
+			<?php foreach(Yii::app()->user->getFlashes() as $key => $message): ?>
+				<div class="alert alert-<?php echo $key ?>" style="margin-top: 20px;">
+				<?php echo $message; ?>
+				</div>
+			<?php endforeach; ?>
+			<div class="col-md-9 center-block">
+				<div class="map thumbnail">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2602.4046244683213!2d-123.13806914999999!3d49.2876778!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548672288c837eef%3A0x9f231c79076c7bbe!2s301-1050+bidwell+street!5e0!3m2!1sen!2s!4v1386093259906" width="100%" height="350" frameborder="0" style="border:0"></iframe></div>
+				</div>
+				<div class="text-center">
+					<h3 class="lead">
+						Homeless Partners
+					</h3>
+						<p>
+						123 Parkplace Road<br />
+						Victoria, BC Canada<br />
+						V6B 4N2<br />
+						</p>
+					</div>
+				</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class='container'>
+		<div class='row'>
 			<div class="col-md-12 text-center">
+				<h4 class="section-title">Contact us via social media</h4>
 					<?php $social = array(
 					'twitter' => array('Twitter','http://twitter.com/homelesspartner'),
 					'facebook' => array('Facebook','http://facebook.com/homelesspartners'),
@@ -46,10 +66,10 @@
 	</div>
 </section>
 
-<section>
+<section id="contact-us">
 	<div class='container'>
 		<div class='row'>
-			<div class="col-md-12 text-center">
+			<div class="col-md-9 center-block">
 					<div id="wufoo-r1sfdc9u1dao5ax">
 					Fill out my <a href="https://homelesspartners.wufoo.com/forms/r1sfdc9u1dao5ax">online form</a>.
 					</div>

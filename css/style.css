@@ -43,9 +43,20 @@ body {
   body,
   p,
   .table,
-  .alert {
+  .alert,
+  blockquote p {
     font-size: 18px;
   }
+}
+blockquote {
+  font-style: italic;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 80%;
+}
+blockquote p {
+  font-size: 21px;
+  font-weight: 300;
 }
 .lead {
   font-size: 1.556em;
@@ -151,18 +162,21 @@ section {
   min-height: 100%;
   height: auto;
 }
+.navbar-brand {
+  width: 160px;
+  height: 60px;
+  background: url('../images/logos/hp.png') center center no-repeat;
+  background-size: 100%;
+  text-indent: -9999999px;
+  display: block;
+  float: none;
+}
 .navbar {
   border-radius: 0;
   -webkit-transition: all .25s linear;
   -moz-transition: all .25s linear;
   -o-transition: all .25s linear;
   transition: all .25s linear;
-}
-.navbar .navbar-brand {
-  width: 160px;
-  background: url('../images/logos/hp.png') center center no-repeat;
-  background-size: 100%;
-  text-indent: -9999999px;
 }
 .navbar .nav > li > a {
   font-size: 14px;
@@ -175,14 +189,15 @@ section {
 .navbar-ondark {
   background: none;
 }
-.navbar-ondark .navbar-brand {
-  background-image: url('../images/logos/hp-inverse.png');
-}
 .navbar-ondark .nav > li > a {
   color: #ffffff;
 }
 .navbar-ondark .btn-navbar:before {
   color: white;
+}
+.navbar-ondark .navbar-brand,
+.on-dark .navbar-brand {
+  background-image: url('../images/logos/hp-inverse.png');
 }
 /*
 Sections / Pages
@@ -532,4 +547,66 @@ Sections / Pages
 }
 .pledge-checkout .list-group-item .btn-success {
   float: right;
+}
+.tile {
+  margin-bottom: 60px;
+  text-align: center;
+}
+.tile h3 {
+  font-size: 20px;
+}
+.tile p {
+  font-size: 15px;
+  margin-bottom: 33px;
+}
+.narrow-container .row {
+  width: 80%;
+  margin: 0 auto;
+}
+.bottom-menu .title {
+  font-size: 13px;
+}
+.bottom-menu .bottom-links {
+  font-size: 13px;
+}
+.bottom-menu .navbar-brand {
+  width: 140px;
+  margin-bottom: 20px;
+}
+.map {
+  margin-bottom: 20px;
+}
+.contact-address {
+  margin-top: 70px;
+}
+[class*="btn-social-"] {
+  padding: 10px 19px;
+  font-size: 17px;
+  line-height: 1.227;
+  border-radius: 6px;
+  margin: 10px;
+}
+.btn-social-youtube {
+  color: #ffffff;
+  background-color: #b51b1b;
+}
+.btn-social-youtube:hover,
+.btn-social-youtube:focus {
+  background-color: #c44949;
+}
+.btn-social-youtube:active,
+.btn-social-youtube.active {
+  background-color: #9a1717;
+}
+.btn-social-instagram {
+  color: #ffffff;
+  background-color: #517fa4;
+}
+.btn-social-instagram:hover,
+.btn-social-instagram:focus {
+  background-color: #7499b6;
+}
+.btn-social-instagram:active,
+.btn-social-instagram.active {
+  background-color: #456c8b;
 }

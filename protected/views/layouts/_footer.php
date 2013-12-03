@@ -1,8 +1,8 @@
-<footer class="bottom-menu bottom-menu-large bottom-menu-inverse">
+<footer class="bottom-menu bottom-menu-large bottom-menu-inverse on-dark">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2 navbar-brand">
-				<a href="/">Homeless Partners</a>
+			<div class="col-md-2">
+				<a href="/" class="navbar-brand">Homeless Partners</a>
 			</div>
 
 			<div class="col-md-2">
@@ -34,15 +34,6 @@
 					<?php foreach ($this->getCityList() as $city): ?>
 					<li><a href="<?php echo $this->createUrl("city/cityShelters", array('id' => $city->city_id)) ?>"><?php echo $city->name?></a></li>
 					<?php endforeach; ?>
-					<!--
-					<li><a href="#fakelink">Victoria</a></li>
-					<li><a href="#fakelink">Regina</a></li>
-					<li><a href="#fakelink">Long Beach</a></li>
-					<li><a href="#fakelink">North Vancouver</a></li>
-					<li><a href="#fakelink">New Westminister</a></li>
-					<li><a href="#fakelink">Cloverdale</a></li>
-					<li><a href="#fakelink">Surrey</a></li>
-					-->
 				</ul>
 			</div>
 
