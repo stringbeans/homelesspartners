@@ -19,6 +19,16 @@ class HomeController extends Controller
 		$this->render('/home/contact/main');
 	}
 
+	public function actionVolunteer() 
+	{
+		$this->render('/home/volunteer/main');		
+	}
+
+	public function actionDonate() 
+	{
+		$this->render('/home/donate/main');			
+	}
+
 	public function actionSponsors()
 	{
 		$this->render('/home/sponsors/main');
