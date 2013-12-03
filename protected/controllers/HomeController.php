@@ -55,4 +55,15 @@ class HomeController extends Controller
 		}
 		$this->redirect($this->createUrl('home/contact'));
 	}
+
+	public function actionWishcount() 
+	{
+		$counts = array(
+			'stories' => Stories::model()->count(),
+			'gifts' => Gifts::model()->count(),
+			'pledges' => Pledges::model()->count()
+		);
+
+		echo json_encode($counts);
+	}
 }
