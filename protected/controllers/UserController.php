@@ -134,6 +134,7 @@ class UserController extends Controller
 			$user->role = $role;
 			$user->name = $name;
 			$user->save();
+			Yii::app()->user->setFlash('success', $name . '\'s account has been saved.');
 
 			CityCoordinators::model()->deleteAllByAttributes(array('user_id' => $userId));
 			ShelterCoordinators::model()->deleteAllByAttributes(array('user_id' => $userId));
@@ -142,6 +143,7 @@ class UserController extends Controller
 		}
 		else {
 			$user = Users::model()->create($name, $email, $password, $role);
+			Yii::app()->user->setFlash('success', 'New user "' . $name . '" has been created.');
 		}
 
 		if ($role == Users::ROLE_CITY) {
@@ -169,8 +171,6 @@ class UserController extends Controller
 			}
 
 		}
-
-		Yii::app()->user->setFlash('success', "Saved");
 
 		$this->redirect($this->createUrl("user/edit", array(
 			'id' => $user->user_id
