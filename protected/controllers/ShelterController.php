@@ -232,6 +232,11 @@ class ShelterController extends Controller
         $removeImage = Yii::app()->input->post("remove_image");
 
 
+        if (!empty($website) && strpos($website, "http://") !== 0) {
+            $website = "http://".$website;
+        }
+
+
         $dropoffNames = Yii::app()->input->post("dropoffName", array());
         $dropoffAddresses = Yii::app()->input->post("dropoffAddress", array());
         $dropoffNotes = Yii::app()->input->post("dropoffNotes", array());
