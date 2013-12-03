@@ -40,13 +40,25 @@
 	        )
 		});
 
+		$(".datepicker").click(function(event){
+			$(event.currentTarget).closest(".row").find(".missing-delivery-date").hide();
+			$(event.currentTarget).closest(".row").find(".has-error").removeClass("has-error");
+		});
+
+		$(".datepicker").blur(function(event){
+			$(event.currentTarget).closest(".row").find(".missing-delivery-date").hide();
+			$(event.currentTarget).closest(".row").find(".has-error").removeClass("has-error");
+		});
+
 		$("#pledgeCheckoutForm").validate({
 	        submitHandler: function(form) {
 	            form.submit();
 	        },
 	        onsubmit: true,
-	        onkeyup: false,
-	        focusCleanup: true,
+	        //onkeyup: false,
+	        //onclick: false,
+	        onfocusout: true,
+	        //focusCleanup: true,
 	        messages: {
 	        },
 	        errorPlacement: function(error, element) {
@@ -54,10 +66,15 @@
 	        highlight: function(element, errorClass) {
 	            $element = $(element);
 	            $element.closest("div.form-group").addClass(errorClass);
+
+	            $element.closest(".row").find(".missing-delivery-date").show();
+	            console.log($element.closest(".row").find(".missing-delivery-date"));
 	        },
 	        unhighlight: function(element, errorClass) {
 	            $element = $(element);
 	            $element.closest("div.form-group").removeClass(errorClass);
+
+	            $element.closest(".row").find(".missing-delivery-date").hide();
 	        },
 	        //where to post messages
 	        errorClass: "has-error",
@@ -119,13 +136,15 @@
 				    		<div class="col-sm-7">
 				    			<div class="form-group">
 				    				<label class="col-sm-6 control-label">Estimated delivery date</label>
-				          	<div class="col-sm-6 input-group">
-				          	  <span class="input-group-btn">
-				          	  	<button class="btn" type="button"><span class="fui-calendar"></span></button>
-				          	  </span>
-				          	  <input type="text" class="form-control datepicker" name='deliveryDate[<?php echo $shelterId ?>]' value="">
-				          	</div>
-				          </div>
+				          			<div class="col-sm-6 input-group">
+				          	  			<span class="input-group-btn">
+				          	  				<button class="btn" type="button"><span class="fui-calendar"></span></button>
+				          	  			</span>
+				          	  			<input type="text" class="form-control datepicker" name='deliveryDate[<?php echo $shelterId ?>]' value="">
+
+				          			</div>
+				          		</div>
+				          		<div class='alert alert-danger missing-delivery-date' style='display: none;'>Please add estimated delivery date for each shelter</div>
 				    		</div>
 				    	</div>
 							<table class='table'>
