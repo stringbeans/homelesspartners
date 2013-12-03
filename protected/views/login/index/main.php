@@ -13,6 +13,8 @@
 				<div class="form-group">
 					<label for="password">Password</label>
 	    			<input type="password" class="form-control" id="password" name="password" maxlength="16">
+	    			<div class="pull-right"><small><a href="<?php echo Yii::app()->createUrl('login/forgotPassword'); ?>">Forgot password?</a></small></div>
+
 	  			</div>
 	  			<div class="form-group">
 					<button type="submit" class="btn btn-success">Login</button>
