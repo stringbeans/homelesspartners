@@ -1,1 +1,1 @@
-(function(e){if(e("body").hasClass("home-index")){e(".navbar").addClass("navbar-ondark");e(window).scroll(function(){e(window).scrollTop()>80?e(".navbar").removeClass("navbar-ondark"):e(".navbar").addClass("navbar-ondark")})}})(jQuery);
+(function(e){if(e("body").hasClass("home-index")){e(".navbar").addClass("navbar-ondark");e(window).scroll(function(){e(window).scrollTop()>80?e(".navbar").removeClass("navbar-ondark"):e(".navbar").addClass("navbar-ondark")})}e(".fitvids").fitVids()})(jQuery);

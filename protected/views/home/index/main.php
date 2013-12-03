@@ -14,7 +14,7 @@
 
 <section class="mission">
 	<div class="container">
-		<p class="lead">We're a Not-For-Profit organization on a mission to help homeless people around the world. Our platform allows communities to post personal stories and Christmas wish lists of individual homeless people. <a href="volunteer.html">Join us</a>.</p>
+		<p class="lead">We're a Not-For-Profit organization on a mission to help homeless people around the world. Our platform allows communities to post personal stories and Christmas wish lists of individual homeless people. Join us.</p>
 	</div>
 </section>
 
@@ -62,11 +62,11 @@
 		  	The most encouraging thing is knowing that people care. I find it really encouraging that total strangers could care so much about someone they don't even know.
 			</div>
 		  <div class="tab-pane" id="testimonial-two">
-				I had no idea buying a small gift and writing a personal message for someone who really needs it, could have the potential to make such a big change in someones life 		  </div>
+				I had no idea buying a small gift and writing a personal message for someone who really needs it, could have the potential to make such a big change in someones life. 		  </div>
 		  <div class="tab-pane" id="testimonial-three">
-				Watching the joy on the faces of people at Christmas time getting their Wishlist of their little essentials and how they react when reading the notes that accompany these gifts, is incredibly touching		  </div>
+				Watching the joy on the faces of people at Christmas time getting their Wishlist of their little essentials and how they react when reading the notes that accompany these gifts, is incredibly touching.		  </div>
 		  <div class="tab-pane" id="testimonial-four">
-				Many of our residents do not have the joy of celebrating Christmas with their families so this time together and these personal gifts make a big difference to their spirits		  </div>
+				Many of our residents do not have the joy of celebrating Christmas with their families so this time together and these personal gifts make a big difference to their spirits.		  </div>
 		</div>
 		<ul class="row nav">
 			<li class="media col-sm-3 col-xs-6 active">
@@ -133,8 +133,8 @@
 
 <section>
 	<div class="action container">
-		<p class="lead">We’re helping homeless people together with <strong>5,000</strong> donors just like you. <a href="volunteer.html">Join us today</a>.</p>
-		<a href="#read-stories" class="btn btn-primary btn-hg">Read Stories Now</a> <a href="volunteer.html" class="btn btn-inverse btn-hg">Volunteer Today</a>
+		<p class="lead">We’re helping homeless people together with <strong>5,000</strong> donors just like you. Join us today.</p>
+		<a href="#read-stories" class="btn btn-primary btn-hg">Read Stories Now</a> <a href="/volunteer" class="btn btn-inverse btn-hg">Volunteer Today</a>
 	</div>
 </section>
 
@@ -161,7 +161,7 @@
 				</a>
 			</div>
 			<div class="col-sm-6 col-md-4">
-				<a href="city/cityShelters?id=7" class="city-tile">
+				<a href="city/cityShelters?id=31" class="city-tile">
 					<img src="images/cities/longbeach.png" class="img-responsive"/>
 					<h3 class="city-title">Long Beach</h3>
 				</a>
@@ -179,7 +179,7 @@
 				</a>
 			</div>
 			<div class="col-sm-6 col-md-4">
-				<a href="#" class="city-tile">
+				<a href="city/cityShelters?id=33" class="city-tile">
 					<img src="images/cities/cloverdale.png" class="img-responsive"/>
 					<h3 class="city-title">Cloverdale</h3>
 				</a>
@@ -191,7 +191,7 @@
 				</a>
 			</div>
 			<div class="col-sm-6 col-md-4">
-				<a href="city/cityShelters?id=28" class="add-city">
+				<a href="/volunteer" class="city-tile">
 					<img src="images/cities/add.png" class="img-responsive"/>
 				</a>
 			</div>
