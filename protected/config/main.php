@@ -62,6 +62,11 @@ return array(
 			'rules'=>array(
 				//'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				//'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+				'contact' => 'home/contact',
+				'volunteer' => 'home/volunteer',
+				'sponsors' => 'home/sponsors',
+				'donate' => 'home/donate',
+
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
