@@ -62,10 +62,21 @@ return array(
 			'rules'=>array(
 				//'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				//'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+				'howItWorks' => 'home/howItWorks',
 				'contact' => 'home/contact',
-				'volunteer' => 'home/volunteer',
+				'privacy' => 'home/privacy',
+				'terms' => 'home/terms',
+				'search' => 'search/index',
+
+				'team' => 'home/team',
+				'technology' => 'home/technology',
 				'sponsors' => 'home/sponsors',
+				'media' => 'home/media',
+
+				'volunteer' => 'home/volunteer',
 				'donate' => 'home/donate',
+				'login' => 'login/index',
+				'register' => 'login/register',
 
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
