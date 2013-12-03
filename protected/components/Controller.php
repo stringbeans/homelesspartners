@@ -31,7 +31,7 @@ class Controller extends CController
 	public function filters()
 	{
 		return array(
-			//'accessControl', // perform access control for CRUD operations
+			'accessControl', // perform access control for CRUD operations
 		);
 	}
 
@@ -39,6 +39,14 @@ class Controller extends CController
 	{	
 
 		return array(
+			array(
+				'allow',
+				'controllers' => array('city'),
+				'actions' => array(
+					'cityShelters'
+				),
+				'users' => array('*'),
+			),
 			array(
 				'allow',
 				'controllers' => array('city'),
@@ -62,16 +70,46 @@ class Controller extends CController
 				'users' => array('*'),
 			),
 			array(
+				'deny',
+				'controllers' => array('login'),
+				'actions' => array(
+					'register',
+					'login', 
+				),
+				'users' => array('@'),
+			),
+			array(
 				'allow',
 				'controllers' => array('login'),
 				'users' => array('*'),
 			),
+
 			array(
 				'allow',
 				'controllers' => array('pledge'),
+				'actions' => array(
+					'addPledge',
+					'deletePledgeFromSession',
+					'viewCart',
+					'confirmPledges',
+					'thankYou'
+				),
+				'users' => array('@'),
+			),
+
+			array(
+				'allow',
+				'controllers' => array('pledge'),
+				'actions' => array(
+					'index',
+					'setStatus',
+					'delete'
+				),
 				'users' => array('@'),
 				'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER),
 			),
+
+			
 			array(
 				'allow',
 				'controllers' => array('region'),
@@ -81,8 +119,24 @@ class Controller extends CController
 			array(
 				'allow',
 				'controllers' => array('shelter'),
+				'actions' => array(
+					'shelterStories'
+				),
+				'users' => array('*'),
+			),
+			array(
+				'allow',
+				'controllers' => array('shelter'),
 				'users' => array('@'),
-				'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY),
+				'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER),
+			),
+			array(
+				'allow',
+				'controllers' => array('story'),
+				'actions' => array(
+					'story'
+				),
+				'users' => array('*'),
 			),
 			array(
 				'allow',
@@ -90,12 +144,14 @@ class Controller extends CController
 				'users' => array('@'),
 				'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER, Users::ROLE_CONTRIBUTOR),
 			),
+
 			array(
 				'allow',
 				'controllers' => array('user'),
 				'users' => array('@'),
 				'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY),
 			),
+
 			array('deny',
 				'users' => array('*'),
 			)

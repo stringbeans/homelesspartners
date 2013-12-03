@@ -9,25 +9,6 @@ class ShelterController extends Controller
         $shelter = Shelters::model()->findByPk($shelterId);
         $stories = Stories::model()->getByShelterId($shelterId);
 
-
-        //$shelter = Shelters::model()->with(array('shelterDropoffs', 'city.region', 'stories.gifts.pledges'))->findByPk($shelterId);
-        $shelterStats = Shelters::model()->getStats($shelterId);
-
-
-        /*$shelter = Shelters::model()->with(array('shelterDropoffs', 'city.region', 'stories.gifts'))->find(array(
-            'select' => 'count(pledges.pledge_id) as numPledges',
-            'join' => 'pledges p on p.gift_id = gifts.gift_id',
-            'condition' => 't.shelter_id = :shelterId',
-            'group' => 'gifts.gift_id',
-            'order' => 'numPledges DESC',
-            'params' => array(
-                ':shelterId' => $shelterId
-            )
-        ));
-
-        var_dump($shelter);
-        exit;
-        */
         $shelterStats = $shelter->getStats();
 
 

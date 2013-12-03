@@ -8,9 +8,11 @@
                 <li>Shelter Management</li>
                 <li class='active'>View Shelters</li>
             </ul>
+            <?php if(in_array(Yii::app()->user->role, array(Users::ROLE_ADMIN, Users::ROLE_CITY))): ?>
             <p class='text-right'>
                 <a href='<?php echo $this->createUrl("shelter/edit") ?>' class='btn btn-warning'>+ Create new</a>
             </p>
+            <?php endif; ?>
             <!--TODO: tried to implement sorting like on the pledge page but couldn't quite figure it out -->
 
             <table class='table table-hover'>
