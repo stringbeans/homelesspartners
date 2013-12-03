@@ -10,8 +10,8 @@
 				<ul class="bottom-links">
 					<li><a href="<?php echo $this->createUrl("home/howItWorks") ?>">How It Works</a></li>
 					<li><a href="<?php echo $this->createUrl("home/contact") ?>">Contact Us</a></li>
-					<li><a href="<?php echo $this->createUrl("login/index") ?>">Login</a></li>
-					<li><a href="<?php echo $this->createUrl("login/register") ?>">Register</a></li>
+					<?php if(Yii::app()->user->isGuest): ?><li><a href="<?php echo $this->createUrl("login/index") ?>">Login</a></li><?php endif; ?>
+					<?php if(Yii::app()->user->isGuest): ?><li><a href="<?php echo $this->createUrl("login/register") ?>">Register</a></li><?php endif; ?>
 					<li><a href="<?php echo $this->createUrl("home/privacy") ?>">Privacy</a></li>
 					<li><a href="<?php echo $this->createUrl("home/terms") ?>">Terms</a></li>
 					<li><a href="<?php echo $this->createUrl("search/index") ?>">Search</a></li>

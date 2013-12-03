@@ -4,6 +4,10 @@ class LoginController extends Controller
 {
     public function actionIndex()
     {
+    	if(!Yii::app()->user->isGuest)
+    	{
+    		$this->redirect($this->createUrl('home/index'));
+    	}
         $this->pageTitle = 'Login';
         $this->render('/login/index/main');
     }
@@ -29,6 +33,10 @@ class LoginController extends Controller
 
     public function actionRegister()
     {
+    	if(!Yii::app()->user->isGuest)
+    	{
+    		$this->redirect($this->createUrl('home/index'));
+    	}
         Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
         $this->pageTitle = 'Register';
         $this->render('/login/register/main');
@@ -106,6 +114,10 @@ class LoginController extends Controller
 
     public function actionforgotPassword()
     {
+    	if(!Yii::app()->user->isGuest)
+    	{
+    		$this->redirect($this->createUrl('home/index'));
+    	}
         $this->pageTitle = 'Forgot Password';
         $this->render('/login/forgotpassword/main');
     }
@@ -138,6 +150,10 @@ class LoginController extends Controller
 
     public function actionResetPassword()
     {
+    	if(!Yii::app()->user->isGuest)
+    	{
+    		$this->redirect($this->createUrl('home/index'));
+    	}
         Yii::app()->clientScript->registerScriptFile('/js/jquery.validate.js', CClientScript::POS_END);
         $resetPasswordKey = Yii::app()->input->get('key');
         $userId = Yii::app()->input->get('user_id');
