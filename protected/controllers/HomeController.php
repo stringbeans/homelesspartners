@@ -14,6 +14,11 @@ class HomeController extends Controller
         //$this->render('/home/static/story');
 	}
 
+	public function actionAbout()
+	{
+		$this->render('/home/about/main');
+	}
+
 	public function actionContact()
 	{
 		$this->render('/home/contact/main');
