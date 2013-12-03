@@ -98,6 +98,10 @@ class CityController extends Controller
 		$imageLinkUrl = Yii::app()->input->post("image_link_url");
 		$removeImage = Yii::app()->input->post("remove_image");
 
+		if (!empty($imageLinkUrl) && strpos($imageLinkUrl, "http://") !== 0) {
+			$imageLinkUrl = "http://".$imageLinkUrl;
+		}
+
 		$city = new Cities();
 		if(!empty($cityId))
 		{
