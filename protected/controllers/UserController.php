@@ -37,7 +37,7 @@ class UserController extends Controller
 			$user = Users::model()->findByPk($userId);
 		}
 
-		$cities = Cities::model()->findAll();
+		
 
 		$selectedCitiesLookup = array();
 		if(isset($user) && $user->role == Users::ROLE_CITY)
@@ -78,7 +78,7 @@ class UserController extends Controller
 		}
 
 		$roles = array();
-
+		$cities = array();
 		if(Yii::app()->user->role == Users::ROLE_ADMIN)
 		{
 			$roles = array(
@@ -88,6 +88,8 @@ class UserController extends Controller
 				Users::ROLE_CONTRIBUTOR => 'Typist',
 				Users::ROLE_USER => 'User',
 			);
+
+			$cities = Cities::model()->findAll();
 		}
 		if(Yii::app()->user->role == Users::ROLE_CITY)
 		{
@@ -95,6 +97,20 @@ class UserController extends Controller
 				Users::ROLE_SHELTER => 'Shelter Manager',
 				Users::ROLE_CONTRIBUTOR => 'Contributor',
 			);
+
+			$cityCoordinators = CityCoordinators::model()->findAllByAttributes(array('user_id' => Yii::app()->user->id));
+			$allowedCityIds = array();
+			foreach($cityCoordinators as $cc)
+			{
+				$allowedCityIds[] = $cc->city_id;
+			}
+
+			if(!empty($allowedCityIds))
+			{
+				$cities = Cities::model()->findAll(array(
+					'condition' => 't.city_id IN ('.implode(",", $allowedCityIds).')'
+				));
+			}
 		}
 
 		$this->render("/user/edit/main", array(
