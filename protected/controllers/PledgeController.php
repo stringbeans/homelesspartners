@@ -315,7 +315,7 @@ class PledgeController extends Controller
 		$email .= "\n";
 		$email .= "=====================================";
 		$email .= "\n\n";
-		$email .= "If you are unable to pledge one or more gifts, please email <pledges@homelesspartners.com> or reply to this email.";
+		$email .= "If you are unable to pledge one or more gifts, please email pledges@homelesspartners.com.";
 		$email .= "\n\n";
 		$email .= "Thank you for your pledge,";
 		$email .= "\n\n";
