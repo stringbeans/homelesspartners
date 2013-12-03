@@ -115,31 +115,31 @@ $(document).ready(function(){
             </table>
         </div>
 </section>
-<?php if(!empty($shelter->stories)): ?>
+<?php if(!empty($stories)): ?>
 <section>
-    <?php foreach($shelter->stories as $story): ?>
+    <?php foreach($stories as $story): ?>
     <div class="container shelter-stories-container">
         <div class="page-header">
-          <h3><a href="<?php echo $this->createUrl("story/story", array('id' => $story->story_id)) ?>'"><?php if(!empty($story->fname)): ?><?php echo $story->fname ?> <?php echo $story->lname ?>
-          <?php endif; ?></a><small class="pull-right">ID: <?php echo $story->assigned_id ?></small></h3>
+          <h3><a href="<?php echo $this->createUrl("story/story", array('id' => $story['story_id'])) ?>'"><?php if(!empty($story['fname'])): ?><?php echo $story['fname'] ?> <?php echo $story['lname'] ?>
+          <?php endif; ?></a><small class="pull-right">ID: <?php echo $story['assigned_id'] ?></small></h3>
         </div>
         <div class="row">
             <div class="col-md-7">
-                <p><?php echo htmlspecialchars($story->story) ?></p>
+                <p><?php echo htmlspecialchars($story['story']) ?></p>
             </div>
             <div class="col-md-4 col-md-offset-1">
                 <div class="panel panel-default">
                   <div class="panel-heading">Wish List</div>
                   <ul class="list-group explore-gifts">
-                      <?php foreach($story->gifts as $gift): ?>
+                      <?php foreach($story['gifts'] as $gift): ?>
                           <li class="list-group-item">
                             <p class="list-group-item-text"><?php echo $gift['description'] ?></p>
-                            <?php if(in_array($gift->gift_id, $currentPledgeCart)): ?>
-                            <a class="btn btn-danger unpledge" data-id='<?php echo $gift->gift_id ?>'><span class="glyphicon glyphicon-gift"></span> Unpledge This Gift</a>
-                            <?php elseif(!empty($gift->pledges)): ?> 
+                            <?php if(in_array($gift['gift_id'], $currentPledgeCart)): ?>
+                            <a class="btn btn-danger unpledge" data-id='<?php echo $gift['gift_id'] ?>'><span class="glyphicon glyphicon-gift"></span> Unpledge This Gift</a>
+                            <?php elseif(!empty($gift['hasPledge'])): ?> 
                             <button class="btn btn-default" disabled="disabled"><span class="glyphicon glyphicon-gift"></span>Gifted</button>
                             <?php else: ?>
-                            <a class="btn btn-primary pledge" data-id='<?php echo $gift->gift_id ?>'><span class="glyphicon glyphicon-gift"></span> Pledge This Gift</a>
+                            <a class="btn btn-primary pledge" data-id='<?php echo $gift['gift_id'] ?>'><span class="glyphicon glyphicon-gift"></span> Pledge This Gift</a>
                             <?php endif; ?>
                           </li>
                       <?php endforeach ?>

@@ -242,4 +242,80 @@ class Stories extends CActiveRecord
 
         return $lookup;
 	}
+
+	public function getByShelterId($shelterId)
+	{
+		$sql = <<<'SQL'
+			SELECT s.*, g.*, count(p.pledge_id) as hasPledge, storyPledgeCount.pledgeCount
+			FROM stories s
+			JOIN shelters sh ON s.shelter_id = sh.shelter_id
+			left JOIN gifts g ON s.story_id = g.story_id
+			LEFT JOIN pledges p ON p.gift_id = g.gift_id
+			LEFT JOIN (
+				SELECT s.story_id, count(p.pledge_id) as pledgeCount
+				FROM stories s
+				JOIN gifts g ON s.story_id = g.story_id
+				LEFT JOIN pledges p ON p.gift_id = g.gift_id
+				GROUP BY s.story_id
+			) storyPledgeCount on storyPledgeCount.story_id = s.story_id
+			
+			WHERE s.shelter_id = :shelterId
+			GROUP BY g.gift_id
+			order by pledgeCount asc;
+SQL;
+
+		$command = $this->dbConnection->createCommand($sql);
+		$command->bindParam(":shelterId", $shelterId, PDO::PARAM_INT);
+		$rows = $command->queryAll();
+
+		$stories = array();
+
+
+		$storyOrder = array();
+		foreach($rows as $row)
+		{
+			if(isset($stories[$row['story_id']]))
+			{
+				//skip
+				continue;
+			}
+			else
+			{
+				$storyOrder[] = $row['story_id'];
+				$stories[$row['story_id']] = array(
+					'story_id' => $row['story_id'],
+					'shelter_id' => $row['shelter_id'],
+					'creator_id' => $row['creator_id'],
+					'fname' => $row['fname'],
+					'lname' => $row['lname'],
+					'gender' => $row['gender'],
+					'assigned_id' => $row['assigned_id'],
+					'story' => $row['story'],
+					'date_created' => $row['date_created'],
+					'enabled'  => $row['enabled'],
+					'gifts' => array()
+				);
+			}
+		}
+
+		foreach($rows as $row)
+		{
+			$stories[$row['story_id']]['gifts'][] = array(
+				'gift_id' => $row['gift_id'],
+				'story_id' => $row['story_id'],
+				'description' => $row['description'],
+				'date_created' => $row['date_created'],
+				'enabled' => $row['enabled'],
+				'hasPledge'  => $row['hasPledge'],
+			);
+		}
+
+		$orderedStories = array();
+		foreach($storyOrder as $storyOrderId)
+		{
+			$orderedStories[] = $stories[$storyOrderId];
+		}
+
+		return $orderedStories;
+	}
 }
