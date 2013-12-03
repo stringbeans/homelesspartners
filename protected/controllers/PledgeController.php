@@ -334,7 +334,7 @@ class PledgeController extends Controller
 		unset(Yii::app()->session['pledgeCart']);
 
 		$this->render("/pledge/thankYou/main", array(
-			'email' => $email
+			'email' => htmlentities($email)
 		));
 	}
 
