@@ -6,14 +6,15 @@
 		  showOtherMonths: true,
 		  selectOtherMonths: true,
 		  dateFormat: "d MM, yy",
+		  minDate: 0,
 		  yearRange: '-1:+1'
-		}).prev('.btn').on('click', function (e) {
+		}).parent().find('.btn').on('click', function (e) {
 		  e && e.preventDefault();
 		  $(datepickerSelector).focus();
 		});
 
 		// Now let's align datepicker with the prepend button
-		$(datepickerSelector).datepicker('widget').css({'margin-left': -$(datepickerSelector).prev().find(".btn").outerWidth(), 'margin-top': 300});
+		$(datepickerSelector).datepicker('widget').css({'margin-left': -$(datepickerSelector).prev().find(".btn").outerWidth() /*, 'margin-top': 300*/});
 
 		$("a.remove").click(function(event){
 			event.preventDefault();
