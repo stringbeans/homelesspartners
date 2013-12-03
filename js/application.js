@@ -10,4 +10,6 @@
         }
     });
   }
+
+  $(".fitvids").fitVids();
 })(jQuery);
