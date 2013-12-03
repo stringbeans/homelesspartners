@@ -102,6 +102,10 @@ class Controller extends CController
 		);
 	}
 
+	public function getCityList() {
+		return Cities::model()->findAll();
+	}
+
 	public function getBodyClasses() {
 		if (!$this->classes) {
 			$classes = array();
