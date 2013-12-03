@@ -128,7 +128,7 @@ class Controller extends CController
 				'allow',
 				'controllers' => array('shelter'),
 				'users' => array('@'),
-				'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY),
+				'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER),
 			),
 			array(
 				'allow',

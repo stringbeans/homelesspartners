@@ -107,7 +107,13 @@ class StoryController extends Controller
 
         //fetch all stories based on logged in userId and shelter_coordinators mapped shelterId
         $shelterIds = $this->_getApplicableShelters(Yii::app()->user->id);
-        $stories = $this->loadStoryList($shelterIds);
+        $stories = array();
+        
+        if(!empty($shelterIds))
+        {
+            $stories = $this->loadStoryList($shelterIds);
+        }
+        
 
         $this->render("/story/index/main", array('stories' => $stories));
     }
