@@ -4,7 +4,7 @@ $(document).ready(function() {
 });
 </script>
 <header>
-	<div class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
       	<div class="navbar-header">
       		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>
@@ -75,7 +75,7 @@ $(document).ready(function() {
             </ul>
     	</div><!--/.nav-collapse -->
     </div>
-   	</div>
+   	</nav>
 </header>
 
 <div id='loginModal' class="modal fade">

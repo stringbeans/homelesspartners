@@ -426,14 +426,14 @@ body {
   background-color: #ffffff;
 }
 a {
-  color: #16a085;
+  color: #f14069;
   text-decoration: none;
   -webkit-transition: 0.25s;
   transition: 0.25s;
 }
 a:hover,
 a:focus {
-  color: #1abc9c;
+  color: #ee1e4e;
   text-decoration: none;
 }
 .img-rounded {
@@ -1212,11 +1212,11 @@ fieldset[disabled] .btn-inverse.active {
   padding-right: 30px;
 }
 .btn-link {
-  color: #16a085;
+  color: #f14069;
 }
 .btn-link:hover,
 .btn-link:focus {
-  color: #1abc9c;
+  color: #ee1e4e;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -4634,7 +4634,7 @@ a.list-group-item.active > .badge,
   border-color: #ebe2e7;
 }
 .alert-success a {
-  color: #16a085;
+  color: #f14069;
 }
 .alert-info {
   background-color: #f7f9fa;

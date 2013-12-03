@@ -1,5 +1,5 @@
 (function($) {
-  if ($("body").hasClass("home")) {
+  if ($("body").hasClass("home-index")) {
     $('.navbar').addClass('navbar-ondark');
 
     $(window).scroll(function () {
