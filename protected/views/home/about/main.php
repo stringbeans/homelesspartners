@@ -3,7 +3,7 @@
     <div class='row'>
       <div class="col-md-9 center-block">
         <h2 class="section-title">About</h2>
-        <img src="//placehold.it/1000x350" class="thumbnail img-responsive"/>
+        <img src="/images/homeless-partners-logo.png" class="thumbnail img-responsive"/>
 
         <h3>Connecting People</h3>
         <p>Homeless Partners is a non-profit program run entirely by volunteer efforts, in partnership with the staff at shelters where the program is offered. The purpose of the Homeless Partners Wish List is to help people connect personally and directly with individual homeless people in their own city in a way that is safe and practical.</p>

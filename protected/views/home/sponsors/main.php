@@ -3,15 +3,8 @@
     <div class='row'>
       <div class="col-md-9 center-block">
         <h2>Sponsors</h2>
-        <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-        when an unknown printer took a galley of type and scrambled it to make a type 
-        specimen book.</p>
-        <p>It has survived not only five centuries, but also the leap into 
-        electronic typesetting, remaining essentially unchanged. It was popularised in 
-        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<p>
+        <p class="lead">In 2013 we created an indiegogo campaign to rebuild our site</p>
+        <p>We are extremely grateful for all of the generous donations during our 22 day campaign. We would like to recognize all of those people on this page. Without their support, we wouldn't have a homeless partners program this year. Thank you.</p>
       </div>
     </div>
   </div>
@@ -20,53 +13,28 @@
   <div class='container narrow-container'>
     <div class="row tiles">
         <p class="lead text-center">Silver Sponsors</p>
-        <div class="col-sm-6 col-md-4">
-          <div class="tile">
-            <img src="http://placehold.it/300x200" class="tile-image img-responsive">
-            <h3 class="tile-title">Downtown Housing Center</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-          </div>
-        </div>
 
-        <div class="col-sm-6 col-md-4">
-          <div class="tile">
-            <img src="http://placehold.it/300x200" class="tile-image img-responsive">
-            <h3 class="tile-title">Downtown Housing Center</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-          </div>
-        </div>
+        <?php $sponsors = array(
+          array('url' => 'http://fullstack.ca/', 'img'=>'full-stack.jpg'),
+          array('url' => 'http://www.ardisbears.com/', 'img'=>'aradibears.jpg'),
+          array('url' => 'http://painfreetaxes.ca/', 'img'=>'pain-free-tax.jpg'),
+          array('url' => 'http://ctihalifax.com/', 'img'=>'cmhc.jpg'),
+          array('url' => 'http://viralfoundry.com/', 'img'=>'viralfoundry.jpg'),
+        ); ?>
 
+        <?php foreach ($sponsors as $sponsor): ?>
         <div class="col-sm-6 col-md-4">
           <div class="tile">
-            <img src="http://placehold.it/300x200" class="tile-image img-responsive">
-            <h3 class="tile-title">Downtown Housing Center</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            <a href="<?php echo $sponsor['url']?>" target="_blank"><img src="/images/sponsors/<?php echo $sponsor['img']?>" class="tile-image img-responsive"></a>
+            <?php if (!empty($sponsor['title'])): ?>
+            <h3 class="tile-title"><?php echo $sponsor['title']?></h3>
+            <?php endif; ?>
+            <?php if (!empty($sponsor['description'])): ?>            
+            <p><?php echo $sponsor['description']?></p>
+            <?php endif; ?>
           </div>
         </div>
-
-        <div class="col-sm-6 col-md-4">
-          <div class="tile">
-            <img src="http://placehold.it/300x200" class="tile-image img-responsive">
-            <h3 class="tile-title">Downtown Housing Center</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4">
-          <div class="tile">
-            <img src="http://placehold.it/300x200" class="tile-image img-responsive">
-            <h3 class="tile-title">Downtown Housing Center</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4">
-          <div class="tile">
-            <img src="http://placehold.it/300x200" class="tile-image img-responsive">
-            <h3 class="tile-title">Downtown Housing Center</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-          </div>
-        </div>
+        <?php endforeach; ?>
     </div>
   </div>
 

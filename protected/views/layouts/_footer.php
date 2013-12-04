@@ -8,6 +8,7 @@
 			<div class="col-md-2">
 			  <h5 class="title">Homeless Partners</h5>
 				<ul class="bottom-links">
+					<li><a href="<?php echo $this->createUrl("home/about") ?>">About</a></li>
 					<li><a href="<?php echo $this->createUrl("home/howItWorks") ?>">How It Works</a></li>
 					<li><a href="<?php echo $this->createUrl("home/contact") ?>">Contact Us</a></li>
 					<?php if(Yii::app()->user->isGuest): ?><li><a href="<?php echo $this->createUrl("login/index") ?>">Login</a></li><?php endif; ?>

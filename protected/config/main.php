@@ -63,6 +63,7 @@ return array(
 				//'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				//'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'' => 'home/index',
+				'about' => 'home/about',
 				'howItWorks' => 'home/howItWorks',
 				'contact' => 'home/contact',
 				'privacy' => 'home/privacy',

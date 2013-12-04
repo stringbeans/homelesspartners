@@ -116,15 +116,15 @@
 			<tr>
 				<td class="stat-metric">
 					<h4 class="stat-name">Total stories</h4>
-					<strong class="stat-count">451</strong>
+					<strong class="stat-count stories">0</strong>
 				</td>
 				<td class="stat-metric">
 					<h4 class="stat-name">Gift Requests</h4>
-					<strong class="stat-count">1,025</strong>
+					<strong class="stat-count gifts">0</strong>
 				</td>
 				<td class="stat-metric">
 					<h4 class="stat-name">Pledged Gifts</h4>
-					<strong class="stat-count">11</strong>
+					<strong class="stat-count pledges">0</strong>
 				</td>
 			</tr>
 		</table>
@@ -200,3 +200,16 @@
 </section>
 
 
+<script type='text/javascript'>
+$(document).ready(function(){
+	var repeat = 2000; // poll every 2 seconds
+	var $stats = $('.stats');
+	var interval = setInterval(function() {
+		$.getJSON('/home/wishcount', function(data) {
+			for (var i in data) {
+				$stats.find('.'+i).html(data[i]);
+			}
+		});
+	}, repeat);
+});
+</script>

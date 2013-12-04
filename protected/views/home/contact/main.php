@@ -3,11 +3,11 @@
 		<div class='row'>
 			<div class="col-md-9 center-block">
 				<h2>Contact Us</h2>
-				<p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-				Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-				when an unknown printer took a galley of type and scrambled it to make a type 
-				specimen book.</p>
+				<p class="lead">Have a comment, question, or idea? We want to chat with you</p>
+				<p>Every aspect of our program is powered by volunteers, homeless people, shelter 
+				managers, or donors that use the site. We're more than happy to entertain any new ideas, 
+				or answer any questions you may have. Select a contact method of your choice and we'll 
+				reply to you within 24 hours.</p>
 				<a href="#contact-us" class="btn btn-primary btn-hg">Send us a message</a>
 			</div>
 		</div>
@@ -24,16 +24,18 @@
 			<?php endforeach; ?>
 			<div class="col-md-9 center-block">
 				<div class="map thumbnail">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2602.4046244683213!2d-123.13806914999999!3d49.2876778!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548672288c837eef%3A0x9f231c79076c7bbe!2s301-1050+bidwell+street!5e0!3m2!1sen!2s!4v1386093259906" width="100%" height="350" frameborder="0" style="border:0"></iframe></div>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x54867170b07d9a93%3A0xfbc9d4f847eec8c8!2s55+E+Cordova+St%2C+Vancouver%2C+BC+V6A+1K3%2C+Canada!5e0!3m2!1sen!2s!4v1386105738334" width="100%" height="300" frameborder="0" style="border:0"></iframe>
+				</div>
 				</div>
 				<div class="text-center">
 					<h3 class="lead">
 						Homeless Partners
 					</h3>
 						<p>
-						123 Parkplace Road<br />
-						Victoria, BC Canada<br />
-						V6B 4N2<br />
+						55 East Cordova - Unit 604<br/>
+						Vancouver, BC<br/>
+						V6A 0A5<br/>
+						Canada							
 						</p>
 					</div>
 				</div>
