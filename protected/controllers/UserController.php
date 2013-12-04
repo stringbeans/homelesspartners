@@ -95,7 +95,7 @@ class UserController extends Controller
 		{
 			$roles = array(
 				Users::ROLE_SHELTER => 'Shelter Manager',
-				Users::ROLE_CONTRIBUTOR => 'Contributor',
+				Users::ROLE_CONTRIBUTOR => 'Typist',
 			);
 
 			$cityCoordinators = CityCoordinators::model()->findAllByAttributes(array('user_id' => Yii::app()->user->id));
