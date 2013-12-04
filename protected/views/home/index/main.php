@@ -33,7 +33,7 @@
 				<p>Make a pledge to make their wish happen</p>
 			</div>
 			<div class="col-sm-4">
-				<div class="how-icon"><img src="images/icons/gift-box.svg" alt=""></a>
+				<div class="how-icon"><img src="images/icons/gift-box.svg" alt=""></div>
 				<h3>Drop Off</h3>
 				<p>Attach a personal message. Your gift helps change their life</p>
 			</div>
