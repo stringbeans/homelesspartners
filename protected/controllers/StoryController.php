@@ -131,7 +131,8 @@ class StoryController extends Controller
             'story_id' => $storyId
         ));
 
-        if($story->creator_id != Yii::app()->user->id)
+
+        if(!empty($story) && ($story->creator_id != Yii::app()->user->id))
         {
             echo "no";
             die();
@@ -203,7 +204,7 @@ class StoryController extends Controller
             echo "no";
             die();
         }
-        
+
         Stories::model()->deleteByPk($storyId);
 
         Yii::app()->user->setFlash('success', "Story Deleted");
