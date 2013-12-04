@@ -81,13 +81,14 @@ $(document).ready(function() {
 <div id='loginModal' class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Login</h4>
-            </div>
+            <form id='loginForm' action="<?php echo Yii::app()->createUrl('login/loginProcessor'); ?>" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Login</h4>
+                </div>
 
-            <div class="modal-body">
-                <form id='loginForm' action="<?php echo Yii::app()->createUrl('login/loginProcessor'); ?>" method="post">
+                <div class="modal-body">
+                    
                     <input type='hidden' name='redirectUrl' value='<?php echo Yii::app()->request->url ?>' />
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -98,13 +99,14 @@ $(document).ready(function() {
                         <input type="password" class="form-control" id="password" name="password" maxlength="16">
                         <div class="pull-right"><small><a href="<?php echo Yii::app()->createUrl('login/forgotPassword'); ?>">Forgot password?</a></small></div>
                     </div>
-                </form>
-            </div>
+                    
+                </div>
 
-            <div class="modal-footer">
-                <a href='#' class='pull-left showRegistration'><small>Or click here to register a new account</small></a>
-                <button type="submit" form='loginForm' class="btn btn-success">Login</button>
-            </div>
+                <div class="modal-footer">
+                    <a href='#' class='pull-left showRegistration'><small>Or click here to register a new account</small></a>
+                    <button type="submit" form='loginForm' class="btn btn-success">Login</button>
+                </div>
+            </form>
         </div>
     </div>  
 </div>
@@ -143,13 +145,14 @@ $(document).ready(function() {
 <div id='registrationModal' class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Register</h4>
-            </div>
+            <form id='registrationForm' action="<?php echo Yii::app()->createUrl('login/registerProcessor'); ?>" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Register</h4>
+                </div>
 
-            <div class="modal-body">
-                <form id='registrationForm' action="<?php echo Yii::app()->createUrl('login/registerProcessor'); ?>" method="post">
+                <div class="modal-body">
+                
                     <input type='hidden' name='redirectUrl' value='<?php echo Yii::app()->request->url ?>' />
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -163,15 +166,15 @@ $(document).ready(function() {
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" maxlength="16">
                     </div>
-                </form>
-                <div id="js-registrationModel-message" class="alert alert-danger" style="display: none;"></div>
-            </div>
+                    
+                    <div id="js-registrationModel-message" class="alert alert-danger" style="display: none;"></div>
+                </div>
 
-            <div class="modal-footer">
-                <a href='#' class='pull-left showLogin'><small>Or click here if you already have an account</small></a>
-                <button type="submit" form='registrationForm' class="btn btn-success">Register</button>
-            </div>
-            
+                <div class="modal-footer">
+                    <a href='#' class='pull-left showLogin'><small>Or click here if you already have an account</small></a>
+                    <button type="submit" form='registrationForm' class="btn btn-success">Register</button>
+                </div>
+            </form>
         </div>
     </div>  
 </div>
