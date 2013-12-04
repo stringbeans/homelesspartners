@@ -24,7 +24,7 @@
 			<?php endforeach; ?>
 			<div class="col-md-9 center-block">
 				<div class="map thumbnail">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x54867170b07d9a93%3A0xfbc9d4f847eec8c8!2s55+E+Cordova+St%2C+Vancouver%2C+BC+V6A+1K3%2C+Canada!5e0!3m2!1sen!2s!4v1386105738334" width="100%" height="600" frameborder="0" style="border:0"></iframe>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x54867170b07d9a93%3A0xfbc9d4f847eec8c8!2s55+E+Cordova+St%2C+Vancouver%2C+BC+V6A+1K3%2C+Canada!5e0!3m2!1sen!2s!4v1386105738334" width="100%" height="300" frameborder="0" style="border:0"></iframe>
 				</div>
 				</div>
 				<div class="text-center">
