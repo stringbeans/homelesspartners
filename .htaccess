@@ -3,6 +3,8 @@ RewriteEngine On
 #remove trailing slash from the url
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} (.*)$
+
+RewriteRule ^site/?(.*) http://www.homelesspartners.com [R=301,L]
 RewriteRule ^(.+)/$ http://www.homelesspartners.com/$1 [R=301,L]
 
 # if a directory or a file exists, use it directly

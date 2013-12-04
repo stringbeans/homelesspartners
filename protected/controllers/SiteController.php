@@ -25,7 +25,8 @@ class SiteController extends Controller
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
-	public function actionIndex()
+	// Deprecated. Killing this action so we can redirect /site
+	public function actionIndexDeprecated()
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
