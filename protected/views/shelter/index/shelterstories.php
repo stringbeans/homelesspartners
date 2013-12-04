@@ -6,7 +6,7 @@ $(document).ready(function(){
 
         <?php if(Yii::app()->user->isGuest): ?>
 
-        $("#loginModal").modal("show");
+        $("#accountRequiredModal").modal("show");
 
         <?php else: ?>
 

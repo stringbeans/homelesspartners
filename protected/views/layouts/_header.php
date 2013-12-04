@@ -83,7 +83,7 @@ $(document).ready(function() {
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Login</h3>
+                <h4 class="modal-title">Login</h4>
             </div>
 
             <div class="modal-body">
@@ -139,12 +139,13 @@ $(document).ready(function() {
     });
 });
 </script>
+
 <div id='registrationModal' class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Register</h3>
+                <h4 class="modal-title">Register</h4>
             </div>
 
             <div class="modal-body">
@@ -171,6 +172,26 @@ $(document).ready(function() {
                 <button type="submit" form='registrationForm' class="btn btn-success">Register</button>
             </div>
             
+        </div>
+    </div>  
+</div>
+
+<div id='accountRequiredModal' class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Account Required</h4>
+            </div>
+
+            <div class="modal-body">
+                In order to pledge one or more gifts, you must login or register for a new account
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Login</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" data-target="#registrationModal">Register</button>
+            </div>
         </div>
     </div>  
 </div>
