@@ -151,6 +151,12 @@ class Controller extends CController
 				'users' => array('@'),
 				'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY),
 			),
+			
+			array(
+                                'allow',
+                                'controllers' => array('search'),
+                                'users' => array('*')
+                        ),
 
 			array('deny',
 				'users' => array('*'),
