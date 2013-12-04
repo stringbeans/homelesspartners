@@ -131,6 +131,12 @@ class StoryController extends Controller
             'story_id' => $storyId
         ));
 
+        if($story->creator_id != Yii::app()->user->id)
+        {
+            echo "no";
+            die();
+        }
+
         $userId = Yii::app()->user->id;
 
         //now get a list of shelters they have access to
@@ -191,6 +197,13 @@ class StoryController extends Controller
     {
         $storyId = Yii::app()->input->get("id");
 
+        $story = Stories::model()->findByPk($storyId);
+        if($story->creator_id != Yii::app()->user->id)
+        {
+            echo "no";
+            die();
+        }
+        
         Stories::model()->deleteByPk($storyId);
 
         Yii::app()->user->setFlash('success', "Story Deleted");
@@ -340,7 +353,7 @@ class StoryController extends Controller
     private function loadStoryList($shelterIds) {
 
      $query = 'select 
-            stories.story_id, fname, lname, cities.name as city, shelters.name as `shelter`, users.`email`, stories.assigned_id
+            stories.story_id, stories.creator_id, fname, lname, cities.name as city, shelters.name as `shelter`, users.`email`, stories.assigned_id
         from stories
         left join shelters on shelters.`shelter_id` = stories.`shelter_id`
         left join cities on cities.city_id = shelters.`city_id`
