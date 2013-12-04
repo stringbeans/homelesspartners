@@ -117,7 +117,7 @@ $(document).ready(function() {
                 <div class='row'>
                     <div class='form-group col-md-6'>
                         <label>ID Format</label>
-                        <input type='text' class='form-control' name='ID_FORMAT' value='<?php echo !empty($shelter)?$shelter->ID_FORMAT:"" ?>' />
+                        <input type='text' class='form-control' name='ID_FORMAT' value='<?php echo !empty($shelter)?$shelter->ID_FORMAT:"" ?>' placeholder='Initials and date of birth (MMDDYYYY)' />
                     </div>
                 </div>
 
