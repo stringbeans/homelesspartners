@@ -100,6 +100,7 @@ $(document).ready(function() {
 		    <?php echo Yii::app()->user->getFlash('success'); ?>
 			</div>
 		 	<?php endif; ?>
+		 	<div class="alert alert-danger" id="js-registration-message-box" style="display: none;"></div>
 		</div>
 		<div class='col-md-6'>
 			<form id="js-user-edit-form" class="form-horizontal" action='<?php echo $this->createUrl("user/save") ?>' method="post">
@@ -170,7 +171,6 @@ $(document).ready(function() {
 				<div class='form-group row'>
 					<div class="col-md-10">
 						<input type='submit' class='btn btn-success' value="<?php echo empty($user)?'Create':'Save'; ?>" />
-						<div id="js-registration-message-box"></div>
 					</div>
 				</div>
 			</form>
