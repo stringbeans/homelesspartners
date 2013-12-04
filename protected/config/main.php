@@ -85,10 +85,10 @@ return array(
 		),
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=hpdev.cxwpqx7h40ct.us-west-2.rds.amazonaws.com;dbname=hpdev',
+			'connectionString' => 'mysql:host=<host>;dbname=<dbname>',
 			'emulatePrepare' => true,
-			'username' => 'hpdev',
-			'password' => 'homeless99',
+			'username' => '',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		
