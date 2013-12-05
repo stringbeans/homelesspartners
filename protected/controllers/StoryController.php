@@ -3,6 +3,8 @@
 
 class StoryController extends Controller
 {
+    private $cache = array();
+
     public function actionStory()
     {
         $storyid = Yii::app()->input->get("id");
@@ -27,13 +29,14 @@ class StoryController extends Controller
     private function _getApplicableShelters($userId)
     {
         $shelterIds = array();
-        if(Yii::app()->user->role == "admin")
+
+        if(Yii::app()->user->role == Users::ROLE_ADMIN)
         {
             $shelters = Shelters::model()->findAll();
 
             $shelterIds = $this->_createShelterIdList($shelters);
         }
-        elseif(Yii::app()->user->role == "city")
+        elseif(Yii::app()->user->role == Users::ROLE_CITY)
         {
             $cityCoordinators = CityCoordinators::model()->findAllByAttributes(array(
                 'user_id' => $userId
@@ -54,7 +57,7 @@ class StoryController extends Controller
                 $shelterIds = $this->_createShelterIdList($shelters);
             }
         }
-        elseif(Yii::app()->user->role == "shelter")
+        elseif(Yii::app()->user->role == Users::ROLE_SHELTER)
         {
             //now get a list of shelters they have access to
             $shelters = ShelterCoordinators::model()->findAllByAttributes(array(
@@ -101,19 +104,119 @@ class StoryController extends Controller
     }
 
 
+    // WORK IN PROGRESS.
+    // This function needs to be optimized. For now caching some queries to get some speedup. 
+    // In conjunction with _getApplicableStories it would be nice to implement this logic
+    // straight in the query. 
+    // assume shelter exists and is not empty
+    private function _canUserEditStory($user, $story)
+    {
+        $key = 'sc'.$user->id;
+        $shelterCoordinators = LocalCache::read($key);
+        if (!$shelterCoordinators) {
+            $shelterCoordinators = ShelterCoordinators::model()->findAllByAttributes(array('user_id'=>$user->id));
+            LocalCache::write($key, $shelterCoordinators);
+        }
+        $key = 'city'.$story->shelter_id;
+        $cid = LocalCache::read($key);
+        if (!$cid) {
+            if (!empty($story->city_id)) {
+                $cid = $story->city_id;
+            } else {
+                $cid = Shelters::model()->findByPk($story->shelter_id)->city_id;
+            }
+            LocalCache::write($key, $cid);
+        }
+        $key = 'cc'.$user->id;
+        $cityCoordinators = LocalCache::read($key);
+        if (!$cityCoordinators) {
+            $cityCoordinators = CityCoordinators::model()->findAllByAttributes(array('user_id'=>$user->id));
+            LocalCache::write($key, $cityCoordinators);
+        }
+
+                // you're super
+        return  $user->role == Users::ROLE_ADMIN ||
+                // story belongs to you
+                $user->id == $story->creator_id ||
+                // story is in your shelter
+                $this->_isValueInArray('shelter_id', $story->shelter_id, $shelterCoordinators) ||
+                // story is in your city
+                $this->_isValueInArray('city_id', $cid, $cityCoordinators)
+                ;
+
+                /*
+
+                // you're super
+        return  $user->role == Users::ROLE_ADMIN ||
+                // story belongs to you
+                $user->id == $story->creator_id ||
+                // story is in your shelter
+                count($shelterCoordinators)>0 ||
+                // story is in your city
+                count($cityCoordinators)>0
+                ;
+                */
+
+    }
+
+    // return true if the key/val pair are in the array
+    private function _isValueInArray($key, $val, $arr) {
+        foreach ($arr as $obj) {
+            $obj = (object) $obj;
+            if ($obj->$key == $val) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private function _getApplicableStories() {
+        //$stories = Stories::model()->findAll();
+        $query = 'select 
+        stories.story_id, stories.creator_id, stories.shelter_id, fname, lname, cities.name as city, cities.city_id, shelters.name as `shelter`, users.`email`, stories.assigned_id
+        from stories
+        left join shelters on shelters.`shelter_id` = stories.`shelter_id`
+        left join cities on cities.city_id = shelters.`city_id`
+        left join users on users.`user_id` = stories.`creator_id`';
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand($query);
+        $stories = $command->queryAll();
+
+
+        $allowedStories = array();
+        $user = Yii::app()->user;
+        foreach ($stories as $story) {
+            if ($this->_canUserEditStory($user, (object)$story)) {
+                $allowedStories[] = $story;
+            }
+        }
+
+        return $allowedStories;
+        //var_dump($stories);
+    }
+
     public function actionIndex()
     {
         Yii::app()->clientScript->registerScriptFile('/js/list.min.js', CClientScript::POS_END);
 
+        $t1 = microtime(true);
+        $stories = $this->_getApplicableStories();
+
         //fetch all stories based on logged in userId and shelter_coordinators mapped shelterId
+        /*
         $shelterIds = $this->_getApplicableShelters(Yii::app()->user->id);
         $stories = array();
         
+        print_r($shelterIds);
+
         if(!empty($shelterIds))
         {
             $stories = $this->loadStoryList($shelterIds);
         }
+        //*/
         
+        $tdiff = microtime(true) - $t1;
+        //echo $tdiff.'s';
 
         $this->render("/story/index/main", array('stories' => $stories));
     }
@@ -132,10 +235,12 @@ class StoryController extends Controller
         ));
 
 
-        if(!empty($story) && ($story->creator_id != Yii::app()->user->id))
+        if(!empty($story) && !$this->_canUserEditStory(Yii::app()->user, $story))
         {
-            echo "no";
-            die();
+            Yii::app()->user->setFlash('error', "You don't have permission to edit this story");
+            //$this->redirect($this->createUrl("story/index"));
+            //return;
+            exit;
         }
 
         $userId = Yii::app()->user->id;
@@ -199,15 +304,16 @@ class StoryController extends Controller
         $storyId = Yii::app()->input->get("id");
 
         $story = Stories::model()->findByPk($storyId);
-        if($story->creator_id != Yii::app()->user->id)
+        
+        if(!empty($story) && !$this->_canUserEditStory(Yii::app()->user, $story))
         {
-            echo "no";
-            die();
+            Yii::app()->user->setFlash('error', "You don't have permission to Delete this story");
         }
-
-        Stories::model()->deleteByPk($storyId);
-
-        Yii::app()->user->setFlash('success', "Story Deleted");
+        else 
+        {
+            Stories::model()->deleteByPk($storyId);
+            Yii::app()->user->setFlash('success', "Story Deleted");
+        }
 
         $this->redirect($this->createUrl("story/index"));
     }

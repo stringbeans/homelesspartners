@@ -18,6 +18,19 @@ $(document).ready(function(){
                 <li class='active'>View Stories</li>
             </ul>
 
+            <?php if(Yii::app()->user->hasFlash('error')): ?>
+            <div class="alert alert-danger">
+            <?php echo Yii::app()->user->getFlash('error'); ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if(Yii::app()->user->hasFlash('success')): ?>
+            <div class="alert alert-success">
+            <?php echo Yii::app()->user->getFlash('success'); ?>
+            </div>
+            <?php endif; ?>
+
+
             <p class='text-right'>
                 <a href='<?php echo $this->createUrl("story/edit") ?>' class='btn btn-warning'>+ Create new</a>
             </p>
@@ -45,10 +58,11 @@ $(document).ready(function(){
                         <td class='name'><?php echo $story['fname'] . ' ' . $story['lname'] ?></td>
                         
                         <td>
-                            <?php if(Yii::app()->user->id == $story['creator_id']): ?>
+                            <?php /* Now only listing stories that the user can edit so always just show these. */ ?>
+                            <?php //if(Yii::app()->user->id == $story['creator_id'] || Yii::app()->user->role == Users::ROLE_ADMIN): ?>
                             <a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("story/edit", array('id' => $story['story_id'])) ?>'>Edit</a>
                             <a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("story/delete", array('id' => $story['story_id'])) ?>' onclick='return confirm("Are you sure you want to delete this story? This will delete all the pledges for it. Continue?");'>Delete</a>
-                            <?php endif; ?>
+                            <?php //endif; ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>
