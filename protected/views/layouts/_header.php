@@ -17,13 +17,13 @@ $(document).ready(function() {
                     <a href="#">Admin</a>
                     <ul>
                         <?php if(in_array(Yii::app()->user->role, array(Users::ROLE_ADMIN))): ?>
-                            <li><a href="<?php echo $this->createUrl("city/index") ?>">City Management</a></li>
+                            <li><a href="<?php echo $this->createUrl("user/index") ?>">User Management</a></li>
                             <li><a href="<?php echo $this->createUrl("country/index") ?>">Country Management</a></li>
                             <li><a href="<?php echo $this->createUrl("region/index") ?>">Region Management</a></li>
                         <?php endif;?>
 
                         <?php if(in_array(Yii::app()->user->role, array(Users::ROLE_ADMIN, Users::ROLE_CITY))): ?>
-                            <li><a href="<?php echo $this->createUrl("user/index") ?>">User Management</a></li>
+                            <li><a href="<?php echo $this->createUrl("city/index") ?>">City Management</a></li>
                         <?php endif; ?>
 
                         <?php if(in_array(Yii::app()->user->role, array(Users::ROLE_ADMIN, Users::ROLE_CITY, Users::ROLE_SHELTER))): ?>

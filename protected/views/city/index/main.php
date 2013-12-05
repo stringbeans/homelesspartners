@@ -35,7 +35,9 @@
 					<td><?php echo $city['numPledges'] ?></td>
 					<td>
 						<a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("city/edit", array('id' => $city['city_id'])) ?>'>Edit</a>
+                        <?php if(in_array(Yii::app()->user->role, array(Users::ROLE_ADMIN))): ?>						
 						<a class='btn btn-danger btn-xs' href='<?php echo $this->createUrl("city/delete", array('id' => $city['city_id'])) ?>' onclick='return confirm("Deleting this city will delete all things associated with the city. Continue?");'>Delete</a>
+						<?php endif; ?>
 					</td>
 				</tr>
 				<?php endforeach; ?>

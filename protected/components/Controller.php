@@ -55,6 +55,17 @@ class Controller extends CController
 			),
 			array(
 				'allow',
+				'controllers' => array('city'),
+				'users' => array('@'),
+				'actions' => array(
+					'index',
+					'edit',
+					'save',
+				),
+				'roles' => array(Users::ROLE_ADMIN, Users::ROLE_CITY),
+			),
+			array(
+				'allow',
 				'controllers' => array('country'),
 				'users' => array('@'),
 				'roles' => array(Users::ROLE_ADMIN),

@@ -78,6 +78,7 @@ $(document).ready(function() {
 				<input type='hidden' name='cityId' value='<?php echo $city->city_id ?>' />
 				<?php endif; ?>
 
+                <?php if(in_array(Yii::app()->user->role, array(Users::ROLE_ADMIN))): ?>						
 				<div class='form-group'>
 					<label style='display: block;'>Region</label>
 					<select id='regionSelect' name='regionId' />
@@ -90,6 +91,11 @@ $(document).ready(function() {
 					<label>Name</label>
 					<input type='text' class='form-control' name='name' value='<?php echo !empty($city)?$city->name:"" ?>' />
 				</div>
+				<?php else: ?>
+				<input type='hidden' name='regionId' value="<?php echo $city ? $city->region_id:''?>" />
+				<input type='hidden' name='name' value='<?php echo !empty($city)?$city->name:"" ?>' />
+
+				<?php endif; ?>
 				<div class='form-group'>
 					<label>Enabled</label>
 					<input type="checkbox" name='enabled' value='1' <?php echo (!empty($city) && !empty($city->enabled))?"checked='checked'":"" ?> data-toggle="switch" />
