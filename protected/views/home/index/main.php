@@ -173,7 +173,7 @@
 				</a>
 			</div>
 			<div class="col-sm-6 col-md-4">
-				<a href="#" class="city-tile">
+				<a href="city/cityShelters?id=32" class="city-tile">
 					<img src="images/cities/newwest.png" class="img-responsive"/>
 					<h3 class="city-title">New Westminster</h3>
 				</a>
