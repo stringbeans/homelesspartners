@@ -106,17 +106,18 @@ $(document).ready(function() {
 			<form id="js-user-edit-form" class="form-horizontal" action='<?php echo $this->createUrl("user/save") ?>' method="post">
 				<input type='hidden' name='userId' value='<?php echo !empty($user) ? $user->user_id : ''; ?>' />
 
+
 				<div class="form-group row">
     				<label for="userEditName" class="col-md-2 control-label">Name</label>
     				<div class="col-md-10">
-      					<input class="form-control" id="userEditName" value="<?php echo !empty($user) ? $user->name: ''; ?>" name="name" />
+      					<input class="form-control" id="userEditName" value="<?php echo !empty($user) ? $user->name: ''; ?>" name="name" <?php echo Yii::app()->user->role!=Users::ROLE_ADMIN &&false ?' disabled="disabled"':''; ?> />
     				</div>
   				</div>
 
 				<div class="form-group row">
     				<label for="userEditEmail" class="col-md-2 control-label">Email</label>
     				<div class="col-md-10">
-      					<input class="form-control" id="userEditEmail" value="<?php echo !empty($user) ? $user->email: ''; ?>" name="email" />
+      					<input class="form-control" id="userEditEmail" value="<?php echo !empty($user) ? $user->email: ''; ?>" name="email" <?php echo Yii::app()->user->role!=Users::ROLE_ADMIN &&false ?' disabled="disabled"':''; ?> />
     				</div>
   				</div>
 
@@ -124,7 +125,7 @@ $(document).ready(function() {
     				<label for="userEditPassword" class="col-md-2 control-label">Password</label>
     				<div class="col-md-10">
       					<input type="password" class="form-control" id="userEditPassword" name="password" maxlength="16"<?php echo !empty($user)?' disabled="disabled"':''; ?> />
-	    				<?php if(!empty($user)): ?>
+	    				<?php if(!empty($user) /*&& Yii::app()->user->role == Users::ROLE_ADMIN*/): ?>
 	  					<div>
 	    					<label class="checkbox" style="padding-top: 0; margin-top: 10px;">
 	      						<input type="checkbox" id="changePassword" data-toggle="checkbox" /> Change password

@@ -9,6 +9,18 @@
                 <li class='active'>View Users</li>
             </ul>
 
+            <?php if(Yii::app()->user->hasFlash('error')): ?>
+            <div class="alert alert-danger">
+            <?php echo Yii::app()->user->getFlash('error'); ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if(Yii::app()->user->hasFlash('success')): ?>
+            <div class="alert alert-success">
+            <?php echo Yii::app()->user->getFlash('success'); ?>
+            </div>
+            <?php endif; ?>
+
 			<table class='table table-hover'>
 				<thead>
 					<tr>
@@ -23,7 +35,7 @@
 					<td><?php echo $user->name; ?></td>
 					<td><?php echo $rolesLookup[$user->role]; ?></td>
 					<td>
-						<?php if(Yii::app()->user->role == Users::ROLE_ADMIN): ?>
+						<?php if(Yii::app()->user->role == Users::ROLE_ADMIN || Yii::app()->user->role == Users::ROLE_CITY): ?>
 						<a class='btn btn-info btn-xs' href='<?php echo $this->createUrl("user/edit", array('id' => $user->user_id)) ?>'>Edit</a>
 						<?php endif; ?>
 					</td>

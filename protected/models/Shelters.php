@@ -256,5 +256,15 @@ public function getShelterSummary()
 		return $command->queryAll();
 	}
 
+	public function getCityIdByShelterId($shelterId) {
+        $key = 'city-by-'.$shelterId;
+        $cid = LocalCache::read($key);
+        if ($cid === null) {
+        	$shelter = self::model()->findByPk($shelterId);
+       		$cid = $shelter ? $shelter->city_id : 0;
+            LocalCache::write($key, $cid);
+        }
+        return $cid;
+	}
 
 }

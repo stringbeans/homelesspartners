@@ -5,8 +5,8 @@ class UserController extends Controller
 
 	public function actionIndex()
 	{
-		//fetch all cities
-		$users = Users::model()->findAll(array('order' => 'CONCAT(role) ASC'));
+		//$users = Users::model()->findAll(array('order' => 'CONCAT(role) ASC'));
+		$users = $this->_getEditableUsers();
 
 		$rolesLookup = array(
 			Users::ROLE_ADMIN => 'Administrator',
@@ -21,7 +21,7 @@ class UserController extends Controller
 			'rolesLookup' => $rolesLookup
 		));
 	}
-	
+
 	public function actionEdit()
 	{
 		Yii::app()->clientScript->registerCssFile('/css/selectize.bootstrap3.css');
@@ -36,8 +36,13 @@ class UserController extends Controller
 		{
 			$user = Users::model()->findByPk($userId);
 		}
-
 		
+        if(!empty($user) && !$this->_canUserEditUser(Yii::app()->user, $user))
+        {
+            Yii::app()->user->setFlash('error', "You don't have permission to edit this user");
+            $this->redirect($this->createUrl("user/index"));
+            return;
+        }
 
 		$selectedCitiesLookup = array();
 		if(isset($user) && $user->role == Users::ROLE_CITY)
@@ -94,6 +99,7 @@ class UserController extends Controller
 		if(Yii::app()->user->role == Users::ROLE_CITY)
 		{
 			$roles = array(
+				Users::ROLE_CITY => 'City Coordinator',
 				Users::ROLE_SHELTER => 'Shelter Manager',
 				Users::ROLE_CONTRIBUTOR => 'Typist',
 			);
@@ -192,5 +198,109 @@ class UserController extends Controller
 			'id' => $user->user_id
 		)));
 	}
+
+	// return a list of users the current user has access to
+	private function _getEditableUsers() {
+		// if admin you get everybody
+		// if city you get 
+		//		city users who manage cities you manage
+		//		shelter users who are in one of your cities
+		//		contributers who are in one of your cities
+		//		all unassigned users
+		// if shelter you get no one
+		// if contributer/typist you get no one
+
+        $user = Yii::app()->user;
+		$allowedUsers = array();
+		$allUsers = Users::model()->findAll(array('order' => 'CONCAT(role) ASC'));
+
+
+        if ($user->role == Users::ROLE_ADMIN) {
+        	$allowedUsers = $allUsers;
+        } else if ($user->role == Users::ROLE_CITY) {
+			foreach ($allUsers as $otherUser) {
+				if ($this->_canCityUserEditUser($user, (object)$otherUser)) {
+					$allowedUsers[] = $otherUser;
+				}
+			}
+
+        } else {
+        	// if I'm a shelter, typist or user, then NO ACCESS
+        }
+
+		return $allowedUsers;
+	}
+
+	private function _canUserEditUser($user, $otherUser) {
+		return $user->role == Users::ROLE_ADMIN ||
+				$user->id == $otherUser->user_id ||
+				($user->role == Users::ROLE_CITY && $this->_canCityUserEditUser($user, $otherUser));
+	}
+
+	// keep in mind that $cityUser is a CWebUser (from Auth) and $otherUser is a User model object.
+	// the ids are accessed by $cityUser->id, $otherUser->user_id respectively.
+	private function _canCityUserEditUser($cityUser, $otherUser) {
+		$valid = false;
+		if ($otherUser->role == Users::ROLE_USER) {
+			$valid = true;
+		} else if ($otherUser->role == Users::ROLE_CITY) {
+			// these calls are cached, so don't worry too much about calling them in a loop
+			$a = CityCoordinators::model()->findAllByUserId($cityUser->id);
+			$b = CityCoordinators::model()->findAllByUserId($otherUser->user_id);
+			$common = array_intersect(Helpers::extractFromArray('city_id', $a), Helpers::extractFromArray('city_id', $b));
+
+			// valid if other city user manages city that I manage.
+			$valid = !empty($common);
+		} else if ($otherUser->role == Users::ROLE_SHELTER) {
+			// my cities
+			$cityIds = Helpers::extractFromArray('city_id', CityCoordinators::model()->findAllByUserId($cityUser->id));
+
+			// shelters that the other user manages
+			$shelterIds = Helpers::extractFromArray('shelter_id', ShelterCoordinators::model()->findAllByUserId($otherUser->user_id));
+
+			if (!empty($shelterIds)) {
+				$shelters = Shelters::model()->findAllByPk($shelterIds);
+
+				// cities that those shelters belong to			
+				$shelterCityIds = Helpers::extractFromArray('city_id', $shelters);
+
+				$common = array_intersect($cityIds, $shelterCityIds);
+
+				// valid if the other shelter manager manages a shelter in a city that I manage.
+				$valid = !empty($common);			
+			}
+
+		} else if ($otherUser->role == Users::ROLE_CONTRIBUTOR) {
+			// my cities
+			$cityIds = Helpers::extractFromArray('city_id', CityCoordinators::model()->findAllByUserId($cityUser->id));
+
+			// cities that other user contributes to
+			$cityContribIds = Helpers::extractFromArray('city_id', CityContributor::model()->findAllByUserId($otherUser->user_id));
+
+			$common = array_intersect($cityIds, $cityContribIds);
+
+			// other user contributes to cities that I manage
+			$valid = !empty($common);
+
+			if (!$valid) {
+				// lets check to see if the other user contributes to shelters that are in cities that I manage.
+
+				$shelterContribIds = Helpers::extractFromArray('shelter_id', ShelterContributor::model()->findAllByUserId($otherUser->user_id));	
+				if (!empty($shelterContribIds)) {
+					$shelters = Shelters::model()->findAllByPk($shelterContribIds);	
+
+					// cities that those shelters belong to			
+					$shelterCityIds = Helpers::extractFromArray('city_id', $shelters);
+
+					$common = array_intersect($cityIds, $shelterCityIds);
+
+					// valid if the typis contributes to a shelter in a city that I manage.
+					$valid = !empty($common);			
+				}
+			}
+		}
+
+		return $valid;
+	}	
 }
 

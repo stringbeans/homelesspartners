@@ -95,4 +95,15 @@ class CityContributor extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function findAllByUserId($userId) {
+        $key = 'city-contributor-by'.$userId;
+        $all = LocalCache::read($key);
+        if (!$all) {
+            $all = self::model()->findAllByAttributes(array('user_id'=>$userId));
+            LocalCache::write($key, $all);
+        }
+        return $all;
+	}
+
 }

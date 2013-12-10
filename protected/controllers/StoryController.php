@@ -104,70 +104,20 @@ class StoryController extends Controller
     }
 
 
-    // WORK IN PROGRESS.
-    // This function needs to be optimized. For now caching some queries to get some speedup. 
-    // In conjunction with _getApplicableStories it would be nice to implement this logic
-    // straight in the query. 
-    // assume shelter exists and is not empty
+    // assume story exists and is not empty
     private function _canUserEditStory($user, $story)
     {
-        $key = 'sc'.$user->id;
-        $shelterCoordinators = LocalCache::read($key);
-        if (!$shelterCoordinators) {
-            $shelterCoordinators = ShelterCoordinators::model()->findAllByAttributes(array('user_id'=>$user->id));
-            LocalCache::write($key, $shelterCoordinators);
-        }
-        $key = 'city'.$story->shelter_id;
-        $cid = LocalCache::read($key);
-        if (!$cid) {
-            if (!empty($story->city_id)) {
-                $cid = $story->city_id;
-            } else {
-                $cid = Shelters::model()->findByPk($story->shelter_id)->city_id;
-            }
-            LocalCache::write($key, $cid);
-        }
-        $key = 'cc'.$user->id;
-        $cityCoordinators = LocalCache::read($key);
-        if (!$cityCoordinators) {
-            $cityCoordinators = CityCoordinators::model()->findAllByAttributes(array('user_id'=>$user->id));
-            LocalCache::write($key, $cityCoordinators);
-        }
-
                 // you're super
         return  $user->role == Users::ROLE_ADMIN ||
                 // story belongs to you
                 $user->id == $story->creator_id ||
                 // story is in your shelter
-                $this->_isValueInArray('shelter_id', $story->shelter_id, $shelterCoordinators) ||
+                Helpers::isValueInArray('shelter_id', $story->shelter_id, ShelterCoordinators::model()->findAllByUserId($user->id)) ||
                 // story is in your city
-                $this->_isValueInArray('city_id', $cid, $cityCoordinators)
-                ;
-
-                /*
-
-                // you're super
-        return  $user->role == Users::ROLE_ADMIN ||
-                // story belongs to you
-                $user->id == $story->creator_id ||
-                // story is in your shelter
-                count($shelterCoordinators)>0 ||
-                // story is in your city
-                count($cityCoordinators)>0
-                ;
-                */
-
-    }
-
-    // return true if the key/val pair are in the array
-    private function _isValueInArray($key, $val, $arr) {
-        foreach ($arr as $obj) {
-            $obj = (object) $obj;
-            if ($obj->$key == $val) {
-                return true;
-            }
-        }
-        return false;
+                Helpers::isValueInArray('city_id', 
+                    !empty($story->city_id) ? $story->city_id : Shelters::model()->getCityIdByShelterId($story->shelter_id), 
+                    CityCoordinators::model()->findAllByUserId($user->id)
+                );
     }
 
     private function _getApplicableStories() {
@@ -238,9 +188,8 @@ class StoryController extends Controller
         if(!empty($story) && !$this->_canUserEditStory(Yii::app()->user, $story))
         {
             Yii::app()->user->setFlash('error', "You don't have permission to edit this story");
-            //$this->redirect($this->createUrl("story/index"));
-            //return;
-            exit;
+            $this->redirect($this->createUrl("story/index"));
+            return;
         }
 
         $userId = Yii::app()->user->id;
