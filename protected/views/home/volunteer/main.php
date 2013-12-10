@@ -3,14 +3,9 @@
 		<div class='row'>
 			<div class="col-md-9 center-block">
 				<h2>Volunteers Wanted</h2>
-				<p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-				Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-				when an unknown printer took a galley of type and scrambled it to make a type 
-				specimen book. It has survived not only five centuries, but also the leap into 
-				electronic typesetting, remaining essentially unchanged. It was popularised in 
-				the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-				and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<p>
+				<p class="lead">Do you want to help homeless in your area?</p>
+				<p>Homeless Partners is a Not-For-Profit project that enables you to start making a positive impact in your community by helping homeless people in your area. This year we have wish list programs running in: Vancouver, Regina, Victoria, Surrey, North Vancouver, Long Beach, New Westminster, and Cloverdale.</p>
+				<p>All of these cities are powered by one or more volunteers. We're actively looking for volunteers and accepting applications for new volunteers and city coordinators. Becoming a volunteer has a positive and direct impact on people within your community. What are you waiting for, start a new wish list program in your city or join an existing team of volunteers in your city today.</p>
 				
 				<a href="#volunteer" class="btn btn-primary btn-hg">Sign Up Today</a>
 			</div>
@@ -23,7 +18,7 @@
 		<div class='row'>
 			<div class="col-md-9 center-block">
 				<h3 class="section-title">Connect With Other People In Your Community</h3>
-				<div class="fitvids"><iframe width="420" height="315" src="//www.youtube.com/embed/mLg7O8tByLw?autohide=1&amp;controls=1&amp;modestbranding=1&amp;rel=0&amp;showinfo=0&amp;vq=hd1080" frameborder="0" allowfullscreen></iframe></div>
+				<div class="fitvids"><iframe width="420" height="315" src="//www.youtube.com/embed/S3zKa4UIA_0?autohide=1&amp;controls=1&amp;modestbranding=1&amp;rel=0&amp;showinfo=0&amp;vq=hd1080" frameborder="0" allowfullscreen></iframe></div>
 			</div>
 		</div>
 	</div>
