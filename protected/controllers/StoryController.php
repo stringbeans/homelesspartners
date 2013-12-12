@@ -26,84 +26,6 @@ class StoryController extends Controller
         ));
     }
 
-    private function _getApplicableShelters($userId)
-    {
-        $shelterIds = array();
-
-        if(Yii::app()->user->role == Users::ROLE_ADMIN)
-        {
-            $shelters = Shelters::model()->findAll();
-
-            $shelterIds = $this->_createShelterIdList($shelters);
-        }
-        elseif(Yii::app()->user->role == Users::ROLE_CITY)
-        {
-            $cityCoordinators = CityCoordinators::model()->findAllByAttributes(array(
-                'user_id' => $userId
-            ));
-
-            $cityIds = array();
-            foreach($cityCoordinators as $cc)
-            {
-                $cityIds[] = $cc->city_id;
-            }
-
-            if(!empty($cityIds))
-            {
-                $shelters = Shelters::model()->findAll(array(
-                    'condition' => 't.city_id in ('.implode(",", $cityIds).')'
-                ));
-
-                $shelterIds = $this->_createShelterIdList($shelters);
-            }
-        }
-        elseif(Yii::app()->user->role == Users::ROLE_SHELTER)
-        {
-            //now get a list of shelters they have access to
-            $shelters = ShelterCoordinators::model()->findAllByAttributes(array(
-                'user_id' => $userId
-            ));
-
-            $shelterIds = $this->_createShelterIdList($shelters);
-        }
-        elseif(Yii::app()->user->role == Users::ROLE_CONTRIBUTOR)
-        {
-            $cityContributors = CityContributor::model()->findAllByAttributes(array(
-                'user_id' => $userId
-            ));
-
-            foreach($cityContributors as $cityContributor)
-            {
-                $shelters = Shelters::model()->findAllByAttributes(array(
-                    'city_id' => $cityContributor->city_id
-                ));
-
-                $shelterIds = $this->_createShelterIdList($shelters);
-            }
-
-            $shelterContributors = ShelterContributor::model()->findAllByAttributes(array(
-                'user_id' => $userId
-            ));
-
-            $shelterIds = array_merge($shelterIds, $this->_createShelterIdList($shelterContributors));
-            $shelterIds = array_unique($shelterIds);
-        }
-
-        return $shelterIds;
-    }
-
-    private function _createShelterIdList($shelters = array())
-    {
-        $shelterIds = array();
-        foreach($shelters as $shelter)
-        {
-            $shelterIds[] = $shelter->shelter_id;
-        }
-
-        return $shelterIds;
-    }
-
-
     // assume story exists and is not empty
     private function _canUserEditStory($user, $story)
     {
@@ -118,6 +40,31 @@ class StoryController extends Controller
                     !empty($story->city_id) ? $story->city_id : Shelters::model()->getCityIdByShelterId($story->shelter_id), 
                     CityCoordinators::model()->findAllByUserId($user->id)
                 );
+    }
+
+    private function _getApplicableShelters() 
+    {
+        $user = Yii::app()->user;
+
+        $shelters = array();
+        if ($user->role == Users::ROLE_ADMIN) {
+            $shelters = Shelters::model()->findAll();
+        } else if ($user->role == Users::ROLE_CITY) {
+            $cityIds = Helpers::extractFromArray('city_id', CityCoordinators::model()->findAllByUserId($user->id));
+            $shelters = Shelters::model()->findAllByAttributes(array('city_id'=>$cityIds));
+        } else if ($user->role == Users::ROLE_SHELTER) {
+            $shelterIds = Helpers::extractFromArray('shelter_id', ShelterCoordinators::model()->findAllByUserId($user->id));
+            $shelters = Shelters::model()->findAllByAttributes(array('shelter_id'=>$shelterIds));
+        } else if ($user->role == Users::ROLE_CONTRIBUTOR) {
+            $cityIds = Helpers::extractFromArray('city_id', CityContributor::model()->findAllByUserId($user->id));
+            $shelterIds = Helpers::extractFromArray('shelter_id', ShelterContributor::model()->findAllByUserId($user->id));
+            $criteria = new CDbCriteria;
+            $criteria->addInCondition('city_id', $cityIds, 'OR');
+            $criteria->addInCondition('shelter_id', $shelterIds, 'OR');
+            $shelters = Shelters::model()->findAll($criteria);
+        }
+
+        return $shelters;
     }
 
     private function _getApplicableStories() {
@@ -152,19 +99,6 @@ class StoryController extends Controller
         $t1 = microtime(true);
         $stories = $this->_getApplicableStories();
 
-        //fetch all stories based on logged in userId and shelter_coordinators mapped shelterId
-        /*
-        $shelterIds = $this->_getApplicableShelters(Yii::app()->user->id);
-        $stories = array();
-        
-        print_r($shelterIds);
-
-        if(!empty($shelterIds))
-        {
-            $stories = $this->loadStoryList($shelterIds);
-        }
-        //*/
-        
         $tdiff = microtime(true) - $t1;
         //echo $tdiff.'s';
 
@@ -192,24 +126,8 @@ class StoryController extends Controller
             return;
         }
 
-        $userId = Yii::app()->user->id;
+        $selectableShelters = $this->_getApplicableShelters();
 
-        //now get a list of shelters they have access to
-        $shelterIds = $this->_getApplicableShelters(Yii::app()->user->id);
-
-        $selectableShelters = array();
-        if(!empty($shelterIds))
-        {
-            //now get a list of stories where the story is mapped to any of these shelter IDs
-            $selectableShelters = Shelters::model()->findAll(array(
-                'condition' => '`t`.shelter_id in (' . implode(",", $shelterIds) . ')'
-            ));
-        }
-        else
-        {
-            $selectableShelters = Shelters::model()->findAll();
-        }
-        //fget their userId
 
         $this->render("/story/edit/main", array(
             'story' => $story,
@@ -217,7 +135,7 @@ class StoryController extends Controller
             'shelters' => $selectableShelters,
             'selectedShelterId' => $selectedShelterId,
             'storyId' => $storyId,
-            'userId' => $userId,
+            'userId' => Yii::app()->user->id,
             'currentGiftRequests' => $this->getCurrentGiftRequest($storyId)
         ));
     }
