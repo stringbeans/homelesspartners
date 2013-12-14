@@ -135,7 +135,9 @@
 <section>
 	<div class="action container">
 		<p class="lead">We’re helping homeless people together with <strong>5,000</strong> donors just like you. Join us today.</p>
-		<a href="#read-stories" class="btn btn-primary btn-hg">Read Stories Now</a> <a href="/volunteer" class="btn btn-inverse btn-hg">Volunteer Today</a>
+		<a href="#read-stories" class="btn btn-primary btn-hg">Read Stories Now</a> 
+		<a href="<?php echo $this->createUrl("home/donate") ?>" class="btn btn-inverse btn-hg">Make Donation</a>
+		<a href="<?php echo $this->createUrl("home/volunteer") ?>" class="btn btn-inverse btn-hg">Volunteer Today</a>
 	</div>
 </section>
 
