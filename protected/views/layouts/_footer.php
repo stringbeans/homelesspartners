@@ -10,6 +10,7 @@
 				<ul class="bottom-links">
 					<li><a href="<?php echo $this->createUrl("home/about") ?>">About</a></li>
 					<li><a href="<?php echo $this->createUrl("home/howItWorks") ?>">How It Works</a></li>
+					<li><a href="<?php echo $this->createUrl("home/faq") ?>">FAQ</a></li>
 					<li><a href="<?php echo $this->createUrl("home/contact") ?>">Contact Us</a></li>
 					<?php if(Yii::app()->user->isGuest): ?><li><a href="<?php echo $this->createUrl("login/index") ?>">Login</a></li><?php endif; ?>
 					<?php if(Yii::app()->user->isGuest): ?><li><a href="<?php echo $this->createUrl("login/register") ?>">Register</a></li><?php endif; ?>

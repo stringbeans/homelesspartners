@@ -39,6 +39,11 @@ class HomeController extends Controller
 		$this->render('/home/sponsors/main');
 	}
 
+	public function actionFaq() 
+	{
+		$this->render("/home/faq/main");
+	}
+
 	public function actionContactProcessor()
 	{
 		$name = Yii::app()->input->post('name');

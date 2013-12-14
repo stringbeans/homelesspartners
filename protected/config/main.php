@@ -65,6 +65,7 @@ return array(
 				'' => 'home/index',
 				'about' => 'home/about',
 				'howItWorks' => 'home/howItWorks',
+				'faq' => 'home/faq',
 				'contact' => 'home/contact',
 				'privacy' => 'home/privacy',
 				'terms' => 'home/terms',
