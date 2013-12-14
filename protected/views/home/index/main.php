@@ -160,12 +160,14 @@
 					<h3 class="city-title">Regina</h3>
 				</a>
 			</div>
+			<?php /*
 			<div class="col-sm-6 col-md-4">
 				<a href="city/cityShelters?id=31" class="city-tile">
 					<img src="images/cities/longbeach.png" class="img-responsive"/>
 					<h3 class="city-title">Long Beach</h3>
 				</a>
 			</div>
+			*/ ?>
 			<div class="col-sm-6 col-md-4">
 				<a href="city/cityShelters?id=29" class="city-tile">
 					<img src="images/cities/northvan.png" class="img-responsive"/>
