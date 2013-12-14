@@ -18,6 +18,7 @@
 	</div>
 </section>
 
+<a name='howItWorks'></a>
 <section>
 	<div class="container how-it-works">
 		<h2 class="section-title">How It Works</h2>

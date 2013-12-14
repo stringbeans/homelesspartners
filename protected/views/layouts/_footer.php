@@ -9,26 +9,29 @@
 			  <h5 class="title">Homeless Partners</h5>
 				<ul class="bottom-links">
 					<li><a href="<?php echo $this->createUrl("home/about") ?>">About</a></li>
-					<li><a href="<?php echo $this->createUrl("home/howItWorks") ?>">How It Works</a></li>
+					<li><a href="<?php echo $this->createUrl("home/index") ?>#howItWorks">How It Works</a></li>
 					<li><a href="<?php echo $this->createUrl("home/faq") ?>">FAQ</a></li>
+					<li><a href="<?php echo $this->createUrl("home/sponsors") ?>">Sponsors</a></li>
 					<li><a href="<?php echo $this->createUrl("home/contact") ?>">Contact Us</a></li>
 					<?php if(Yii::app()->user->isGuest): ?><li><a href="<?php echo $this->createUrl("login/index") ?>">Login</a></li><?php endif; ?>
 					<?php if(Yii::app()->user->isGuest): ?><li><a href="<?php echo $this->createUrl("login/register") ?>">Register</a></li><?php endif; ?>
-					<li><a href="<?php echo $this->createUrl("home/privacy") ?>">Privacy</a></li>
-					<li><a href="<?php echo $this->createUrl("home/terms") ?>">Terms</a></li>
+					<?php /*<li><a href="<?php echo $this->createUrl("home/privacy") ?>">Privacy</a></li> */ ?>
+					<?php /*<li><a href="<?php echo $this->createUrl("home/terms") ?>">Terms</a></li> */ ?>
 					<li><a href="<?php echo $this->createUrl("search/index") ?>">Search</a></li>
 				</ul>
 			</div>
-
+			<?php /*
 			<div class="col-md-2">
 			  <h5 class="title">About Us</h5>
 				<ul class="bottom-links">
-					<li><a href="<?php echo $this->createUrl("home/team") ?>">Team</a></li>
-					<li><a href="<?php echo $this->createUrl("home/technology") ?>">Technology</a></li>
+
+					<li><a href="#">Team</a></li>
+					<li><a href="#">Technology</a></li>
 					<li><a href="<?php echo $this->createUrl("home/sponsors") ?>">Sponsors</a></li>
-					<li><a href="<?php echo $this->createUrl("home/media") ?>">Media</a></li>
+					<li><a href="#">Media</a></li>
 				</ul>
 			</div>
+			 */ ?>
 
 			<div class="col-md-2">
 			  <h5 class="title">Explore</h5>
