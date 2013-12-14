@@ -41,7 +41,10 @@
           </div>
         </div>
 
-        <p>If you would like to find a community of belonging, contact the church of Christ nearest you, where you will be very welcome. Please go to <a href="http://www.church-of-christ.org">church-of-christ.org</a> or the <a href="http://www.dtodayinfo.net/DTodayInfo.html">church locater</a>. For a Bible study free of charge see <a href="http://wbschool.org">wbschool.org</a> or for more extensive study contact: <a href="http://www.nationsu.org">www.nationsu.org</a></p>
+        <p>
+            If you would like to find a community of belonging, contact the church of Christ nearest you, where you will be very welcome. Please go to <a href="http://www.church-of-christ.org">church-of-christ.org</a> or the <a href="http://www.dtodayinfo.net/DTodayInfo.html">church locater</a>. 
+            For a Bible study free of charge see <a href="http://wbschool.org">wbschool.org</a> or a <a href='http://www.correspondencecourse.webs.com/'>course for teens</a>, or for more extensive study contact <a href='http://www.nationsu.org/'>www.nationsu.org</a>.
+        </p>
  
       </div>
     </div>
