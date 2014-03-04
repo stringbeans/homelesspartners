@@ -31,7 +31,7 @@
 
         <p>That was the seed of Homeless Partners - listing the stories and Christmas wish lists of the homeless on a website so that others could read the story and give a gift and caring message - a practical way to help the poor. After all, that's what everyone is looking for - to be loved and cared for, and this is a way that people could do it practically, safely and personally.</p>
 
-        <p>Since inception, the program has successfully connected thousands of homeless people from Vancouver, Calgary, Los Angeles, St Louis, Victoria, Kelowna, Vernon, Regina, and Saskatoon. </p>
+        <p>Since inception, the program has successfully connected thousands of homeless people from Vancouver, Calgary, St Louis, Victoria, Kelowna, Vernon, Regina, and Saskatoon. </p>
 
         <div class="row">
           <div class="col-sm-10 center-block">
@@ -42,6 +42,7 @@
         </div>
 
         <p>
+            For Dan and Jennie, the purpose of this project is to demonstrate the love that Jesus had for the poor.
             If you would like to find a community of belonging, contact the church of Christ nearest you, where you will be very welcome. Please go to <a href="http://www.church-of-christ.org">church-of-christ.org</a> or the <a href="http://www.dtodayinfo.net/DTodayInfo.html">church locater</a>. 
             For a Bible study free of charge see <a href="http://wbschool.org">wbschool.org</a> or a <a href='http://www.correspondencecourse.webs.com/'>course for teens</a>, or for more extensive study contact <a href='http://www.nationsu.org/'>www.nationsu.org</a>.
         </p>
