@@ -14,7 +14,7 @@
 
 <section class="mission">
 	<div class="container">
-		<p class="lead">We're a Not-For-Profit organization on a mission to help homeless people around the world. Our platform allows communities to post personal stories and Christmas wish lists of individual homeless people. Join us.</p>
+		<p class="lead">We're a Not-For-Profit organization on a mission to help homeless people. Our platform allows communities to post personal stories and Christmas wish lists of individual homeless people. Join us.</p>
 	</div>
 </section>
 
@@ -56,7 +56,7 @@
 
 <section>
 	<div class="testimonials container">
-		<p class="lead text-center">Together we’ve successfully pledged over <strong>7,000</strong><br/>gifts in <strong>11</strong> cities across North America</p>
+		<p class="lead text-center">Together we’ve successfully pledged over <strong>7,000</strong> gifts</p>
 		<div class="tab-content">
 			<div class="quote-mark"><span>“</span></div>
 		  <div class="tab-pane active" id="testimonial-one">
