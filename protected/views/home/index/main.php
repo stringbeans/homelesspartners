@@ -9,6 +9,7 @@
 	<div class="container">
 		<h1>Help Homeless In Your Community</h1>
 		<p>Read their story and pledge a Christmas gift today</p>
+		<p>* Most stories will be on the website by the first week in December.</p>
 	</div>
 </section>
 
