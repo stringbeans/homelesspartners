@@ -57,7 +57,7 @@
 
 <section>
 	<div class="testimonials container">
-		<p class="lead text-center">Together we’ve successfully pledged over <strong>7,000</strong> gifts</p>
+		<p class="lead text-center">Together we’ve successfully pledged over <strong>8,000</strong> gifts</p>
 		<div class="tab-content">
 			<div class="quote-mark"><span>“</span></div>
 		  <div class="tab-pane active" id="testimonial-one">
@@ -194,6 +194,18 @@
 				<a href="city/cityShelters?id=28" class="city-tile">
 					<img src="images/cities/surrey.png" class="img-responsive"/>
 					<h3 class="city-title">Surrey</h3>
+				</a>
+			</div>
+			<div class="col-sm-6 col-md-4">
+				<a href="city/cityShelters?id=34" class="city-tile">
+					<img src="images/cities/vernon.png" class="img-responsive"/>
+					<h3 class="city-title">Vernon</h3>
+				</a>
+			</div>
+			<div class="col-sm-6 col-md-4">
+				<a href="city/cityShelters?id=35" class="city-tile">
+					<img src="images/cities/winnipeg.png" class="img-responsive"/>
+					<h3 class="city-title">Winnipeg</h3>
 				</a>
 			</div>
 			<div class="col-sm-6 col-md-4">
