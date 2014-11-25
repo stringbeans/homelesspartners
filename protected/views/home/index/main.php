@@ -15,7 +15,7 @@
 
 <section class="mission">
 	<div class="container">
-		<p class="lead">We're a Not-For-Profit organization on a mission to help homeless people. Our platform allows communities to post personal stories and Christmas wish lists of individual homeless people. Join us.</p>
+		<p class="lead">We're a Not-For-Profit organization on a mission to help homeless people across North America. Our platform allows communities to post personal stories and Christmas wish lists of individual homeless people. Join us.</p>
 	</div>
 </section>
 
@@ -139,6 +139,7 @@
 		<a href="#read-stories" class="btn btn-primary btn-hg">Read Stories Now</a> 
 		<a href="<?php echo $this->createUrl("home/donate") ?>" class="btn btn-inverse btn-hg">Make Donation</a>
 		<a href="<?php echo $this->createUrl("home/volunteer") ?>" class="btn btn-inverse btn-hg">Volunteer Today</a>
+		<a href="https://docs.google.com/document/d/11lAfpYNMyRvSjBdXCAiUQxEw0EPznH2hjJwEERxcQGk/edit?" class="btn btn-inverse btn-hg">Read Stories Now</a>
 	</div>
 </section>
 
