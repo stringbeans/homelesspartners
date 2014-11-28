@@ -113,7 +113,7 @@
 
 <section class="section-offset">
 	<div class="container">
-		<h2 class="section-title">2013 Wish List Counter</h2>
+		<h2 class="section-title">2014 Wish List Counter</h2>
 		<table class="stats">
 			<tr>
 				<td class="stat-metric">
