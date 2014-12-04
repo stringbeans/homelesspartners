@@ -19,6 +19,13 @@ class HomeController extends Controller
 		$this->render('/home/about/main');
 	}
 
+	public function actionPledgeday()
+	{
+		$this->layout = "//layouts/empty";
+		$this->pageTitle = "Pledge Day 2014";
+		$this->render('/home/pledge/main');
+	}
+
 	public function actionContact()
 	{
 		$this->render('/home/contact/main');
