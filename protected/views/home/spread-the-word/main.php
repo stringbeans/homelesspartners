@@ -13,7 +13,7 @@
 
 <section id="read-stories">
 	<div class="city-stories container">
-		<h2 class="section-title">Share Homeless Partners Posters</h2>
+		<h2 class="section-title">Homeless Partners Posters</h2>
 		<div class="row">
 			<div class="col-sm-6 col-md-4">
 				<a href="city/cityShelters?id=18" class="city-tile">
@@ -95,9 +95,25 @@
         
         <h3 class="section-title">Email Friends and Family</h3>
         
-        <p class="lead">We've created a basic email script to encourage close friends and family to get involved. Simply copy and paste the email below:</p>
+        <p class="lead">We've created a basic email script to encourage close friends and family to get involved. Simply select your email client to send the message now, or copy and paste the email below:</p>
 
-
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+	<div class="action container">
+		
+		<a href="#" class="btn btn-inverse btn-hg">Email Client</a>
+		<a href="#" class="btn btn-inverse btn-hg">Gmail</a>
+		<a href="#" class="btn btn-inverse btn-hg">Yahoo Mail</a>
+		<a href="#" class="btn btn-inverse btn-hg">Hotmail / Live Mail</a>
+		</div>
+</section>
+<section class="section-offset">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 center-block">
 
 
 <p><b>To:</b> (<i><u>all of your friends and family</u></i>)
@@ -136,11 +152,9 @@
 
 <section>
 	<div class="action container">
-		<p class="lead">Quick Email Links</p>
-		<a href="#" class="btn btn-inverse btn-hg">Email Client</a>
-		<a href="#" class="btn btn-inverse btn-hg">Gmail</a>
-		<a href="#" class="btn btn-inverse btn-hg">Yahoo Mail</a>
-		<a href="#" class="btn btn-inverse btn-hg">Hotmail / Live Mail</a>
+		<h3 class="section-title">Other Resources</h3>
+		<a href="#" class="btn btn-inverse btn-hg">Download Homeless Partners Media Kit</a>
+
 		</div>
 </section>
 
