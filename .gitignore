@@ -2,3 +2,4 @@
 /assets/*
 /protected/runtime/*
 /protected/config/main.php
+/.idea

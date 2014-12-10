@@ -69,7 +69,9 @@ return array(
 				'contact' => 'home/contact',
 				'privacy' => 'home/privacy',
 				'terms' => 'home/terms',
-				'search' => 'search/index',
+                'pledge-day-2014' => 'home/pledgeDay',
+                'spread-the-word' => 'home/spreadTheWord',
+                'search' => 'search/index',
 
 				'team' => 'home/team',
 				'technology' => 'home/technology',

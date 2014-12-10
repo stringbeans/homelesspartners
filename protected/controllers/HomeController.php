@@ -21,10 +21,15 @@ class HomeController extends Controller
 
 	public function actionPledgeday()
 	{
-		$this->layout = "//layouts/empty";
+		$this->layout = false;
 		$this->pageTitle = "Pledge Day 2014";
 		$this->render('/home/pledge/main');
 	}
+
+    public function actionSpreadTheWord()
+    {
+        $this->render('/home/spread-the-word/main');
+    }
 
 	public function actionContact()
 	{
