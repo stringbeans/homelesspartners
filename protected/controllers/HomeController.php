@@ -19,6 +19,21 @@ class HomeController extends Controller
 		$this->render('/home/about/main');
 	}
 
+    public function actionTalkToHomeless()
+    {
+        $this->render('/home/talk-to-homeless/main');
+    }
+
+    public function actionDropOffSupplies()
+    {
+        $this->render('/home/drop-off-supplies/main');
+    }
+
+    public function actionPledgedayRedirect()
+    {
+        $this->redirect($this->createUrl('/home/pledgeDay'));
+    }
+
 	public function actionPledgeday()
 	{
 		$this->layout = false;

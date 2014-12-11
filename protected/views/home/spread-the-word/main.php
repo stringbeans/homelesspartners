@@ -23,68 +23,68 @@
 		<h2 class="section-title">Homeless Partners Posters</h2>
 		<div class="row">
 			<div class="col-sm-6 col-md-4">
-				<a href="posters/Poster1-At-least30.000homeless.jpg" class="city-tile">
+				<a href="posters/Poster1-At-least30.000homeless.jpg" target="_blank" class="city-tile">
 					<img src="posters/Poster1-At-least30.000homeless.500.jpg" class="img-responsive"/>
 				</a>
 				<center>
    					<h4>Poster 1</h4>
-   					<p><a href="posters/Poster1-At-least30.000homeless.jpg" download>Save Image</a> | <a href="posters/Poster1-At-least30.000homeless.pdf">PDF</a> | <a href="" onclick="printPdf('posters/Poster1-At-least30.000homeless.pdf')">Print</a></p>
+   					<p><a href="posters/Poster1-At-least30.000homeless.jpg" download>Save Image</a> | <a href="posters/Poster1-At-least30.000homeless.pdf" target="_blank" >PDF</a> | <a href="" onclick="printPdf('posters/Poster1-At-least30.000homeless.pdf')">Print</a></p>
                   <p></p>
    				</center>
 			</div>
 			<div class="col-sm-6 col-md-4">
-				<a href="posters/Poster2-how-you-can-make-a-diff.jpg" class="city-tile">
+				<a href="posters/Poster2-how-you-can-make-a-diff.jpg"target="_blank" class="city-tile">
 					<img src="posters/Poster2-how-you-can-make-a-diff.500.jpg" class="img-responsive"/>
 					
 				</a>
 				<center>
    					<h4>Poster 2</h4>
-   					<p><a href="posters/Poster2-how-you-can-make-a-diff.jpg" download>Save Image</a> | <a href="posters/Poster2-how-you-can-make-a-diff.pdf">PDF</a> | <a href="" onclick="printPdf('posters/Poster2-how-you-can-make-a-diff.pdf')">Print</a></p>
+   					<p><a href="posters/Poster2-how-you-can-make-a-diff.jpg" download>Save Image</a> | <a href="posters/Poster2-how-you-can-make-a-diff.pdf" target="_blank" >PDF</a> | <a href="" onclick="printPdf('posters/Poster2-how-you-can-make-a-diff.pdf')">Print</a></p>
                   <p></p>
    				</center>
 			</div>
 			<div class="col-sm-6 col-md-4">
-				<a href="posters/Poster3-what-we-take-for-granted.jpg" class="city-tile">
+				<a href="posters/Poster3-what-we-take-for-granted.jpg" target="_blank" class="city-tile">
 					<img src="posters/Poster3-what-we-take-for-granted.500.jpg" class="img-responsive"/>
 					
 				</a>
 				<center>
    					<h4>Poster 3</h4>
-   					<p><a href="posters/Poster3-what-we-take-for-granted.jpg" download>Save Image</a> | <a href="posters/Poster3-what-we-take-for-granted.pdf">PDF</a> | <a href="" onclick="printPdf('posters/Poster3-what-we-take-for-granted.pdf')">Print</a></p>
+   					<p><a href="posters/Poster3-what-we-take-for-granted.jpg" download>Save Image</a> | <a href="posters/Poster3-what-we-take-for-granted.pdf" target="_blank" >PDF</a> | <a href="" onclick="printPdf('posters/Poster3-what-we-take-for-granted.pdf')">Print</a></p>
                   <p></p>
    				</center>
 			</div>
 
 			<div class="col-sm-6 col-md-4">
-				<a href="posters/Poster4-pledgeday.jpg" class="city-tile">
+				<a href="posters/Poster4-pledgeday.jpg" target="_blank" class="city-tile">
 					<img src="posters/Poster4-pledgeday.500.jpg" border ="1" class="img-responsive"/>
 					
 				</a>
 				<center>
    					<h4>Poster 4</h4>
-   					<p><a href="posters/Poster4-pledgeday.jpg" download>Save Image</a> | <a href="posters/Poster4-pledgeday.pdf">PDF</a> | <a href="" onclick="printPdf('posters/Poster4-pledgeday.pdf')">Print</a></p>
+   					<p><a href="posters/Poster4-pledgeday.jpg" download>Save Image</a> | <a href="posters/Poster4-pledgeday.pdf" target="_blank" >PDF</a> | <a href="" onclick="printPdf('posters/Poster4-pledgeday.pdf')">Print</a></p>
                   <p></p>
    				</center>
 			</div>
 			<div class="col-sm-6 col-md-4">
-				<a href="posters/Poster5-endhomelessness.jpg" class="city-tile">
+				<a href="posters/Poster5-endhomelessness.jpg" target="_blank" class="city-tile">
 					<img src="posters/Poster5-endhomelessness.500.jpg" class="img-responsive"/>
 					
 				</a>
 				<center>
    					<h4>Poster 5</h4>
-   					<p><a href="posters/Poster5-endhomelessness.jpg" download>Save Image</a> | <a href="posters/Poster5-endhomelessness.pdf">PDF</a> | <a href="" onclick="printPdf('posters/Poster5-endhomelessness.pdf')">Print</a></p>
+   					<p><a href="posters/Poster5-endhomelessness.jpg" download>Save Image</a> | <a href="posters/Poster5-endhomelessness.pdf" target="_blank" >PDF</a> | <a href="" onclick="printPdf('posters/Poster5-endhomelessness.pdf')">Print</a></p>
                   <p></p>
    				</center>
 			</div>
 			<div class="col-sm-6 col-md-4">
-				<a href="posters/poster7-spark-change-in-your-community.jpg" class="city-tile">
+				<a href="posters/poster7-spark-change-in-your-community.jpg" target="_blank" class="city-tile">
 					<img src="posters/poster7-spark-change-in-your-community.500.jpg" class="img-responsive"/>
 					
 				</a>
 				<center>
    					<h4>Poster 6</h4>
-   					<p><a href="posters/poster7-spark-change-in-your-community.jpg" download="">Save Image</a> | <a href="posters/poster7-spark-change-in-your-community.pdf">PDF</a> | <a href="" onclick="printPdf('posters/poster7-spark-change-in-your-community.pdf')">Print</a></p>
+   					<p><a href="posters/poster7-spark-change-in-your-community.jpg" download="">Save Image</a> | <a href="posters/poster7-spark-change-in-your-community.pdf" target="_blank" >PDF</a> | <a href="" onclick="printPdf('posters/poster7-spark-change-in-your-community.pdf')">Print</a></p>
                   <p></p>
    				</center>
 			</div>

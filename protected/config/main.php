@@ -70,7 +70,10 @@ return array(
 				'privacy' => 'home/privacy',
 				'terms' => 'home/terms',
                 'pledge-day-2014' => 'home/pledgeDay',
+                'pledgeday2014' => 'home/pledgeDayRedirect',
                 'spread-the-word' => 'home/spreadTheWord',
+                'talk-to-homeless-person' => 'home/talkToHomeless',
+                'drop-off-supplies' => 'home/dropOffSupplies',
                 'search' => 'search/index',
 
 				'team' => 'home/team',
@@ -88,11 +91,11 @@ return array(
 		),
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=<host>;dbname=<dbname>',
-			'emulatePrepare' => true,
-			'username' => '',
-			'password' => '',
-			'charset' => 'utf8',
+            'connectionString' => 'mysql:host=localhost;dbname=homeless_partners',
+            'emulatePrepare' => true,
+            'username' => 'root',
+            'password' => 'secure password',
+            'charset' => 'utf8'
 		),
 		
 		'errorHandler'=>array(
