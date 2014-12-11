@@ -495,6 +495,7 @@ Sections / Pages
   margin-bottom: 2em;
   background: #000;
   color: #FFF;
+  border: 1px solid black;
 }
 .city-tile:hover {
   color: #FFF;

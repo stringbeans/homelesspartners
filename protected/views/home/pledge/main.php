@@ -55,7 +55,7 @@
     <!-- /.row -->
 
     <!-- Projects Row -->
-    <div class="row">
+    <div class="row" style="margin-top: 15px;">
         <div id="seperaterow">
             <div class="col-md-2"> </div>
             <div class="col-md-4">
@@ -64,7 +64,7 @@
                     <h3>
                         Read Stories <br>&amp; Pledge Gifts
                     </h3>
-                    <div class="btnbox"><a href="http://www.homelesspartners.com/" class="btn btn-block btn-primary">View Stories</a></div>
+                    <div class="btnbox"><a href="http://homelesspartners.com/#read-stories" class="btn btn-block btn-primary">View Stories</a></div>
                 </div>
             </div>
 
@@ -74,7 +74,7 @@
                     <h3>
                         Drop Off Supplies <br>at a Local Shelter
                     </h3>
-                    <div class="btnbox"><a href="http://www.homelesspartners.com/" class="btn btn-sm btn-block btn-primary">List of Shelters</a></div>
+                    <div class="btnbox"><a href="http://homelesspartners.com/drop-off-supplies" class="btn btn-sm btn-block btn-primary">More info</a></div>
                 </div>
             </div>
             <div class="col-md-2"> </div>
@@ -92,7 +92,7 @@
                 <h3>
                     Donate Money to<br>Homeless Partners
                 </h3>
-                <div class="btnbox"><a href="http://www.homelesspartners.com/" class="btn btn-sm btn-block btn-primary">Donate</a></div>
+                <div class="btnbox"><a href="http://homelesspartners.com/donate" class="btn btn-sm btn-block btn-primary">Donate now</a></div>
             </div>
         </div>
 
@@ -100,10 +100,10 @@
             <div class="transparentbox">
                 <img class="img-responsive" src="pledge_day_2014/images/SVG/chat.svg" alt="Listen">
                 <h3>
-                    Talk With a Homeless Person &amp; Hear Their Story
+                    Talk With Homeless Person. Hear Their Story
                 </h3>
 
-                <div class="btnbox"><a href="http://www.homelesspartners.com/" class="btn btn-sm btn-block btn-primary">View Stories</a></div>
+                <div class="btnbox"><a href="http://homelesspartners.com/talk-to-homeless-person" class="btn btn-sm btn-block btn-primary">More info</a></div>
             </div>
         </div>
         <div class="col-md-2"> </div>
@@ -179,7 +179,7 @@
     </div>
 </div>
 <!-- /.row -->
-<script type="text/javascript" class="rebelmouse-embed-script" src="https://www.rebelmouse.com/static/js-build/embed/embed.js?site=tooaverage&height=1500&flexible=1&dont_load_new_posts=0&more_button=0&post_limit=5&embed_type=sidebar&show_rebelnav=1"></script>
+<script type="text/javascript" class="rebelmouse-embed-script" src="https://www.rebelmouse.com/static/js-build/embed/embed.js?site=homelesspartners&height=1500&flexible=1&dont_load_new_posts=0&more_button=0&post_limit=5&embed_type=sidebar&show_rebelnav=1"></script>
 
 <hr>
 
