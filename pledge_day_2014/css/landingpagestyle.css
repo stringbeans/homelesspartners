@@ -239,3 +239,12 @@ h2 {
     max-height: 330px;
   }
 }
+
+.fb-share-button {
+  margin-left: 10px;
+}
+.fb-share-button > span {
+    width: 85px !important;
+    height: 32px !important;
+    transform: scale(1.25)
+}
