@@ -28,7 +28,7 @@
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-57436905-1', 'auto');
+        ga('create', 'UA-44072359-1', 'auto');
         ga('send', 'pageview');
     </script>
     <script src="pledge_day_2014/js/jquery.js"></script>
