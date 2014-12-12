@@ -139,7 +139,7 @@
 		<a href="#read-stories" class="btn btn-primary btn-hg">Read Stories Now</a> 
 		<a href="<?php echo $this->createUrl("home/donate") ?>" class="btn btn-inverse btn-hg">Make Donation</a>
 		<a href="<?php echo $this->createUrl("home/volunteer") ?>" class="btn btn-inverse btn-hg">Volunteer Today</a>
-		<a href="<?php echo $this->createUrl("home/spreadTheWord") ?>" class="btn btn-inverse btn-hg">Download Poster</a>
+		<a href="<?php echo $this->createUrl("home/spreadTheWord") ?>" class="btn btn-inverse btn-hg">Share Our Message</a>
 	</div>
 </section>
 
