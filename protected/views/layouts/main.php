@@ -1,11 +1,17 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html prefix="og: http://ogp.me/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="language" content="en" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta property="og:title" content="Help Homeless In Your Community" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://homelesspartners.com/" />
+        <meta property="og:image" content="http://homelesspartners.com/images/homeless-partners-homepage-facebook-cover.jpg" />
+        <meta property="og:description" content="We're a Not-For-Profit organization on a mission to help homeless people across North America. Our platform allows communities to post personal stories and Christmas wish lists of individual homeless people. Join us." />
 
 		<link rel="icon" type="image/ico" href="/images/favicon.ico">
 
