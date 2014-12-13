@@ -13,7 +13,7 @@
     <meta property="og:title" content="Pledge Day 2014" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://homelesspartners.com/pledge-day-2014" />
-    <meta property="og:image" content="pledge_day_2014/images/help-the-homeless-fb-cover.jpg" />
+    <meta property="og:image" content="http://homelesspartners.com/pledge_day_2014/images/help-the-homeless-fb-cover.jpg" />
     <meta property="og:description" content="A day to engage homeless people in your community. Learn how you can participate in Pledge Day 2014 and help the homeless." />
 
     <!-- Loading Bootstrap -->
@@ -170,6 +170,21 @@
     <div class="col-md-4">
         <div class="logos">
             <a href="http://www.hopewwc.org/" target="_blank"><img class="img-responsive" src="pledge_day_2014/images/PNG/hope.png" alt="Hope"></a>
+        </div>
+    </div>
+    <div class="col-md-2"> </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2"> </div>
+    <div class="col-md-4" style="margin-top: 20px;">
+        <div class="logos">
+            <a href="http://blenz.com/" target="_blank"><img class="img-responsive" src="pledge_day_2014/images/BLENZ_logo.png" alt="Blenz"></a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="logos">
+
         </div>
     </div>
     <div class="col-md-2"> </div>
