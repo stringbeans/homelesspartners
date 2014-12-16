@@ -184,7 +184,22 @@
     </div>
     <div class="col-md-4">
         <div class="logos">
+            <a href="http://www.lonsdalequay.com/" target="_blank"><img class="img-responsive" src="pledge_day_2014/images/PNG/LonsdaleQuayMarket.png" alt="Lonsdale Quay Market"></a>
+        </div>
+    </div>
+    <div class="col-md-2"> </div>
+</div>
 
+<div class="row">
+    <div class="col-md-2"> </div>
+    <div class="col-md-4">
+        <div class="logos">
+            <a href="http://www.CoolAid.org" target="_blank"><img class="img-responsive" src="pledge_day_2014/images/PNG/cool-aid.png" alt="cool aid"></a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="logos">
+            
         </div>
     </div>
     <div class="col-md-2"> </div>
