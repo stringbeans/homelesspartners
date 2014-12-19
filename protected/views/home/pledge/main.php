@@ -130,7 +130,7 @@
             <div id="transparentboxlong2">
                 <h3>#PledgeDay2014</h3>
                 <div id="spreadaware"><p>Spread awareness by sharing how you're making a difference <br>in your community by using this hashtag</p></div>
-                <a href="https://twitter.com/intent/tweet?button_hashtag=PledgeDay2014&text=I'm%20giving%20back%20to%20the%20community%20by...%20" class="twitter-hashtag-button" data-size="large" data-related="HomelessPartners">Tweet #PledgeDay2014</a>
+                <a href="https://twitter.com/intent/tweet?button_hashtag=PledgeDay2014&text=A%20day%20to%20help%20the%20homeless.%20Get%20involved%20today!%20" class="twitter-hashtag-button" data-size="large" data-related="HomelessPartners" data-url="http://homelesspartners.com/pledge-day-2014">Tweet #PledgeDay2014</a>
                 <div class="fb-share-button" data-href="http://homelesspartners.com/pledge-day-2014" data-layout="button_count"></div>
                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
             </div>
@@ -199,18 +199,20 @@
     </div>
     <div class="col-md-4">
         <div class="logos">
-            
+           <a href="http://www.bcliving.ca/" target="_blank"><img class="img-responsive" src="pledge_day_2014/images/BCLiving_Logo.png" alt="BC Living"></a> 
         </div>
     </div>
     <div class="col-md-2"> </div>
 </div>
+
+
 
 <!-- Pagination -->
 <!-- Footer -->
 <footer>
     <div class="row">
         <div class="col-lg-12">
-            <p class="spaceabove">Powered By <a href="http://www.homelesspartners.com/">Homeless Partners</a></p>
+            <p class="spaceabove">Powered By <a href="http://homelesspartners.com/">Homeless Partners</a></p>
         </div>
     </div>
     <!-- /.row -->
