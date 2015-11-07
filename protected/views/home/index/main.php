@@ -57,7 +57,7 @@
 
 <section>
 	<div class="testimonials container">
-		<p class="lead text-center">Together we’ve successfully pledged over <strong>8,000</strong> gifts</p>
+		<p class="lead text-center">Together we’ve successfully pledged over <strong>10,000</strong> gifts</p>
 		<div class="tab-content">
 			<div class="quote-mark"><span>“</span></div>
 		  <div class="tab-pane active" id="testimonial-one">

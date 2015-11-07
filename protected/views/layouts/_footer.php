@@ -47,7 +47,7 @@
 				<ul class="bottom-links">
 					<li><a href="<?php echo $this->createUrl("home/volunteer") ?>">Volunteer</a></li>
 					<li><a href="<?php echo $this->createUrl("home/donate") ?>">Donate</a></li>
-                    <li><a href="<?php echo $this->createUrl("home/pledgeDay") ?>">Pledge Day 2014</a></li>
+                    
                     <li><a href="<?php echo $this->createUrl("home/spreadTheWord") ?>">Spread The Word</a></li>
 				</ul>
 			</div>
