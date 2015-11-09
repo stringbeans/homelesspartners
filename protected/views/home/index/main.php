@@ -218,6 +218,22 @@
 	</div>
 </section>
 
+<div id="coming-2015" class="modal fade" role="dialog" aria-labelledby="comming2015">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            We are in the process of updating the website with stories for the 2015 season. Please check back soon.
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <script type='text/javascript'>
 $(document).ready(function(){
@@ -230,5 +246,10 @@ $(document).ready(function(){
 			}
 		});
 	}, repeat);
+
+  setTimeout(function() {
+    $('#coming-2015').modal('show');
+  }, 800);
+  
 });
 </script>
