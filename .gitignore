@@ -3,3 +3,4 @@
 /protected/runtime/*
 /protected/config/main.php
 /.idea
+/sqldump
