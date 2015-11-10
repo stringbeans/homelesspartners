@@ -611,3 +611,18 @@ Sections / Pages
 .btn-social-instagram.active {
   background-color: #456c8b;
 }
+
+
+/********/
+
+@media (max-width: 767px) {
+  .navbar-ondark .navbar-collapse {
+    background-color: #eceef0;
+  }
+
+  .navbar-ondark .nav > li > a {
+    color: #526476;
+  }
+}
+
+
