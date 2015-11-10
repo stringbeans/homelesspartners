@@ -8,7 +8,7 @@ $(document).ready(function() {
         <div class="container">
       	<div class="navbar-header">
       		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>
-          	<a href="<?php echo Yii::app()->baseUrl ?>/" class="navbar-brand">Homeless Partners</a>
+          	<a href="<?php echo Yii::app()->baseUrl ?>/" class="navbar-brand"><span class="off-screen">Homeless Partners</span></a>
       	</div>          
         <div class="navbar-collapse collapse navbar-collapse-01">
             <ul class="nav navbar-nav">

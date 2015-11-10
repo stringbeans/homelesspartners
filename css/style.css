@@ -167,7 +167,6 @@ section {
   height: 60px;
   background: url('../images/logos/hp.png') center center no-repeat;
   background-size: 100%;
-  text-indent: -9999999px;
   display: block;
   float: none;
 }
@@ -613,7 +612,7 @@ Sections / Pages
 }
 
 
-/********/
+/***** 2015 Fix ***/
 
 @media (max-width: 767px) {
   .navbar-ondark .navbar-collapse {
@@ -625,4 +624,8 @@ Sections / Pages
   }
 }
 
+.off-screen {
+  position: absolute;
+  top: -99999px;
+}
 
